@@ -8,7 +8,7 @@
 
 
 /*------------------------------------------------------------
- *白巧件玄及缙及烂聒
+ *color of front
  *------------------------------------------------------------*/
 typedef enum
 {
@@ -24,14 +24,14 @@ typedef enum
 	CHAR_COLORGREEN2,
 	CHAR_COLORBLACK,
 }CHAR_COLOR;
-/*====================平乓仿及综岳卞楮允月楮醒====================*/
+/*====================function of creat new character====================*/
 void CHAR_createNewChar( int clifd, int dataplacenum,char* charname ,
 						  int imgno,int faceimgno,
 						  int vital,int str,int tgh,int dex,
 						  int earth,int water,int fire,int wind,
 						  int hometown , char *cdkey );
 
-/*====================平乓仿及夫弘奶件====================*/
+/*====================character login====================*/
 
 void CHAR_login( int clifd, char* data, int saveindex );
 
@@ -40,8 +40,8 @@ BOOL _CHAR_warpToSpecificPoint( char *file, int line,
 							int charaindex, int fl, int x, int y);
 
 
-/*====================平乓仿及本□皮====================*/
-/*====================平乓仿及夫弘失它玄====================*/
+/*====================character save====================*/
+/*====================character log out====================*/
 BOOL CHAR_charSaveFromConnectAndChar( int fd,Char* ch, int unlock );
 BOOL CHAR_charSaveFromConnect( int charaindex,int unlock );
 #define	CHAR_logout( charindex, save)	_CHAR_logout( __FILE__, __LINE__, charindex, save)
@@ -50,24 +50,24 @@ BOOL _CHAR_logout( char *file, int line, int charindex, BOOL save);
 /*====================watch event    ====================*/
 void CHAR_sendWatchEvent( int objindex, int chac, int* opt,int optlen,BOOL myflg );
 
-/*====================旦平伙====================*/
+/*====================skill====================*/
 BOOL CHAR_Skillupsend(int charaindex );
 void CHAR_SkillUp(  int charaindex, int skillid );
 void CHAR_useSkill( int charaindex, int dir ,int skindex );
 
 typedef enum
 {
-    CHAR_WALKSUCCESSED,     /* 岳      */
-    CHAR_WALKSYSTEMERROR,   /* 扑旦  丞巨仿□    及index民尼永弁卞
+    CHAR_WALKSUCCESSED,     /* successed      */
+    CHAR_WALKSYSTEMERROR,   /* system error's array of index check 
                              * 夫匀井井匀凶午井 */
-    CHAR_WALKEXTEND,        /*    区左□田□仄化汹仇丹午仄凶［NPC卞及心*/
-    CHAR_WALKHITOBJECT,     /*  窒井  卞癫匀化｝汹仃卅井匀凶    */
-    CHAR_WALKPREWALK,       /*  prewalk奶矛件玄匹汹仃卅井匀凶( 檗祭 ) */
-    CHAR_WALKDIE,           /*  韶氏匹中化汹仃卅中  */
-    CHAR_WALK1357,          /*  标户  轾卞汹仇丹午仄化汹仃卅井匀凶  */
+    CHAR_WALKEXTEND,        /*    overflow of walking.just for npc*/
+    CHAR_WALKHITOBJECT,     /*  cant walk cause hit object    */
+    CHAR_WALKPREWALK,       /*  cant walk cause prewalk event  */
+    CHAR_WALKDIE,           /*  cant walk cause death  */
+    CHAR_WALK1357,          /*  cant walk to 1357 (斜方向)  */
 }CHAR_WALKRET;
 
-/*====================平乓仿及啖  卞楮允月楮醒====================*/
+/*====================function of character's walk====================*/
 void CHAR_ctodirmode(char moji , int* dir , int* mode);
 INLINE void CHAR_getDXDY( int dir , int* dx, int* dy );
 INLINE int CHAR_getDX( int dir );
@@ -273,27 +273,27 @@ typedef enum
 
 typedef enum
 {
-    CHAR_WINDOWTYPE_RETURNTOELDER=-1,   /*  赢  尺  月它奴件玉它    */
-    CHAR_WINDOWTYPE_RESURRECTION=-2,   /*  汊唾允月它奴件玉它    */
+    CHAR_WINDOWTYPE_RETURNTOELDER=-1,   /*  返回长老窗口    */
+    CHAR_WINDOWTYPE_RESURRECTION=-2,   /*  复活窗口    */
 
-	CHAR_WINDOWTYPE_SELECTBATTLE = 1,		/*   月爵  毛蓟  允月它奴件玉它 */
-	CHAR_WINDOWTYPE_SELECTDUEL = 2,  		/*   月DUEL毛蓟  允月它奴件玉它 */
-	CHAR_WINDOWTYPE_SELECTTRADECARD = 3, 	/*   铜跟晶毛蓟  允月它奴件玉它 */
-	CHAR_WINDOWTYPE_SELECTPARTY = 4, 		/* 由□  奴毛蓟  允月它奴件玉它 */
-	CHAR_WINDOWTYPE_SELECTBATTLEWATCH = 5, 	/* 棋爵毛蓟  允月它奴件玉它 */
-	CHAR_WINDOWTYPE_MICMESSAGE = 6,			/* MICNPC毛银匀化请月它奴件玉它 */
+	CHAR_WINDOWTYPE_SELECTBATTLE = 1,		/*   进入战斗选择窗口 */
+	CHAR_WINDOWTYPE_SELECTDUEL = 2,  		/*   进入决斗选择窗口 DUEL = 决斗 */
+	CHAR_WINDOWTYPE_SELECTTRADECARD = 3, 	/*   交换名片窗口 */
+	CHAR_WINDOWTYPE_SELECTPARTY = 4, 		/*   选择团队窗口 */
+	CHAR_WINDOWTYPE_SELECTBATTLEWATCH = 5, 	/*  选择观战窗口 */
+	CHAR_WINDOWTYPE_MICMESSAGE = 6,			/* 使用MICNPC提示窗口 */
 
 	// CoolFish: Trade 2001/4/18
 	CHAR_WINDOWTYPE_SELECTTRADE = 7,	/* 交易 Window */
 
-	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE1 = 10,	/*   蟆毛  凳允月失奶  丞毛蓟  允月它奴件玉它 */
-	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE2 = 11,	/*   蟆毛  凳允月失奶  丞毛蓟  允月它奴件玉它 */
-	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE3 = 12,	/*   蟆毛  凳允月失奶  丞毛蓟  允月它奴件玉它 */
-	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE4 = 13,	/*   蟆毛  凳允月失奶  丞毛蓟  允月它奴件玉它 */
-	CHAR_WINDOWTYPE_SELECTRENAMEITEM_RENAME = 14,	/*   蟆毛    允月它奴件玉它 */
-	CHAR_WINDOWTYPE_SELECTRENAMEITEM_RENAME_ATTENTION  = 15,	/*   蟆毛    允月它奴件玉它 */
+	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE1 = 10,	/*   选择更改名称道具 */
+	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE2 = 11,	/*   选择更改名称道具 */
+	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE3 = 12,	/*   选择更改名称道具 */
+	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE4 = 13,	/*   选择更改名称道具 */
+	CHAR_WINDOWTYPE_SELECTRENAMEITEM_RENAME = 14,	/*   输入名字窗口 */
+	CHAR_WINDOWTYPE_SELECTRENAMEITEM_RENAME_ATTENTION  = 15,	/*   输入名字窗口 */
 	
-	CHAR_WINDOWTYPE_DENGON = 50,			/* 鳗蜕   */
+	CHAR_WINDOWTYPE_DENGON = 50,			/* 留言板   */
 
 	CHAR_WINDOWTYPE_WINDOWMAN_START = 100,
 	CHAR_WINDOWTYPE_WINDOWMAN_STARTMSG = CHAR_WINDOWTYPE_WINDOWMAN_START,
@@ -683,10 +683,10 @@ void CHAR_PetAddVariableAi( int petindex, int iValue );
 void CHAR_PartyUpdate( int charaindex, int senddata );
 char *CHAR_getUseName( int charaindex );
 char *CHAR_getUseID( int charaindex );
-EXTERN int EnemyMoveNum;	/*   凛卞  嫖  仃月衬及醒 */
+EXTERN int EnemyMoveNum;	/*   同时最大可移动敌人数量 */
 
-#define DB_DUELPOINT	"db_duel"			// 犯亘巨伙禾奶件玄犯□正矛□旦
-#define DB_ADDRESSBOOK	"db_addressbook"	// 失玉伊旦皮永弁犯□正矛□旦
+#define DB_DUELPOINT	"db_duel"			// DP点数 数据库
+#define DB_ADDRESSBOOK	"db_addressbook"	// 地址集数据库
 
 BOOL CHAR_send_DpDBUpdate( int charaindex );
 BOOL CHAR_send_DpDBUpdate_AddressBook( int charaindex, int mode );
@@ -722,15 +722,15 @@ int CHAR_CHECKJOINENEMY( int index);
 #define		CHAR_EFFECT_SETTINGBUFFER	256
 typedef struct tagCHAR_effectsetting
 {
-    int     floor;								//	白夫失
-	int		effect;								//	梢请  寞
-	int		level;								//	梢请及伊矛伙［  蜇及雄今［
-	int		sendflg;							//	  憎巨白尼弁玄毛霜匀凶井升丹井［
-	char	month[CHAR_EFFECT_SETTINGBUFFER];	//	  垫允月畸
-	char	day[CHAR_EFFECT_SETTINGBUFFER];		//	  垫允月
-	char	hour[CHAR_EFFECT_SETTINGBUFFER];	//	  垫允月凛棉
-	char	min[CHAR_EFFECT_SETTINGBUFFER];		//	  垫允月坌
-	char	expire[CHAR_EFFECT_SETTINGBUFFER];	//	  垫仄化中月赢今［(
+    int     floor;								//	楼层数
+	int		effect;								//	演出号
+	int		level;								//	演出级别，表现强度
+	int		sendflg;							//	  是否发送了effect
+	char	month[CHAR_EFFECT_SETTINGBUFFER];	//	  运行月份
+	char	day[CHAR_EFFECT_SETTINGBUFFER];		//	  运行日期
+	char	hour[CHAR_EFFECT_SETTINGBUFFER];	//	  运行小时
+	char	min[CHAR_EFFECT_SETTINGBUFFER];		//	  运行分钟
+	char	expire[CHAR_EFFECT_SETTINGBUFFER];	//	  共运行了多少秒
 	
 }CHAR_effectsetting;
 

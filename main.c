@@ -24,7 +24,7 @@
 #ifdef _ALLBLUES_LUA
 #include "mylua/ablua.h"
 #endif
-#ifdef _CHATROOMPROTOCOL			// (²»¿É¿ª) Syu ADD ÁÄÌìÊÒÆµµÀ
+#ifdef _CHATROOMPROTOCOL			// (ä¸å¯å¼€) Syu ADD èŠå¤©å®¤é¢‘é“
 #include "chatroom.h"
 #endif
 
@@ -44,7 +44,7 @@ extern char *DebugMainFunction;
 #endif
 
 #ifdef _ANGEL_SUMMON
-#define ANGELTIMELIMIT	3*24*60*60 // Íê³ÉÈÎÎñÊ±ÏŞ(Ãë)
+#define ANGELTIMELIMIT	3*24*60*60 // å®Œæˆä»»åŠ¡æ—¶é™(ç§’)
 int AngelReady =0;
 int AngelTimelimit = ANGELTIMELIMIT;
 time_t AngelNextTime;
@@ -61,7 +61,7 @@ int main( int argc , char** argv, char** env )
 
 	//if(attestation()<1)
 	//	{
-		//	print("ÎŞ·¨Í¨¹ıÕı°æÑéÖ¤£¡¾ßÌåÇëÁªÏµ¹ºÂòÕß£¡\n");
+		//	print("æ— æ³•é€šè¿‡æ­£ç‰ˆéªŒè¯ï¼å…·ä½“è¯·è”ç³»è´­ä¹°è€…ï¼\n");
 	//		exit(0);
 	//	}
 	//if (strcmp(getlocaltime(), TimeLimitLocal)>0)exit(0);
@@ -69,7 +69,7 @@ int main( int argc , char** argv, char** env )
 		system("ulimit -HSn 2048");
 #endif
 
-    /*  ¤È¤ê¤¢¤¨¤º•rég¤òÔO¶¨¤·¤Æ¤ª¤¯    */
+    /*  ã¨ã‚Šã‚ãˆãšæ™‚é–“ã‚’è¨­å®šã—ã¦ãŠã    */
     setNewTime();
 
 /*    if ( argc > 1 && 0==strcmp(argv[1],"-v"))
@@ -83,7 +83,7 @@ int main( int argc , char** argv, char** env )
 
     LoadAnnounce();	// Arminius 7.12 loginannounce
 
-		/* ³õÆÚÔO¶¨ */
+		/* åˆæœŸè¨­å®š */
 		memcpy( &tmOld, localtime( (time_t *)&NowTime.tv_sec), sizeof( tmNow ) );
 
 		sasql_init();
@@ -110,19 +110,19 @@ int main( int argc , char** argv, char** env )
 
 void mainloop( void )
 {	
-    print("³õÊ¼»¯NPC...");
+    print("åˆå§‹åŒ–NPC...");
     NPC_generateLoop( 1 );
-    print("Íê³É\n");
-    print("³õÊ¼»¯signal1...");
+    print("å®Œæˆ\n");
+    print("åˆå§‹åŒ–signal1...");
     signal(SIGUSR1,sigusr1);
-    print("Íê³É\n");
-    print("³õÊ¼»¯signal2...");
+    print("å®Œæˆ\n");
+    print("åˆå§‹åŒ–signal2...");
     signal(SIGUSR2,sigusr2);
-    print("Íê³É\n");
+    print("å®Œæˆ\n");
 #ifdef _MAP_WARPPOINT
-	print("³õÊ¼»¯µØÍ¼´«ËÍµã...");
+	print("åˆå§‹åŒ–åœ°å›¾ä¼ é€ç‚¹...");
 	MAPPOINT_InitMapWarpPoint();
-	print("Íê³É\n");
+	print("å®Œæˆ\n");
 	if( !MAPPOINT_loadMapWarpPoint() ){
 		return;
 	}
@@ -131,51 +131,51 @@ void mainloop( void )
 #ifdef _ASSESS_SYSEFFICACY
 	Assess_InitSysEfficacy();
 #endif
-#ifdef _CHATROOMPROTOCOL			// (²»¿É¿ª) Syu ADD ÁÄÌìÊÒÆµµÀ
-	print("³õÊ¼»¯ÁÄÌìÊÒÆµ...");
+#ifdef _CHATROOMPROTOCOL			// (ä¸å¯å¼€) Syu ADD èŠå¤©å®¤é¢‘é“
+	print("åˆå§‹åŒ–èŠå¤©å®¤é¢‘...");
 	InitChatRoom();
-	print("Íê³É\n");
+	print("å®Œæˆ\n");
 #endif
 #ifdef _CHANNEL_MODIFY
-	print("³õÊ¼»¯Ö°ÒµÆµµÀ...");
-	if(!InitOccChannel()) return;			// ³õÊ¼»¯Ö°ÒµÆµµÀ
-	print("Íê³É\n");
+	print("åˆå§‹åŒ–èŒä¸šé¢‘é“...");
+	if(!InitOccChannel()) return;			// åˆå§‹åŒ–èŒä¸šé¢‘é“
+	print("å®Œæˆ\n");
 #endif
 #ifdef _ANGEL_SUMMON
-	print("³õÊ¼»¯¾«ÁéÕÙÛ¼Ê±¼ä...");
+	print("åˆå§‹åŒ–ç²¾çµå¬å¥‚æ—¶é—´...");
 	AngelReady = 0;
 #ifdef _ANGEL_TIME
 	AngelNextTime = time(NULL) + getAngelPlayerTime();
 #else
 	AngelNextTime = time(NULL) + 1*60;
 #endif
-	print("Íê³É\n");
+	print("å®Œæˆ\n");
 #endif
 #ifdef _JZ_NEWSCRIPT_LUA
-	print("³õÊ¼»¯LNSÒıÇæ...");
+	print("åˆå§‹åŒ–LNSå¼•æ“...");
 	NPC_Lua_Init(getLuaFile());
-	print("Íê³É\n");
+	print("å®Œæˆ\n");
 #endif
 
 #ifdef _ITEM_LUA
-	print("³õÊ¼»¯µÀ¾ßLUAÒıÇæ...");
+	print("åˆå§‹åŒ–é“å…·LUAå¼•æ“...");
 	int itemluaflg=ITEM_LuaInit(getitemluafile());
 	if(itemluaflg==TRUE){
-		print("Íê³É\n");
+		print("å®Œæˆ\n");
 	}else{
-		print("Ê§°Ü\n");
+		print("å¤±è´¥\n");
 	}
 #endif
 #ifdef _ALLBLUES_LUA
-	print("³õÊ¼»¯LUA½Å±¾...");
+	print("åˆå§‹åŒ–LUAè„šæœ¬...");
   LoadAllbluesLUA("data/ablua");
-  print("Íê³É\n");
+  print("å®Œæˆ\n");
 #endif
 //if (strcmp(getlocaltime(), TimeLimitLocal)>0)exit(0);
 //#ifdef _ALLDOMAN
-//	print("³õÊ¼»¯Ó¢ĞÛ±íÁĞ...");
+//	print("åˆå§‹åŒ–è‹±é›„è¡¨åˆ—...");
 //	InitHeroList();
-//	print("Íê³É\n");
+//	print("å®Œæˆ\n");
 //#endif
 
 	int itime=0;
@@ -202,7 +202,7 @@ Assess_SysEfficacy( 0 );
 		}
 
     setNewTime();
-#ifdef _ASSESS_SYSEFFICACY_SUB //ÏÔÊ¾LOOPÊ±¼ä
+#ifdef _ASSESS_SYSEFFICACY_SUB //æ˜¾ç¤ºLOOPæ—¶é—´
 //Assess_SysEfficacy_sub( 0, 1);
 #ifdef _GMSV_DEBUG
 	  DebugMainFunction="netloop_faster";
@@ -291,8 +291,8 @@ static void sendmsg_toall( char *msg )
 }
 static void ShutdownProc( void)
 {
-#define		SYSINFO_SHUTDOWN_MSG		"%d ·ÖÖÓºó¿ªÊ¼½øĞĞÏµÍ³Í£»úÎ¬»¤, Çë´ó¼ÒÌáÇ°ÏÂÏßÒÔÃâÊı¾İ¶ªÊ§¡£"
-#define		SYSINFO_SHUTDOWN_MSG_COMP	"·şÎñÆ÷ÒÑ¹Ø±Õ¡£"
+#define		SYSINFO_SHUTDOWN_MSG		"%d åˆ†é’Ÿåå¼€å§‹è¿›è¡Œç³»ç»Ÿåœæœºç»´æŠ¤, è¯·å¤§å®¶æå‰ä¸‹çº¿ä»¥å…æ•°æ®ä¸¢å¤±ã€‚"
+#define		SYSINFO_SHUTDOWN_MSG_COMP	"æœåŠ¡å™¨å·²å…³é—­ã€‚"
 	int diff,hun;
 
 	diff = NowTime.tv_sec - SERVSTATE_getShutdown();
@@ -386,20 +386,20 @@ void AngelReadyProc()
 	if( player_online <= 10 )
 #endif
 	{
-//		print("\n¾«ÁéÕÙ»½:ÏßÉÏÈËÊı²»×ã=%d\n",	player_online );
+//		print("\nç²¾çµå¬å”¤:çº¿ä¸Šäººæ•°ä¸è¶³=%d\n",	player_online );
 		return;
 	}
 
 	AngelReady = 1;
 	//AngelNextTime = min( (int)(10000/player_online), 100)*60 + (unsigned long)nowTime;
 #ifdef _ANGEL_TIME
-	AngelNextTime = min( (int)(getAngelPlayerTime()/player_online) + 1, 100)*60 + (unsigned long)nowTime;//¾«ÁéÕÙ»½Ê±¼äÎªÊ²Ã´Ò»Ö±ÏÔÊ¾£¿
+	AngelNextTime = min( (int)(getAngelPlayerTime()/player_online) + 1, 100)*60 + (unsigned long)nowTime;//ç²¾çµå¬å”¤æ—¶é—´ä¸ºä»€ä¹ˆä¸€ç›´æ˜¾ç¤ºï¼Ÿ
 #else
 	AngelNextTime = min( (int)(5000/player_online), 100)*60 + (unsigned long)nowTime;
 #endif
 
 	temptime = localtime( &AngelNextTime );
-	sprintf( msg, "\r¾«ÁéÕÙ»½:²úÉúÒ»Î»È±¶î  ÏÂ´Î²úÉúÊ±¼ä=(%d/%d %d:%d) Ä¿Ç°ÈËÊı=%d",
+	sprintf( msg, "\rç²¾çµå¬å”¤:äº§ç”Ÿä¸€ä½ç¼ºé¢  ä¸‹æ¬¡äº§ç”Ÿæ—¶é—´=(%d/%d %d:%d) ç›®å‰äººæ•°=%d",
 		temptime->tm_mon+1, temptime->tm_mday, temptime->tm_hour, temptime->tm_min, player_online );
 	print( msg);
 	//LogAngel( msg);

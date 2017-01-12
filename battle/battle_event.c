@@ -17,7 +17,7 @@
 #include "char_base.h"
 #include "item_event.h"
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 #include "profession_skill.h"
 #include "item.h"
 #include "skill.h"
@@ -59,33 +59,33 @@ int	gBattleBadStatusTbl[BATTLE_ENTRY_MAX*2];
 
 #ifdef _OTHER_MAGICSTAUTS
 #ifdef _MAGICSTAUTS_RESIST
-char MagicStatus[MAXSTATUSTYPE][36] = { "NULL","Ä§¿¹","Ìú±Ú","»ğ¿¹","µç¿¹","±ù¿¹"};
+char MagicStatus[MAXSTATUSTYPE][36] = { "NULL","é­”æŠ—","é“å£","ç«æŠ—","ç”µæŠ—","å†°æŠ—"};
 int MagicTbl[] = { -1, CHAR_DEFMAGICSTATUS, CHAR_MAGICSUPERWALL, CHAR_MAGICFIRE, CHAR_MAGICTHUNDER, CHAR_MAGICICE };
 #else
-char MagicStatus[MAXSTATUSTYPE][36] = { "NULL","Ä§¿¹","Ìú±Ú"};
+char MagicStatus[MAXSTATUSTYPE][36] = { "NULL","é­”æŠ—","é“å£"};
 int MagicTbl[] = { -1, CHAR_DEFMAGICSTATUS, CHAR_MAGICSUPERWALL };
 #endif //_MAGICSTAUTS_RESIST
 #endif
 
-char *aszStatus[] = { "È«", "¶¾", "Âé", "Ãß", "Ê¯", "×í", "ÂÒ", "Ğé", "¾ç", "ÕÏ", "Ä¬" 
-#ifdef _PET_SKILL_SARS			// WON ADD ¶¾É·ÂûÑÓ
-					  ,"É·"
+char *aszStatus[] = { "å…¨", "æ¯’", "éº»", "çœ ", "çŸ³", "é†‰", "ä¹±", "è™š", "å‰§", "éšœ", "é»˜" 
+#ifdef _PET_SKILL_SARS			// WON ADD æ¯’ç…è”“å»¶
+					  ,"ç…"
 #endif
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
-					  ,"ÔÎ","²ø","ÂŞ","±¬","Íü","¼ı","¹Æ","Õë","Ìô","ÉÕ","Ëª","µç","×¨","»ğ","±ù","À×","Ñ×","¶³","»÷"
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
+					  ,"æ™•","ç¼ ","ç½—","çˆ†","å¿˜","ç®­","è›Š","é’ˆ","æŒ‘","çƒ§","éœœ","ç”µ","ä¸“","ç«","å†°","é›·","ç‚","å†»","å‡»"
 #endif
 #ifdef _PROFESSION_ADDSKILL
-					  ,"¿¹"
+					  ,"æŠ—"
 #endif
 };
 
-char *aszStatusFull[] = { "È«¿ì", "¶¾", "Âé±Ô", "Ë¯Ãß", "Ê¯»¯", "¾Æ×í", "»ìÂÒ", "ĞéÈõ", "¾ç¶¾", "Ä§ÕÏ", "³ÁÄ¬" 
-#ifdef _PET_SKILL_SARS			// WON ADD ¶¾É·ÂûÑÓ
-					  ,"¶¾É·"
+char *aszStatusFull[] = { "å…¨å¿«", "æ¯’", "éº»ç—¹", "ç¡çœ ", "çŸ³åŒ–", "é…’é†‰", "æ··ä¹±", "è™šå¼±", "å‰§æ¯’", "é­”éšœ", "æ²‰é»˜" 
+#ifdef _PET_SKILL_SARS			// WON ADD æ¯’ç…è”“å»¶
+					  ,"æ¯’ç…"
 #endif
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
-					  ,"ÔÎÑ£","²øÈÆ","ÌìÂŞ","±ù±¬","ÒÅÍü","±ù¼ı","ÊÈÑª¹Æ","Ò»Õë¼ûÑª","Ìô²¦","»ğ¸½Ìå",
-					  "±ù¸½Ìå","À×¸½Ìå","×¨×¢Õ½¶·","»ğ¿¹","±ù¿¹","À×¿¹","»ğ¸½","±ù¸½","À×¸½"
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
+					  ,"æ™•çœ©","ç¼ ç»•","å¤©ç½—","å†°çˆ†","é—å¿˜","å†°ç®­","å—œè¡€è›Š","ä¸€é’ˆè§è¡€","æŒ‘æ‹¨","ç«é™„ä½“",
+					  "å†°é™„ä½“","é›·é™„ä½“","ä¸“æ³¨æˆ˜æ–—","ç«æŠ—","å†°æŠ—","é›·æŠ—","ç«é™„","å†°é™„","é›·é™„"
 #endif
 };
 
@@ -94,10 +94,10 @@ int StatusTbl[] = { -1, CHAR_WORKPOISON,	CHAR_WORKPARALYSIS,
 						CHAR_WORKDRUNK,		CHAR_WORKCONFUSION,
 						CHAR_WORKWEAKEN,	CHAR_WORKDEEPPOISON,
 						CHAR_WORKBARRIER,   CHAR_WORKNOCAST
-#ifdef _PET_SKILL_SARS			// WON ADD ¶¾É·ÂûÑÓ
+#ifdef _PET_SKILL_SARS			// WON ADD æ¯’ç…è”“å»¶
 						,CHAR_WORKSARS
 #endif
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 						,CHAR_WORKDIZZY,		CHAR_WORKENTWINE
 						,CHAR_WORKDRAGNET,		CHAR_WORKICECRACK
 						,CHAR_WORKOBLIVION,		CHAR_WORKICEARROW
@@ -110,9 +110,9 @@ int StatusTbl[] = { -1, CHAR_WORKPOISON,	CHAR_WORKPARALYSIS,
 						,CHAR_WORK_T_ENCLOSE_2
 #endif
 #ifdef _PROFESSION_ADDSKILL
-						,CHAR_WORKERSIST_F_I_T, CHAR_WORKWATER//Ë®¸½Ìå
-						,CHAR_WORKANNEX//¸½Éí
-						,CHAR_WORKFEAR//¿Ö¾å
+						,CHAR_WORKERSIST_F_I_T, CHAR_WORKWATER//æ°´é™„ä½“
+						,CHAR_WORKANNEX//é™„èº«
+						,CHAR_WORKFEAR//ææƒ§
 						,CHAR_WORKICECRACK2
 						,CHAR_WORKICECRACK3
 						,CHAR_WORKICECRACK4
@@ -130,10 +130,10 @@ int RegTbl[] = { -1, CHAR_WORKMODPOISON,	CHAR_WORKMODPARALYSIS,
 					 CHAR_WORKMODDRUNK,		CHAR_WORKMODCONFUSION,
 					 CHAR_WORKMODWEAKEN,	CHAR_WORKMODDEEPPOISON,
 					 CHAR_WORKMODBARRIER,   CHAR_WORKMODNOCAST  
-#ifdef _PET_SKILL_SARS			// WON ADD ¶¾É·ÂûÑÓ
+#ifdef _PET_SKILL_SARS			// WON ADD æ¯’ç…è”“å»¶
 					 ,CHAR_WORKMODSARS
 #endif
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 					 ,CHAR_WORKMODDIZZY,		CHAR_WORKMODENTWINE
 					 ,CHAR_WORKMODDRAGNET,		CHAR_WORKMODICECRACK
 					 ,CHAR_WORKMODOBLIVION,		CHAR_WORKMODICEARROW
@@ -147,29 +147,29 @@ int RegTbl[] = { -1, CHAR_WORKMODPOISON,	CHAR_WORKMODPARALYSIS,
 #endif
 					};
 
-char *aszMagicDef[] = { "³£", "Îü", "·´", "ÎŞ" 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
-						,"Ïİ"
+char *aszMagicDef[] = { "å¸¸", "å¸", "å", "æ— " 
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
+						,"é™·"
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE
-                        ,"´Ì"
+                        ,"åˆº"
 #endif
 };
 
 
 
-char *aszMagicDefFull[] = { "Í¨³£", "ÎüÊÕ", "·´Éä", "ÎŞĞ§»¯" 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
-						,"ÏİÚå"
+char *aszMagicDefFull[] = { "é€šå¸¸", "å¸æ”¶", "åå°„", "æ— æ•ˆåŒ–" 
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
+						,"é™·é˜±"
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE
-						,"Õë´Ì"
+						,"é’ˆåˆº"
 #endif
 };
 
 
 int MagicDefTbl[] = { -1, CHAR_WORKDAMAGEABSROB, CHAR_WORKDAMAGEREFLEC, CHAR_WORKDAMAGEVANISH 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 						,CHAR_WORKTRAP
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE
@@ -177,13 +177,13 @@ int MagicDefTbl[] = { -1, CHAR_WORKDAMAGEABSROB, CHAR_WORKDAMAGEREFLEC, CHAR_WOR
 #endif
 };
 
-char *aszParamChange[] = { "ÎŞ", "¹¥", "·À", "Ôç", "÷È", "²¶" };
-char *aszParamChangeFull[] = { "ÎŞ", "¹¥»÷Á¦", "·ÀÓùÁ¦", "ËÙ¶È", "÷ÈÁ¦", "²¶»ñÂÊ" };
+char *aszParamChange[] = { "æ— ", "æ”»", "é˜²", "æ—©", "é­…", "æ•" };
+char *aszParamChangeFull[] = { "æ— ", "æ”»å‡»åŠ›", "é˜²å¾¡åŠ›", "é€Ÿåº¦", "é­…åŠ›", "æ•è·ç‡" };
 int aParamChangeTbl[] = { -1, CHAR_WORKMODATTACK, CHAR_WORKMODDEFENCE,
 	CHAR_WORKMODQUICK, CHAR_WORKMODCHARM, CHAR_WORKMODCAPTURE };
 
 // Robin 0727 Ride Pet
-// È¡µÃÆï³èµÄindex
+// å–å¾—éª‘å® çš„index
 int BATTLE_getRidePet( int charaindex )
 {
 	int petindex = -1;
@@ -204,30 +204,30 @@ int BATTLE_getRidePet( int charaindex )
 
 }
 
-// È¡µÃÆï³èÊ±µÄÈıÎ§  Õı³£°æ
+// å–å¾—éª‘å® æ—¶çš„ä¸‰å›´  æ­£å¸¸ç‰ˆ
 float BATTLE_adjustRidePet3A( int charaindex, int petindex, int workindex, int action )
 {
 	float	ret = CHAR_getWorkInt( charaindex, workindex );
 	BOOL	throwweapon = BATTLE_IsThrowWepon(CHAR_getItemIndex( charaindex, CHAR_ARM ) );
 	
 	switch( workindex )	{
-	case CHAR_WORKATTACKPOWER : // ¹¥»÷Á¦
-		if( throwweapon ) // Í¶ÖÀ
+	case CHAR_WORKATTACKPOWER : // æ”»å‡»åŠ›
+		if( throwweapon ) // æŠ•æ·
 			ret = CHAR_getWorkInt( charaindex, CHAR_WORKATTACKPOWER )
 #ifdef _BATTLE_NEWPOWER //andy 1/24 reEdit
 			+ CHAR_getWorkInt( petindex, CHAR_WORKATTACKPOWER )*0.4;
 #else
 			+ CHAR_getWorkInt( petindex, CHAR_WORKATTACKPOWER )*0.2;
 #endif
-		else // ½üÕ½
+		else // è¿‘æˆ˜
 			ret = CHAR_getWorkInt( charaindex, CHAR_WORKATTACKPOWER )*0.8
 				+ CHAR_getWorkInt( petindex, CHAR_WORKATTACKPOWER )*0.8;
 		break;
-	case CHAR_WORKDEFENCEPOWER : // ·ÀÓùÁ¦
+	case CHAR_WORKDEFENCEPOWER : // é˜²å¾¡åŠ›
 		ret = CHAR_getWorkInt( charaindex, CHAR_WORKDEFENCEPOWER )*0.7
 			+ CHAR_getWorkInt( petindex, CHAR_WORKDEFENCEPOWER )*0.7;
 		break;
-	case CHAR_WORKQUICK : // Ãô½İÁ¦
+	case CHAR_WORKQUICK : // æ•æ·åŠ›
 		if( action == ATTACKSIDE )	{
 			if( throwweapon )	{
 				ret = CHAR_getWorkInt( charaindex, CHAR_WORKQUICK )*0.8
@@ -257,7 +257,7 @@ float BATTLE_adjustRidePet3A( int charaindex, int petindex, int workindex, int a
 	return	ret;
 }
 
-// Robin 0727 ride Pet ÂäÂí¸ÄÍ¼
+// Robin 0727 ride Pet è½é©¬æ”¹å›¾
 void BATTLE_changeRideImage( int index )
 {
 		int itemindex = CHAR_getItemIndex(index,CHAR_ARM);
@@ -406,22 +406,22 @@ int BATTLE_ItemCrushCheck( int charaindex )
 }
 #endif
 
-#define BREAK_NAME_WEPON 		"ÎäÆ÷"
-#define BREAK_NAME_AROMER 		"·À¾ß"
-#define BREAK_BRACELET			"»¤Íó"
-#define BREAK_MUSIC 			"ÀÖÆ÷"
-#define BREAK_NECKLACE 			"Í·ÊÎ"
-#define BREAK_RING 				"½äÖ¸"
-#define BREAK_BELT 				"Æ¤´ø"
-#define BREAK_EARRING 			"¶úÊÎ"
-#define BREAK_NOSERING 			"±Ç»·"
-#define BREAK_AMULET 			"»¤Éí·û"
-#define BREAK_OTHER 			"µÀ¾ß"
+#define BREAK_NAME_WEPON 		"æ­¦å™¨"
+#define BREAK_NAME_AROMER 		"é˜²å…·"
+#define BREAK_BRACELET			"æŠ¤è…•"
+#define BREAK_MUSIC 			"ä¹å™¨"
+#define BREAK_NECKLACE 			"å¤´é¥°"
+#define BREAK_RING 				"æˆ’æŒ‡"
+#define BREAK_BELT 				"çš®å¸¦"
+#define BREAK_EARRING 			"è€³é¥°"
+#define BREAK_NOSERING 			"é¼»ç¯"
+#define BREAK_AMULET 			"æŠ¤èº«ç¬¦"
+#define BREAK_OTHER 			"é“å…·"
 
 #ifdef _TAKE_ITEMDAMAGE
-static char *aszCrushTbl[] = { "ÍêºÃ", "ÊÜËğ", "»Ù»µ" , "²»¿°Ê¹ÓÃ" , "ËéÆ¬" };
+static char *aszCrushTbl[] = { "å®Œå¥½", "å—æŸ", "æ¯å" , "ä¸å ªä½¿ç”¨" , "ç¢ç‰‡" };
 #else
-static char *aszCrushTbl[] = { "ÊÜËğ", "»Ù»µ" };
+static char *aszCrushTbl[] = { "å—æŸ", "æ¯å" };
 #endif
 
 
@@ -457,20 +457,20 @@ int BATTLE_ItemCrush( int charaindex, int ItemEquip, int Damages, int flg)
 	crushenum = crushenum - RAND( breadnums, (breadnums*1.4) );
 	ITEM_setInt( itemindex, ITEM_DAMAGECRUSHE, crushenum);
 
-	if( crushenum <= 0 ){	//Ëğ»µÏûÊ§
+	if( crushenum <= 0 ){	//æŸåæ¶ˆå¤±
 		crushenum = 0;
-		sprintf(szBuffer, "%sÒò¹ı¶ÈËğ»µ¶øÏûÊ§¡£\n", ITEM_getChar( itemindex, ITEM_NAME));
+		sprintf(szBuffer, "%så› è¿‡åº¦æŸåè€Œæ¶ˆå¤±ã€‚\n", ITEM_getChar( itemindex, ITEM_NAME));
 		CHAR_talkToCli( charaindex, -1, szBuffer, CHAR_COLORYELLOW);
 
 //		LogItem(
 //			CHAR_getChar( charaindex, CHAR_NAME ), 
 //			CHAR_getChar( charaindex, CHAR_CDKEY ),
-//#ifdef _add_item_log_name  // WON ADD ÔÚitemµÄlogÖĞÔö¼ÓitemÃû³Æ
+//#ifdef _add_item_log_name  // WON ADD åœ¨itemçš„logä¸­å¢åŠ itemåç§°
 //			itemindex,
 //#else
 //       		ITEM_getInt( itemindex, ITEM_ID ),  
 //#endif
-//			"Òò¹ı¶ÈËğ»µ¶øÏûÊ§",
+//			"å› è¿‡åº¦æŸåè€Œæ¶ˆå¤±",
 //			CHAR_getInt( charaindex,CHAR_FLOOR),
 //			CHAR_getInt( charaindex,CHAR_X ),
 // 	      	CHAR_getInt( charaindex,CHAR_Y ),
@@ -480,7 +480,7 @@ int BATTLE_ItemCrush( int charaindex, int ItemEquip, int Damages, int flg)
 //		);
 		CHAR_DelItem( charaindex, ItemEquip);
 		crushlevel = 4;
-	}else	{	//Ëğ»µ¿ÛÖµ
+	}else	{	//æŸåæ‰£å€¼
 		int defs, level=0;
 
 
@@ -504,10 +504,10 @@ int BATTLE_ItemCrush( int charaindex, int ItemEquip, int Damages, int flg)
 //				work *=0.95;
 //				ITEM_setInt( itemindex, ItemBreakPos[i], work );
 //			}
-			sprintf( szBuffer, "%sÊÇ%sµÄ¡£",
+			sprintf( szBuffer, "%sæ˜¯%sçš„ã€‚",
 			ITEM_getChar( itemindex, ITEM_NAME ), aszCrushTbl[level] );
 			CHAR_talkToCli( charaindex, -1, szBuffer, CHAR_COLORRED);
-			//¸ü¸ÄµÀ¾ßËµÃ÷
+			//æ›´æ”¹é“å…·è¯´æ˜
 //			buf1 = ITEM_getChar( itemindex, ITEM_SECRETNAME);
 //			if( strstr( buf1, "(") != 0 )	{
 //				char buf5[256];
@@ -577,14 +577,14 @@ int BATTLE_ItemCrush( int charaindex )
 	if( crushlevel > 1 ) return FALSE;
 	{
 		if( crushlevel == 1 ){
-			sprintf( szBuffer, "CrushLv2(»Ù»µµÀ¾ßLv2)" );
+			sprintf( szBuffer, "CrushLv2(æ¯åé“å…·Lv2)" );
 		}else{
-			sprintf( szBuffer, "CrushLv1(»Ù»µµÀ¾ßLv1)" );
+			sprintf( szBuffer, "CrushLv1(æ¯åé“å…·Lv1)" );
 		}
 //		LogItem(
 //			CHAR_getChar( charaindex, CHAR_NAME ),
 //			CHAR_getChar( charaindex, CHAR_CDKEY ),
-//#ifdef _add_item_log_name  // WON ADD ÔÚitemµÄlogÖĞÔö¼ÓitemÃû³Æ
+//#ifdef _add_item_log_name  // WON ADD åœ¨itemçš„logä¸­å¢åŠ itemåç§°
 //			itemindex,
 //#else
 //   			ITEM_getInt( itemindex, ITEM_ID ),
@@ -601,7 +601,7 @@ int BATTLE_ItemCrush( int charaindex )
 	}
 
 	/*{ int battleindex, bid;
-		//sprintf( szBuffer, "(%s)µÄ(%s)ÊÇ(%s)\n",
+		//sprintf( szBuffer, "(%s)çš„(%s)æ˜¯(%s)\n",
 		//	CHAR_getUseName( charaindex ),
 		//	ITEM_getChar( itemindex, ITEM_NAME ),
 		//	aszCrushTbl[crushlevel] );
@@ -713,7 +713,7 @@ static int BATTLE_ItemCrushSeq( int charaindex )
 
 	if( BATTLE_ItemCrushCheck( charaindex ) == TRUE ){
 		if( BATTLE_ItemCrush( charaindex ) == TRUE ){
-			sprintf( szWork, "BK|%sµÄ\t×°±¸ÊÜµ½ËğÉË¡£",
+			sprintf( szWork, "BK|%sçš„\tè£…å¤‡å—åˆ°æŸä¼¤ã€‚",
 				CHAR_getUseName( charaindex ) );
 			strcatsafe( szBadStatusString,sizeof(szBadStatusString), szWork );
 			iRet = TRUE;
@@ -753,7 +753,7 @@ static BOOL BATTLE_ArrangeCheck( int attackindex, int defindex)
 }
 #endif
 
-//»Ø±ÜÅĞ¶¨
+//å›é¿åˆ¤å®š
 static BOOL BATTLE_DuckCheck(
 	int attackindex,
 	int defindex
@@ -773,7 +773,7 @@ static BOOL BATTLE_DuckCheck(
 	}
 	if( BATTLE_CanMoveCheck( defindex ) == FALSE ){
 #ifdef _PROFESSION_ADDSKILL
-		if( CHAR_getWorkInt( defindex, CHAR_DOOMTIME ) <= 0 )//¼¯ÆøÊ±¿ÉÉÁ±Ü(²¢ÇÒÃ»ÓĞ´¦ì¶ÌìÂŞµØÍøºÍ¶Ü»÷µÄ×´Ì¬)
+		if( CHAR_getWorkInt( defindex, CHAR_DOOMTIME ) <= 0 )//é›†æ°”æ—¶å¯é—ªé¿(å¹¶ä¸”æ²¡æœ‰å¤„æ–¼å¤©ç½—åœ°ç½‘å’Œç›¾å‡»çš„çŠ¶æ€)
 			return FALSE;
 		else{
 			if( CHAR_getWorkInt( defindex, CHAR_WORKDRAGNET ) == 0 
@@ -877,20 +877,20 @@ static BOOL BATTLE_DuckCheck(
 #endif
 
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 	per = BATTLE_check_profession_duck( defindex, per );
 #endif
 	
 #ifdef _PROFESSION_ADDSKILL
-	if( CHAR_getWorkInt( attackindex, CHAR_WORKBATTLECOM1 ) == BATTLE_COM_S_CHAOS ){ //»ìÂÒ¹¥»÷Ê±ÃüÖĞ½µµÍ
+	if( CHAR_getWorkInt( attackindex, CHAR_WORKBATTLECOM1 ) == BATTLE_COM_S_CHAOS ){ //æ··ä¹±æ”»å‡»æ—¶å‘½ä¸­é™ä½
 		per += (per*0.4);	
 	}
 #endif
 
 	if( RAND( 1, 10000 ) <= per ){
 		flg = TRUE;
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
-		// »Ø±Ü¼¼ÄÜÉı¼¶
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
+		// å›é¿æŠ€èƒ½å‡çº§
 		if( (CHAR_getInt( defindex, CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER) ){
 			PROFESSION_SKILL_LVEVEL_UP( defindex, "PROFESSION_AVOID" );
 		} 
@@ -991,9 +991,9 @@ static void BATTLE_GetAttr( int charaindex, int *T_pow )
 */
 	}
 #endif
-	//print("\nµØ1=%d,Ë®1=%d,»ğ1=%d,·ç1=%d\n",T_pow[0],T_pow[1],T_pow[2],T_pow[3]);
+	//print("\nåœ°1=%d,æ°´1=%d,ç«1=%d,é£1=%d\n",T_pow[0],T_pow[1],T_pow[2],T_pow[3]);
 #ifdef _PROFESSION_ADDSKILL 
-		//¼ÓÉÏ½á½ç
+		//åŠ ä¸Šç»“ç•Œ
         //T_pow[0] += T_pow[0]*( (CHAR_getWorkInt( charaindex, CHAR_WORKFIXEARTHAT_BOUNDARY )>>16&0x0000ffff) /100 );
 		//T_pow[1] += T_pow[1]*( (CHAR_getWorkInt( charaindex, CHAR_WORKFIXWATERAT_BOUNDARY )>>16&0x0000ffff) /100 );
 		//T_pow[2] += T_pow[2]*( (CHAR_getWorkInt( charaindex, CHAR_WORKFIXFIREAT_BOUNDARY )>>16&0x0000ffff) /100 );
@@ -1005,7 +1005,7 @@ static void BATTLE_GetAttr( int charaindex, int *T_pow )
 	T_pow[2] = (T_pow[2]+CHAR_getWorkInt( charaindex, CHAR_WORK_FI ))>100?100:(T_pow[2]+CHAR_getWorkInt( charaindex, CHAR_WORK_EA ));
 	T_pow[3] = (T_pow[3]+CHAR_getWorkInt( charaindex, CHAR_WORK_WI ))>100?100:(T_pow[3]+CHAR_getWorkInt( charaindex, CHAR_WORK_EA ));
 #endif
-	//print("\nµØ2=%d,Ë®2=%d,»ğ2=%d,·ç2=%d\n",T_pow[0],T_pow[1],T_pow[2],T_pow[3]);
+	//print("\nåœ°2=%d,æ°´2=%d,ç«2=%d,é£2=%d\n",T_pow[0],T_pow[1],T_pow[2],T_pow[3]);
 	{
 		int i, renum=ATTR_MAX;
 		for( i=0; i<4; i++)	{
@@ -1015,7 +1015,7 @@ static void BATTLE_GetAttr( int charaindex, int *T_pow )
 		if( renum < 0 ) renum = 0;
 		T_pow[ 4] = renum;
 	}
-	//print("\nµØ2=%d,Ë®2=%d,»ğ2=%d,·ç2=%d\n",T_pow[0],T_pow[1],T_pow[2],T_pow[3]);
+	//print("\nåœ°2=%d,æ°´2=%d,ç«2=%d,é£2=%d\n",T_pow[0],T_pow[1],T_pow[2],T_pow[3]);
 /*
 	if( *pAt_Fire < 0 ) *pAt_Fire = 0;
 	if( *pAt_Water < 0 ) *pAt_Water = 0;
@@ -1069,7 +1069,7 @@ static int BATTLE_AttrAdjust(
 	int damage
 )
 {
-	int At_pow[5]={0,0,0,0,0}; //µØË®»ğ·ç
+	int At_pow[5]={0,0,0,0,0}; //åœ°æ°´ç«é£
 	int Dt_pow[5]={0,0,0,0,0};
 	int i;
 	float At_FieldPow, Df_FieldPow;
@@ -1079,8 +1079,8 @@ static int BATTLE_AttrAdjust(
 
 	BATTLE_GetAttr( attackindex, At_pow);
 	BATTLE_GetAttr( defindex, Dt_pow);
-	//print("\nµØ1=%d,Ë®1=%d,»ğ1=%d,·ç1=%d\n",At_pow[0],At_pow[1],At_pow[2],At_pow[3]);
-	//print("\nµØ2=%d,Ë®2=%d,»ğ2=%d,·ç2=%d\n",Dt_pow[0],Dt_pow[1],Dt_pow[2],Dt_pow[3]);
+	//print("\nåœ°1=%d,æ°´1=%d,ç«1=%d,é£1=%d\n",At_pow[0],At_pow[1],At_pow[2],At_pow[3]);
+	//print("\nåœ°2=%d,æ°´2=%d,ç«2=%d,é£2=%d\n",Dt_pow[0],Dt_pow[1],Dt_pow[2],Dt_pow[3]);
 #ifdef _PSKILL_MDFYATTACK
 	if( CHAR_getWorkInt( attackindex, CHAR_WORKBATTLECOM1) == BATTLE_COM_S_MDFYATTACK )	{
 		int MKind=-1, MODS=0;
@@ -1110,8 +1110,8 @@ static int BATTLE_AttrAdjust(
 		loopfunc( defindex, attackindex, &damage, Dt_pow, 5);
 	}
 #endif
-	//print("\nµØ1=%d,Ë®1=%d,»ğ1=%d,·ç1=%d\n",At_pow[0],At_pow[1],At_pow[2],At_pow[3]);
-	//print("\nµØ2=%d,Ë®2=%d,»ğ2=%d,·ç2=%d\n",Dt_pow[0],Dt_pow[1],Dt_pow[2],Dt_pow[3]);
+	//print("\nåœ°1=%d,æ°´1=%d,ç«1=%d,é£1=%d\n",At_pow[0],At_pow[1],At_pow[2],At_pow[3]);
+	//print("\nåœ°2=%d,æ°´2=%d,ç«2=%d,é£2=%d\n",Dt_pow[0],Dt_pow[1],Dt_pow[2],Dt_pow[3]);
 	At_FieldPow = BATTLE_FieldAttAdjust(
 		CHAR_getWorkInt( attackindex, CHAR_WORKBATTLEINDEX ), At_pow[ 2], At_pow[ 1], At_pow[ 0], At_pow[ 3] );
 	Df_FieldPow = BATTLE_FieldAttAdjust(
@@ -1125,7 +1125,7 @@ static int BATTLE_AttrAdjust(
 	At_Wind *= damage;	At_none *= damage;
 */
 	//print("\ndamage1=%d,",damage);
-	damage = BATTLE_AttrCalc(//»ğ2Ë®1µÚ0·â3
+	damage = BATTLE_AttrCalc(//ç«2æ°´1ç¬¬0å°3
 		At_pow[ 2], At_pow[ 1], At_pow[ 0], At_pow[ 3], At_pow[ 4],
 		Dt_pow[ 2], Dt_pow[ 1], Dt_pow[ 0], Dt_pow[ 3], Dt_pow[ 4] );
 	damage *= (At_FieldPow / Df_FieldPow);
@@ -1160,7 +1160,7 @@ int BATTLE_GuardAdjust( int damage )
 	return damage;
 }
 
-//¼ÆËãÉËº¦Öµ
+//è®¡ç®—ä¼¤å®³å€¼
 int BATTLE_DamageCalc( int attackindex, int defindex )
 {
 	float attack, defense;
@@ -1192,14 +1192,14 @@ int BATTLE_DamageCalc( int attackindex, int defindex )
 #endif
 		}
 
-#ifdef _MAGIC_SUPERWALL //Ìú±Ú·ÀÓù
+#ifdef _MAGIC_SUPERWALL //é“å£é˜²å¾¡
 		if( CHAR_getWorkInt( defindex, CHAR_MAGICSUPERWALL ) > 0 ){
 			float def = (float)(CHAR_getWorkInt( defindex, CHAR_OTHERSTATUSNUMS ));
 			def = (def + rand()%20)/100;
 			defense += defense * def;
 		}
 #endif
-#ifdef _NPCENEMY_ADDPOWER //ĞŞ¸Ä¹ÖÎïµÄÄÜÁ¦Öµ
+#ifdef _NPCENEMY_ADDPOWER //ä¿®æ”¹æ€ªç‰©çš„èƒ½åŠ›å€¼
 		if( CHAR_getInt( defindex, CHAR_WHICHTYPE ) == CHAR_TYPEENEMY )	{
 			defense += (defense*(rand()%10)+2)/100;
 		}
@@ -1210,13 +1210,13 @@ int BATTLE_DamageCalc( int attackindex, int defindex )
 	if( CHAR_getWorkInt( defindex, CHAR_WORKSTONE ) > 0 ) defense *= 2.0;
 
 #ifdef _PETSKILL_REGRET
-	//ÎŞ×°±¸·ÀÓù
+	//æ— è£…å¤‡é˜²å¾¡
 	if( CHAR_getWorkInt( attackindex, CHAR_WORKBATTLECOM1 ) == BATTLE_COM_S_REGRET
 		|| CHAR_getWorkInt( attackindex, CHAR_WORKBATTLECOM1 ) == BATTLE_COM_S_REGRET2 )
 		defense = CHAR_getWorkInt(defindex,CHAR_WORKFIXTOUGH);
 #endif
 
-#ifdef _EQUIT_NEGLECTGUARD //ºöÊÓÄ¿±ê·ÀÓùÁ¦%
+#ifdef _EQUIT_NEGLECTGUARD //å¿½è§†ç›®æ ‡é˜²å¾¡åŠ›%
 	if( CHAR_getWorkInt(  attackindex, CHAR_WORKNEGLECTGUARD) > 1 ) {
 		float defp = (float)CHAR_getWorkInt(  attackindex, CHAR_WORKNEGLECTGUARD);
 		defp = 1 - (defp/100);
@@ -1236,12 +1236,12 @@ int BATTLE_DamageCalc( int attackindex, int defindex )
 		damage = (int)(( (attack - defense )*DAMAGE_RATE ) + K0);
 	}
 
-	//ËÄÊôĞÔ
+	//å››å±æ€§
 	damage = BATTLE_AttrAdjust( attackindex, defindex, damage );
 
 #ifdef _PROFESSION_ADDSKILL 
 	{
-		//ËÄÊô½á½ç
+		//å››å±ç»“ç•Œ
 		if( ((CHAR_getWorkInt( defindex, CHAR_WORKFIXEARTHAT_BOUNDARY )>>16) & 0x0000ffff) > 0 ){
 			if( CHAR_getWorkInt( attackindex, CHAR_WORKFIXEARTHAT ) > 0 )
 				damage -= damage*(float)((CHAR_getWorkInt( attackindex, CHAR_WORKFIXEARTHAT )/200.0)); 
@@ -1261,7 +1261,7 @@ int BATTLE_DamageCalc( int attackindex, int defindex )
 	}
 #endif
 
-#ifdef _ADD_DEAMGEDEFC //¶îÍâÉËº¦ & ¸½¼Ó¹¥»÷
+#ifdef _ADD_DEAMGEDEFC //é¢å¤–ä¼¤å®³ & é™„åŠ æ”»å‡»
 	{
 		int apower, dpower, otherpower;
 		apower = CHAR_getWorkInt( attackindex, CHAR_WORKOTHERDMAGE);
@@ -1349,7 +1349,7 @@ static int BATTLE_CriticalCheckPlayer( int attackindex, int defindex )
 	if( per < 0 ) per = 1;
 	if( per > 10000 ) per = 10000;
 #ifdef _PETSKILL_LER
-	// À×¶û²»ÄÜ±»´ò·É
+	// é›·å°”ä¸èƒ½è¢«æ‰“é£
 	if(CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101813 ||
 		 CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101814) per = 0;
 #endif
@@ -1450,7 +1450,7 @@ static int BATTLE_GuardianCheck( int attackindex, int defindex )
 	}
 
 	Guardian = BattleArray[battleindex].Side[DefSide].Entry[i].guardian;
-// Terry add fix Ê¹ÓÃÉáÒÑÎªÈË¼¼ÄÜÊ±,Èô¹¥»÷Ê¹ÓÃ´Ë¼¼ÄÜµÄÈËclient»áµ±
+// Terry add fix ä½¿ç”¨èˆå·²ä¸ºäººæŠ€èƒ½æ—¶,è‹¥æ”»å‡»ä½¿ç”¨æ­¤æŠ€èƒ½çš„äººclientä¼šå½“
 	if(Guardian == DefNo) return -1;
 // end
 	GuardianIndex = BATTLE_No2Index( battleindex, Guardian );
@@ -1470,17 +1470,17 @@ static int BATTLE_GuardianCheck( int attackindex, int defindex )
 	|| CHAR_getWorkInt( GuardianIndex, CHAR_WORKSTONE ) > 0
 	|| CHAR_getWorkInt( GuardianIndex, CHAR_WORKBARRIER ) > 0
 	|| GuardianIndex == attackindex
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
-	|| CHAR_getWorkInt( GuardianIndex, CHAR_WORKDIZZY ) > 0 	// ÔÎÑ£				
-	|| CHAR_getWorkInt( GuardianIndex, CHAR_WORKDRAGNET ) > 0 	// ÌìÂŞµØÍø
-	|| CHAR_getWorkInt( GuardianIndex, CHAR_WORKINSTIGATE ) > 0 // Ìô²¦	
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
+	|| CHAR_getWorkInt( GuardianIndex, CHAR_WORKDIZZY ) > 0 	// æ™•çœ©				
+	|| CHAR_getWorkInt( GuardianIndex, CHAR_WORKDRAGNET ) > 0 	// å¤©ç½—åœ°ç½‘
+	|| CHAR_getWorkInt( GuardianIndex, CHAR_WORKINSTIGATE ) > 0 // æŒ‘æ‹¨	
 #endif
 #ifdef _PROFESSION_ADDSKILL
-	|| CHAR_getWorkInt( GuardianIndex, CHAR_DOOMTIME ) > 0 //ÊÀ½çÄ©ÈÕ¼¯Æø
+	|| CHAR_getWorkInt( GuardianIndex, CHAR_DOOMTIME ) > 0 //ä¸–ç•Œæœ«æ—¥é›†æ°”
 #endif
 	){
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)ÏëÒªÊØ×¡(%s)¿ÉÊÇÃ»³É¹¦\¡£",
+		//	"(%s)æƒ³è¦å®ˆä½(%s)å¯æ˜¯æ²¡æˆåŠŸ\ã€‚",
 		//	CHAR_getUseName( GuardianIndex ),
 		//	CHAR_getUseName( defindex )
 		//);
@@ -1493,7 +1493,7 @@ static int BATTLE_GuardianCheck( int attackindex, int defindex )
 		CHAR_getItemIndex( attackindex, CHAR_ARM ) ) == TRUE
 	){
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)ÏëÒªÊØ×¡(%s)¿ÉÊÇÃ»³É¹¦\¡£",
+		//	"(%s)æƒ³è¦å®ˆä½(%s)å¯æ˜¯æ²¡æˆåŠŸ\ã€‚",
 		//	CHAR_getUseName( GuardianIndex ),
 		//	CHAR_getUseName( defindex )
 		//);
@@ -1503,7 +1503,7 @@ static int BATTLE_GuardianCheck( int attackindex, int defindex )
 	}
 
 	//snprintf( szBuffer, sizeof(szBuffer),
-	//	"(%s)»¤×¡ÁË(%s)¡£",
+	//	"(%s)æŠ¤ä½äº†(%s)ã€‚",
 	//	CHAR_getUseName( GuardianIndex ),
 	//	CHAR_getUseName( defindex )
 	//);
@@ -1524,7 +1524,7 @@ static int BATTLE_DamageWakeUp( int battleindex, int defindex )
 	if( CHAR_getWorkInt( defindex, CHAR_WORKSLEEP ) > 0 ){
 		CHAR_setWorkInt( defindex, CHAR_WORKSLEEP, 0 );
 		bid = BATTLE_Index2No( battleindex, defindex );
-		//sprintf( szBuffer, "(%s)±»»÷ÖĞÌøÁËÆğÀ´¡£\n", 
+		//sprintf( szBuffer, "(%s)è¢«å‡»ä¸­è·³äº†èµ·æ¥ã€‚\n", 
 		//	CHAR_getUseName( defindex ) );
 		//BATTLE_BroadCast( battleindex, szBuffer,
 		//	(bid >= 10)? CHAR_COLORGRAY : CHAR_COLORPURPLE ) ;
@@ -1541,16 +1541,16 @@ static int BATTLE_AttackSeq( int attackindex, int defindex, int *pDamage, int *p
 
 	battleindex = CHAR_getWorkInt( attackindex, CHAR_WORKBATTLEINDEX );
 	
-	// Ö÷ÈË´ò³è
+	// ä¸»äººæ‰“å® 
 	if( CHAR_getInt( defindex, CHAR_WHICHTYPE ) == CHAR_TYPEPET 
 		&& BattleArray[battleindex].norisk == 0
 		&& BattleArray[battleindex].type == BATTLE_TYPE_P_vs_E){
 		if( CHAR_getWorkInt( defindex, CHAR_WORKPLAYERINDEX ) == attackindex ){
-			CHAR_PetAddVariableAi( defindex, AI_FIX_SEKKAN );	// ĞŞÕıÖÒ³Ï¶È
+			CHAR_PetAddVariableAi( defindex, AI_FIX_SEKKAN );	// ä¿®æ­£å¿ è¯šåº¦
 		}
 	}
 	
-	// ÉÁ±Ü
+	// é—ªé¿
 	if( opt != BATTLE_COM_COMBO ){
 		if( BATTLE_DuckCheck( attackindex, defindex ) == TRUE ){
 			return BATTLE_RET_DODGE;
@@ -1563,7 +1563,7 @@ static int BATTLE_AttackSeq( int attackindex, int defindex, int *pDamage, int *p
 #endif
 	}
 	
-	// ¼ì²é±»¹¥»÷·½ÓĞÎŞ±»±ğÈËÓÃÖÒÈ®±£»¤
+	// æ£€æŸ¥è¢«æ”»å‡»æ–¹æœ‰æ— è¢«åˆ«äººç”¨å¿ çŠ¬ä¿æŠ¤
 	if( *pGuardian == -1 ){
 		*pGuardian = BATTLE_GuardianCheck( attackindex, defindex );
 		if( *pGuardian != -1 ){
@@ -1572,20 +1572,20 @@ static int BATTLE_AttackSeq( int attackindex, int defindex, int *pDamage, int *p
 		}
 	}
 	
-	// »áĞÄÒ»»÷
+	// ä¼šå¿ƒä¸€å‡»
 	perCri = BATTLE_CriticalCheck( attackindex, defindex );
 	
 #ifdef _PETSKILL_DAMAGETOHP
-	if( opt == BATTLE_COM_S_DAMAGETOHP2 ){ //°µÔÂ¿ñÀÇ (»áĞÄÒ»»÷ÉÏÉı30%)  && CHAR_getInt( attackindex, CHAR_HP) <= CHAR_getWorkInt( attackindex, CHAR_MAXMP)*0.5
-		//print("\n1»áĞÄÒ»»÷:%d",perCri);                 
-		//print("\n1¹¥:%d", CHAR_getWorkInt( attackindex, CHAR_WORKATTACKPOWER));
-		//print("\n1Ãô:%d", CHAR_getWorkInt( attackindex, CHAR_WORKQUICK));
-		perCri = perCri + (perCri*0.3); //»áĞÄÒ»»÷ÉÏÉı30%  
-		CHAR_setWorkInt( attackindex, CHAR_WORKATTACKPOWER, CHAR_getWorkInt( attackindex,CHAR_WORKFIXSTR)+CHAR_getWorkInt( attackindex,CHAR_WORKFIXSTR)*0.2);//¹¥ÉÏÉı20%
-		CHAR_setWorkInt( attackindex, CHAR_WORKQUICK, CHAR_getWorkInt( attackindex, CHAR_WORKFIXDEX)+CHAR_getWorkInt( attackindex, CHAR_WORKFIXDEX) *0.2 );//ÃôÉÏÉı20%
-		//print("\n2»áĞÄÒ»»÷:%d",perCri);
-		//print("\n2¹¥:%d", CHAR_getWorkInt( attackindex, CHAR_WORKATTACKPOWER));
-		//print("\n2Ãô:%d", CHAR_getWorkInt( attackindex, CHAR_WORKQUICK));
+	if( opt == BATTLE_COM_S_DAMAGETOHP2 ){ //æš—æœˆç‹‚ç‹¼ (ä¼šå¿ƒä¸€å‡»ä¸Šå‡30%)  && CHAR_getInt( attackindex, CHAR_HP) <= CHAR_getWorkInt( attackindex, CHAR_MAXMP)*0.5
+		//print("\n1ä¼šå¿ƒä¸€å‡»:%d",perCri);                 
+		//print("\n1æ”»:%d", CHAR_getWorkInt( attackindex, CHAR_WORKATTACKPOWER));
+		//print("\n1æ•:%d", CHAR_getWorkInt( attackindex, CHAR_WORKQUICK));
+		perCri = perCri + (perCri*0.3); //ä¼šå¿ƒä¸€å‡»ä¸Šå‡30%  
+		CHAR_setWorkInt( attackindex, CHAR_WORKATTACKPOWER, CHAR_getWorkInt( attackindex,CHAR_WORKFIXSTR)+CHAR_getWorkInt( attackindex,CHAR_WORKFIXSTR)*0.2);//æ”»ä¸Šå‡20%
+		CHAR_setWorkInt( attackindex, CHAR_WORKQUICK, CHAR_getWorkInt( attackindex, CHAR_WORKFIXDEX)+CHAR_getWorkInt( attackindex, CHAR_WORKFIXDEX) *0.2 );//æ•ä¸Šå‡20%
+		//print("\n2ä¼šå¿ƒä¸€å‡»:%d",perCri);
+		//print("\n2æ”»:%d", CHAR_getWorkInt( attackindex, CHAR_WORKATTACKPOWER));
+		//print("\n2æ•:%d", CHAR_getWorkInt( attackindex, CHAR_WORKQUICK));
 	}
 #endif
 	
@@ -1600,9 +1600,9 @@ static int BATTLE_AttackSeq( int attackindex, int defindex, int *pDamage, int *p
 		}
 		iRet = BATTLE_RET_CRITICAL;
 		if( CHAR_getInt( attackindex, CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER ){
-			// ÓÂÊ¿ÎäÆ÷×¨¾«¼¼ÄÜÉı¼¶
+			// å‹‡å£«æ­¦å™¨ä¸“ç²¾æŠ€èƒ½å‡çº§
 			PROFESSION_SKILL_WEAPON_FOCUS_LVEVEL_UP( attackindex, "PROFESSION_WEAPON_FOCUS" );
-			// ÓÂÊ¿¶şµ¶Á÷¼¼ÄÜÉı¼¶
+			// å‹‡å£«äºŒåˆ€æµæŠ€èƒ½å‡çº§
 			PROFESSION_SKILL_DUAL_WEAPON_LVEVEL_UP( attackindex, "PROFESSION_DUAL_WEAPON" );
 		}
 	}else{
@@ -1613,7 +1613,7 @@ static int BATTLE_AttackSeq( int attackindex, int defindex, int *pDamage, int *p
 	if( opt == BATTLE_COM_S_GBREAK){
 		;;
 	}else
-#ifdef _SKILL_GUARDBREAK2//ÆÆ³ı·ÀÓù2 vincent add 2002/05/20
+#ifdef _SKILL_GUARDBREAK2//ç ´é™¤é˜²å¾¡2 vincent add 2002/05/20
   if( opt == BATTLE_COM_S_GBREAK2){
 		if( CHAR_getWorkInt( defindex, CHAR_WORKBATTLECOM1 ) == BATTLE_COM_GUARD){
 			(*pDamage) = (*pDamage)*1.3;
@@ -1624,12 +1624,12 @@ static int BATTLE_AttackSeq( int attackindex, int defindex, int *pDamage, int *p
 #endif
 
 #ifdef _PETSKILL_REGRET
-	if( opt == BATTLE_COM_S_REGRET2 ){// ÈËÎïÉËº¦¼õÉÙ
+	if( opt == BATTLE_COM_S_REGRET2 ){// äººç‰©ä¼¤å®³å‡å°‘
 		(*pDamage) = (*pDamage)*0.8;
 	}else
 #endif			
-#ifdef _SONIC_ATTACK				// WON ADD Òô²¨¹¥»÷
-	if( opt == BATTLE_COM_S_SONIC2 ){// ÈËÎïÉËº¦¼õ°ë
+#ifdef _SONIC_ATTACK				// WON ADD éŸ³æ³¢æ”»å‡»
+	if( opt == BATTLE_COM_S_SONIC2 ){// äººç‰©ä¼¤å®³å‡åŠ
 		(*pDamage) = (*pDamage)*0.5;
 	}else
 #endif
@@ -1639,26 +1639,26 @@ static int BATTLE_AttackSeq( int attackindex, int defindex, int *pDamage, int *p
 	}
 	if( (*pDamage) < 1 ) (*pDamage) = RAND( 0, 1 );
 				
-#ifdef _PREVENT_TEAMATTACK	// ·ÀÖ¹Í¬¶Ó»¥´ò
+#ifdef _PREVENT_TEAMATTACK	// é˜²æ­¢åŒé˜Ÿäº’æ‰“
 	if (CHAR_getInt( defindex, CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER ||
 		CHAR_getInt( defindex, CHAR_WHICHTYPE ) == CHAR_TYPEPET ) {
 		int myside = CHAR_getWorkInt( defindex, CHAR_WORKBATTLESIDE);//attackindex
 		if( myside == CHAR_getWorkInt( attackindex, CHAR_WORKBATTLESIDE)){
 			if( CHAR_getWorkInt( attackindex, CHAR_WORKCONFUSION) > 0 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
-					|| CHAR_getWorkInt( attackindex, CHAR_WORKINSTIGATE) > 0	// Ìô²¦	
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
+					|| CHAR_getWorkInt( attackindex, CHAR_WORKINSTIGATE) > 0	// æŒ‘æ‹¨	
 #endif
 #ifdef _PROFESSION_ADDSKILL
-					|| CHAR_getWorkInt( attackindex, CHAR_WORKANNEX) > 0 //¸½Éí
+					|| CHAR_getWorkInt( attackindex, CHAR_WORKANNEX) > 0 //é™„èº«
 #endif
-				){					//¹¥»÷·½Òì³£»ìÂÒ
+				){					//æ”»å‡»æ–¹å¼‚å¸¸æ··ä¹±
 #ifdef _PETSKILL_TEMPTATION
-			}else if( CHAR_getWorkInt( attackindex, CHAR_WORKTEMPTATION ) > 0 ){//Ë®ÑúÓÕ»ó							
+			}else if( CHAR_getWorkInt( attackindex, CHAR_WORKTEMPTATION ) > 0 ){//æ°´æ¼¾è¯±æƒ‘							
 #endif
 			}else if( CHAR_getInt( attackindex, CHAR_WHICHTYPE) == CHAR_TYPEPET &&
-				CHAR_getWorkInt( attackindex, CHAR_WORKBATTLEFLG) & CHAR_BATTLEFLG_AIBAD ){	//nono³è
+				CHAR_getWorkInt( attackindex, CHAR_WORKBATTLEFLG) & CHAR_BATTLEFLG_AIBAD ){	//nonoå® 
 			}else if( CHAR_getInt( defindex, CHAR_WHICHTYPE) == CHAR_TYPEPET && 
-				CHAR_getWorkInt( defindex, CHAR_WORKPLAYERINDEX) == attackindex ){		// ×ÔÒÑ³èÎï
+				CHAR_getWorkInt( defindex, CHAR_WORKPLAYERINDEX) == attackindex ){		// è‡ªå·²å® ç‰©
 			}else {
 				int myhp, mymaxhp;
 				mymaxhp = CHAR_getWorkInt( defindex, CHAR_WORKMAXHP);
@@ -1679,7 +1679,7 @@ static int BATTLE_AttackSeq( int attackindex, int defindex, int *pDamage, int *p
 		*pDamage *= 0.1;
 		iRet = BATTLE_RET_ARRANGE;
 		
-		// ÓÂÊ¿¸ñµ²¼¼ÄÜÔö¼Ó
+		// å‹‡å£«æ ¼æŒ¡æŠ€èƒ½å¢åŠ 
 		if( (CHAR_getInt( defindex, CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER) )
 			PROFESSION_SKILL_LVEVEL_UP( defindex, "PROFESSION_DEFLECT" );
 		}
@@ -1710,7 +1710,7 @@ BOOL BATTLE_CheckMySkillDuck( int charaindex )
 		int duck1 = CHAR_getWorkInt( charaindex, CHAR_MYSKILLDUCKPOWER);
 		if( (rad = (rand()%100)) > duck1 ){
 			return FALSE;
-		}else	{//»Ø±Ü
+		}else	{//å›é¿
 			return TRUE;
 		}
 	}
@@ -1718,7 +1718,7 @@ BOOL BATTLE_CheckMySkillDuck( int charaindex )
 }
 #endif
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 int BATTLE_check_profession_duck( int charaindex, int per )
 {
 
@@ -1746,14 +1746,14 @@ int BATTLE_GetDamageReact( int charaindex )
 		return BATTLE_MD_REFLEC;
 	}
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
-	if( CHAR_getWorkInt( charaindex, CHAR_WORKTRAP ) > 0 ){	//ÏİÚå	
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
+	if( CHAR_getWorkInt( charaindex, CHAR_WORKTRAP ) > 0 ){	//é™·é˜±	
 		return BATTLE_MD_TRAP;
 	}
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE
-	if( CHAR_getWorkInt( charaindex, CHAR_WORKACUPUNCTURE ) > 0 ){	//Õë´ÌÍâÆ¤
-	    //print("\nÕë´Ì:BATTLE_GetDamageReact");
+	if( CHAR_getWorkInt( charaindex, CHAR_WORKACUPUNCTURE ) > 0 ){	//é’ˆåˆºå¤–çš®
+	    //print("\né’ˆåˆº:BATTLE_GetDamageReact");
 	 	return BATTLE_MD_ACUPUNCTURE;
 	}
 #endif
@@ -1806,7 +1806,7 @@ int BATTLE_DamageSub( int attackindex, int defindex, int *pDamage, int *pPetDama
 	}else{
 	}
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 	if( react == BATTLE_MD_TRAP ){
 		if( BATTLE_IsThrowWepon( CHAR_getItemIndex( attackindex, CHAR_ARM ) ) == FALSE )
 			*pRefrect = BATTLE_MD_TRAP;
@@ -1873,8 +1873,8 @@ int BATTLE_DamageSub( int attackindex, int defindex, int *pDamage, int *pPetDama
 			defpet = attackpet;
 		}
 	}else
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
-	if( *pRefrect == BATTLE_MD_TRAP ){		//ÏİÚå	
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
+	if( *pRefrect == BATTLE_MD_TRAP ){		//é™·é˜±	
 #ifdef _PETSKILL_BATTLE_MODEL
 		if(CHAR_getWorkInt(defindex,CHAR_NPCWORKINT1) == BATTLE_COM_S_BATTLE_MODEL){
 			CHAR_setWorkInt( defindex, CHAR_WORKTRAP, 0 );
@@ -1916,13 +1916,13 @@ int BATTLE_DamageSub( int attackindex, int defindex, int *pDamage, int *pPetDama
 	}else
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE
-	if( *pRefrect == BATTLE_MD_ACUPUNCTURE ){ //Õë´ÌÍâÆ¤
+	if( *pRefrect == BATTLE_MD_ACUPUNCTURE ){ //é’ˆåˆºå¤–çš®
 		
 		if( damage%2 != 0 )
 			damage+=1;
         playerdamage = damage;
 
-		//ÏÈ¿Û±»¹¥»÷·½µÄÑª,ÒòÎªÖ®ááµÄ¶¯×÷¶¼ÊÇ¶Ô¹¥»÷·½×öµÄ
+		//å…ˆæ‰£è¢«æ”»å‡»æ–¹çš„è¡€,å› ä¸ºä¹‹å¾Œçš„åŠ¨ä½œéƒ½æ˜¯å¯¹æ”»å‡»æ–¹åšçš„
 		hp = CHAR_getInt( defindex, CHAR_HP );
 		if( attackpet == -1 ) {
 			hp -= damage;
@@ -1960,7 +1960,7 @@ int BATTLE_DamageSub( int attackindex, int defindex, int *pDamage, int *pPetDama
 			int defNo = BATTLE_Index2No( battleindex, defindex );
 			CHAR_setWorkInt( defindex, CHAR_WORKULTIMATE, 0 );
             
-			//ËÀÍöµÄ³èÎï¸ÄÎªĞİÏ¢
+			//æ­»äº¡çš„å® ç‰©æ”¹ä¸ºä¼‘æ¯
 			if( defNo >= SIDE_OFFSET ){
 		       i = defNo - SIDE_OFFSET;
 		       DefSide = 1;
@@ -1971,16 +1971,16 @@ int BATTLE_DamageSub( int attackindex, int defindex, int *pDamage, int *pPetDama
 		    BattleArray[battleindex].Side[DefSide].Entry[i].flg |= BENT_FLG_ULTIMATE;
 		}
 
-		//Õë´ÌÍâÆ¤¼¼ÄÜ»ØºÏÊıÉèÎª0
+		//é’ˆåˆºå¤–çš®æŠ€èƒ½å›åˆæ•°è®¾ä¸º0
 		CHAR_setWorkInt( defindex, CHAR_WORKACUPUNCTURE, 0);
-		//if( CHAR_getWorkInt( defindex, CHAR_WORKSLEEP ) > 0 )//¼ì²éÓĞÎŞ»èË¯
+		//if( CHAR_getWorkInt( defindex, CHAR_WORKSLEEP ) > 0 )//æ£€æŸ¥æœ‰æ— æ˜ç¡
 	    //    CHAR_setWorkInt( defindex, CHAR_WORKSLEEP, 0);
 
 #ifdef _PETSKILL_BATTLE_MODEL
 		if(CHAR_getWorkInt(defindex,CHAR_NPCWORKINT1) != BATTLE_COM_S_BATTLE_MODEL)
 #endif
 		{
-			//¿Û¹¥»÷·½µÄÑª
+			//æ‰£æ”»å‡»æ–¹çš„è¡€
 			hp = CHAR_getInt( attackindex, CHAR_HP );
 			if( attackpet == -1 ) {
 				hp -= damage/2;
@@ -2070,7 +2070,7 @@ int BATTLE_DamageSub( int attackindex, int defindex, int *pDamage, int *pPetDama
 	if( BattleArray[battleindex].type == BATTLE_TYPE_P_vs_P ){
 	}
 #ifdef _PETSKILL_LER
-// À×¶û²»ÄÜ±»´ò·É
+// é›·å°”ä¸èƒ½è¢«æ‰“é£
 	if(CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101813 ||
 		 CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101814) IsUltimate = 0;
 #endif
@@ -2086,7 +2086,7 @@ int BATTLE_DamageSub( int attackindex, int defindex, int *pDamage, int *pPetDama
 	return IsUltimate;
 }
 
-#ifdef _PETSKILL_FIREKILL //»ğÏßÁÔÉ±×¨ÓÃ
+#ifdef _PETSKILL_FIREKILL //ç«çº¿çŒæ€ä¸“ç”¨
 int BATTLE_DamageSub_FIREKILL( int attackindex, int defindex, int *pDamage, int *pPetDamage, int *pRefrect )
 {
 
@@ -2126,7 +2126,7 @@ int BATTLE_DamageSub_FIREKILL( int attackindex, int defindex, int *pDamage, int 
 	}else{
 	}
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 	if( react == BATTLE_MD_TRAP ){
 		if( BATTLE_IsThrowWepon( CHAR_getItemIndex( attackindex, CHAR_ARM ) ) == FALSE )
 			*pRefrect = BATTLE_MD_TRAP;
@@ -2183,8 +2183,8 @@ int BATTLE_DamageSub_FIREKILL( int attackindex, int defindex, int *pDamage, int 
 		defpet = attackpet;
 
 	}else
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
-	if( *pRefrect == BATTLE_MD_TRAP ){		//ÏİÚå	
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
+	if( *pRefrect == BATTLE_MD_TRAP ){		//é™·é˜±	
 		int value=0;
 		value = CHAR_getWorkInt( defindex, CHAR_WORKMODTRAP );
 		damage = value;
@@ -2216,13 +2216,13 @@ int BATTLE_DamageSub_FIREKILL( int attackindex, int defindex, int *pDamage, int 
 	}else
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE
-	if( *pRefrect == BATTLE_MD_ACUPUNCTURE ){ //Õë´ÌÍâÆ¤
+	if( *pRefrect == BATTLE_MD_ACUPUNCTURE ){ //é’ˆåˆºå¤–çš®
 		
 		if( damage%2 != 0 )
 			damage+=1;
         playerdamage = damage;
 
-		//ÏÈ¿Û±»¹¥»÷·½µÄÑª,ÒòÎªÖ®ááµÄ¶¯×÷¶¼ÊÇ¶Ô¹¥»÷·½×öµÄ
+		//å…ˆæ‰£è¢«æ”»å‡»æ–¹çš„è¡€,å› ä¸ºä¹‹å¾Œçš„åŠ¨ä½œéƒ½æ˜¯å¯¹æ”»å‡»æ–¹åšçš„
 		hp = CHAR_getInt( defindex, CHAR_HP );
 		if( attackpet == -1 ) {
 			hp -= damage;
@@ -2260,7 +2260,7 @@ int BATTLE_DamageSub_FIREKILL( int attackindex, int defindex, int *pDamage, int 
 			int defNo = BATTLE_Index2No( battleindex, defindex );
 			CHAR_setWorkInt( defindex, CHAR_WORKULTIMATE, 0 );
             
-			//ËÀÍöµÄ³èÎï¸ÄÎªĞİÏ¢
+			//æ­»äº¡çš„å® ç‰©æ”¹ä¸ºä¼‘æ¯
 			if( defNo >= SIDE_OFFSET ){
 		       i = defNo - SIDE_OFFSET;
 		       DefSide = 1;
@@ -2271,12 +2271,12 @@ int BATTLE_DamageSub_FIREKILL( int attackindex, int defindex, int *pDamage, int 
 		    BattleArray[battleindex].Side[DefSide].Entry[i].flg |= BENT_FLG_ULTIMATE;
 		}
 
-		//Õë´ÌÍâÆ¤¼¼ÄÜ»ØºÏÊıÉèÎª0
+		//é’ˆåˆºå¤–çš®æŠ€èƒ½å›åˆæ•°è®¾ä¸º0
 		CHAR_setWorkInt( defindex, CHAR_WORKACUPUNCTURE, 0);
-		//if( CHAR_getWorkInt( defindex, CHAR_WORKSLEEP ) > 0 )//¼ì²éÓĞÎŞ»èË¯
+		//if( CHAR_getWorkInt( defindex, CHAR_WORKSLEEP ) > 0 )//æ£€æŸ¥æœ‰æ— æ˜ç¡
 	    //    CHAR_setWorkInt( defindex, CHAR_WORKSLEEP, 0);
 
-        //¿Û¹¥»÷·½µÄÑª
+        //æ‰£æ”»å‡»æ–¹çš„è¡€
 		hp = CHAR_getInt( attackindex, CHAR_HP );
 		if( attackpet == -1 ) {
 			hp -= damage/2;
@@ -2366,7 +2366,7 @@ int BATTLE_DamageSub_FIREKILL( int attackindex, int defindex, int *pDamage, int 
 	}
 
 #ifdef _PETSKILL_LER
-// À×¶û²»ÄÜ±»´ò·É
+// é›·å°”ä¸èƒ½è¢«æ‰“é£
 	if(CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101813 ||
 		 CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101814) IsUltimate = 0;
 #endif
@@ -2416,7 +2416,7 @@ int BATTLE_DamageSub2( int attackindex, int defindex, int *pDamage, int *pPetDam
 		}
 	}
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 	if( react == BATTLE_MD_TRAP ){
 		if( BATTLE_IsThrowWepon( CHAR_getItemIndex( attackindex, CHAR_ARM ) ) == FALSE )
 			*pRefrect = BATTLE_MD_TRAP;
@@ -2458,8 +2458,8 @@ int BATTLE_DamageSub2( int attackindex, int defindex, int *pDamage, int *pPetDam
 		defpet = attackpet;
 
 	}else
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
-	if( *pRefrect == BATTLE_MD_TRAP ){	//ÏİÚå	
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
+	if( *pRefrect == BATTLE_MD_TRAP ){	//é™·é˜±	
 
 		hp = CHAR_getInt( attackindex, CHAR_HP );
 		hp -= playerdamage;
@@ -2539,7 +2539,7 @@ int BATTLE_DamageSub2( int attackindex, int defindex, int *pDamage, int *pPetDam
 	if( BattleArray[battleindex].type == BATTLE_TYPE_P_vs_P ){
 	}
 #ifdef _PETSKILL_LER
-// À×¶û²»ÄÜ±»´ò·É
+// é›·å°”ä¸èƒ½è¢«æ‰“é£
 	if(CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101813 ||
 		 CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101814) IsUltimate = 0;
 #endif
@@ -2604,7 +2604,7 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 		defindex, react = 0, statusDefNo, opt = 0;
 	int flg = 0, iWork, par, perStatus, i, DefSide = 0, Guardian = -1;
 	BOOL iRet = TRUE;
-	int suitpoison=30;//»ù±¾ÖĞ¶¾%
+	int suitpoison=30;//åŸºæœ¬ä¸­æ¯’%
 
 	attackindex = BATTLE_No2Index( battleindex, attackNo );
 	defindex = toindex = BATTLE_No2Index( battleindex, defNo );
@@ -2628,11 +2628,11 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 
 	if( CHAR_getInt( attackindex, CHAR_HP ) <= 0 )	return FALSE;
 
-	// ¹â¡¢¾µ¡¢ÊØ
+	// å…‰ã€é•œã€å®ˆ
 	if( BATTLE_GetDamageReact( attackindex ) > 0 )		iRet = FALSE;
 	else if( BATTLE_GetDamageReact( defindex ) > 0 )	iRet = FALSE;
 
-	// ¹¥»÷Ä£Ê½
+	// æ”»å‡»æ¨¡å¼
 	iWork = BATTLE_AttackSeq( attackindex, toindex, &damage, &Guardian, opt );
 
 	if( Guardian >= 0 )
@@ -2648,7 +2648,7 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 
 	ultimate = BATTLE_DamageSub( attackindex, defindex, &damage, &petdamage, &react );
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 	if( react == BATTLE_MD_TRAP ){
 		defindex = attackindex;
 		statusDefNo = attackNo;
@@ -2672,13 +2672,13 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 	}
 
 #ifdef _PETSKILL_ACUPUNCTURE
-    if( react == BATTLE_MD_ACUPUNCTURE ){ //Õë´ÌÍâÆ¤Ê±»áÎŞ·¨Õı³£½â³ı±»´ò·½µÄ×´Ì¬,ËùÒÔ°Ñindex»»»ØÀ´
+    if( react == BATTLE_MD_ACUPUNCTURE ){ //é’ˆåˆºå¤–çš®æ—¶ä¼šæ— æ³•æ­£å¸¸è§£é™¤è¢«æ‰“æ–¹çš„çŠ¶æ€,æ‰€ä»¥æŠŠindexæ¢å›æ¥
 	    defindex = toindex = BATTLE_No2Index( battleindex, defNo );
         statusDefNo = defNo;
 	}
 #endif
 
-	//»èË¯Ê±,ÔÚÕâÀï½â³ı×´Ì¬(Ò²ÓĞÆäËüµÄ×´Ì¬)
+	//æ˜ç¡æ—¶,åœ¨è¿™é‡Œè§£é™¤çŠ¶æ€(ä¹Ÿæœ‰å…¶å®ƒçš„çŠ¶æ€)
 	if( damage > 0 && ( react != BATTLE_MD_ABSROB ) && ( react != BATTLE_MD_VANISH ) ){
 		BATTLE_DamageWakeUp( battleindex, defindex );
 	}
@@ -2693,7 +2693,7 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 	switch( iWork ){
 		case BATTLE_RET_ALLGUARD:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)³¯Ïò(%s)¹¥»÷,ÇáÒ×µØ±»¶ã¿ª¡£",
+			//	"(%s)æœå‘(%s)æ”»å‡»,è½»æ˜“åœ°è¢«èº²å¼€ã€‚",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex )
 			//);
@@ -2704,7 +2704,7 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 			break;
 		case BATTLE_RET_MISS:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)³¯Ïò(%s)¹¥»÷,Ã»»÷ÖĞ¡£",
+			//	"(%s)æœå‘(%s)æ”»å‡»,æ²¡å‡»ä¸­ã€‚",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex )
 			//);
@@ -2714,7 +2714,7 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 			break;
 		case BATTLE_RET_DODGE:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)¹¥»÷ÁË(%s)¶ã¿ªÁË(%.2f%%)",
+			//	"(%s)æ”»å‡»äº†(%s)èº²å¼€äº†(%.2f%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	gDuckPer
@@ -2726,7 +2726,7 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 			break;
 		case BATTLE_RET_NORMAL:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)ÊÜµ½(%s)µÄ¹¥»÷(%d)ÔâÊÜËğÉË(%d:%d:%d%%)",
+			//	"(%s)å—åˆ°(%s)çš„æ”»å‡»(%d)é­å—æŸä¼¤(%d:%d:%d%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	damage,
@@ -2740,7 +2740,7 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 			break;
 		case BATTLE_RET_CRITICAL:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//"(%s)Ïò(%s)CRITICAL(%d%%)(%d)²»¿ÉÒÔ(%d:%d:%d%%)",
+			//"(%s)å‘(%s)CRITICAL(%d%%)(%d)ä¸å¯ä»¥(%d:%d:%d%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	(int)(gCriper*0.01),
@@ -2757,7 +2757,7 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 #ifdef _EQUIT_ARRANGE
 		case BATTLE_RET_ARRANGE:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)¹¥»÷ÁË(%s)µ²µôÁË(%.2f%%)",
+			//	"(%s)æ”»å‡»äº†(%s)æŒ¡æ‰äº†(%.2f%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	gDuckPer
@@ -2788,7 +2788,7 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 		}
 
 #ifdef _PETSKILL_LER
-// À×¶û²»ÄÜ±»´ò·É
+// é›·å°”ä¸èƒ½è¢«æ‰“é£
 		if(CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101813 ||
 		 CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101814) ultimate = 0;
 #endif
@@ -2810,15 +2810,15 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 
 
 #ifdef _PETSKILL_ACUPUNCTURE
-    if( react == BATTLE_MD_ACUPUNCTURE ){ //Õë´ÌÍâÆ¤²»»á·´ÉäÌØÊâ×´Ì¬,ËùÒÔÒª¸Ä»ØÀ´
+    if( react == BATTLE_MD_ACUPUNCTURE ){ //é’ˆåˆºå¤–çš®ä¸ä¼šåå°„ç‰¹æ®ŠçŠ¶æ€,æ‰€ä»¥è¦æ”¹å›æ¥
 	    defindex = toindex = BATTLE_No2Index( battleindex, defNo );
         statusDefNo = defNo;
 	}
-	//×¢Òâ:Ö®ááÒª²»ÒªÔÙ¸Ä»ØÔ­±¾·´Éä.......????
+	//æ³¨æ„:ä¹‹å¾Œè¦ä¸è¦å†æ”¹å›åŸæœ¬åå°„.......????
 #endif
 	
 #ifdef _SUIT_ADDPART4
-	if( gBattleStausChange == -1 && CHAR_getWorkInt( attackindex, CHAR_SUITPOISON ) > 0 )//´ø¶¾×°±¸
+	if( gBattleStausChange == -1 && CHAR_getWorkInt( attackindex, CHAR_SUITPOISON ) > 0 )//å¸¦æ¯’è£…å¤‡
 		gBattleStausChange = 1,gBattleStausTurn = 3, suitpoison=CHAR_getWorkInt( attackindex, CHAR_SUITPOISON );
 #endif
 
@@ -2841,7 +2841,7 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 					CHAR_getWorkInt( defindex, CHAR_WORKDRUNK ) / 2 );
 			}
 
-#ifdef _PET_SKILL_SARS				// WON ADD ¶¾É·ÂûÑÓ
+#ifdef _PET_SKILL_SARS				// WON ADD æ¯’ç…è”“å»¶
 			if( gBattleStausChange == BATTLE_ST_SARS ){
 				CHAR_setWorkInt( defindex, CHAR_WORKMODSARS, 1);
 			}
@@ -2856,7 +2856,7 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 			}
 
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//"(%s)±ä³É(%s)(%d%%)",
+			//"(%s)å˜æˆ(%s)(%d%%)",
 			//	CHAR_getUseName( defindex ),
 			//	aszStatusFull[gBattleStausChange],
 			//	perStatus
@@ -2867,18 +2867,18 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 			BATTLE_BadStatusString( statusDefNo, gBattleStausChange );
 		}else{
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//"(%s)ÎŞ·¨³É¹¦\(%d%%)",
+			//"(%s)æ— æ³•æˆåŠŸ\(%d%%)",
 			//	aszStatusFull[gBattleStausChange],
 			//	perStatus );
 			//BATTLE_BroadCast( battleindex, szBuffer,
 			//	(attackNo >= 10)? CHAR_COLORGRAY : CHAR_COLORPURPLE ) ;
 		}
 	}
-#ifdef _SHOOTCHESTNUT	// Syu ADD ³è¼¼£º¶ªÀõ×Ó
+#ifdef _SHOOTCHESTNUT	// Syu ADD å® æŠ€ï¼šä¸¢æ —å­
 	if ( ( damage > 0 ) && ( CHAR_getWorkInt( attackindex , CHAR_WORKBATTLECOM1 ) == BATTLE_COM_S_ATTSHOOT ) ) {
 		if ( RAND ( 1 , 5 ) > 4 ) {
-			CHAR_setWorkInt( defindex, CHAR_WORKSLEEP , 3 ); //Éè¶¨»èË¯
-			CHAR_setWorkInt( defindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );//ÒòÎªÉè¶¨ÁË»èË¯,ËùÒÔÉè¶¨ÎŞ¶¯×÷
+			CHAR_setWorkInt( defindex, CHAR_WORKSLEEP , 3 ); //è®¾å®šæ˜ç¡
+			CHAR_setWorkInt( defindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );//å› ä¸ºè®¾å®šäº†æ˜ç¡,æ‰€ä»¥è®¾å®šæ— åŠ¨ä½œ
 		}
 	}
 #endif
@@ -2886,8 +2886,8 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 	if ( ( damage > 0 ) && ( CHAR_getWorkInt( attackindex , CHAR_WORKBATTLECOM1 ) == BATTLE_COM_S_GYRATE ) && (CHAR_getWorkInt( attackindex , CHAR_WORKBATTLECOM5 ) >0) ) {
 		if ( RAND ( 1 , 100 ) <= CHAR_getWorkInt( attackindex, CHAR_WORKBATTLECOM7) ) {
 			int iEffect = CHAR_getWorkInt( attackindex , CHAR_WORKBATTLECOM5 );
-			CHAR_setWorkInt( defindex, StatusTbl[iEffect] , CHAR_getWorkInt( attackindex , CHAR_WORKBATTLECOM6 ) ); //Éè¶¨»èË¯
-			CHAR_setWorkInt( defindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );//ÒòÎªÉè¶¨ÁË»èË¯,ËùÒÔÉè¶¨ÎŞ¶¯×÷
+			CHAR_setWorkInt( defindex, StatusTbl[iEffect] , CHAR_getWorkInt( attackindex , CHAR_WORKBATTLECOM6 ) ); //è®¾å®šæ˜ç¡
+			CHAR_setWorkInt( defindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );//å› ä¸ºè®¾å®šäº†æ˜ç¡,æ‰€ä»¥è®¾å®šæ— åŠ¨ä½œ
 		}
 	}
 #endif	
@@ -2901,10 +2901,10 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 		}
 	}
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ	
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½	
 	if( damage > 0 && (CHAR_getInt(attackindex, CHAR_WHICHTYPE)== CHAR_TYPEPLAYER) ){
 		int i;
-		// ¼ì²é»ğ¡¢±ù¡¢À×¸½Ìå
+		// æ£€æŸ¥ç«ã€å†°ã€é›·é™„ä½“
 		for( i=0; i<3; i++ ){
 			int turn = 0, status = -1;
 			
@@ -2914,10 +2914,10 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 				int skill_type = CHAR_getWorkInt( attackindex, CHAR_WORKBATTLECOM1 );
 				int perStatus = 0, j = 0;				
 				int skill_level = CHAR_getWorkInt( attackindex, CHAR_WORKMOD_F_ENCLOSE_2+i );
-				char pszP[3][10] = { "ÉÕ","Ëª","µç" };
+				char pszP[3][10] = { "çƒ§","éœœ","ç”µ" };
 				int img1 = 101697, img2 = 101698 + i;
 				
-				// ×´Ì¬
+				// çŠ¶æ€
 				for( j = 1; j < BATTLE_ST_END; j ++ ){
 					if( strncmp( pszP[i], aszStatus[j], 2 ) == 0 ){
 						status = j;
@@ -2925,19 +2925,19 @@ int BATTLE_Attack( int battleindex, int attackNo, int defNo )
 					}
 				}	
 
-				// ÃüÖĞÂÊ
+				// å‘½ä¸­ç‡
 				perStatus = 20 + skill_level * 2;
 
-				// »ØºÏÊı
+				// å›åˆæ•°
 				if( skill_level >= 10 )		turn = 3;
 				else if( skill_level >= 5 ) turn = 2;
 				else						turn = 1;
 
-				// À×¸½ÌåÒ»»ØºÏÊı
+				// é›·é™„ä½“ä¸€å›åˆæ•°
 				if( i == 2 )	turn = 1;
 
-				// »ğ¡¢±ù¡¢À×¸½Ìå¸½¼Ó¹¥»÷
-// Terry add fix ÖÒÈ®bug
+				// ç«ã€å†°ã€é›·é™„ä½“é™„åŠ æ”»å‡»
+// Terry add fix å¿ çŠ¬bug
 				if(Guardian >= 0) iRet = BATTLE_PROFESSION_RANG_ATTACK_DAMAGE(attackindex, attackNo, Guardian, skill_type, status, turn, perStatus, 0, img1, img2 );
 				else iRet = BATTLE_PROFESSION_RANG_ATTACK_DAMAGE(attackindex, attackNo, defNo, skill_type, status, turn, perStatus, 0, img1, img2 );
 				
@@ -3018,11 +3018,11 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 
 	if( CHAR_getInt( attackindex, CHAR_HP ) <= 0 )	return FALSE;
 
-	// ¹â¡¢¾µ¡¢ÊØ
+	// å…‰ã€é•œã€å®ˆ
 //	if( BATTLE_GetDamageReact( attackindex ) > 0 )		iRet = FALSE;
 //	else if( BATTLE_GetDamageReact( defindex ) > 0 )	iRet = FALSE;
 
-	// ¹¥»÷Ä£Ê½
+	// æ”»å‡»æ¨¡å¼
 	iWork = BATTLE_AttackSeq( attackindex, toindex, &damage, &Guardian, opt );
 
 	if( Guardian >= 0 )
@@ -3038,7 +3038,7 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 
 	ultimate = BATTLE_DamageSub_FIREKILL( attackindex, defindex, &damage, &petdamage, &react );
 
-//#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+//#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 //	if( react == BATTLE_MD_TRAP ){
 //		defindex = attackindex;
 //		statusDefNo = attackNo;
@@ -3062,13 +3062,13 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 //	}
 
 //#ifdef _PETSKILL_ACUPUNCTURE
-//    if( react == BATTLE_MD_ACUPUNCTURE ){ //Õë´ÌÍâÆ¤Ê±»áÎŞ·¨Õı³£½â³ı±»´ò·½µÄ×´Ì¬,ËùÒÔ°Ñindex»»»ØÀ´
+//    if( react == BATTLE_MD_ACUPUNCTURE ){ //é’ˆåˆºå¤–çš®æ—¶ä¼šæ— æ³•æ­£å¸¸è§£é™¤è¢«æ‰“æ–¹çš„çŠ¶æ€,æ‰€ä»¥æŠŠindexæ¢å›æ¥
 //	    defindex = toindex = BATTLE_No2Index( battleindex, defNo );
 //        statusDefNo = defNo;
 //	}
 //#endif
 
-	//»èË¯Ê±,ÔÚÕâÀï½â³ı×´Ì¬(Ò²ÓĞÆäËüµÄ×´Ì¬)
+	//æ˜ç¡æ—¶,åœ¨è¿™é‡Œè§£é™¤çŠ¶æ€(ä¹Ÿæœ‰å…¶å®ƒçš„çŠ¶æ€)
 	if( damage > 0 && ( react != BATTLE_MD_ABSROB ) && ( react != BATTLE_MD_VANISH ) ){
 		BATTLE_DamageWakeUp( battleindex, defindex );
 	}
@@ -3083,7 +3083,7 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 	switch( iWork ){
 		case BATTLE_RET_ALLGUARD:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)³¯Ïò(%s)¹¥»÷,ÇáÒ×µØ±»¶ã¿ª¡£",
+			//	"(%s)æœå‘(%s)æ”»å‡»,è½»æ˜“åœ°è¢«èº²å¼€ã€‚",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex )
 			//);
@@ -3091,14 +3091,14 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 			break;
 		case BATTLE_RET_MISS:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)³¯Ïò(%s)¹¥»÷,Ã»»÷ÖĞ¡£",
+			//	"(%s)æœå‘(%s)æ”»å‡»,æ²¡å‡»ä¸­ã€‚",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex )
 			//);
 			break;
 		case BATTLE_RET_DODGE:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)¹¥»÷ÁË(%s)¶ã¿ªÁË(%.2f%%)",
+			//	"(%s)æ”»å‡»äº†(%s)èº²å¼€äº†(%.2f%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	gDuckPer
@@ -3110,7 +3110,7 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 			break;
 		case BATTLE_RET_NORMAL:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)ÊÜµ½(%s)µÄ¹¥»÷(%d)ÔâÊÜËğÉË(%d:%d:%d%%)",
+			//	"(%s)å—åˆ°(%s)çš„æ”»å‡»(%d)é­å—æŸä¼¤(%d:%d:%d%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	damage,
@@ -3124,7 +3124,7 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 			break;
 		case BATTLE_RET_CRITICAL:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//"(%s)Ïò(%s)CRITICAL(%d%%)(%d)²»¿ÉÒÔ(%d:%d:%d%%)",
+			//"(%s)å‘(%s)CRITICAL(%d%%)(%d)ä¸å¯ä»¥(%d:%d:%d%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	(int)(gCriper*0.01),
@@ -3141,7 +3141,7 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 #ifdef _EQUIT_ARRANGE
 		case BATTLE_RET_ARRANGE:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)¹¥»÷ÁË(%s)µ²µôÁË(%.2f%%)",
+			//	"(%s)æ”»å‡»äº†(%s)æŒ¡æ‰äº†(%.2f%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	gDuckPer
@@ -3168,7 +3168,7 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 			}
 		}
 #ifdef _PETSKILL_LER
-// À×¶û²»ÄÜ±»´ò·É
+// é›·å°”ä¸èƒ½è¢«æ‰“é£
 		if(CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101813 ||
 		 CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101814) ultimate = 0;
 #endif
@@ -3190,11 +3190,11 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 
 
 //#ifdef _PETSKILL_ACUPUNCTURE
-//    if( react == BATTLE_MD_ACUPUNCTURE ){ //Õë´ÌÍâÆ¤²»»á·´ÉäÌØÊâ×´Ì¬,ËùÒÔÒª¸Ä»ØÀ´
+//    if( react == BATTLE_MD_ACUPUNCTURE ){ //é’ˆåˆºå¤–çš®ä¸ä¼šåå°„ç‰¹æ®ŠçŠ¶æ€,æ‰€ä»¥è¦æ”¹å›æ¥
 //	    defindex = toindex = BATTLE_No2Index( battleindex, defNo );
 //       statusDefNo = defNo;
 //	}
-//	//×¢Òâ:Ö®ááÒª²»ÒªÔÙ¸Ä»ØÔ­±¾·´Éä.......????
+//	//æ³¨æ„:ä¹‹å¾Œè¦ä¸è¦å†æ”¹å›åŸæœ¬åå°„.......????
 //#endif
 	
 
@@ -3217,7 +3217,7 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 					CHAR_getWorkInt( defindex, CHAR_WORKDRUNK ) / 2 );
 			}
 
-#ifdef _PET_SKILL_SARS				// WON ADD ¶¾É·ÂûÑÓ
+#ifdef _PET_SKILL_SARS				// WON ADD æ¯’ç…è”“å»¶
 			if( gBattleStausChange == BATTLE_ST_SARS ){
 				CHAR_setWorkInt( defindex, CHAR_WORKMODSARS, 1);
 			}
@@ -3232,7 +3232,7 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 			}
 
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//"(%s)±ä³É(%s)(%d%%)",
+			//"(%s)å˜æˆ(%s)(%d%%)",
 			//	CHAR_getUseName( defindex ),
 			//	aszStatusFull[gBattleStausChange],
 			//	perStatus
@@ -3243,18 +3243,18 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 			BATTLE_BadStatusString( statusDefNo, gBattleStausChange );
 		}else{
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//"(%s)ÎŞ·¨³É¹¦\(%d%%)",
+			//"(%s)æ— æ³•æˆåŠŸ\(%d%%)",
 			//	aszStatusFull[gBattleStausChange],
 			//	perStatus );
 			//BATTLE_BroadCast( battleindex, szBuffer,
 			//	(attackNo >= 10)? CHAR_COLORGRAY : CHAR_COLORPURPLE ) ;
 		}
 	}
-#ifdef _SHOOTCHESTNUT	// Syu ADD ³è¼¼£º¶ªÀõ×Ó
+#ifdef _SHOOTCHESTNUT	// Syu ADD å® æŠ€ï¼šä¸¢æ —å­
 	if ( ( damage > 0 ) && ( CHAR_getWorkInt( attackindex , CHAR_WORKBATTLECOM1 ) == BATTLE_COM_S_ATTSHOOT ) ) {
 		if ( RAND ( 1 , 5 ) > 4 ) {
-			CHAR_setWorkInt( defindex, CHAR_WORKSLEEP , 3 ); //Éè¶¨»èË¯
-			CHAR_setWorkInt( defindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );//ÒòÎªÉè¶¨ÁË»èË¯,ËùÒÔÉè¶¨ÎŞ¶¯×÷
+			CHAR_setWorkInt( defindex, CHAR_WORKSLEEP , 3 ); //è®¾å®šæ˜ç¡
+			CHAR_setWorkInt( defindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );//å› ä¸ºè®¾å®šäº†æ˜ç¡,æ‰€ä»¥è®¾å®šæ— åŠ¨ä½œ
 		}
 	}
 #endif
@@ -3268,10 +3268,10 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 		}
 	}
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ	
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½	
 	if( damage > 0 && (CHAR_getInt(attackindex, CHAR_WHICHTYPE)== CHAR_TYPEPLAYER) ){
 		int i;
-		// ¼ì²é»ğ¡¢±ù¡¢À×¸½Ìå
+		// æ£€æŸ¥ç«ã€å†°ã€é›·é™„ä½“
 		for( i=0; i<3; i++ ){
 			int turn = 0, status = -1;
 			
@@ -3281,10 +3281,10 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 				int skill_type = CHAR_getWorkInt( attackindex, CHAR_WORKBATTLECOM1 );
 				int perStatus = 0, j = 0;				
 				int skill_level = CHAR_getWorkInt( attackindex, CHAR_WORKMOD_F_ENCLOSE_2+i );
-				char pszP[3][10] = { "ÉÕ","Ëª","µç" };
+				char pszP[3][10] = { "çƒ§","éœœ","ç”µ" };
 				int img1 = 101697, img2 = 101698 + i;
 				
-				// ×´Ì¬
+				// çŠ¶æ€
 				for( j = 1; j < BATTLE_ST_END; j ++ ){
 					if( strncmp( pszP[i], aszStatus[j], 2 ) == 0 ){
 						status = j;
@@ -3292,19 +3292,19 @@ int BATTLE_Attack_FIREKILL( int battleindex, int attackNo, int defNo )
 					}
 				}	
 
-				// ÃüÖĞÂÊ
+				// å‘½ä¸­ç‡
 				perStatus = 20 + skill_level * 2;
 
-				// »ØºÏÊı
+				// å›åˆæ•°
 				if( skill_level >= 10 )		turn = 3;
 				else if( skill_level >= 5 ) turn = 2;
 				else						turn = 1;
 
-				// À×¸½ÌåÒ»»ØºÏÊı
+				// é›·é™„ä½“ä¸€å›åˆæ•°
 				if( i == 2 )	turn = 1;
 
-				// »ğ¡¢±ù¡¢À×¸½Ìå¸½¼Ó¹¥»÷
-// Terry add fix ÖÒÈ®bug
+				// ç«ã€å†°ã€é›·é™„ä½“é™„åŠ æ”»å‡»
+// Terry add fix å¿ çŠ¬bug
 				if(Guardian >= 0) iRet = BATTLE_PROFESSION_RANG_ATTACK_DAMAGE(attackindex, attackNo, Guardian, skill_type, status, turn, perStatus, 0, img1, img2 );
 				else iRet = BATTLE_PROFESSION_RANG_ATTACK_DAMAGE(attackindex, attackNo, defNo, skill_type, status, turn, perStatus, 0, img1, img2 );
 				
@@ -3511,7 +3511,7 @@ static BOOL BATTLE_CounterCheckPet( int attackindex, int defindex, int *pPer )
 
 static BOOL BATTLE_CounterCheck( int attackindex, int defindex, int *pPar )
 {
-#ifdef _SHOOTCHESTNUT	// Syu ADD ³è¼¼£º¶ªÀõ×Ó
+#ifdef _SHOOTCHESTNUT	// Syu ADD å® æŠ€ï¼šä¸¢æ —å­
 	if ( CHAR_getWorkInt( attackindex, CHAR_WORKBATTLECOM1 ) == BATTLE_COM_S_ATTSHOOT || 
 		CHAR_getWorkInt( defindex, CHAR_WORKBATTLECOM1 ) == BATTLE_COM_S_ATTSHOOT
 		) {
@@ -3527,7 +3527,7 @@ static BOOL BATTLE_CounterCheck( int attackindex, int defindex, int *pPar )
 
 
 
-//·´»÷ÅĞ¶¨
+//åå‡»åˆ¤å®š
 BOOL BATTLE_Counter( int battleindex, int attackNo, int defNo )
 {
 
@@ -3540,7 +3540,7 @@ BOOL BATTLE_Counter( int battleindex, int attackNo, int defNo )
 	attackindex = BATTLE_No2Index( battleindex, attackNo );
 	defindex = BATTLE_No2Index( battleindex, defNo );
 
-#ifdef _SHOOTCHESTNUT	// Syu ADD ³è¼¼£º¶ªÀõ×Ó
+#ifdef _SHOOTCHESTNUT	// Syu ADD å® æŠ€ï¼šä¸¢æ —å­
 	if ( CHAR_getWorkInt( attackindex, CHAR_WORKBATTLECOM1 ) == BATTLE_COM_S_ATTSHOOT ) {
 		return FALSE;
 	}
@@ -3556,13 +3556,13 @@ BOOL BATTLE_Counter( int battleindex, int attackNo, int defNo )
 		return FALSE;
 	}
 
-	// nono³è
+	// nonoå® 
 	if( CHAR_getWorkInt( attackindex, CHAR_WORKBATTLEFLG ) & CHAR_BATTLEFLG_ABIO )	return FALSE;
 
-	// ·´»÷Ìõ¼ş
+	// åå‡»æ¡ä»¶
 	if( BATTLE_CounterCheck( attackindex, defindex, &per ) == FALSE )	return FALSE;
 
-	// ¹â¡¢¾µ¡¢ÊØ
+	// å…‰ã€é•œã€å®ˆ
 	if( BATTLE_GetDamageReact( attackindex ) > 0 )
 		iRet = FALSE;
 	else if( BATTLE_GetDamageReact( defindex ) > 0 )
@@ -3585,7 +3585,7 @@ BOOL BATTLE_Counter( int battleindex, int attackNo, int defNo )
 	ultimate = BATTLE_DamageSub( attackindex, defindex, &damage, &petdamage, &react );
 	if( react == BATTLE_MD_REFLEC )		defindex = attackindex;
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 	if( react == BATTLE_MD_TRAP )	defindex = attackindex;
 #endif
 
@@ -3601,7 +3601,7 @@ BOOL BATTLE_Counter( int battleindex, int attackNo, int defNo )
 	case BATTLE_RET_MISS:
 /*
 		snprintf( szBuffer, sizeof(szBuffer),
-			"(%s)³¯Ïò(%s)·´»÷,Ã»»÷ÖĞ¡£",
+			"(%s)æœå‘(%s)åå‡»,æ²¡å‡»ä¸­ã€‚",
 			CHAR_getUseName( attackindex ),
 			CHAR_getUseName( defindex )
 		);
@@ -3610,7 +3610,7 @@ BOOL BATTLE_Counter( int battleindex, int attackNo, int defNo )
 
 	case BATTLE_RET_DODGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)ÒâÍâ¹¥»÷(%d%%)!µ«ÊÇ(%s)ÉÁ¿ªÁË(%.2f%%)",
+		//	"(%s)æ„å¤–æ”»å‡»(%d%%)!ä½†æ˜¯(%s)é—ªå¼€äº†(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	per,
 		//	CHAR_getUseName( defindex ),
@@ -3621,7 +3621,7 @@ BOOL BATTLE_Counter( int battleindex, int attackNo, int defNo )
 
 	case BATTLE_RET_NORMAL:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//"(%s)µÄ·´»÷!(%d%%)(%d)ËğÉË (%d:%d:%d%%)",
+		//"(%s)çš„åå‡»!(%d%%)(%d)æŸä¼¤ (%d:%d:%d%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	per,
 		//	damage,
@@ -3635,7 +3635,7 @@ BOOL BATTLE_Counter( int battleindex, int attackNo, int defNo )
 
 	case BATTLE_RET_CRITICAL:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//"(%s)µÄCRITICAL£¡(%d%%)(%d)ËğÉË (%d:%d:%d%%)",
+		//"(%s)çš„CRITICALï¼(%d%%)(%d)æŸä¼¤ (%d:%d:%d%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	per,
 		//	damage,
@@ -3651,7 +3651,7 @@ BOOL BATTLE_Counter( int battleindex, int attackNo, int defNo )
 #ifdef _EQUIT_ARRANGE
 	case BATTLE_RET_ARRANGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)¹¥»÷ÁË(%s)µ²µôÁË(%.2f%%)",
+		//	"(%s)æ”»å‡»äº†(%s)æŒ¡æ‰äº†(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -3675,7 +3675,7 @@ BOOL BATTLE_Counter( int battleindex, int attackNo, int defNo )
 			}
 		}
 #ifdef _PETSKILL_LER
-// À×¶û²»ÄÜ±»´ò·É
+// é›·å°”ä¸èƒ½è¢«æ‰“é£
 		if(CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101813 ||
 		 CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101814) ultimate = 0;
 #endif
@@ -3816,7 +3816,7 @@ typedef	struct _NeedItemEnemy{
 }NEEDITEMENEMY;
 NEEDITEMENEMY	NeedEnemy[128] = {
 	{ 524,	{ 2456, -1, -1, -1, -1, -1, -1, -1, -1, -1} },
-	//ÒÁµéÈÎÎñ
+	//ä¼Šç”¸ä»»åŠ¡
 	{ 961,	{20219, -1, -1, -1, -1, -1, -1, -1, -1, -1} },
 	{ 953,	{20223, -1, -1, -1, -1, -1, -1, -1, -1, -1} },
 	{ 962,	{20222, -1, -1, -1, -1, -1, -1, -1, -1, -1} },
@@ -3827,7 +3827,7 @@ NEEDITEMENEMY	NeedEnemy[128] = {
 
 	{ 1105,	{1690, 1691, 1692, -1, -1, -1, -1, -1, -1, -1} },
 	{ 8,	{1810, -1, -1, -1, -1, -1, -1, -1, -1, -1} },
-#ifdef _WOLF_TAKE_AXE				// WON ADD ×¥Ë«Í·ÀÇµÄÏŞÖÆ
+#ifdef _WOLF_TAKE_AXE				// WON ADD æŠ“åŒå¤´ç‹¼çš„é™åˆ¶
 	{ 145,	{2236, -1, -1, -1, -1, -1, -1, -1, -1, -1} },
 	{ 146,	{2236, -1, -1, -1, -1, -1, -1, -1, -1, -1} },
 #endif
@@ -3843,7 +3843,7 @@ int need_item_eneny_init()
 	fp = fopen("data/needitemeneny.txt", "r");
 	if (fp == NULL)
 	{
-		print("ÎŞ·¨´ò¿ªÎÄ¼ş\n");
+		print("æ— æ³•æ‰“å¼€æ–‡ä»¶\n");
 		return FALSE;
 	}
 	while(1){
@@ -3872,7 +3872,7 @@ typedef	struct _NeedItemEnemy{
 }NEEDITEMENEMY;
 NEEDITEMENEMY	NeedEnemy[] = {
 	{ 524, 2456 },
-	//ÒÁµéÈÎÎñ
+	//ä¼Šç”¸ä»»åŠ¡
 	{ 961, 20219},
 	{ 953, 20223},
 	{ 962, 20222},
@@ -3917,7 +3917,7 @@ BOOL BATTLE_CaptureItemCheck( int attackindex, int defindex )
 			if( ITEM_getInt( itemindex, ITEM_ID ) != NeedEnemy[ ti].ItemId[i] ) continue;
 				break;
 		}
-		//Ã»ÕÒµ½
+		//æ²¡æ‰¾åˆ°
 		if( j>= CHAR_MAXITEMHAVE ) return FALSE;
 	}
 	return TRUE;
@@ -3950,12 +3950,12 @@ BOOL BATTLE_CaptureItemDelAll( int attackindex, int defindex )
 //				LogItem(
 //					CHAR_getChar( attackindex, CHAR_NAME ),
 //					CHAR_getChar( attackindex, CHAR_CDKEY ),
-//#ifdef _add_item_log_name  // WON ADD ÔÚitemµÄlogÖĞÔö¼ÓitemÃû³Æ
+//#ifdef _add_item_log_name  // WON ADD åœ¨itemçš„logä¸­å¢åŠ itemåç§°
 //						itemindex,
 //#else
 //					ITEM_getInt( itemindex, ITEM_ID ),
 //#endif
-//					"PetEaten(Ê¹ÓÃÌõ¼şµÀ¾ß²¶»ñ³èÎï)",
+//					"PetEaten(ä½¿ç”¨æ¡ä»¶é“å…·æ•è·å® ç‰©)",
 //					CHAR_getInt( attackindex,CHAR_FLOOR),
 //					CHAR_getInt( attackindex,CHAR_X ),
 //					CHAR_getInt( attackindex,CHAR_Y ),
@@ -3979,7 +3979,7 @@ BOOL BATTLE_CaptureItemDelAll( int attackindex, int defindex )
 				}
 				CHAR_DelItem( attackindex, j);
 				CHAR_complianceParameter( attackindex);
-				break;//Change fix ×¥µ½Ò»Ö»³èÖ»É¾³ıÒ»¸öµÀ¾ß(×îáá»¹ÊÇ¾ö¶¨È«É¾)
+				break;//Change fix æŠ“åˆ°ä¸€åªå® åªåˆ é™¤ä¸€ä¸ªé“å…·(æœ€å¾Œè¿˜æ˜¯å†³å®šå…¨åˆ )
 			}
 		}
 	}
@@ -4013,13 +4013,13 @@ BOOL BATTLE_Capture(
     ){
 		flg = 0;
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)Ã»ÓĞ²¶»ñ(%s)µÄ±ØÒªµÀ¾ß¡£",
+		//	"(%s)æ²¡æœ‰æ•è·(%s)çš„å¿…è¦é“å…·ã€‚",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex )
 		//);
 	}else
 		if( BATTLE_CaptureCheck( attackindex, defindex, &per ) == FALSE ){
-			//snprintf( szBuffer, sizeof(szBuffer), "(%s)ÎŞ·¨²¶»ñ(%s)(%.2f%%)",
+			//snprintf( szBuffer, sizeof(szBuffer), "(%s)æ— æ³•æ•è·(%s)(%.2f%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	per
@@ -4030,13 +4030,13 @@ BOOL BATTLE_Capture(
 	if( flg == 1 ){
 		pindex = PET_createPetFromCharaIndex( attackindex, defindex );
 		if( pindex == -1 ){
-			//snprintf( szBuffer, sizeof(szBuffer), "(%s)³ÊÏÖÎŞ·¨²¶»ñµÄ×´Ì¬¡£",
+			//snprintf( szBuffer, sizeof(szBuffer), "(%s)å‘ˆç°æ— æ³•æ•è·çš„çŠ¶æ€ã€‚",
 			//	CHAR_getUseName( attackindex ) );
 			flg = 0;
 		}else{
 			int ai;
 			CHAR_setInt( pindex, CHAR_PETGETLV, CHAR_getInt( pindex, CHAR_LV ) );
-			//snprintf( szBuffer, sizeof(szBuffer), "(%s)²¶»ñÁË(%s)(%.2f%%)",
+			//snprintf( szBuffer, sizeof(szBuffer), "(%s)æ•è·äº†(%s)(%.2f%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	per
@@ -4048,7 +4048,7 @@ BOOL BATTLE_Capture(
 //				CHAR_getUseID( attackindex ),
 //				CHAR_getChar( defindex, CHAR_NAME ),
 //				CHAR_getInt( defindex, CHAR_LV ),
-//				"Get(²¶»ñ³èÎï)",
+//				"Get(æ•è·å® ç‰©)",
 //				CHAR_getInt( attackindex, CHAR_FLOOR ),
 //				CHAR_getInt( attackindex, CHAR_X ),
 //				CHAR_getInt( attackindex, CHAR_Y ),
@@ -4071,12 +4071,12 @@ BOOL BATTLE_Capture(
 //							LogItem(
 //								CHAR_getChar( attackindex, CHAR_NAME ),
 //								CHAR_getChar( attackindex, CHAR_CDKEY ),
-//#ifdef _add_item_log_name  // WON ADD ÔÚitemµÄlogÖĞÔö¼ÓitemÃû³Æ
+//#ifdef _add_item_log_name  // WON ADD åœ¨itemçš„logä¸­å¢åŠ itemåç§°
 //								itemindex,
 //#else
 //					   			ITEM_getInt( itemindex, ITEM_ID ),
 //#endif
-//								"PetEaten(Ê¹ÓÃÁÏÀí²¶»ñ³èÎï)",
+//								"PetEaten(ä½¿ç”¨æ–™ç†æ•è·å® ç‰©)",
 //						       	CHAR_getInt( attackindex,CHAR_FLOOR),
 //								CHAR_getInt( attackindex,CHAR_X ),
 //					        	CHAR_getInt( attackindex,CHAR_Y ),
@@ -4130,7 +4130,7 @@ void BATTLE_Guard(
 	/*attackindex = BATTLE_No2Index( battleindex, attackNo );
 	{
 		char szBuffer[256]="";
-		//snprintf( szBuffer, sizeof(szBuffer), "(%s)±£×¡ÁË×ÔÉí°²È«¡£",
+		//snprintf( szBuffer, sizeof(szBuffer), "(%s)ä¿ä½äº†è‡ªèº«å®‰å…¨ã€‚",
 		//	CHAR_getUseName( attackindex )
 		//);
 		//BATTLE_BroadCast( battleindex, szBuffer,
@@ -4258,7 +4258,7 @@ BOOL BATTLE_Escape( int battleindex, int attackNo, int flag)
 	}
 	
 	if( flg == 1 || flag == 1 ){
-		//snprintf( szBuffer, sizeof(szBuffer), "(%s)ÌÓÅÜÁË(%d%%)",
+		//snprintf( szBuffer, sizeof(szBuffer), "(%s)é€ƒè·‘äº†(%d%%)",
 		//	CHAR_getUseName( attackindex ), iPar
 		//);
 		//if( getBattleDebugMsg( ) != 0 ){
@@ -4279,7 +4279,7 @@ BOOL BATTLE_Escape( int battleindex, int attackNo, int flag)
 		BATTLE_Exit( attackindex, battleindex );
 	}else{
 		//if( getBattleDebugMsg( ) != 0 ){
-			//snprintf( szBuffer, sizeof(szBuffer), "(%s)²îµãÅÜÁË(%d%%)",
+			//snprintf( szBuffer, sizeof(szBuffer), "(%s)å·®ç‚¹è·‘äº†(%d%%)",
 			//	CHAR_getUseName( attackindex ), iPar
 			//);
 			//BATTLE_BroadCast( battleindex, szBuffer,
@@ -4343,7 +4343,7 @@ int BATTLE_NoAction( int battleindex, int attackNo )
 	sprintf( szCommand, "bn|%x|", attackNo );
 	BATTLESTR_ADD( szCommand );
 
-	//snprintf( szBuffer, sizeof(szBuffer), "(%s)Ê²÷áÒ²²»ÄÜ×ö¡£",
+	//snprintf( szBuffer, sizeof(szBuffer), "(%s)ä»€éº½ä¹Ÿä¸èƒ½åšã€‚",
 	//	CHAR_getUseName( attackindex )
 	//);
 	//BATTLE_BroadCast( battleindex, szBuffer,
@@ -4362,7 +4362,7 @@ int BATTLE_PetIn( int battleindex, int attackNo )
 	attackindex = BATTLE_No2Index( battleindex, attackNo );
 	petindex = CHAR_getInt( attackindex, CHAR_DEFAULTPET );
 	petindex = CHAR_getCharPet( attackindex, petindex );
-#ifdef _FIXWOLF	 // Syu ADD ĞŞÕıÀÇÈË±äÉíBug
+#ifdef _FIXWOLF	 // Syu ADD ä¿®æ­£ç‹¼äººå˜èº«Bug
 	if ( CHAR_getInt ( petindex , CHAR_BASEIMAGENUMBER) == 101428 )
 	{
 		CHAR_setInt( petindex, CHAR_BASEIMAGENUMBER, CHAR_getInt( petindex , CHAR_BASEBASEIMAGENUMBER));
@@ -4370,9 +4370,9 @@ int BATTLE_PetIn( int battleindex, int attackNo )
 		CHAR_setWorkInt( petindex, CHAR_WORKQUICK, CHAR_getWorkInt( petindex , CHAR_WORKFIXDEX));
     }
 #endif
-#ifdef _PETSKILL_BECOMEFOX // ³èÎïÖĞÃÄ»óÊõÊÕ»ØááÔÙ·Å³öÀ´Ê±Òª»Ö¸´Õı³£×´Ì¬
+#ifdef _PETSKILL_BECOMEFOX // å® ç‰©ä¸­åªšæƒ‘æœ¯æ”¶å›å¾Œå†æ”¾å‡ºæ¥æ—¶è¦æ¢å¤æ­£å¸¸çŠ¶æ€
     if ( CHAR_getInt ( petindex , CHAR_WORKFOXROUND) != -1 
-		|| CHAR_getInt( petindex, CHAR_BASEIMAGENUMBER) == 101749 ){ //ÈôÊÇ±äÉíÎªÀê
+		|| CHAR_getInt( petindex, CHAR_BASEIMAGENUMBER) == 101749 ){ //è‹¥æ˜¯å˜èº«ä¸ºç‹¸
 		CHAR_setInt( petindex, CHAR_BASEIMAGENUMBER, CHAR_getInt( petindex , CHAR_BASEBASEIMAGENUMBER));
 		CHAR_setWorkInt( petindex, CHAR_WORKATTACKPOWER, CHAR_getWorkInt( petindex , CHAR_WORKFIXSTR));
 		CHAR_setWorkInt( petindex, CHAR_WORKQUICK, CHAR_getWorkInt( petindex , CHAR_WORKFIXDEX));
@@ -4382,7 +4382,7 @@ int BATTLE_PetIn( int battleindex, int attackNo )
 	if( CHAR_getWorkInt( petindex, CHAR_WORKBATTLEFLG )
 	& CHAR_BATTLEFLG_NORETURN
 	){
-		//snprintf( szBuffer, sizeof(szBuffer), "(%s)ÎŞ·¨»Ø¸´³É(%s)",
+		//snprintf( szBuffer, sizeof(szBuffer), "(%s)æ— æ³•å›å¤æˆ(%s)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( petindex )
 		//);
@@ -4392,7 +4392,7 @@ int BATTLE_PetIn( int battleindex, int attackNo )
 	BATTLE_PetDefaultExit( attackindex, battleindex );
 	CHAR_setInt( attackindex, CHAR_DEFAULTPET, -1 );
 
-	//snprintf( szBuffer, sizeof(szBuffer), "(%s)»Ø¸´³É(%s)",
+	//snprintf( szBuffer, sizeof(szBuffer), "(%s)å›å¤æˆ(%s)",
 	//	CHAR_getUseName( attackindex ),
 	//	CHAR_getUseName( petindex )
 	//);
@@ -4428,12 +4428,12 @@ int BATTLE_PetOut( int battleindex, int attackNo )
 		CHAR_getWorkInt( attackindex, CHAR_WORKBATTLESIDE ) );
 
 	if( iRet < 0 ){
-		//snprintf( szBuffer, sizeof(szBuffer), "(%s)ºô»½³èÎï,¿ÉÊÇÃ»ÓĞ³öÏÖÆä×Ù¼£¡£",
+		//snprintf( szBuffer, sizeof(szBuffer), "(%s)å‘¼å”¤å® ç‰©,å¯æ˜¯æ²¡æœ‰å‡ºç°å…¶è¸ªè¿¹ã€‚",
 		//	CHAR_getUseName( attackindex )
 		//);
 	}else
 	if( CHAR_getInt( attackindex, CHAR_DEFAULTPET ) < 0 ){
-		//snprintf( szBuffer, sizeof(szBuffer), "(%s)ºô»½³èÎï,¿ÉÊÇÃ»ÓĞ³öÏÖÆä×Ù¼£¡£",
+		//snprintf( szBuffer, sizeof(szBuffer), "(%s)å‘¼å”¤å® ç‰©,å¯æ˜¯æ²¡æœ‰å‡ºç°å…¶è¸ªè¿¹ã€‚",
 		//	CHAR_getUseName( attackindex )
 		//);
 	}else{
@@ -4444,7 +4444,7 @@ int BATTLE_PetOut( int battleindex, int attackNo )
 		CHAR_setWorkInt( petindex, CHAR_WORKBATTLEMODE,
 			BATTLE_CHARMODE_C_OK );
 
-		//snprintf( szBuffer, sizeof(szBuffer), "(%s)ºô»½(%s)",
+		//snprintf( szBuffer, sizeof(szBuffer), "(%s)å‘¼å”¤(%s)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( petindex )
 		//);
@@ -4484,7 +4484,7 @@ int BATTLE_Magic( int battleindex, int attackNo )
 }
 
 
-//ÅĞ±ğ¹¥»÷ÊÇ·ñÃüÖĞ
+//åˆ¤åˆ«æ”»å‡»æ˜¯å¦å‘½ä¸­
 int BATTLE_S_GBreak( int battleindex, int attackNo, int defNo )
 {
 	char szBuffer[512]="";
@@ -4512,7 +4512,7 @@ int BATTLE_S_GBreak( int battleindex, int attackNo, int defNo )
 		react = 0;
 		ultimate = BATTLE_DamageSub( attackindex, defindex, &damage, &petdamage, &react );
 		if( react == BATTLE_MD_REFLEC )defindex = attackindex;
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 		if( react == BATTLE_MD_TRAP )	defindex = attackindex;
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE
@@ -4520,7 +4520,7 @@ int BATTLE_S_GBreak( int battleindex, int attackNo, int defNo )
 #endif
 
 	}else{
-		//ÈôµĞ·Ç·ÀÓùÔòdamageÎª0
+		//è‹¥æ•Œéé˜²å¾¡åˆ™damageä¸º0
 		damage = 0;
 		iWork = BATTLE_RET_MISS;
 	}
@@ -4538,7 +4538,7 @@ int BATTLE_S_GBreak( int battleindex, int attackNo, int defNo )
 	case BATTLE_RET_ALLGUARD:
 	case BATTLE_RET_MISS:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)³¯Ïò(%s)·¢¶¯¾ø¼¼,Ã»»÷ÖĞ¡£",
+		//	"(%s)æœå‘(%s)å‘åŠ¨ç»æŠ€,æ²¡å‡»ä¸­ã€‚",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex )
 		//);
@@ -4547,7 +4547,7 @@ int BATTLE_S_GBreak( int battleindex, int attackNo, int defNo )
 
 	case BATTLE_RET_DODGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)Õ¹¿ª·ÀÓù¹¥»÷(%s)¶ã¿ªÁË(%.2f%%)",
+		//	"(%s)å±•å¼€é˜²å¾¡æ”»å‡»(%s)èº²å¼€äº†(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -4558,7 +4558,7 @@ int BATTLE_S_GBreak( int battleindex, int attackNo, int defNo )
 
 	case BATTLE_RET_NORMAL:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)ÊÜµ½(%s)µÄ¾ø¼¼¹¥»÷(%d)ËğÉË(%d:%d:%d%%)",
+		//	"(%s)å—åˆ°(%s)çš„ç»æŠ€æ”»å‡»(%d)æŸä¼¤(%d:%d:%d%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	damage,
@@ -4574,7 +4574,7 @@ int BATTLE_S_GBreak( int battleindex, int attackNo, int defNo )
 
 	case BATTLE_RET_CRITICAL:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//"(%s)ÊÜµ½(%s)µÄ¾ø¼¼CRITICAL(%d)ËğÉË(%d:%d:%d%%)",
+		//"(%s)å—åˆ°(%s)çš„ç»æŠ€CRITICAL(%d)æŸä¼¤(%d:%d:%d%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	damage,
@@ -4590,7 +4590,7 @@ int BATTLE_S_GBreak( int battleindex, int attackNo, int defNo )
 #ifdef _EQUIT_ARRANGE
 	case BATTLE_RET_ARRANGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)¹¥»÷ÁË(%s)µ²µôÁË(%.2f%%)",
+		//	"(%s)æ”»å‡»äº†(%s)æŒ¡æ‰äº†(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -4621,7 +4621,7 @@ int BATTLE_S_GBreak( int battleindex, int attackNo, int defNo )
 			}
 		}
 #ifdef _PETSKILL_LER
-// À×¶û²»ÄÜ±»´ò·É
+// é›·å°”ä¸èƒ½è¢«æ‰“é£
 		if(CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101813 ||
 		 CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101814) ultimate = 0;
 #endif
@@ -4680,7 +4680,7 @@ int BATTLE_S_GBreak( int battleindex, int attackNo, int defNo )
 }
 
 
-#ifdef _SKILL_SACRIFICE//¾ÈÔ® vincent add 2002/05/30
+#ifdef _SKILL_SACRIFICE//æ•‘æ´ vincent add 2002/05/30
 int BATTLE_S_Sacrifice( int battleindex, int attackNo, int defNo )
 {
 	int attackindex, defindex = 0;
@@ -4695,14 +4695,14 @@ int BATTLE_S_Sacrifice( int battleindex, int attackNo, int defNo )
 		DefSide = 1;
 	}
 
-	//ĞŞÕıHP
+	//ä¿®æ­£HP
 	CHAR_setInt(attackindex,CHAR_HP,(CHAR_getInt(attackindex,CHAR_HP)*0.5));
 	CHAR_setInt(defindex,CHAR_HP,min(CHAR_getInt(attackindex,CHAR_HP)+CHAR_getInt(defindex,CHAR_HP),CHAR_getWorkInt(defindex,CHAR_WORKMAXHP)));
 	Damage=CHAR_getInt(attackindex,CHAR_HP);
 
-	//Ä§·¨¶¯»­
+	//é­”æ³•åŠ¨ç”»
 	BATTLE_MultiList( battleindex, defNo, ToList );
-    //Ğãhp¸Ä±äÊıÖµ
+    //ç§€hpæ”¹å˜æ•°å€¼
 	BATTLE_MagicEffect(battleindex, attackNo, ToList, MAGIC_EFFECT_USER, SPR_heal2 );
 	snprintf( szCommand, sizeof(szCommand),"BD|r%X|%X|%X|d%X|p%X|", attackNo, BD_KIND_HP, 0, Damage, 0 );
     BATTLESTR_ADD( szCommand );
@@ -4749,7 +4749,7 @@ int BATTLE_S_Refresh( int battleindex, int attackNo, int defNo, int marray )
 }
 #endif
 
-#ifdef _SKILL_ROAR //vincent³è¼¼:´óºğ 
+#ifdef _SKILL_ROAR //vincentå® æŠ€:å¤§å¼ 
 int BATTLE_S_Roar( int battleindex, int attackNo, int defNo, int marray )
 {
 	int  masteridx=-1, index2, charaindex;
@@ -4764,43 +4764,43 @@ int BATTLE_S_Roar( int battleindex, int attackNo, int defNo, int marray )
 
     charaindex = BATTLE_No2Index( battleindex, attackNo );
 
-	index2 = BATTLE_No2Index( battleindex, defNo);//±»»÷ÖĞÄ¿±êÖ®index
+	index2 = BATTLE_No2Index( battleindex, defNo);//è¢«å‡»ä¸­ç›®æ ‡ä¹‹index
 
 	if( !CHAR_CHECKINDEX( index2) ) return iRet;
-	if( BATTLE_Index2No( battleindex, charaindex ) == defNo ){//ÓÃÔÚ×ÔÉí
+	if( BATTLE_Index2No( battleindex, charaindex ) == defNo ){//ç”¨åœ¨è‡ªèº«
 		return iRet;
 	}
 
 	if( CHAR_getInt( index2, CHAR_WHICHTYPE) == CHAR_TYPEPLAYER ) {
-		petid = -1;//×÷ÓÃÔÚÈËÎï
+		petid = -1;//ä½œç”¨åœ¨äººç‰©
 	}else if( CHAR_getInt( index2, CHAR_WHICHTYPE) == CHAR_TYPEPET ) {
-		masteridx = BATTLE_No2Index(battleindex,defNo-5);//×÷ÓÃÔÚ³èÎï
+		masteridx = BATTLE_No2Index(battleindex,defNo-5);//ä½œç”¨åœ¨å® ç‰©
 		if( !CHAR_CHECKINDEX( masteridx) ) return iRet;
-		petid = CHAR_getInt(index2,CHAR_PETID);//³èÎïid
+		petid = CHAR_getInt(index2,CHAR_PETID);//å® ç‰©id
 	}else if( CHAR_getInt( index2, CHAR_WHICHTYPE) == CHAR_TYPEENEMY ) {
 		petid = CHAR_getInt(index2,CHAR_PETID);
 	}
 
 	magicarg = PETSKILL_getChar( marray, PETSKILL_OPTION );
 	while( getStringFromIndexWithDelim( magicarg,"|", i, buf1, sizeof( buf1)) != FALSE )	{
-		if( petid == atoi( buf1) ){//ÄêÊŞÅĞ±ğ
+		if( petid == atoi( buf1) ){//å¹´å…½åˆ¤åˆ«
 			FINDPET = TRUE;
 			break;
 		}
 		i++;
 	}
 
-//ËÍÑ¶Ï¢ÖÁÍæ¼Ò
-	if( FINDPET == TRUE )	{//ÈôÎªÄêÊŞ
+//é€è®¯æ¯è‡³ç©å®¶
+	if( FINDPET == TRUE )	{//è‹¥ä¸ºå¹´å…½
 		char buf4[255];
-		sprintf( buf4, "%s±»ºğÉùÏÅÅÜÁË£¡", CHAR_getChar( index2, CHAR_NAME));
-		BATTLE_Exit(index2,battleindex);//Àë¿ªÕ½¶·
+		sprintf( buf4, "%sè¢«å¼å£°å“è·‘äº†ï¼", CHAR_getChar( index2, CHAR_NAME));
+		BATTLE_Exit(index2,battleindex);//ç¦»å¼€æˆ˜æ–—
 		if( CHAR_CHECKINDEX( masteridx) ){
-			CHAR_setInt(masteridx,CHAR_DEFAULTPET,-1);//ÎŞ²ÎÕ½³è
+			CHAR_setInt(masteridx,CHAR_DEFAULTPET,-1);//æ— å‚æˆ˜å® 
 			CHAR_talkToCli( masteridx,-1, buf4, CHAR_COLORYELLOW);
 		}
 
-		//Ç°¹¥¶¯»­
+		//å‰æ”»åŠ¨ç”»
 	    flg |= BCF_ROAR;
 	    sprintf( szWork, "BH|a%X|", attackNo );
 	    BATTLESTR_ADD( szWork );
@@ -4808,7 +4808,7 @@ int BATTLE_S_Roar( int battleindex, int attackNo, int defNo, int marray )
 
 		BATTLESTR_ADD(szWork);
 		BATTLESTR_ADD( "FF|" );
-		sprintf(szWork,"BQ|e%X|",defNo);//ÌÓÅÜ¶¯»­
+		sprintf(szWork,"BQ|e%X|",defNo);//é€ƒè·‘åŠ¨ç”»
 		BATTLESTR_ADD(szWork);
 		CHAR_talkToCli( CHAR_getWorkInt(charaindex, CHAR_WORKPLAYERINDEX),-1, buf4, CHAR_COLORYELLOW);
 	}
@@ -4817,7 +4817,7 @@ int BATTLE_S_Roar( int battleindex, int attackNo, int defNo, int marray )
 }
 #endif
 
-#ifdef _SKILL_GUARDBREAK2//ÆÆ³ı·ÀÓù2 vincent add 2002/05/20
+#ifdef _SKILL_GUARDBREAK2//ç ´é™¤é˜²å¾¡2 vincent add 2002/05/20
 int BATTLE_S_GBreak2( int battleindex, int attackNo, int defNo )
 {
 	char szBuffer[512]="";
@@ -4842,7 +4842,7 @@ int BATTLE_S_GBreak2( int battleindex, int attackNo, int defNo )
 		ultimate = BATTLE_DamageSub( attackindex, defindex, &damage, &petdamage, &react );
 		if( react == BATTLE_MD_REFLEC )defindex = attackindex;
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 		if( react == BATTLE_MD_TRAP )	defindex = attackindex;
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE
@@ -4863,7 +4863,7 @@ int BATTLE_S_GBreak2( int battleindex, int attackNo, int defNo )
 	case BATTLE_RET_ALLGUARD:
 	case BATTLE_RET_MISS:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)³¯Ïò(%s)·¢¶¯¾ø¼¼,Ã»»÷ÖĞ¡£",
+		//	"(%s)æœå‘(%s)å‘åŠ¨ç»æŠ€,æ²¡å‡»ä¸­ã€‚",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex )
 		//);
@@ -4872,7 +4872,7 @@ int BATTLE_S_GBreak2( int battleindex, int attackNo, int defNo )
 
 	case BATTLE_RET_DODGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)Õ¹¿ª·ÀÓù¹¥»÷(%s)¶ã¿ªÁË(%.2f%%)",
+		//	"(%s)å±•å¼€é˜²å¾¡æ”»å‡»(%s)èº²å¼€äº†(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -4883,7 +4883,7 @@ int BATTLE_S_GBreak2( int battleindex, int attackNo, int defNo )
 
 	case BATTLE_RET_NORMAL:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)ÊÜµ½(%s)µÄ¾ø¼¼¹¥»÷(%d)ËğÉË(%d:%d:%d%%)",
+		//	"(%s)å—åˆ°(%s)çš„ç»æŠ€æ”»å‡»(%d)æŸä¼¤(%d:%d:%d%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	damage,
@@ -4899,7 +4899,7 @@ int BATTLE_S_GBreak2( int battleindex, int attackNo, int defNo )
 
 	case BATTLE_RET_CRITICAL:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//"(%s)ÊÜµ½(%s)µÄ¾ø¼¼CRITICAL(%d)ËğÉË(%d:%d:%d%%)",
+		//"(%s)å—åˆ°(%s)çš„ç»æŠ€CRITICAL(%d)æŸä¼¤(%d:%d:%d%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	damage,
@@ -4915,7 +4915,7 @@ int BATTLE_S_GBreak2( int battleindex, int attackNo, int defNo )
 #ifdef _EQUIT_ARRANGE
 	case BATTLE_RET_ARRANGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)¹¥»÷ÁË(%s)µ²µôÁË(%.2f%%)",
+		//	"(%s)æ”»å‡»äº†(%s)æŒ¡æ‰äº†(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -4943,7 +4943,7 @@ int BATTLE_S_GBreak2( int battleindex, int attackNo, int defNo )
 			}
 		}
 #ifdef _PETSKILL_LER
-// À×¶û²»ÄÜ±»´ò·É
+// é›·å°”ä¸èƒ½è¢«æ‰“é£
 		if(CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101813 ||
 		 CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101814) ultimate = 0;
 #endif
@@ -5027,7 +5027,7 @@ int BATTLE_Charge( int battleindex, int attackNo )
 
 		CHAR_SETWORKINT_LOW( attackindex, CHAR_WORKBATTLECOM3, iWork - 1);
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)±£³ÖÌåÁ¦ÖĞ¡£",
+		//	"(%s)ä¿æŒä½“åŠ›ä¸­ã€‚",
 		//	CHAR_getUseName( attackindex )
 		//);
 		//BATTLE_BroadCast( battleindex, szBuffer,
@@ -5039,7 +5039,7 @@ int BATTLE_Charge( int battleindex, int attackNo )
 	}
 }
 
-//×´Ì¬¹¥»÷ÃüÖĞÅĞ¶¨
+//çŠ¶æ€æ”»å‡»å‘½ä¸­åˆ¤å®š
 int BATTLE_StatusAttackCheck(
 	int attackindex,
 	int defindex,
@@ -5054,7 +5054,7 @@ int BATTLE_StatusAttackCheck(
 	int Df_Reg = 0, level = 0, per = 0, i ;
 	int battleindex;
 	if( status >= BATTLE_ST_END || status <= 0 )return FALSE;
-	for( i = 1; i < BATTLE_ST_END; i++ ){//ÈôÒÑÓĞÒì³£×´Ì¬Ôòreturn
+	for( i = 1; i < BATTLE_ST_END; i++ ){//è‹¥å·²æœ‰å¼‚å¸¸çŠ¶æ€åˆ™return
     	if( CHAR_getWorkInt( defindex, StatusTbl[i] ) > 0 )return FALSE;
 	}
 
@@ -5141,7 +5141,7 @@ int BATTLE_StatusAttackCheck(
 	}
 }
 
-//Ö°Òµ¼¼ÄÜ×´Ì¬¹¥»÷ÃüÖĞÅĞ¶¨
+//èŒä¸šæŠ€èƒ½çŠ¶æ€æ”»å‡»å‘½ä¸­åˆ¤å®š
 int PROFESSION_BATTLE_StatusAttackCheck( int charaindex, int toindex, int status, int Success )
 {
 	int rand_num = RAND( 1, 100 );
@@ -5152,7 +5152,7 @@ int PROFESSION_BATTLE_StatusAttackCheck( int charaindex, int toindex, int status
 	if( CHAR_getFlg( toindex, CHAR_ISDIE ) == TRUE )	return 0; 	
 
 #ifdef _PROFESSION_ADDSKILL
-	if( status == BATTLE_ST_RESIST_F_I_T ){//×ÔÈ»ÍşÄÜ
+	if( status == BATTLE_ST_RESIST_F_I_T ){//è‡ªç„¶å¨èƒ½
 	    if( CHAR_getWorkInt( toindex, StatusTbl[BATTLE_ST_RESIST_F] ) > 0 ) return 0;
         if( CHAR_getWorkInt( toindex, StatusTbl[BATTLE_ST_RESIST_I] ) > 0 ) return 0;
         if( CHAR_getWorkInt( toindex, StatusTbl[BATTLE_ST_RESIST_T] ) > 0 ) return 0;
@@ -5172,7 +5172,7 @@ int PROFESSION_BATTLE_StatusAttackCheck( int charaindex, int toindex, int status
 	}
 #endif
 
-	for( i = 1; i < BATTLE_ST_END; i++ ){//ÈôÒÑÓĞÒì³£×´Ì¬Ôòreturn
+	for( i = 1; i < BATTLE_ST_END; i++ ){//è‹¥å·²æœ‰å¼‚å¸¸çŠ¶æ€åˆ™return
     	if( CHAR_getWorkInt( toindex, StatusTbl[i] ) > 0 )	return 0;
 	}
 
@@ -5204,7 +5204,7 @@ int BATTLE_Combo( int battleindex, int *pAttackList, int defNo )
 
 	defindex = toindex = BATTLE_No2Index( battleindex, defNo );
 
-	//BATTLE_BroadCast( battleindex, "·¢¶¯±ØÉ±¼¼£¡£¡",
+	//BATTLE_BroadCast( battleindex, "å‘åŠ¨å¿…æ€æŠ€ï¼ï¼",
 	//	(pAttackList[0] >= 10)? CHAR_COLORGRAY : CHAR_COLORPURPLE ) ;
 
 	for( i = 0; pAttackList[i] != -1 && i < BATTLE_ENTRY_MAX; i ++ ){
@@ -5234,7 +5234,7 @@ int BATTLE_Combo( int battleindex, int *pAttackList, int defNo )
 
 		react = BATTLE_GetDamageReact( defindex );
 		if( ( react == BATTLE_MD_REFLEC
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 			 || react == BATTLE_MD_TRAP
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE
@@ -5268,7 +5268,7 @@ int BATTLE_Combo( int battleindex, int *pAttackList, int defNo )
 		if( react == BATTLE_MD_REFLEC ){
 			defindex = attackindex;
 		}
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 		if( react == BATTLE_MD_TRAP )	defindex = attackindex;
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE
@@ -5285,7 +5285,7 @@ int BATTLE_Combo( int battleindex, int *pAttackList, int defNo )
 		case BATTLE_RET_ALLGUARD:
 		case BATTLE_RET_NORMAL:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//	"(%s)ÊÜµ½(%s)µÄ¹¥»÷(%d)ÔâÊÜËğÉË(%d:%d:%d%%)",
+			//	"(%s)å—åˆ°(%s)çš„æ”»å‡»(%d)é­å—æŸä¼¤(%d:%d:%d%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	damage,
@@ -5301,7 +5301,7 @@ int BATTLE_Combo( int battleindex, int *pAttackList, int defNo )
 
 		case BATTLE_RET_CRITICAL:
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//"(%s)Ïò(%s)CRITICAL(%d%%)(%d)²»¿ÉÒÔ(%d:%d:%d%%)",
+			//"(%s)å‘(%s)CRITICAL(%d%%)(%d)ä¸å¯ä»¥(%d:%d:%d%%)",
 			//	CHAR_getUseName( attackindex ),
 			//	CHAR_getUseName( defindex ),
 			//	(int)(gCriper*0.01),
@@ -5340,7 +5340,7 @@ int BATTLE_Combo( int battleindex, int *pAttackList, int defNo )
 				}
 			}
 #ifdef _PETSKILL_LER
-// À×¶û²»ÄÜ±»´ò·É
+// é›·å°”ä¸èƒ½è¢«æ‰“é£
 		if(CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101813 ||
 		 CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101814) ultimate = 0;
 #endif
@@ -5444,7 +5444,7 @@ int BATTLE_EarthRoundHide( int battleindex, int attackNo )
 	BATTLESTR_ADD( szCommand );
 
 	//snprintf( szBuffer, sizeof(szBuffer),
-	//	"(%s)ÈÆµ½±³ááÈ¥¡£",
+	//	"(%s)ç»•åˆ°èƒŒå¾Œå»ã€‚",
 	//	CHAR_getUseName( attackindex )
 	//);
 
@@ -5482,7 +5482,7 @@ BOOL BATTLE_LostEscape( int battleindex, int attackNo )
 	pno = CHAR_getInt( oyaindex, CHAR_DEFAULTPET );
 	if( pno < 0 )return FALSE;
 
-//	print(" nono³è¸ÄĞİÏ¢ ");
+//	print(" nonoå® æ”¹ä¼‘æ¯ ");
 
 	BATTLE_Exit( attackindex, battleindex );
 
@@ -5496,7 +5496,7 @@ BOOL BATTLE_LostEscape( int battleindex, int attackNo )
 //				CHAR_getChar( attackindex, CHAR_NAME ),
 //				CHAR_getInt( attackindex, CHAR_LV ),
 //				
-//				"EscapeLost(Õ½¶·ÌÓ×ß²¢»ØÊÕ)",
+//				"EscapeLost(æˆ˜æ–—é€ƒèµ°å¹¶å›æ”¶)",
 //				
 //				CHAR_getInt( oyaindex, CHAR_FLOOR ),
 //				CHAR_getInt( oyaindex, CHAR_X ),
@@ -5504,7 +5504,7 @@ BOOL BATTLE_LostEscape( int battleindex, int attackNo )
 //				CHAR_getChar( attackindex, CHAR_UNIQUECODE)   // shan 2001/12/14
 //			);
 
-	//snprintf( szBuffer, sizeof(szBuffer), "(%s)×ßµôÁË¡£",
+	//snprintf( szBuffer, sizeof(szBuffer), "(%s)èµ°æ‰äº†ã€‚",
 	//	CHAR_getUseName( attackindex )
 	//);
 	//if( getBattleDebugMsg( ) != 0 ){
@@ -5548,7 +5548,7 @@ BOOL BATTLE_Abduct(
 	if( CHAR_CHECKINDEX( attackindex ) == FALSE )	return iRet;
 	if( CHAR_CHECKINDEX( defindex ) == FALSE )	return iRet;
 #ifdef _BATTLE_ABDUCTII
-	// È¡µÃ³èÎï¼¼ÄÜÃüÁî
+	// å–å¾—å® ç‰©æŠ€èƒ½å‘½ä»¤
 	pszP = PETSKILL_getChar( array, PETSKILL_OPTION );
 	if( pszP == "\0" ) return iRet;
 #endif
@@ -5575,7 +5575,7 @@ BOOL BATTLE_Abduct(
 	if( Deftype != CHAR_TYPEPLAYER ){
 #ifdef _BATTLE_ABDUCTII
 		int AiPer=0;
-		// È¡µÃ³èÎï¼¼ÄÜÃüÁî
+		// å–å¾—å® ç‰©æŠ€èƒ½å‘½ä»¤
 		AiPer = atoi( pszP);
 		if( AiPer <= 0 || Deftype != CHAR_TYPEPET ){
 #endif
@@ -5607,7 +5607,7 @@ BOOL BATTLE_Abduct(
 	if( RAND( 1, 100 ) < per ){
 		flg = 1;
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)´ø×Å(%s)Àë¿ª¸Ã´¦(%d%%)",
+		//	"(%s)å¸¦ç€(%s)ç¦»å¼€è¯¥å¤„(%d%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	per
@@ -5621,7 +5621,7 @@ BOOL BATTLE_Abduct(
 	}else{
 		flg = 0;
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)ÎŞ·¨´øÀë(%s)Ò»¸öÈËÄ¬Ä¬µØÀë¿ª(%d%%)",
+		//	"(%s)æ— æ³•å¸¦ç¦»(%s)ä¸€ä¸ªäººé»˜é»˜åœ°ç¦»å¼€(%d%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	per
@@ -5669,9 +5669,9 @@ void BATTLE_StealMoney( int battleindex, int attackNo, int defNo)
 		if( attackNo > 10 )	{
 			safeSide = 1;
 		}
-		if( defNo>=safeSide*SIDE_OFFSET && defNo<((safeSide*SIDE_OFFSET)+SIDE_OFFSET)){//Í¬±ß
+		if( defNo>=safeSide*SIDE_OFFSET && defNo<((safeSide*SIDE_OFFSET)+SIDE_OFFSET)){//åŒè¾¹
 			per = 0;
-		}else	{	//²»Í¬±ß
+		}else	{	//ä¸åŒè¾¹
 			per = 50;
 			per = (((per+LV)/4)+10)>>1;
 		}
@@ -5702,7 +5702,7 @@ void BATTLE_StealMoney( int battleindex, int attackNo, int defNo)
 			S_FLG = 0;
 		}else{
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//		"(%s)´Ó(%s)»ñµÃÁË(%d)STONE(%d%%)",
+			//		"(%s)ä»(%s)è·å¾—äº†(%d)STONE(%d%%)",
 			//		CHAR_getUseName( attackindex ),
 			//		CHAR_getUseName( defindex ),
 			//		GOLD,
@@ -5715,15 +5715,15 @@ void BATTLE_StealMoney( int battleindex, int attackNo, int defNo)
 		}
 	}else{
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)Ã»´Ó(%s)»ñµÃ¶«Î÷(%d%%)",
+		//	"(%s)æ²¡ä»(%s)è·å¾—ä¸œè¥¿(%d%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	per
 		//);
 	}
-	sprintf( buf1, "±»ÍµÁËÒ»Ğ©Ê¯±Ò");
+	sprintf( buf1, "è¢«å·äº†ä¸€äº›çŸ³å¸");
 	if( S_FLG)	{
-		sprintf( szBuffer, "BK|%s%s¡£|", CHAR_getUseName( defindex ), buf1 );
+		sprintf( szBuffer, "BK|%s%sã€‚|", CHAR_getUseName( defindex ), buf1 );
 		strcatsafe( szBadStatusString,sizeof(szBadStatusString), szBuffer );
 		if( CHAR_getInt( attackindex, CHAR_WHICHTYPE ) == CHAR_TYPEPET ){
 			int attackoyaindex = CHAR_getWorkInt( attackindex, CHAR_WORKPLAYERINDEX );
@@ -5780,7 +5780,7 @@ void BATTLE_Steal( int battleindex, int attackNo, int defNo )
 			gold = (int)( (float)gold * RAND( 8, 12 ) * 0.01 );
 			if( gold <= 0 ){
 				//snprintf( szBuffer, sizeof(szBuffer),
-				//	"(%s)ÎŞ·¨»ñµÃ(%s)µÄSTONE(%d%%)",
+				//	"(%s)æ— æ³•è·å¾—(%s)çš„STONE(%d%%)",
 				//	CHAR_getUseName( attackindex ),
 				//	CHAR_getUseName( defindex ),
 				//	per
@@ -5788,7 +5788,7 @@ void BATTLE_Steal( int battleindex, int attackNo, int defNo )
 				flg = 0;
 			}else{
 				//snprintf( szBuffer, sizeof(szBuffer),
-				//	"(%s)´Ó(%s)»ñµÃÁË(%d)STONE(%d%%)",
+				//	"(%s)ä»(%s)è·å¾—äº†(%d)STONE(%d%%)",
 				//	CHAR_getUseName( attackindex ),
 				//	CHAR_getUseName( defindex ),
 				//	gold,
@@ -5813,7 +5813,7 @@ void BATTLE_Steal( int battleindex, int attackNo, int defNo )
 				i = RAND( 0, j-1 );
 				if( i >= 0 ){
 					if( 0 <= itemtbl[i] && itemtbl[i] < CHAR_STARTITEMARRAY ){
-						fprint( "err:ÒªµÁÈ¡×°±¸Æ·(%d)\n", itemtbl[i]  );
+						fprint( "err:è¦ç›—å–è£…å¤‡å“(%d)\n", itemtbl[i]  );
 					}else{
 						itemindex = CHAR_getItemIndex( defindex, itemtbl[i] );
 					}
@@ -5821,7 +5821,7 @@ void BATTLE_Steal( int battleindex, int attackNo, int defNo )
 			}
 			if( itemindex == - 1 ){
 				//snprintf( szBuffer, sizeof(szBuffer),
-				//	"(%s)ÎŞ·¨»ñµÃ(%s)µÄµÀ¾ß(%d%%)",
+				//	"(%s)æ— æ³•è·å¾—(%s)çš„é“å…·(%d%%)",
 				//	CHAR_getUseName( attackindex ),
 				//	CHAR_getUseName( defindex ),
 				//	per
@@ -5829,7 +5829,7 @@ void BATTLE_Steal( int battleindex, int attackNo, int defNo )
 				flg = 0;
 			}else{
 				//snprintf( szBuffer, sizeof(szBuffer),
-				//	"(%s)´Ó(%s)»ñµÃÁË(%s)(%d%%)",
+				//	"(%s)ä»(%s)è·å¾—äº†(%s)(%d%%)",
 				//	CHAR_getUseName( attackindex ),
 				//	CHAR_getUseName( defindex ),
 				//	ITEM_getAppropriateName( itemindex ),
@@ -5841,12 +5841,12 @@ void BATTLE_Steal( int battleindex, int attackNo, int defNo )
 //					LogItem(
 //						CHAR_getChar( defindex, CHAR_NAME ), 
 //						CHAR_getChar( defindex, CHAR_CDKEY ),
-//#ifdef _add_item_log_name  // WON ADD ÔÚitemµÄlogÖĞÔö¼ÓitemÃû³Æ
+//#ifdef _add_item_log_name  // WON ADD åœ¨itemçš„logä¸­å¢åŠ itemåç§°
 //						itemindex,
 //#else
 //		       			ITEM_getInt( itemindex, ITEM_ID ),
 //#endif
-//						"Stealed(ÍµÇÔµÄµÀ¾ß)",
+//						"Stealed(å·çªƒçš„é“å…·)",
 //				       	CHAR_getInt( defindex,CHAR_FLOOR),
 //						CHAR_getInt( defindex,CHAR_X ),
 //			        	CHAR_getInt( defindex,CHAR_Y ),
@@ -5860,11 +5860,11 @@ void BATTLE_Steal( int battleindex, int attackNo, int defNo )
 		}
 	}else{
 		flg = 0;
-		//snprintf( szBuffer, sizeof(szBuffer), "(%s)Ã»´Ó(%s)»ñµÃ¶«Î÷(%d%%)",
+		//snprintf( szBuffer, sizeof(szBuffer), "(%s)æ²¡ä»(%s)è·å¾—ä¸œè¥¿(%d%%)",
 		//	CHAR_getUseName( attackindex ),	CHAR_getUseName( defindex ), per );
 	}
 	if( flg == 1 ){
-		sprintf( szBuffer, "BK|%s±»ÍµÁËÒ»Ğ©¶«Î÷¡£|",
+		sprintf( szBuffer, "BK|%sè¢«å·äº†ä¸€äº›ä¸œè¥¿ã€‚|",
 			CHAR_getUseName( defindex ) );
 		strcatsafe( szBadStatusString,sizeof(strcatsafe), szBuffer );
 		if( CHAR_getInt( attackindex, CHAR_WHICHTYPE ) == CHAR_TYPEPET ){
@@ -5887,7 +5887,7 @@ void BATTLE_Steal( int battleindex, int attackNo, int defNo )
 	BATTLESTR_ADD( szCommand );
 }
 
-#ifdef _PSKILL_FALLGROUND	//ÂäÂíÊõ
+#ifdef _PSKILL_FALLGROUND	//è½é©¬æœ¯
 int BATTLE_S_FallGround( int battleindex, int attackNo, int defNo, int skill_type)
 {
 	char szBuffer[512]="";
@@ -5896,8 +5896,8 @@ int BATTLE_S_FallGround( int battleindex, int attackNo, int defNo, int skill_typ
 	int damage=0, petdamage=0, i=0, iWork, Guardian=-1;
 	int flg = 0, DefSide=0,par,ultimate=0, react=0;
 	BOOL iRet = FALSE;
-	attackindex = BATTLE_No2Index( battleindex, attackNo );	//¹¥·½index
-	defindex = BATTLE_No2Index( battleindex, defNo ); //ÊØ·½index
+	attackindex = BATTLE_No2Index( battleindex, attackNo );	//æ”»æ–¹index
+	defindex = BATTLE_No2Index( battleindex, defNo ); //å®ˆæ–¹index
 
 
 	if( defNo >= SIDE_OFFSET ){
@@ -5905,8 +5905,8 @@ int BATTLE_S_FallGround( int battleindex, int attackNo, int defNo, int skill_typ
 		DefSide = 1;
 	}
 	react = 0;
-	react = BATTLE_GetDamageReact( defindex);//ÓĞ¹â¾µÊØ
-	//È¡µÃ¹¥»÷áá×´Ì¬
+	react = BATTLE_GetDamageReact( defindex);//æœ‰å…‰é•œå®ˆ
+	//å–å¾—æ”»å‡»å¾ŒçŠ¶æ€
 	iWork = BATTLE_AttackSeq( attackindex, defindex, &damage,
 		&Guardian, BATTLE_COM_S_FALLRIDE );
 
@@ -5914,7 +5914,7 @@ int BATTLE_S_FallGround( int battleindex, int attackNo, int defNo, int skill_typ
 	ultimate = BATTLE_DamageSub( attackindex, defindex, &damage, &petdamage, &react );
 	if( react == BATTLE_MD_REFLEC )		defindex = attackindex;
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 	if( react == BATTLE_MD_TRAP )	defindex = attackindex;
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE
@@ -5931,7 +5931,7 @@ int BATTLE_S_FallGround( int battleindex, int attackNo, int defNo, int skill_typ
 	case BATTLE_RET_ALLGUARD:
 	case BATTLE_RET_MISS:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)³¯Ïò(%s)·¢¶¯¾ø¼¼,Ã»»÷ÖĞ¡£",
+		//	"(%s)æœå‘(%s)å‘åŠ¨ç»æŠ€,æ²¡å‡»ä¸­ã€‚",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex )
 		//);
@@ -5939,7 +5939,7 @@ int BATTLE_S_FallGround( int battleindex, int attackNo, int defNo, int skill_typ
 		break;
 	case BATTLE_RET_DODGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)Õ¹¿ª·ÀÓù¹¥»÷(%s)¶ã¿ªÁË(%.2f%%)",
+		//	"(%s)å±•å¼€é˜²å¾¡æ”»å‡»(%s)èº²å¼€äº†(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -5949,7 +5949,7 @@ int BATTLE_S_FallGround( int battleindex, int attackNo, int defNo, int skill_typ
 		break;
 	case BATTLE_RET_NORMAL:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)ÊÜµ½(%s)µÄ¾ø¼¼¹¥»÷(%d)ËğÉË(%d:%d:%d%%)",
+		//	"(%s)å—åˆ°(%s)çš„ç»æŠ€æ”»å‡»(%d)æŸä¼¤(%d:%d:%d%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	damage,
@@ -5964,7 +5964,7 @@ int BATTLE_S_FallGround( int battleindex, int attackNo, int defNo, int skill_typ
 		break;
 	case BATTLE_RET_CRITICAL:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//"(%s)ÊÜµ½(%s)µÄ¾ø¼¼CRITICAL(%d)ËğÉË(%d:%d:%d%%)",
+		//"(%s)å—åˆ°(%s)çš„ç»æŠ€CRITICAL(%d)æŸä¼¤(%d:%d:%d%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	damage,
@@ -5979,7 +5979,7 @@ int BATTLE_S_FallGround( int battleindex, int attackNo, int defNo, int skill_typ
 #ifdef _EQUIT_ARRANGE
 	case BATTLE_RET_ARRANGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)¹¥»÷ÁË(%s)µ²µôÁË(%.2f%%)",
+		//	"(%s)æ”»å‡»äº†(%s)æŒ¡æ‰äº†(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -5999,7 +5999,7 @@ int BATTLE_S_FallGround( int battleindex, int attackNo, int defNo, int skill_typ
 #ifdef _PREVENT_TEAMATTACK
 		&& BATTLE_CheckSameSide( attackindex, defNo) == 0
 #endif
-		){	//ÂäÂí
+		){	//è½é©¬
 		int fallflg = RAND( 0, 100);
 		if( 
 #ifdef _EQUIT_RESIST
@@ -6009,7 +6009,7 @@ int BATTLE_S_FallGround( int battleindex, int attackNo, int defNo, int skill_typ
 #endif
 			){
 			if( CHAR_getInt( defindex , CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER )	{
-#ifdef _FIXPETFALL //Syu ADD ĞŞÕıÂäÂíÊõ
+#ifdef _FIXPETFALL //Syu ADD ä¿®æ­£è½é©¬æœ¯
 				if( CHAR_getInt( defindex, CHAR_RIDEPET) >= 0 ) {
 #else
 				if( CHAR_getInt( defindex, CHAR_RIDEPET) > 0 )	{
@@ -6050,7 +6050,7 @@ int BATTLE_S_FallGround( int battleindex, int attackNo, int defNo, int skill_typ
 			}
 		}
 #ifdef _PETSKILL_LER
-// À×¶û²»ÄÜ±»´ò·É
+// é›·å°”ä¸èƒ½è¢«æ‰“é£
 		if(CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101813 ||
 		 CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101814) ultimate = 0;
 #endif
@@ -6231,7 +6231,7 @@ int BATTLE_E_ENEMYHELP( int battleindex, int attackNo, int defNo, int skill_type
 	if( BATTLE_NewEntry( enindex, battleindex, Side) )	{
 		//CHAR_setWorkInt( enindex, CHAR_WORKBATTLEMODE, BATTLE_CHARMODE_RESCUE );	
 		CHAR_setWorkInt( enindex, CHAR_WORKBATTLEMODE, BATTLE_CHARMODE_C_OK );
-		//snprintf( szBuffer, sizeof( szBuffer ), "(%s)¼ÓÈë×÷Õ½¡£",
+		//snprintf( szBuffer, sizeof( szBuffer ), "(%s)åŠ å…¥ä½œæˆ˜ã€‚",
 		//	CHAR_getUseName( enindex ) );
 		//BATTLE_BroadCast( battleindex, szBuffer, CHAR_COLORYELLOW );
 	}else	{
@@ -6255,7 +6255,7 @@ int BATTLE_DefineAttack( int attackindex, int defindex, int iWork,
 	case BATTLE_RET_ALLGUARD:
 	case BATTLE_RET_MISS:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)³¯Ïò(%s)·¢¶¯¾ø¼¼,Ã»»÷ÖĞ¡£",
+		//	"(%s)æœå‘(%s)å‘åŠ¨ç»æŠ€,æ²¡å‡»ä¸­ã€‚",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex )
 		//);
@@ -6263,7 +6263,7 @@ int BATTLE_DefineAttack( int attackindex, int defindex, int iWork,
 		break;
 	case BATTLE_RET_DODGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)Õ¹¿ª·ÀÓù¹¥»÷(%s)¶ã¿ªÁË(%.2f%%)",
+		//	"(%s)å±•å¼€é˜²å¾¡æ”»å‡»(%s)èº²å¼€äº†(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -6273,7 +6273,7 @@ int BATTLE_DefineAttack( int attackindex, int defindex, int iWork,
 		break;
 	case BATTLE_RET_NORMAL:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)ÊÜµ½(%s)µÄ¾ø¼¼¹¥»÷(%d)ËğÉË(%d:%d:%d%%)",
+		//	"(%s)å—åˆ°(%s)çš„ç»æŠ€æ”»å‡»(%d)æŸä¼¤(%d:%d:%d%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	damage,
@@ -6288,7 +6288,7 @@ int BATTLE_DefineAttack( int attackindex, int defindex, int iWork,
 		break;
 	case BATTLE_RET_CRITICAL:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//"(%s)ÊÜµ½(%s)µÄ¾ø¼¼CRITICAL(%d)ËğÉË(%d:%d:%d%%)",
+		//"(%s)å—åˆ°(%s)çš„ç»æŠ€CRITICAL(%d)æŸä¼¤(%d:%d:%d%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	damage,
@@ -6303,7 +6303,7 @@ int BATTLE_DefineAttack( int attackindex, int defindex, int iWork,
 #ifdef _EQUIT_ARRANGE
 	case BATTLE_RET_ARRANGE:
 		//snprintf( szBuffer, sizeof(szBuffer),
-		//	"(%s)¹¥»÷ÁË(%s)µ²µôÁË(%.2f%%)",
+		//	"(%s)æ”»å‡»äº†(%s)æŒ¡æ‰äº†(%.2f%%)",
 		//	CHAR_getUseName( attackindex ),
 		//	CHAR_getUseName( defindex ),
 		//	gDuckPer
@@ -6335,7 +6335,7 @@ int BATTLE_DefDieType( int defindex, int iRet, int *ultimate, int *flg, char *sz
 		}
 
 #ifdef _PETSKILL_LER
-// À×¶û²»ÄÜ±»´ò·É
+// é›·å°”ä¸èƒ½è¢«æ‰“é£
 		if(CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101813 ||
 		 CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101814) *ultimate = 0;
 #endif
@@ -6361,7 +6361,7 @@ int BATTLE_S_DamageToHp( int battleindex, int attackindex, int defindex, int Dam
 	int A_HP=0, pHP,defi=0;
 	float def=0.00;
 	if( Damage < 1 )	return A_HP;
-	if( BATTLE_GetDamageReact( defindex) > 0 )//ÓĞ¹â¾µÊØ
+	if( BATTLE_GetDamageReact( defindex) > 0 )//æœ‰å…‰é•œå®ˆ
 		return A_HP;
 
 	pszOption = PETSKILL_getChar( skill, PETSKILL_OPTION );
@@ -6393,7 +6393,7 @@ int BATTLE_S_DamageToHp2( int battleindex, int attackindex, int defindex, int Da
 	int A_HP=0, pHP,defi=0;
 	float def=0.00;
 	if( Damage < 1 )	return A_HP;
-	if( BATTLE_GetDamageReact( defindex) > 0 )//ÓĞ¹â¾µÊØ
+	if( BATTLE_GetDamageReact( defindex) > 0 )//æœ‰å…‰é•œå®ˆ
 		return A_HP;
 
 	pszOption = PETSKILL_getChar( skill, PETSKILL_OPTION );
@@ -6410,7 +6410,7 @@ int BATTLE_S_DamageToHp2( int battleindex, int attackindex, int defindex, int Da
 	if( (A_HP+CHAR_getInt( attackindex, CHAR_HP)) > CHAR_getWorkInt( attackindex, CHAR_WORKMAXHP ) ){
 		A_HP = CHAR_getWorkInt( attackindex, CHAR_WORKMAXHP )-CHAR_getInt( attackindex, CHAR_HP);
 	}
-	//print("\nÉË:%d »ØÑª:%d",Damage,A_HP);
+	//print("\nä¼¤:%d å›è¡€:%d",Damage,A_HP);
 	pHP = CHAR_getInt( attackindex, CHAR_HP) + A_HP;
 	CHAR_setInt( attackindex, CHAR_HP, min( pHP, CHAR_getWorkInt( attackindex, CHAR_WORKMAXHP )));
 	CHAR_send_P_StatusString(  attackindex, CHAR_P_STRING_HP);
@@ -6426,7 +6426,7 @@ int BATTLE_S_MpDamage( int battleindex, int attackindex, int defindex, int damag
 	int D_MP=0,defi=0;
 	float def=0.00;
 	if( damage < 1 )	return D_MP;
-	if( BATTLE_GetDamageReact( defindex) > 0 )//ÓĞ¹â¾µÊØ
+	if( BATTLE_GetDamageReact( defindex) > 0 )//æœ‰å…‰é•œå®ˆ
 		return D_MP;
 	if( CHAR_getInt( defindex, CHAR_WHICHTYPE) == CHAR_TYPEENEMY || 
 		CHAR_getInt( defindex, CHAR_WHICHTYPE) == CHAR_TYPEPET )
@@ -6450,7 +6450,7 @@ int BATTLE_S_MpDamage( int battleindex, int attackindex, int defindex, int damag
 void BATTLE_S_ToothCrushe( int battleindex, int attackindex, int defindex, int damage, int skill)
 {
 	int crushindex, itemindex;	//aszCrushTbl
-	//char *strCrushTbl[] = { "ÍêºÃ", "ÊÜËğ", "»Ù»µ" , "²»¿°Ê¹ÓÃ" , "ËéÆ¬" };
+	//char *strCrushTbl[] = { "å®Œå¥½", "å—æŸ", "æ¯å" , "ä¸å ªä½¿ç”¨" , "ç¢ç‰‡" };
 	if( CHAR_getInt( defindex, CHAR_WHICHTYPE) != CHAR_TYPEPLAYER
 #ifdef _TAKE_ITEMDAMAGE_FOR_PET
 			&& CHAR_getInt( defindex, CHAR_WHICHTYPE) == CHAR_TYPEPET
@@ -6484,18 +6484,18 @@ void BATTLE_S_ToothCrushe( int battleindex, int attackindex, int defindex, int d
 
 		if( crushenum <= 0 )	{
 			char buf2[256];
-			sprintf(buf2, "%sÒò¹ı¶ÈËğ»µ¶øÏûÊ§¡£\n", ITEM_getChar( itemindex, ITEM_NAME));
+			sprintf(buf2, "%så› è¿‡åº¦æŸåè€Œæ¶ˆå¤±ã€‚\n", ITEM_getChar( itemindex, ITEM_NAME));
 			CHAR_talkToCli( defindex, -1, buf2, CHAR_COLORYELLOW);
 
 //			LogItem(
 //				CHAR_getChar( defindex, CHAR_NAME ), 
 //				CHAR_getChar( defindex, CHAR_CDKEY ),
-//#ifdef _add_item_log_name  // WON ADD ÔÚitemµÄlogÖĞÔö¼ÓitemÃû³Æ
+//#ifdef _add_item_log_name  // WON ADD åœ¨itemçš„logä¸­å¢åŠ itemåç§°
 //				itemindex,
 //#else
 //       			ITEM_getInt( itemindex, ITEM_ID ),  
 //#endif
-//				"Òò¹ı¶ÈËğ»µ¶øÏûÊ§",
+//				"å› è¿‡åº¦æŸåè€Œæ¶ˆå¤±",
 //				CHAR_getInt( defindex,CHAR_FLOOR),
 //				CHAR_getInt( defindex,CHAR_X ),
 // 				CHAR_getInt( defindex,CHAR_Y ),
@@ -6509,9 +6509,9 @@ void BATTLE_S_ToothCrushe( int battleindex, int attackindex, int defindex, int d
 
 		}else	{
 			char buf2[256];
-			sprintf( buf2, "%sÊÇ%sµÄ¡£", ITEM_getChar( itemindex, ITEM_NAME ), aszCrushTbl[level] );
+			sprintf( buf2, "%sæ˜¯%sçš„ã€‚", ITEM_getChar( itemindex, ITEM_NAME ), aszCrushTbl[level] );
 			CHAR_talkToCli( defindex, -1, buf2, CHAR_COLORYELLOW);
-			//¸ü¸ÄµÀ¾ßËµÃ÷
+			//æ›´æ”¹é“å…·è¯´æ˜
 //			buf1 = ITEM_getChar( itemindex, ITEM_SECRETNAME);
 //			if( strstr( buf1, "(") != 0 )	{
 //				char buf5[256];
@@ -6583,7 +6583,7 @@ int BATTLE_S_PetSkillProperty( int battleindex, int attackNo, int skill_type, in
 	if( pszP == "\0" ) return iRet;
 
 
-	attackindex = BATTLE_No2Index( battleindex, attackNo );	//¹¥·½index
+	attackindex = BATTLE_No2Index( battleindex, attackNo );	//æ”»æ–¹index
 	if( !CHAR_CHECKINDEX( attackindex)) return iRet;
 	switch( skill_type){
 	case BATTLE_COM_S_PROPERTYSKILL:
@@ -6592,7 +6592,7 @@ int BATTLE_S_PetSkillProperty( int battleindex, int attackNo, int skill_type, in
 			ch  = CHAR_getCharPointer( attackindex);
 			if( ch == NULL ) return iRet;
 			strcpysafe( ch->charfunctable[CHAR_BATTLEPROPERTY].string,
-				sizeof( ch->charfunctable[CHAR_BATTLEPROPERTY]), pszP);//Õ½¶·
+				sizeof( ch->charfunctable[CHAR_BATTLEPROPERTY]), pszP);//æˆ˜æ–—
 			CHAR_constructFunctable( attackindex);
 			iRet = TRUE;
 		}
@@ -6618,9 +6618,9 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 	if( pszP == "\0" ) return iRet;
 
 	react = 0;
-	attackindex = BATTLE_No2Index( battleindex, attackNo );	//¹¥·½index
-	defindex = BATTLE_No2Index( battleindex, defNo ); //ÊØ·½index
-	if( (ReactType=BATTLE_GetDamageReact( defindex)) > 0 )	{	//ÓĞ¹â¾µÊØ
+	attackindex = BATTLE_No2Index( battleindex, attackNo );	//æ”»æ–¹index
+	defindex = BATTLE_No2Index( battleindex, defNo ); //å®ˆæ–¹index
+	if( (ReactType=BATTLE_GetDamageReact( defindex)) > 0 )	{	//æœ‰å…‰é•œå®ˆ
 		react = ReactType;
 #ifdef _BATTLE_LIGHTTAKE
 		if( skill_type == BATTLE_COM_S_LIGHTTAKE ){
@@ -6646,7 +6646,7 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 		DefSide = 1;
 	}
 
-	//È¡µÃ¹¥»÷áá×´Ì¬
+	//å–å¾—æ”»å‡»å¾ŒçŠ¶æ€
 	iWork = BATTLE_AttackSeq( attackindex, defindex, &damage, &Guardian, skill_type );
 
 	switch( skill_type){
@@ -6683,7 +6683,7 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 
 	if( react == BATTLE_MD_REFLEC )		defindex = attackindex;
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 	if( react == BATTLE_MD_TRAP )	defindex = attackindex;
 #endif
 
@@ -6698,7 +6698,7 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 	if( CHAR_getInt( defindex, CHAR_HP ) <= 0 )
 		iRet = BATTLE_DefDieType( defindex, iRet, &ultimate, &flg, szBuffer);
 #ifdef _PETSKILL_ANTINTER
-		//Ç¿ÖÆ½«ËÀµôµÄ³è´ò·É
+		//å¼ºåˆ¶å°†æ­»æ‰çš„å® æ‰“é£
 		if( CHAR_getWorkInt( attackindex, CHAR_WORKBATTLECOM1 ) == BATTLE_COM_S_ANTINTER 
 			&& CHAR_getInt( defindex, CHAR_WHICHTYPE ) == CHAR_TYPEPET ){
 				ultimate = 2;	
@@ -6706,7 +6706,7 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 				flg |= BCF_DEATH;
 				flg |= BCF_ULTIMATE_2;
 				CHAR_setWorkInt( defindex, CHAR_WORKULTIMATE, 0 );
-				damage=1;//ÒòááÃæÓĞÅĞ¶ÏÈô damage<=0 Ôò skill_type=-1 ËùÒÔÕâÀïdamageÉèÎª1
+				damage=1;//å› å¾Œé¢æœ‰åˆ¤æ–­è‹¥ damage<=0 åˆ™ skill_type=-1 æ‰€ä»¥è¿™é‡Œdamageè®¾ä¸º1
 		}
 #endif
 
@@ -6721,7 +6721,7 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 	}
 
 	if( damage <= 0 )	{
-#ifdef _SONIC_ATTACK				// WON ADD Òô²¨¹¥»÷
+#ifdef _SONIC_ATTACK				// WON ADD éŸ³æ³¢æ”»å‡»
 		if( skill_type != BATTLE_COM_S_SONIC && skill_type != BATTLE_COM_S_SONIC2 
 #ifdef _PETSKILL_REGRET
 			&& skill_type != BATTLE_COM_S_REGRET && skill_type != BATTLE_COM_S_REGRET2 
@@ -6778,7 +6778,7 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 #endif
 
 #ifdef _SKILL_TOOTH
-	case BATTLE_COM_S_TOOTHCRUSHE:	//‡Ü³İÊõ tooth
+	case BATTLE_COM_S_TOOTHCRUSHE:	//å›“é½¿æœ¯ tooth
 		flg |= BCF_TOOTH;
 		BATTLE_S_ToothCrushe( battleindex, attackindex, defindex, damage, skill);
 		snprintf( szCommand, sizeof( szCommand ), "BH|a%X|r%X|f%X|d%X|p%X|FF|",
@@ -6811,7 +6811,7 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 			snprintf( szCommand, sizeof( szCommand ), "BH|a%X|r%X|f%X|d%X|p%X|FF|",
 								attackNo, defNo, flg, damage, petdamage );
 			BATTLESTR_ADD( szCommand );
-			if( timid < 15 && damage > 1 ){//ÇÓÕ½
+			if( timid < 15 && damage > 1 ){//æ€¯æˆ˜
 				BATTLE_NoAction( battleindex, defNo );
 				sprintf( szCommand, "BE|e%X|", defNo );
 				BATTLESTR_ADD( szCommand );
@@ -6831,7 +6831,7 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 
 				}else {
 					BATTLE_Exit( defindex, battleindex);
-					CHAR_DischargePartyNoMsg( defindex);//½âÉ¢ÍÅ¶Ó
+					CHAR_DischargePartyNoMsg( defindex);//è§£æ•£å›¢é˜Ÿ
 				}
 			}
 		}
@@ -6843,7 +6843,7 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 			int timid=0;
 			char *timidc=NULL;
 			pszP = PETSKILL_getChar( skill, PETSKILL_OPTION );
-			if( ( timidc = strstr( pszP, "Ãü%" ) ) != NULL )
+			if( ( timidc = strstr( pszP, "å‘½%" ) ) != NULL )
 				sscanf( timidc+3,"%d", &timid );
 			snprintf( szCommand, sizeof( szCommand ), "BH|a%X|r%X|f%X|d%X|p%X|FF|",
 								attackNo, defNo, flg, damage, petdamage );
@@ -6884,8 +6884,8 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 			BATTLESTR_ADD( szCommand );
 			if( CHAR_getInt( defindex, CHAR_WHICHTYPE ) == CHAR_TYPEPET ){
 				int defkoyaindex = CHAR_getWorkInt( defindex, CHAR_WORKPLAYERINDEX );
-				BATTLE_PetDefaultExit( defkoyaindex, battleindex );//³èÎïÀë¿ªÕ½³¡
-				CHAR_setInt( defkoyaindex, CHAR_DEFAULTPET, -1 );//Éè¶¨ÎŞ²ÎÕ½³èÎï
+				BATTLE_PetDefaultExit( defkoyaindex, battleindex );//å® ç‰©ç¦»å¼€æˆ˜åœº
+				CHAR_setInt( defkoyaindex, CHAR_DEFAULTPET, -1 );//è®¾å®šæ— å‚æˆ˜å® ç‰©
 			}
 		}
 		break;
@@ -6918,15 +6918,15 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 			break;
 #endif
 
-#ifdef _SONIC_ATTACK				// WON ADD Òô²¨¹¥»÷
-		// ³èÎïÉËº¦
+#ifdef _SONIC_ATTACK				// WON ADD éŸ³æ³¢æ”»å‡»
+		// å® ç‰©ä¼¤å®³
 		case BATTLE_COM_S_SONIC:
 			{
 				int img2=0;
 				if( defNo >= 10 ) img2 = 101703;
 				else			  img2 = 101704;
 
-				flg |= BCF_B_SKILLACT; //»÷ÖĞááĞãÍ¼	
+				flg |= BCF_B_SKILLACT; //å‡»ä¸­å¾Œç§€å›¾	
 
 				snprintf( szCommand, sizeof( szCommand ), "B+|a%X|r%X|f%X|d%X|e%X|s%X|h%X|FF|",
 									attackNo, defNo, flg, damage, 0, 0, img2 );
@@ -6934,7 +6934,7 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 
 				break;	
 			}
-		// ÈËÎïÉËº¦
+		// äººç‰©ä¼¤å®³
 		case BATTLE_COM_S_SONIC2:
 			{
 				sprintf( szCommand, "BD|r%X|0|0|d%X|p%X|", defNo, damage, petdamage );
@@ -6944,17 +6944,17 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 			}
 #endif
 #ifdef _PETSKILL_REGRET	
-		// ³èÎïÉËº¦
+		// å® ç‰©ä¼¤å®³
 		case BATTLE_COM_S_REGRET:
 			{
 				int img2=0,Success=0;
 				char *psz = NULL;
-				if( (psz = strstr( pszP, "Ãü%" ) ) != NULL )	sscanf( psz+3, "%d", &Success );		
+				if( (psz = strstr( pszP, "å‘½%" ) ) != NULL )	sscanf( psz+3, "%d", &Success );		
 				if( (PROFESSION_BATTLE_StatusAttackCheck( attackindex, defindex, 12, Success ) == 0 )
 					|| (CHAR_getInt( defindex, CHAR_HP ) <= 0 ) ){
 									
 				}else{
-					CHAR_setWorkInt( defindex, StatusTbl[12], 2 );//ÔÎÑ£1»ØºÏ
+					CHAR_setWorkInt( defindex, StatusTbl[12], 2 );//æ™•çœ©1å›åˆ
 					CHAR_setWorkInt( defindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );
 					BATTLE_BadStatusString( defNo, 12 );
 				}
@@ -6962,23 +6962,23 @@ int BATTLE_S_AttackDamage( int battleindex, int attackNo, int defNo, int skill_t
 				if( defNo >= 10 ) img2 = 101418;//101703;
 				else			  img2 = 101418;//101704;
 
-				flg |= BCF_B_SKILLACT; //»÷ÖĞááĞãÍ¼	
+				flg |= BCF_B_SKILLACT; //å‡»ä¸­å¾Œç§€å›¾	
 				snprintf( szCommand, sizeof( szCommand ), "B+|a%X|r%X|f%X|d%X|e%X|s%X|h%X|FF|",
 									attackNo, defNo, flg, damage, 0, 0, img2 );
 				BATTLESTR_ADD( szCommand );
 				break;	
 			}
-		// ÈËÎïÉËº¦
+		// äººç‰©ä¼¤å®³
 		case BATTLE_COM_S_REGRET2:
 			{
 				int Success;
 				char *psz = NULL;
-				if( (psz = strstr( pszP, "Ãü%" ) ) != NULL )	sscanf( psz+3, "%d", &Success );		
+				if( (psz = strstr( pszP, "å‘½%" ) ) != NULL )	sscanf( psz+3, "%d", &Success );		
 				if( (PROFESSION_BATTLE_StatusAttackCheck( attackindex, defindex, 12, Success ) == 0 )
 					|| (CHAR_getInt( defindex, CHAR_HP ) <= 0 ) ){
 									
 				}else{
-					CHAR_setWorkInt( defindex, StatusTbl[12], 2 );//ÔÎÑ£1»ØºÏ
+					CHAR_setWorkInt( defindex, StatusTbl[12], 2 );//æ™•çœ©1å›åˆ
 					CHAR_setWorkInt( defindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );
 					BATTLE_BadStatusString( defNo, 12 );
 				}
@@ -7012,7 +7012,7 @@ int	PETSKILL_MagicStatusChange_Battle( int battleindex, int attackNo, int toNo, 
 	int status = -1, i, turn = 3, nums=0;
 	int ReceveEffect, charaindex=-1;
 	char buf1[256];
-	charaindex = BATTLE_No2Index( battleindex, attackNo );	//¹¥·½index
+	charaindex = BATTLE_No2Index( battleindex, attackNo );	//æ”»æ–¹index
 	if( !CHAR_CHECKINDEX( charaindex)) return FALSE;
 	magicarg = PETSKILL_getChar( marray, PETSKILL_OPTION );
 	if( getStringFromIndexWithDelim( magicarg,"|",1, buf1, sizeof( buf1)) == FALSE )
@@ -7031,13 +7031,13 @@ int	PETSKILL_MagicStatusChange_Battle( int battleindex, int attackNo, int toNo, 
 	nums = atoi( buf1);
 	if( getStringFromIndexWithDelim( magicarg,"|",4, buf1, sizeof( buf1)) == FALSE )
 		return FALSE;
-	if( strstr( buf1, "µ¥") != 0 )	{
+	if( strstr( buf1, "å•") != 0 )	{
 		if( toNo >= 20 )
 			return FALSE;
 	}
 	battleindex = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEINDEX );
 	//attackNo = BATTLE_Index2No( battleindex, charaindex );
-/*  //¶¯»­Í¼ºÅ¾ö¶¨
+/*  //åŠ¨ç”»å›¾å·å†³å®š
 	if( status == BATTLE_ST_NONE ){
 		ReceveEffect = SPR_tyusya;
 	}else{
@@ -7061,7 +7061,7 @@ int	PETSKILL_SetDuckChange_Battle( int battleindex, int attackNo, int toNo, int 
 	int charaindex=-1;
 	char buf1[256];
 
-	charaindex = BATTLE_No2Index( battleindex, attackNo );	//¹¥·½index
+	charaindex = BATTLE_No2Index( battleindex, attackNo );	//æ”»æ–¹index
 	if( !CHAR_CHECKINDEX( charaindex))	return FALSE;
 	if( BATTLE_No2Index( battleindex, toNo ) != charaindex ) return FALSE;
 
@@ -7102,7 +7102,7 @@ int PETSKILL_SetMagicPet_Battle( int battleindex, int attackNo, int toNo, int ma
 	int charaindex=-1;
 	char buf1[256];
 
-	charaindex = BATTLE_No2Index( battleindex, attackNo );	//¹¥·½index
+	charaindex = BATTLE_No2Index( battleindex, attackNo );	//æ”»æ–¹index
 	if( !CHAR_CHECKINDEX( charaindex))	return FALSE;
 	if( BATTLE_CHECKINDEX( battleindex ) == FALSE ) return FALSE;
 
@@ -7161,7 +7161,7 @@ int PETSKILL_SetMagicPet_Battle( int battleindex, int attackNo, int toNo, int ma
 }
 #endif
 
-#ifdef _SKILL_WEAKEN  //vincent³è¼¼:ĞéÈõ   
+#ifdef _SKILL_WEAKEN  //vincentå® æŠ€:è™šå¼±   
 int BATTLE_S_Weaken(
 	int battleindex, 
 	int attackNo, 	
@@ -7175,7 +7175,7 @@ int BATTLE_S_Weaken(
 	int  ReceveEffect, Success = 0;
 	char *pszP;
 	char szTurn[] = "turn";
-	char szSuccess[] = "³É";
+	char szSuccess[] = "æˆ";
     magicarg = PETSKILL_getChar( marray, PETSKILL_OPTION );
 	if( magicarg == "\0" )	{
 		//print("\n magicarg == NULL ");
@@ -7237,8 +7237,8 @@ BOOL BATTLE_S_Temptation(	int battleindex,int attackNo,int defNo,	int skill )
 	if( CHAR_CHECKINDEX( defindex ) == FALSE )return iRet;
 	if( CHAR_getInt( defindex, CHAR_WHICHTYPE) != CHAR_TYPEPET ) return iRet;
 	if( CHAR_getWorkInt( defindex , CHAR_WORKFIXAI ) <= atoi(magicarg)){
-		//¼¼ÄÜ¹¥»÷
-		CHAR_setWorkInt( defindex, CHAR_WORKTEMPTATION , 1 ); //ÓÃÀ´½â³ı´ò×Ô¼º·½1µÎÑªµÄÏŞÖÆ
+		//æŠ€èƒ½æ”»å‡»
+		CHAR_setWorkInt( defindex, CHAR_WORKTEMPTATION , 1 ); //ç”¨æ¥è§£é™¤æ‰“è‡ªå·±æ–¹1æ»´è¡€çš„é™åˆ¶
 		defside = CHAR_getWorkInt( defindex, CHAR_WORKBATTLESIDE);
 		target = CHAR_getWorkInt( defindex, CHAR_WORKBATTLECOM2 );
 
@@ -7249,10 +7249,10 @@ BOOL BATTLE_S_Temptation(	int battleindex,int attackNo,int defNo,	int skill )
 			CHAR_setWorkInt( defindex , CHAR_WORKBATTLECOM2,
 				BATTLE_DefaultAttacker(battleindex,defside));		
 		}
-		img1 = 101505;	//ÖéÖé¶¯»­101637; //×¼±¸ÆÚ¶¯»­
-		img2 = 101502;	//ÖéÖé¶¯»­101645; //»÷ÖĞáá¶¯»­
+		img1 = 101505;	//ç ç åŠ¨ç”»101637; //å‡†å¤‡æœŸåŠ¨ç”»
+		img2 = 101502;	//ç ç åŠ¨ç”»101645; //å‡»ä¸­å¾ŒåŠ¨ç”»
 		flg |= BCF_NO_DAMAGE;
-		flg |= BCF_B_SKILLACT; //»÷ÖĞááĞãÍ¼ 
+		flg |= BCF_B_SKILLACT; //å‡»ä¸­å¾Œç§€å›¾ 
 		snprintf( szWork, sizeof( szWork ), "B+|a%X|r%X|f%X|d%X|p%X|e%X|s%X|h%X|FF|",
 							attackNo, defNo, flg, 0, 0, 1 , img1 , img2 );
 		BATTLESTR_ADD( szWork );
@@ -7263,7 +7263,7 @@ BOOL BATTLE_S_Temptation(	int battleindex,int attackNo,int defNo,	int skill )
 }
 #endif
 
-#ifdef _SKILL_DEEPPOISON  //vincent³è¼¼:¾ç¶¾  
+#ifdef _SKILL_DEEPPOISON  //vincentå® æŠ€:å‰§æ¯’  
 int BATTLE_S_Deeppoison( int battleindex, int attackNo, int defNo, int marray )
 {   
 	BOOL iRet = FALSE;
@@ -7272,7 +7272,7 @@ int BATTLE_S_Deeppoison( int battleindex, int attackNo, int defNo, int marray )
 	int  ReceveEffect, Success = 0;
 	char *pszP;
 	char szTurn[] = "turn";
-	char szSuccess[] = "³É";
+	char szSuccess[] = "æˆ";
     magicarg = PETSKILL_getChar( marray, PETSKILL_OPTION );
 	if( magicarg == "\0" )	{
 		//print("\n magicarg == NULL ");
@@ -7315,7 +7315,7 @@ int BATTLE_S_Deeppoison( int battleindex, int attackNo, int defNo, int marray )
 }
 #endif
 
-#ifdef _SKILL_BARRIER  //vincent³è¼¼:Ä§ÕÏ      
+#ifdef _SKILL_BARRIER  //vincentå® æŠ€:é­”éšœ      
 int BATTLE_S_Barrier(
 	int battleindex, 
 	int attackNo, 	
@@ -7330,9 +7330,9 @@ int BATTLE_S_Barrier(
 	char *magicarg;
 	int Success = 0;
 	char szTurn[] = "turn";
-	char szSuccess[] = "³É";
+	char szSuccess[] = "æˆ";
 	char *pszP;
-    charaindex = BATTLE_No2Index( battleindex, attackNo );	//¹¥·½index
+    charaindex = BATTLE_No2Index( battleindex, attackNo );	//æ”»æ–¹index
 	//check index
 	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return FALSE;
 
@@ -7350,12 +7350,12 @@ int BATTLE_S_Barrier(
 
 	pszP = magicarg;
 
-    //¶ÁÈ¡×÷ÓÃ»ØºÏÊı
+    //è¯»å–ä½œç”¨å›åˆæ•°
 	if( ( pszP = strstr( pszP, szTurn ) ) != NULL){
 		pszP += sizeof( szTurn );
 		sscanf( pszP, "%d", &turn );
 	}
-	//ÃüÖĞÂÊ
+	//å‘½ä¸­ç‡
 	if( ( pszP = strstr( pszP, szSuccess ) ) != NULL){
 		pszP += sizeof( szSuccess );
 		sscanf( pszP, "%d", &Success );
@@ -7363,10 +7363,10 @@ int BATTLE_S_Barrier(
 
 	BATTLE_MultiList( battleindex, defNo, ToList );
 	
-	//Ê©Ä§·¨¶¯»­Ğ§¹û
+	//æ–½é­”æ³•åŠ¨ç”»æ•ˆæœ
 	BATTLE_MagicEffect(battleindex, attackNo, ToList, MAGIC_EFFECT_USER, SPR_hoshi);
 
-	//checkÊÇ·ñÕ½¶·ÖĞ
+	//checkæ˜¯å¦æˆ˜æ–—ä¸­
 	if( IsBATTLING( charaindex ) == TRUE )
 	{
 
@@ -7384,7 +7384,7 @@ int BATTLE_S_Barrier(
 }
 #endif
 
-#ifdef _SKILL_NOCAST  //vincent³è¼¼:³ÁÄ¬  
+#ifdef _SKILL_NOCAST  //vincentå® æŠ€:æ²‰é»˜  
 int BATTLE_S_Nocast(
 	int battleindex, 
 	int attackNo, 	
@@ -7399,9 +7399,9 @@ int BATTLE_S_Nocast(
 	char *magicarg;
 	int Success = 0;
 	char szTurn[] = "turn";
-	char szSuccess[] = "³É";
+	char szSuccess[] = "æˆ";
 	char *pszP;
-    charaindex = BATTLE_No2Index( battleindex, attackNo );	//¹¥·½index
+    charaindex = BATTLE_No2Index( battleindex, attackNo );	//æ”»æ–¹index
 	//check index
 	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return FALSE;
 
@@ -7419,12 +7419,12 @@ int BATTLE_S_Nocast(
 
 	pszP = magicarg;
 
-    //¶ÁÈ¡×÷ÓÃ»ØºÏÊı
+    //è¯»å–ä½œç”¨å›åˆæ•°
 	if( ( pszP = strstr( pszP, szTurn ) ) != NULL){
 		pszP += sizeof( szTurn );
 		sscanf( pszP, "%d", &turn );
 	}
-	//ÃüÖĞÂÊ
+	//å‘½ä¸­ç‡
 	if( ( pszP = strstr( pszP, szSuccess ) ) != NULL){
 		pszP += sizeof( szSuccess );
 		sscanf( pszP, "%d", &Success );
@@ -7432,17 +7432,17 @@ int BATTLE_S_Nocast(
 
 	BATTLE_MultiList( battleindex, defNo, ToList );
 	
-	//Ê©Ä§·¨¶¯»­Ğ§¹û
+	//æ–½é­”æ³•åŠ¨ç”»æ•ˆæœ
 	BATTLE_MagicEffect(battleindex, attackNo, ToList, MAGIC_EFFECT_USER, SPR_hoshi);
 
-	//checkÊÇ·ñÕ½¶·ÖĞ
+	//checkæ˜¯å¦æˆ˜æ–—ä¸­
 	if( IsBATTLING( charaindex ) == TRUE ){
 
 		 for( i = 0; ToList[i] != -1; i ++ ){
 		toindex = BATTLE_No2Index( battleindex, ToList[i] );
 		    if( BATTLE_StatusAttackCheck( charaindex,toindex, BATTLE_ST_NOCAST, Success, 30, 1.0, &perStatus ) == TRUE 
 				&& CHAR_getInt( toindex, CHAR_WHICHTYPE) != CHAR_TYPEPET){
-			   //ÎŞ·¨Õ¹¿ªÖäÊõÒ³
+			   //æ— æ³•å±•å¼€å’’æœ¯é¡µ
 	           lssproto_NC_send( getfdFromCharaIndex( toindex ), 1);
 		       CHAR_setWorkInt( toindex, CHAR_WORKNOCAST, turn );
 		       BATTLE_BadStatusString( ToList[i], BATTLE_ST_NOCAST  );
@@ -7465,7 +7465,7 @@ int BATTLE_getReactFlg( int index, int react)
 		flg |= BCF_SUPERWALL;
 	}
 #endif
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 	if( react == BATTLE_MD_TRAP )	flg |= BCF_TRAP;
 #endif
 #ifdef _PETSKILL_ACUPUNCTURE 
@@ -7484,9 +7484,9 @@ int BATTLE_CheckSameSide( int charaindex, int toNo)
 	MySide = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLESIDE);
 
 //toindex = BATTLE_No2Index( battleindex, ToList[i] );
-	if( toNo < 20 ){//µ¥Ò»Ä¿±ê
+	if( toNo < 20 ){//å•ä¸€ç›®æ ‡
 		toindex = BATTLE_No2Index( battleindex, toNo);
-		if( CHAR_getWorkInt( toindex, CHAR_WORKBATTLESIDE) == MySide ) return 1;//Í¬±ß
+		if( CHAR_getWorkInt( toindex, CHAR_WORKBATTLESIDE) == MySide ) return 1;//åŒè¾¹
 	}else if( toNo){
 
 		BATTLE_MultiList( battleindex, toNo, ToList );
@@ -7494,7 +7494,7 @@ int BATTLE_CheckSameSide( int charaindex, int toNo)
 			toindex = BATTLE_No2Index( battleindex, ToList[i] );
 			if( !CHAR_CHECKINDEX( toindex) ) continue;
 
-			if( CHAR_getWorkInt( toindex, CHAR_WORKBATTLESIDE) == MySide )	return 1;//Í¬±ß
+			if( CHAR_getWorkInt( toindex, CHAR_WORKBATTLESIDE) == MySide )	return 1;//åŒè¾¹
 		}
 	}
 	return 0;
@@ -7520,7 +7520,7 @@ int CHAR_BattleStayLoop( int charaindex)
 		if( CONNECT_getBDTime( fd) < time( NULL) )	{
 			if( CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE ) == BATTLE_CHARMODE_NONE){
 				if(getNoStayBattle()==1){
-					CHAR_talkToCli(charaindex, -1, "±¾ÏßÎªÉÌÒµÓéÀÖÏßÂ·£¬Ô­µØÓöµĞÒì³£»ºÂı£¬Çëµ½ÆäËûÏßÂ·³¢ÊÔ¡£", CHAR_COLORYELLOW);
+					CHAR_talkToCli(charaindex, -1, "æœ¬çº¿ä¸ºå•†ä¸šå¨±ä¹çº¿è·¯ï¼ŒåŸåœ°é‡æ•Œå¼‚å¸¸ç¼“æ…¢ï¼Œè¯·åˆ°å…¶ä»–çº¿è·¯å°è¯•ã€‚", CHAR_COLORYELLOW);
 				}
 				lssproto_EN_recv( fd, CHAR_getInt( charaindex,CHAR_X), CHAR_getInt( charaindex,CHAR_Y));
 				CONNECT_setBDTime( fd, (int)time( NULL));
@@ -7531,7 +7531,7 @@ int CHAR_BattleStayLoop( int charaindex)
 		ch  = CHAR_getCharPointer( charaindex);
 		if( ch == NULL ) return 0;
 		strcpysafe( ch->charfunctable[CHAR_LOOPFUNCTEMP1].string,
-			sizeof( ch->charfunctable[CHAR_LOOPFUNCTEMP1]), "");//Õ½¶·
+			sizeof( ch->charfunctable[CHAR_LOOPFUNCTEMP1]), "");//æˆ˜æ–—
 		CHAR_setInt( charaindex, CHAR_LOOPINTERVAL, 0);
 		CHAR_constructFunctable( charaindex);
 	}
@@ -7549,7 +7549,7 @@ int PET_PetskillPropertyEvent( int Myindex, int defindex, int *damage, int *T_Po
 	if( !CHAR_CHECKINDEX( defindex)) return 0;
 	BATTLE_GetAttr( defindex, My_Pow);
 
-	//±»¹¥»÷·½×ª±äÊôĞÔ
+	//è¢«æ”»å‡»æ–¹è½¬å˜å±æ€§
 	for( i=0; i<4; i++)	{
 		int nums = (i+3)%4;
 		if( My_Pow[i] != 0 ){
@@ -7566,9 +7566,9 @@ int PET_PetskillPropertyEvent( int Myindex, int defindex, int *damage, int *T_Po
 
 
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 
-// Ö±½Ó¹¥»÷º¯Ê½
+// ç›´æ¥æ”»å‡»å‡½å¼
 int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int charaindex)
 {
 	char szBuffer[512]="";
@@ -7585,55 +7585,55 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 	skill = CHAR_GETWORKINT_LOW( charaindex, CHAR_WORKBATTLECOM3);
 	skill_type=CHAR_getWorkInt( charaindex, CHAR_WORKBATTLECOM1 );
 
-	//¹¥·½index
+	//æ”»æ–¹index
 	attackindex = BATTLE_No2Index( battleindex, attackNo );		
 	if( CHAR_CHECKINDEX( attackindex ) == FALSE )	return iRet;
 
-	//ÊØ·½index
+	//å®ˆæ–¹index
 	defindex = BATTLE_No2Index( battleindex, defNo );
 	if( CHAR_CHECKINDEX( defindex ) == FALSE ){
 		return iRet;	
 	}
 
-	// ŒÆÌåÂÓ¶á
+	// å±ä½“æ å¤º
 	if( (CHAR_getInt( defindex, CHAR_HP ) <= 0) && (skill_type != BATTLE_COM_S_PLUNDER) ){
 		return iRet;
 	}
 	
-	// ·ÇÕ½¶·Ê¹ÓÃ¼¼ÄÜ
+	// éæˆ˜æ–—ä½¿ç”¨æŠ€èƒ½
 	if( !PROFESSION_SKILL_getInt( skill, PROFESSION_SKILL_USE_FLAG) ) 	return iRet;
 
-	// È¡µÃ¼¼ÄÜ²ÎÊı
+	// å–å¾—æŠ€èƒ½å‚æ•°
 	pszOption = PROFESSION_SKILL_getChar( skill, PROFESSION_SKILL_OPTION);
 	if( pszOption == "\0" ) return iRet;
 
-	// ¼¼ÄÜµÈ¼¶
+	// æŠ€èƒ½ç­‰çº§
 	skill_level = CHAR_GETWORKINT_HIGH( charaindex, CHAR_WORKBATTLECOM3);
 	skill_level = PROFESSION_CHANGE_SKILL_LEVEL_A( skill_level );
 
-	// ¶¯»­·½Ê½ 0Ô­µØĞã¶¯»­ 1ÈËÎïÒÆ¶¯Ğã¶¯»­
-	if( (pszP = strstr( pszOption, "Ğ§%" ) ) != NULL )	sscanf( pszP+3, "%d", &effect );
+	// åŠ¨ç”»æ–¹å¼ 0åŸåœ°ç§€åŠ¨ç”» 1äººç‰©ç§»åŠ¨ç§€åŠ¨ç”»
+	if( (pszP = strstr( pszOption, "æ•ˆ%" ) ) != NULL )	sscanf( pszP+3, "%d", &effect );
 
-	// ×¼±¸ÆÚµÄ¶¯»­
+	// å‡†å¤‡æœŸçš„åŠ¨ç”»
 	img1 = PROFESSION_SKILL_getInt( skill, PROFESSION_SKILL_IMG_1 );
 
-	// »÷ÖĞááµÄ¶¯»­
+	// å‡»ä¸­å¾Œçš„åŠ¨ç”»
 	img2 = PROFESSION_SKILL_getInt( skill, PROFESSION_SKILL_IMG_2 );
 
-	// Ä¿±êµØÇòÒ»ÖÜ£¬²»¶¯×÷
+	// ç›®æ ‡åœ°çƒä¸€å‘¨ï¼Œä¸åŠ¨ä½œ
 	if( defNo >= 0 && defNo <= 19 ){
 		if( CHAR_getWorkInt( defindex, CHAR_WORKBATTLECOM1 ) == BATTLE_COM_S_EARTHROUND0 ){
 			return iRet;
 		}
 	}
 
-	// È¡³ö¸÷¼¼ÄÜ²ÎÊı
+	// å–å‡ºå„æŠ€èƒ½å‚æ•°
 	switch( skill_type){		
-		case BATTLE_COM_S_BRUST:		// ±¬»÷
+		case BATTLE_COM_S_BRUST:		// çˆ†å‡»
 			{	
 				int str=0, old_str=0;
 				
-				// Ôö¼Ó¹¥»÷Á¦
+				// å¢åŠ æ”»å‡»åŠ›
 				old_str = CHAR_getWorkInt( charaindex, CHAR_WORKFIXSTR);
 				str =  old_str * ( skill_level * 3 + 100 ) / 100;
 			
@@ -7641,10 +7641,10 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 
 				break;
 			}
-		case BATTLE_COM_S_CHAOS:		// »ìÂÒ¹¥»÷
+		case BATTLE_COM_S_CHAOS:		// æ··ä¹±æ”»å‡»
 			{
 				int atk = 0;
-				// ¼õ30%¹¥»÷Á¦
+				// å‡30%æ”»å‡»åŠ›
 				atk = CHAR_getWorkInt( charaindex, CHAR_WORKATTACKPOWER );
 				atk = atk * 70 / 100;
 				CHAR_setWorkInt(charaindex,CHAR_WORKATTACKPOWER, atk );
@@ -7655,7 +7655,7 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 
 				break;
 			}
-		case BATTLE_COM_S_CHAIN_ATK:	// Á¬»·¹¥»÷
+		case BATTLE_COM_S_CHAIN_ATK:	// è¿ç¯æ”»å‡»
 			{
 				int rand_num = RAND(1, 100);
 				int hit; 
@@ -7665,45 +7665,45 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 				hit = skill_level * 5 + 15;
 
 				if( rand_num <= hit ) 									
-					atk_num=2;	// ¹¥»÷¶ş´Î
+					atk_num=2;	// æ”»å‡»äºŒæ¬¡
 				else 
 					atk_num=0;
 
 				break;
 			}
-		case BATTLE_COM_S_ENRAGE_PET:	// ¼¤Å­³èÎï
+		case BATTLE_COM_S_ENRAGE_PET:	// æ¿€æ€’å® ç‰©
 			{
-				// ÅĞ¶ÏÊÇ·ñÍ¬¶Ó
+				// åˆ¤æ–­æ˜¯å¦åŒé˜Ÿ
 				if( BATTLE_CheckSameSide( charaindex, defNo) != 1 )		return iRet;
 				
 				defNo = attackNo;
 
-				// ¹¥»÷Á¦ 1
+				// æ”»å‡»åŠ› 1
 				CHAR_setWorkInt(charaindex,CHAR_WORKATTACKPOWER, 0 );
 
 				break;
 			}
-		case BATTLE_COM_S_CHAIN_ATK_2:	// Ë«ÖØ¹¥»÷
+		case BATTLE_COM_S_CHAIN_ATK_2:	// åŒé‡æ”»å‡»
 			{
 				int atkpower = 0;
-				int absrob_num  = CHAR_getWorkInt( defindex, CHAR_WORKDAMAGEABSROB );	// ¹â
-				//int reflec_num  = CHAR_getWorkInt( defindex, CHAR_WORKDAMAGEREFLEC );	// ¾µ
-				int evanish_num = CHAR_getWorkInt( defindex, CHAR_WORKDAMAGEVANISH );	// ÊØ
-				int trap_num	= CHAR_getWorkInt( defindex, CHAR_WORKTRAP );			// ÏİÚå					
+				int absrob_num  = CHAR_getWorkInt( defindex, CHAR_WORKDAMAGEABSROB );	// å…‰
+				//int reflec_num  = CHAR_getWorkInt( defindex, CHAR_WORKDAMAGEREFLEC );	// é•œ
+				int evanish_num = CHAR_getWorkInt( defindex, CHAR_WORKDAMAGEVANISH );	// å®ˆ
+				int trap_num	= CHAR_getWorkInt( defindex, CHAR_WORKTRAP );			// é™·é˜±					
 
 				if( absrob_num > 0 )	CHAR_setWorkInt( defindex, CHAR_WORKDAMAGEABSROB, max(absrob_num - 1, 0)  );
-				//if( reflec_num > 0 )	CHAR_setWorkInt( defindex, CHAR_WORKDAMAGEREFLEC, max(reflec_num - 1, 0)  );//ÈÃ¾µÓĞĞ§,ÕâĞĞÒªÄÃµô
+				//if( reflec_num > 0 )	CHAR_setWorkInt( defindex, CHAR_WORKDAMAGEREFLEC, max(reflec_num - 1, 0)  );//è®©é•œæœ‰æ•ˆ,è¿™è¡Œè¦æ‹¿æ‰
 				if( evanish_num > 0 )	CHAR_setWorkInt( defindex, CHAR_WORKDAMAGEVANISH, max(evanish_num - 1, 0) );
 				if( trap_num > 0 )		CHAR_setWorkInt( defindex, CHAR_WORKTRAP,		  0   );
 
-				// µÚÒ»ÏÂ¹¥»÷Á¦ 0
+				// ç¬¬ä¸€ä¸‹æ”»å‡»åŠ› 0
 				CHAR_setWorkInt(charaindex,CHAR_WORKATTACKPOWER, 0 );
 
 				snprintf( szCommand, sizeof( szCommand ), "B+|a%X|r%X|f%X|d%X|p%X|e%X|s%X|h%X|",
 									attackNo, defNo, BCF_NO_DAMAGE, 0, 0, effect, img1, img2 );
 				BATTLESTR_ADD( szCommand );
 
-				// Ôö¼Ó¹¥»÷Á¦
+				// å¢åŠ æ”»å‡»åŠ›
 				atkpower =(int)( CHAR_getWorkInt(charaindex,CHAR_WORKFIXSTR) * (skill_level * 2 + 100) /100 );
 
 				CHAR_setWorkInt(charaindex,CHAR_WORKATTACKPOWER, atkpower );
@@ -7718,7 +7718,7 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 
 				return iRet;
 			}
-		case BATTLE_COM_S_DEAD_ATTACK:	// ±ôËÀ¹¥»÷
+		case BATTLE_COM_S_DEAD_ATTACK:	// æ¿’æ­»æ”»å‡»
 			{
 				int hit=0, hp=0, old_hp=0, rate=0;
 
@@ -7727,7 +7727,7 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 				hp = old_hp * rate / 100;
 
 				if( old_hp <= 10 ){
-					CHAR_talkToCli( charaindex, -1, "HP²»×ã£¬ÎŞ·¨Ê¹ÓÃ¼¼ÄÜ", CHAR_COLORYELLOW);
+					CHAR_talkToCli( charaindex, -1, "HPä¸è¶³ï¼Œæ— æ³•ä½¿ç”¨æŠ€èƒ½", CHAR_COLORYELLOW);
 					return iRet;
 				}
 
@@ -7736,7 +7736,7 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 				CHAR_setWorkInt(charaindex,CHAR_WORKHITRIGHT, CHAR_getWorkInt(charaindex,CHAR_WORKHITRIGHT) + hit );
 				CHAR_setWorkInt( charaindex, CHAR_MYSKILLHIT, 1);
 				CHAR_setWorkInt( charaindex, CHAR_MYSKILLHIT_NUM, hit);
-				CHAR_talkToCli( charaindex, -1, "ÃüÖĞÂÊÉÏÉı", CHAR_COLORYELLOW);
+				CHAR_talkToCli( charaindex, -1, "å‘½ä¸­ç‡ä¸Šå‡", CHAR_COLORYELLOW);
 				
 				sprintf( szCommand, "BD|r%X|0|1|%X|", attackNo, (-1) * (old_hp - hp) );
 				BATTLESTR_ADD( szCommand );			
@@ -7744,20 +7744,20 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 				CHAR_setInt(charaindex, CHAR_HP, hp);
 				break;
 			}
-		case BATTLE_COM_S_ATTACK_WEAK:		// Èõµã¹¥»÷
+		case BATTLE_COM_S_ATTACK_WEAK:		// å¼±ç‚¹æ”»å‡»
 			{
 				float str=0.0, dex=0.0;
 				int whichtype;
 
 				whichtype = CHAR_getInt( defindex, CHAR_WHICHTYPE);
 	
-				// Ä¿±êÎª³èÎïÊ±Éı¹¥
+				// ç›®æ ‡ä¸ºå® ç‰©æ—¶å‡æ”»
 				if( (whichtype == CHAR_TYPEPET) || (whichtype == CHAR_TYPEENEMY) ){
 					str = skill_level * 2 +10 + 100;
 					CHAR_setWorkInt(charaindex,CHAR_WORKATTACKPOWER, CHAR_getWorkInt(charaindex,CHAR_WORKATTACKPOWER) * (str/100) );
 				}
 
-				// ½µÃô
+				// é™æ•
 				dex = 100 - ( skill_level + 10 );
 				CHAR_setWorkInt(charaindex,CHAR_WORKQUICK, CHAR_getWorkInt(charaindex,CHAR_WORKFIXDEX) * (dex/100) );
 				sprintf( szCommand, "BD|r%X|0|6|%X|", attackNo, (-1) * (skill_level + 10) );
@@ -7765,14 +7765,14 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 
 				break;
 			}
-		case BATTLE_COM_S_PLUNDER:			// ŒÆÌåÂÓ¶á
+		case BATTLE_COM_S_PLUNDER:			// å±ä½“æ å¤º
 			{	
 				char pBidList[BATTLE_ENTRY_MAX*2+1];
 				int item, start = 0;
 				memset( pBidList, -1, sizeof(pBidList) );
 				pBidList[0] = defNo; 
 				
-				// ÂÓ¶áµÄÄ¿±ê
+				// æ å¤ºçš„ç›®æ ‡
 				defNo = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLECOM2 );
 				defindex = BATTLE_No2Index( battleindex, defNo );
 				if( CHAR_getInt( defindex, CHAR_WHICHTYPE) != CHAR_TYPEENEMY ) return 1;
@@ -7801,7 +7801,7 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 
 							item_name = ITEM_getChar( itemindex, ITEM_NAME);						
 
-							sprintf( msg, "µÃµ½%s", item_name );
+							sprintf( msg, "å¾—åˆ°%s", item_name );
 							CHAR_talkToCli( charaindex, -1, msg, CHAR_COLORYELLOW);
 
 							CHAR_setItemIndex( enemy_index, item, -1 );
@@ -7823,7 +7823,7 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 
 
 	react = 0;
-	if( (ReactType=BATTLE_GetDamageReact( defindex)) > 0 )	{	//ÓĞ¹â¾µÊØ
+	if( (ReactType=BATTLE_GetDamageReact( defindex)) > 0 )	{	//æœ‰å…‰é•œå®ˆ
 		react = ReactType;	
 		if( skill_type != BATTLE_COM_S_CHAIN_ATK ){		
 			react=0;
@@ -7837,14 +7837,14 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 		DefSide = 1;
 	}
 
-	//È¡µÃ¹¥»÷áá×´Ì¬
+	//å–å¾—æ”»å‡»å¾ŒçŠ¶æ€
 	iWork = BATTLE_AttackSeq( attackindex, defindex, &damage, &Guardian, skill_type );
-	if( skill_type == BATTLE_COM_S_ENRAGE_PET ){//ÈÃ¼¤Å­³èÎï¼¼ÄÜ²»ÒªÕæµÄ´òËÀ³èÎï
+	if( skill_type == BATTLE_COM_S_ENRAGE_PET ){//è®©æ¿€æ€’å® ç‰©æŠ€èƒ½ä¸è¦çœŸçš„æ‰“æ­»å® ç‰©
 		if( CHAR_getInt( defindex, CHAR_HP ) <= damage ){
 			damage = 0;
 		}
 	}
-	if( skill_type == BATTLE_COM_S_CAVALRY)		// ×ùÆï¹¥»÷
+	if( skill_type == BATTLE_COM_S_CAVALRY)		// åº§éª‘æ”»å‡»
 		ultimate = BATTLE_PROFESSION_ATK_PET_DamageSub( attackindex, defindex, &damage, &petdamage, &react, skill_level );
 	else
 		ultimate = BATTLE_DamageSub( attackindex, defindex, &damage, &petdamage, &react);
@@ -7860,13 +7860,13 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 
     iRet = BATTLE_DefineAttack( attackindex, defindex, iWork, szBuffer, damage, react, &flg);
 
-	// ½« NORMAL ¼° CRITICAL µÄ flg ¸Ä³É Ö°ÒµµÄflg
+	// å°† NORMAL åŠ CRITICAL çš„ flg æ”¹æˆ èŒä¸šçš„flg
 	if( img2 != 0  ){
 		if( flg == BCF_NORMAL || flg == BCF_KAISHIN ){
-			if( (pszP = strstr( pszOption, "Ç°" ) ) != NULL )
-				flg |= BCF_F_SKILLACT; //»÷ÖĞÇ°ĞãÍ¼
+			if( (pszP = strstr( pszOption, "å‰" ) ) != NULL )
+				flg |= BCF_F_SKILLACT; //å‡»ä¸­å‰ç§€å›¾
 			else
-				flg |= BCF_B_SKILLACT; //»÷ÖĞááĞã
+				flg |= BCF_B_SKILLACT; //å‡»ä¸­å¾Œç§€
 		}
 	}
 
@@ -7882,17 +7882,17 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 
 	memset( szCommand, 0, sizeof( szCommand));
 	switch( skill_type){
-		case BATTLE_COM_S_BRUST:		// ±¬»÷
-		case BATTLE_COM_S_DEAD_ATTACK:	// ±ôËÀ¹¥»÷
-		case BATTLE_COM_S_ATTACK_WEAK:	// Èõµã¹¥»÷
-		case BATTLE_COM_S_CAVALRY:		// ×ùÆï¹¥»÷
+		case BATTLE_COM_S_BRUST:		// çˆ†å‡»
+		case BATTLE_COM_S_DEAD_ATTACK:	// æ¿’æ­»æ”»å‡»
+		case BATTLE_COM_S_ATTACK_WEAK:	// å¼±ç‚¹æ”»å‡»
+		case BATTLE_COM_S_CAVALRY:		// åº§éª‘æ”»å‡»
 			{
 				snprintf( szCommand, sizeof( szCommand ), "B+|a%X|r%X|f%X|d%X|p%X|e%X|s%X|h%X|FF|",
 									attackNo, defNo, flg, damage, petdamage, effect, img1, img2 );
 				BATTLESTR_ADD( szCommand );
 				break;
 			}
-		case BATTLE_COM_S_ENRAGE_PET:	// ¼¤Å­³èÎï
+		case BATTLE_COM_S_ENRAGE_PET:	// æ¿€æ€’å® ç‰©
 			{
 				int str = 0;
 				int turn = 0;
@@ -7900,20 +7900,20 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 			
 
 				flg |= BCF_NO_DAMAGE;
-				flg |= BCF_B_SKILLACT; //»÷ÖĞááĞãÍ¼	
+				flg |= BCF_B_SKILLACT; //å‡»ä¸­å¾Œç§€å›¾	
 
 				defNo = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLECOM2 );	
 
 				pindex = BATTLE_No2Index( battleindex, defNo );
 			
-				// ¼ì²éÊÇ·ñÎª³èÎï
+				// æ£€æŸ¥æ˜¯å¦ä¸ºå® ç‰©
 				if( CHAR_getInt( pindex, CHAR_WHICHTYPE) != CHAR_TYPEPET ) break;
 
 				snprintf( szCommand, sizeof( szCommand ), "B+|a%X|r%X|f%X|d%X|p%X|e%X|s%X|h%X|FF|",
 									attackNo, defNo, flg, 0, 0, effect, img1, img2 );
 				BATTLESTR_ADD( szCommand );
 
-				// ¼Ó¹¥
+				// åŠ æ”»
 				str = skill_level * 2 + 10;
 				sprintf( szCommand, "BD|r%X|0|4|%X|", defNo, str);
 				BATTLESTR_ADD( szCommand );
@@ -7927,7 +7927,7 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 
 				break;
 			}
-		case BATTLE_COM_S_CHAOS:		// »ìÂÒ¹¥»÷
+		case BATTLE_COM_S_CHAOS:		// æ··ä¹±æ”»å‡»
 			{
 				int i=0, j=0, k=0, f_num=0;
 				int temp[10], chose_temp[10];
@@ -7943,10 +7943,10 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 				if( defNo >= 10 )	f_num = 10;
 				else f_num = 0;	
 
-				// ¼õ30%¹¥»÷Á¦
+				// å‡30%æ”»å‡»åŠ›
 				//CHAR_setWorkInt(charaindex,CHAR_WORKATTACKPOWER, CHAR_getWorkInt( charaindex, CHAR_WORKATTACKPOWER ) * 70 / 100 );
 
-				//´«¸øclient¼õ¹¥»÷Á¦Ğ§¹û
+				//ä¼ ç»™clientå‡æ”»å‡»åŠ›æ•ˆæœ
 				sprintf( szCommand, "BD|r%X|0|4|%X|", attackNo, -30 );
 				BATTLESTR_ADD( szCommand );
 
@@ -7954,7 +7954,7 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 									attackNo, defNo, flg, damage, petdamage, effect, img1, img2 );
 				BATTLESTR_ADD( szCommand );
 
-				// È¡³öÕ½³¡ÉÏ´æ»îµÄÈË
+				// å–å‡ºæˆ˜åœºä¸Šå­˜æ´»çš„äºº
 				for( i=f_num; i<f_num+10; i++ ){
 					if(BATTLE_TargetCheck(battleindex, i) != FALSE){
 						if( CHAR_getWorkInt( BATTLE_No2Index( battleindex, i ), CHAR_WHICHTYPE) == CHAR_TYPEPET 
@@ -7979,14 +7979,14 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 					break;
 				}
 
-				// ÂÒÊıÈ¡¹¥»÷µÄÄ¿±ê
+				// ä¹±æ•°å–æ”»å‡»çš„ç›®æ ‡
 				for( i=0; i<atk_num-1; i++){
 					chose_temp[i] = temp[ RAND(0,j-1)];
 				}
 
 				k=0;
 				j=0;
-				// ¹¥»÷ÖĞÑ¡µÄÈË
+				// æ”»å‡»ä¸­é€‰çš„äºº
 				while( atk_num-1 > 0 ){
 					int atk_to_index = -1;
 					atk_to_index = BATTLE_No2Index( battleindex, chose_temp[k] );
@@ -8004,7 +8004,7 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 						memset( chose_temp, -1, sizeof( chose_temp ) );
 						j = 0; k = 0;
 
-						// È¡³öÕ½³¡ÉÏ´æ»îµÄÈË
+						// å–å‡ºæˆ˜åœºä¸Šå­˜æ´»çš„äºº
 						for( i=f_num; i<f_num+10; i++ ){
 							if(BATTLE_TargetCheck(battleindex, i) != FALSE){
 								if( CHAR_getWorkInt( BATTLE_No2Index( battleindex, i ), CHAR_WHICHTYPE) == CHAR_TYPEPET 
@@ -8024,7 +8024,7 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 						}
 						if( j == 0 ) break;
 
-						// ÂÒÊıÈ¡¹¥»÷µÄÄ¿±ê
+						// ä¹±æ•°å–æ”»å‡»çš„ç›®æ ‡
 						for( i=0; i<atk_num-1; i++){
 							chose_temp[i] = temp[ RAND(0,j-1)];
 						}
@@ -8038,7 +8038,7 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 
 				break;
 			}
-		case BATTLE_COM_S_CHAIN_ATK:	// Á¬»·¹¥»÷
+		case BATTLE_COM_S_CHAIN_ATK:	// è¿ç¯æ”»å‡»
 			{
 				snprintf( szCommand, sizeof( szCommand ), "B+|a%X|r%X|f%X|d%X|p%X|e%X|s%X|h%X|",
 									attackNo, defNo, flg, damage, petdamage, effect, img1, img2 );
@@ -8069,30 +8069,30 @@ int battle_profession_attack_fun(int battleindex, int attackNo, int defNo, int c
 }
 
 
-// Ä§·¨¹¥»÷º¯Ê½
+// é­”æ³•æ”»å‡»å‡½å¼
 int battle_profession_attack_magic_fun(int battleindex, int attackNo, int defNo, int charaindex)
 {
 	int attr=-1, attIdx=0, skill=-1, toindex;
 
-	// È¡¼¼ÄÜID
+	// å–æŠ€èƒ½ID
 	skill = CHAR_GETWORKINT_LOW( charaindex, CHAR_WORKBATTLECOM3);
 
-	// ¹¥»÷Ä¿±ê
+	// æ”»å‡»ç›®æ ‡
 	// Robin fix
  	//toindex = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLECOM2 );
 	toindex = defNo;
 	
 
-	// ¹¥»÷·¶Î§ 0µ¥Ìå 1µ¥ÅÅ 2Ò»·½È«Ìå
-	if( toindex < 20 ){					// µ¥Ìå
+	// æ”»å‡»èŒƒå›´ 0å•ä½“ 1å•æ’ 2ä¸€æ–¹å…¨ä½“
+	if( toindex < 20 ){					// å•ä½“
 		attIdx = 0;
-	}else if( toindex>=23 && toindex<=26 ){ // µ¥ÅÅ
+	}else if( toindex>=23 && toindex<=26 ){ // å•æ’
 		attIdx = 1;
-	}else if( toindex==20 || toindex==21 ){	// Ò»·½È«Ìå
+	}else if( toindex==20 || toindex==21 ){	// ä¸€æ–¹å…¨ä½“
 		attIdx = 2;
 	}
 
-	// Robin fix Ôö¼ÓÕ½³¡ÊôĞÔÓÅÊÆ
+	// Robin fix å¢åŠ æˆ˜åœºå±æ€§ä¼˜åŠ¿
 	attr = BattleArray[battleindex].field_att -1;
 
 	PROFESSION_MAGIC_ATTAIC( battleindex, attackNo, toindex, attIdx, attr, skill);
@@ -8100,7 +8100,7 @@ int battle_profession_attack_magic_fun(int battleindex, int attackNo, int defNo,
 	return TRUE;
 }
 
-// ÌáÉı×ÔÒÑÄÜÁ¦Ïµº¯Ê½
+// æå‡è‡ªå·²èƒ½åŠ›ç³»å‡½å¼
 int battle_profession_assist_fun(int battleindex, int attackNo, int defNo, int charaindex)
 {
 	int i, skill, skill_type, skill_level, img1, img2, turn=1;
@@ -8111,28 +8111,28 @@ int battle_profession_assist_fun(int battleindex, int attackNo, int defNo, int c
 	skill = CHAR_GETWORKINT_LOW( charaindex, CHAR_WORKBATTLECOM3);
 	skill_type = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLECOM1 );
 
-	// ·ÇÕ½¶·Ê¹ÓÃ¼¼ÄÜ
+	// éæˆ˜æ–—ä½¿ç”¨æŠ€èƒ½
 	if( !PROFESSION_SKILL_getInt( skill, PROFESSION_SKILL_USE_FLAG) ) 	return iRet;
 
-	// ¼¼ÄÜµÄ²ÎÊı
+	// æŠ€èƒ½çš„å‚æ•°
 	pszOption = PROFESSION_SKILL_getChar( skill, PROFESSION_SKILL_OPTION);
 	if( pszOption == "\0" ) return iRet;
 
-	// ¼¼ÄÜµÈ¼¶
+	// æŠ€èƒ½ç­‰çº§
 	skill_level = CHAR_GETWORKINT_HIGH( charaindex, CHAR_WORKBATTLECOM3);
 
-	// ×¼±¸ÆÚµÄ¶¯»­
+	// å‡†å¤‡æœŸçš„åŠ¨ç”»
 	img1 = PROFESSION_SKILL_getInt( skill, PROFESSION_SKILL_IMG_1 );
 
-	// »÷ÖĞááµÄ¶¯»­
+	// å‡»ä¸­å¾Œçš„åŠ¨ç”»
 	img2 = PROFESSION_SKILL_getInt( skill, PROFESSION_SKILL_IMG_2 );
 	
-	// Ê¹ÓÃ»ØºÏÊı
-	if( (pszP = strstr( pszOption, "»Ø%" ) ) != NULL )	sscanf( pszP+3, "%d", &turn );
+	// ä½¿ç”¨å›åˆæ•°
+	if( (pszP = strstr( pszOption, "å›%" ) ) != NULL )	sscanf( pszP+3, "%d", &turn );
 	if(turn < 1)	turn=1;
 
 	switch(skill_type){
-		case BATTLE_COM_S_TRANSPOSE:	// ÒÆĞÎ»»Î»
+		case BATTLE_COM_S_TRANSPOSE:	// ç§»å½¢æ¢ä½
 			{
 				int defNo2 = CHAR_getWorkInt(charaindex,CHAR_WORKBATTLECOM2);
 				skill_level = PROFESSION_CHANGE_SKILL_LEVEL_M( skill_level );
@@ -8147,7 +8147,7 @@ int battle_profession_assist_fun(int battleindex, int attackNo, int defNo, int c
 					if( !CHAR_CHECKINDEX( toindex ))continue;
 					if( charaindex != toindex ) continue;
 
-					// »Ø±ÜÂÊ				
+					// å›é¿ç‡				
 					if( skill_level >= 10 )			avoid = 70;
 					else if( skill_level >= 9 )		avoid = 60;
 					else if( skill_level >= 8 )		avoid = 50;
@@ -8170,7 +8170,7 @@ int battle_profession_assist_fun(int battleindex, int attackNo, int defNo, int c
 				}
 				break;
 			}
-		case BATTLE_COM_S_SCAPEGOAT:		// ÉáÒÑÎªÓÑ
+		case BATTLE_COM_S_SCAPEGOAT:		// èˆå·²ä¸ºå‹
 			{
 				int tgh=0, old_tgh=0, flg=0, rate=0;
 				int pos=0, side=0, ownerpos=0;
@@ -8179,17 +8179,17 @@ int battle_profession_assist_fun(int battleindex, int attackNo, int defNo, int c
 				pos = BATTLE_Index2No( battleindex, charaindex );
 				side = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLESIDE );
 
-				if( skill_level >= 10 ){		// ÎÒ·½È«Ìå
+				if( skill_level >= 10 ){		// æˆ‘æ–¹å…¨ä½“
 					for(i=0; i<10; i++){
 						if(pos != i )
 							BattleArray[battleindex].Side[side].Entry[i].guardian = pos;
 					}
-				}else if( skill_level >= 5 ){	// ÎÒ·½ËùÓĞ³èÎï
+				}else if( skill_level >= 5 ){	// æˆ‘æ–¹æ‰€æœ‰å® ç‰©
 					for(i=5; i<10; i++){
 						if(pos != i )
 							BattleArray[battleindex].Side[side].Entry[i].guardian = pos;
 					}
-				}else{							// ÈËÎïÖ®³èÎï
+				}else{							// äººç‰©ä¹‹å® ç‰©
 					ownerpos = pos + 5;	
 					if( ownerpos >= 10 ) ownerpos -= 10;
 					if( ownerpos < 0 || ownerpos > 19 ){
@@ -8216,7 +8216,7 @@ int battle_profession_assist_fun(int battleindex, int attackNo, int defNo, int c
 			
 				break;
 			}
-		case BATTLE_COM_S_ENRAGE:			// ¼¤»¯¹¥»÷
+		case BATTLE_COM_S_ENRAGE:			// æ¿€åŒ–æ”»å‡»
 			{
 				int str=0, tgh=0;
 				skill_level = PROFESSION_CHANGE_SKILL_LEVEL_A( skill_level );
@@ -8225,14 +8225,14 @@ int battle_profession_assist_fun(int battleindex, int attackNo, int defNo, int c
 				BATTLE_MultiList( battleindex, attackNo, ToList );
 				BATTLE_MagicEffect( battleindex, attackNo, ToList, img1, img2 );
 
-				// ¼õ·À
+				// å‡é˜²
 				tgh = skill_level * 2 + 10;
 				sprintf( szCommand, "BD|r%X|0|5|%X|", attackNo, (-1) * tgh );
 				BATTLESTR_ADD( szCommand );
 
 				CHAR_setWorkInt(charaindex,CHAR_MYSKILLTGHPOWER, (-1) * tgh);
 
-				// ¼Ó¹¥
+				// åŠ æ”»
 				str = skill_level * 2 + 20;
 				sprintf( szCommand, "BD|r%X|0|4|%X|", attackNo, str);
 				BATTLESTR_ADD( szCommand );
@@ -8249,7 +8249,7 @@ int battle_profession_assist_fun(int battleindex, int attackNo, int defNo, int c
 				iRet = TRUE;
 				break;
 			}
-		case BATTLE_COM_S_COLLECT:			// ÄÜÁ¿¾Û¼¯
+		case BATTLE_COM_S_COLLECT:			// èƒ½é‡èšé›†
 			{
 				int dex=0, tgh=0;
 				skill_level = PROFESSION_CHANGE_SKILL_LEVEL_A( skill_level );
@@ -8258,13 +8258,13 @@ int battle_profession_assist_fun(int battleindex, int attackNo, int defNo, int c
 				BATTLE_MultiList( battleindex, attackNo, ToList );
 				BATTLE_MagicEffect( battleindex, attackNo, ToList, img1, img2 );
 
-				// ¼õÃô
+				// å‡æ•
 				dex = (skill_level * 2) + 10;
 				sprintf( szCommand, "BD|r%X|0|6|%X|", attackNo, (-1) * dex );
 				BATTLESTR_ADD( szCommand );
 				CHAR_setWorkInt(charaindex,CHAR_MYSKILLDEXPOWER, dex);
 
-				// ¼Ó·À
+				// åŠ é˜²
 				tgh = (skill_level * 2) + 20;
 				sprintf( szCommand, "BD|r%X|0|5|%X|", attackNo, tgh);
 				BATTLESTR_ADD( szCommand );
@@ -8280,7 +8280,7 @@ int battle_profession_assist_fun(int battleindex, int attackNo, int defNo, int c
 				iRet = TRUE;
 				break;
 			}
-		case BATTLE_COM_S_FOCUS:			// ×¨×¢Õ½¶·
+		case BATTLE_COM_S_FOCUS:			// ä¸“æ³¨æˆ˜æ–—
 			{
 				int ToList[SIDE_OFFSET*2+1];
 				skill_level = PROFESSION_CHANGE_SKILL_LEVEL_A( skill_level );
@@ -8292,12 +8292,12 @@ int battle_profession_assist_fun(int battleindex, int attackNo, int defNo, int c
 				CHAR_setWorkInt( charaindex, CHAR_MYSKILLHIT, 2);
 				CHAR_setWorkInt( charaindex, CHAR_MYSKILLHIT_NUM, 100);
 				
-				CHAR_talkToCli( charaindex, -1, "ÃüÖĞÂÊÉÏÉı", CHAR_COLORYELLOW);		
+				CHAR_talkToCli( charaindex, -1, "å‘½ä¸­ç‡ä¸Šå‡", CHAR_COLORYELLOW);		
 
 				iRet = TRUE;
 				break;
 			}
-		case BATTLE_COM_S_TRAP:				// ÏİÚå			
+		case BATTLE_COM_S_TRAP:				// é™·é˜±			
 			{
 				int value;
 				int ToList[SIDE_OFFSET*2+1];			
@@ -8319,7 +8319,7 @@ int battle_profession_assist_fun(int battleindex, int attackNo, int defNo, int c
 				iRet = TRUE;
 				break;
 			}
-		case BATTLE_COM_S_DOCILE:			// Ñ±·ü³èÎï	
+		case BATTLE_COM_S_DOCILE:			// é©¯ä¼å® ç‰©	
 			{
 				int rate = 0;
 				skill_level = PROFESSION_CHANGE_SKILL_LEVEL_A( skill_level );
@@ -8332,13 +8332,13 @@ int battle_profession_assist_fun(int battleindex, int attackNo, int defNo, int c
 				break;
 			}
 #ifdef _PROFESSION_ADDSKILL
-        case BATTLE_COM_S_CALL_NATURE:      // ºÅÕÙ×ÔÈ»
+        case BATTLE_COM_S_CALL_NATURE:      // å·å¬è‡ªç„¶
 			{
 				int ridepet=0,count=0,addhp=0,toindex=-1;
 				int ToList[SIDE_OFFSET*2+1];
 				BATTLE_MultiList( battleindex, defNo, ToList );
 			
-                if( defNo == 20 || defNo == 25 || defNo == 26 )//ÓÒ·½
+                if( defNo == 20 || defNo == 25 || defNo == 26 )//å³æ–¹
 					img1 = 101772;
                 for( i = 0; ToList[i] != -1; i ++ ){
 		            toindex = BATTLE_No2Index( battleindex, ToList[i] );
@@ -8414,7 +8414,7 @@ int battle_profession_assist_fun(int battleindex, int attackNo, int defNo, int c
 extern unsigned int GET_PROFESSION_magic_array(int idx);
 #endif
 
-// »÷ÖĞ¸Ä±ä×´Ì¬Ïµº¯Ê½
+// å‡»ä¸­æ”¹å˜çŠ¶æ€ç³»å‡½å¼
 extern void BATTLE_TargetListSet( int charaindex, int attackNo,	int *pList);
 extern int BoomerangVsTbl[4][5];
 int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo, int charaindex)
@@ -8431,34 +8431,34 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 	skill = CHAR_GETWORKINT_LOW( charaindex, CHAR_WORKBATTLECOM3 );
 	skill_type=CHAR_getWorkInt( charaindex, CHAR_WORKBATTLECOM1 );
 
-	// ·ÇÕ½¶·Ê¹ÓÃ¼¼ÄÜ
+	// éæˆ˜æ–—ä½¿ç”¨æŠ€èƒ½
 	if( !PROFESSION_SKILL_getInt( skill, PROFESSION_SKILL_USE_FLAG) ) 	return iRet;
 
-	// ¼¼ÄÜµÄ²ÎÊı
+	// æŠ€èƒ½çš„å‚æ•°
 	pszOption = PROFESSION_SKILL_getChar( skill, PROFESSION_SKILL_OPTION);
 	if( pszOption == "\0" ) return iRet;
 
-	// ¼¼ÄÜµÈ¼¶
+	// æŠ€èƒ½ç­‰çº§
 	skill_level = CHAR_GETWORKINT_HIGH( charaindex, CHAR_WORKBATTLECOM3);
 	skill_level = PROFESSION_CHANGE_SKILL_LEVEL_A( skill_level );
 
-	// ¼¼ÄÜµÈ¼¶ rate
-	if( (pszP = strstr( pszOption, "±¶%" ) ) != NULL )	sscanf( pszP+3, "%f", &rate );
+	// æŠ€èƒ½ç­‰çº§ rate
+	if( (pszP = strstr( pszOption, "å€%" ) ) != NULL )	sscanf( pszP+3, "%f", &rate );
 
-	// ×¼±¸ÆÚµÄ¶¯»­
+	// å‡†å¤‡æœŸçš„åŠ¨ç”»
 	img1 = PROFESSION_SKILL_getInt( skill, PROFESSION_SKILL_IMG_1 );
 
-	// »÷ÖĞááµÄ¶¯»­
+	// å‡»ä¸­å¾Œçš„åŠ¨ç”»
 	img2 = PROFESSION_SKILL_getInt( skill, PROFESSION_SKILL_IMG_2 );
 
-	// Ê¹ÓÃ»ØºÏÊı
-	if( (pszP = strstr( pszOption, "»Ø%" ) ) != NULL )	sscanf( pszP+3, "%d", &turn );
+	// ä½¿ç”¨å›åˆæ•°
+	if( (pszP = strstr( pszOption, "å›%" ) ) != NULL )	sscanf( pszP+3, "%d", &turn );
 	if(turn < 1)	turn=1;
 
-	// ¶¯»­·½Ê½ 0Ô­µØĞã¶¯»­ 1ÈËÎïÒÆ¶¯Ğã¶¯»­
-	if( (pszP = strstr( pszOption, "Ğ§%" ) ) != NULL )	sscanf( pszP+3, "%d", &effect );
+	// åŠ¨ç”»æ–¹å¼ 0åŸåœ°ç§€åŠ¨ç”» 1äººç‰©ç§»åŠ¨ç§€åŠ¨ç”»
+	if( (pszP = strstr( pszOption, "æ•ˆ%" ) ) != NULL )	sscanf( pszP+3, "%d", &effect );
 	
-	// Ä¿±êµØÇòÒ»ÖÜ£¬²»¶¯×÷
+	// ç›®æ ‡åœ°çƒä¸€å‘¨ï¼Œä¸åŠ¨ä½œ
 	if( defNo >= 0 && defNo <= 19 ){
 		defindex = BATTLE_No2Index( battleindex, defNo );
 		if( CHAR_CHECKINDEX( defindex ) == FALSE )	return iRet;
@@ -8468,32 +8468,32 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 	}
 
 	switch(skill_type){	
-		// ²»ÒÆ¶¯ĞÍ
-		case BATTLE_COM_S_ENTWINE:			// Ê÷¸ù²øÈÆ
-		case BATTLE_COM_S_DRAGNET:			// ÌìÂŞµØÍø
-		case BATTLE_COM_S_INSTIGATE:		// Ìô²¦
-		case BATTLE_COM_S_OBLIVION:			// ÒÅÍü
-		case BATTLE_COM_S_RESIST_FIRE:		// »ğ¿¹ĞÔÌáÉı
-		case BATTLE_COM_S_RESIST_ICE:		// ±ù¿¹ĞÔÌáÉı
-		case BATTLE_COM_S_RESIST_THUNDER:	// À×¿¹ĞÔÌáÉı
+		// ä¸ç§»åŠ¨å‹
+		case BATTLE_COM_S_ENTWINE:			// æ ‘æ ¹ç¼ ç»•
+		case BATTLE_COM_S_DRAGNET:			// å¤©ç½—åœ°ç½‘
+		case BATTLE_COM_S_INSTIGATE:		// æŒ‘æ‹¨
+		case BATTLE_COM_S_OBLIVION:			// é—å¿˜
+		case BATTLE_COM_S_RESIST_FIRE:		// ç«æŠ—æ€§æå‡
+		case BATTLE_COM_S_RESIST_ICE:		// å†°æŠ—æ€§æå‡
+		case BATTLE_COM_S_RESIST_THUNDER:	// é›·æŠ—æ€§æå‡
 #ifdef _PROFESSION_ADDSKILL
-		case BATTLE_COM_S_RESIST_F_I_T:     // ×ÔÈ»ÍşÄÜ
+		case BATTLE_COM_S_RESIST_F_I_T:     // è‡ªç„¶å¨èƒ½
 #endif
-		case BATTLE_COM_S_FIRE_ENCLOSE:		// »ğ¸½Ìå
-		case BATTLE_COM_S_ICE_ENCLOSE:		// ±ù¸½Ìå
-		case BATTLE_COM_S_THUNDER_ENCLOSE:	// À×¸½Ìå
+		case BATTLE_COM_S_FIRE_ENCLOSE:		// ç«é™„ä½“
+		case BATTLE_COM_S_ICE_ENCLOSE:		// å†°é™„ä½“
+		case BATTLE_COM_S_THUNDER_ENCLOSE:	// é›·é™„ä½“
 			{
 				int perStatus=0, toindex=-1, status=-1, Success=0, dex=0, old_dex;
 				//char szBuffer[256]="";
 				int ToList[SIDE_OFFSET*2+1];
 				int defNo2 = CHAR_getWorkInt(charaindex,CHAR_WORKBATTLECOM2);
 				
-				// Ê¹ÓÃ¶ÔÏó
-				if( skill_type == BATTLE_COM_S_RESIST_FIRE ||		// »ğ¿¹ĞÔÌáÉı
-					skill_type == BATTLE_COM_S_RESIST_ICE ||		// ±ù¿¹ĞÔÌáÉı
-					skill_type == BATTLE_COM_S_RESIST_THUNDER 	// À×¿¹ĞÔÌáÉı
+				// ä½¿ç”¨å¯¹è±¡
+				if( skill_type == BATTLE_COM_S_RESIST_FIRE ||		// ç«æŠ—æ€§æå‡
+					skill_type == BATTLE_COM_S_RESIST_ICE ||		// å†°æŠ—æ€§æå‡
+					skill_type == BATTLE_COM_S_RESIST_THUNDER 	// é›·æŠ—æ€§æå‡
 #ifdef _PROFESSION_ADDSKILL
-					|| skill_type == BATTLE_COM_S_RESIST_F_I_T  // ×ÔÈ»ÍşÄÜ
+					|| skill_type == BATTLE_COM_S_RESIST_F_I_T  // è‡ªç„¶å¨èƒ½
 #endif
 				){
 #ifdef _PROFESSION_ADDSKILL
@@ -8517,19 +8517,19 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 				charaindex = BATTLE_No2Index( battleindex, attackNo );
 				if( CHAR_CHECKINDEX( charaindex ) == FALSE )	return iRet;
 
-				// ¸Ä±ä×´Ì¬
-				if( ((pszP = strstr( pszOption, "²ø" ) ) != NULL ) ||
-					((pszP = strstr( pszOption, "Ìô" ) ) != NULL ) ||
-					((pszP = strstr( pszOption, "Íü" ) ) != NULL ) ||
-					((pszP = strstr( pszOption, "»ğ" ) ) != NULL ) ||
-					((pszP = strstr( pszOption, "±ù" ) ) != NULL ) ||
-					((pszP = strstr( pszOption, "À×" ) ) != NULL ) ||
-					((pszP = strstr( pszOption, "ÂŞ" ) ) != NULL ) ||
-					((pszP = strstr( pszOption, "»÷" ) ) != NULL ) ||
-					((pszP = strstr( pszOption, "¶³" ) ) != NULL ) ||
-					((pszP = strstr( pszOption, "Ñ×" ) ) != NULL ) 
+				// æ”¹å˜çŠ¶æ€
+				if( ((pszP = strstr( pszOption, "ç¼ " ) ) != NULL ) ||
+					((pszP = strstr( pszOption, "æŒ‘" ) ) != NULL ) ||
+					((pszP = strstr( pszOption, "å¿˜" ) ) != NULL ) ||
+					((pszP = strstr( pszOption, "ç«" ) ) != NULL ) ||
+					((pszP = strstr( pszOption, "å†°" ) ) != NULL ) ||
+					((pszP = strstr( pszOption, "é›·" ) ) != NULL ) ||
+					((pszP = strstr( pszOption, "ç½—" ) ) != NULL ) ||
+					((pszP = strstr( pszOption, "å‡»" ) ) != NULL ) ||
+					((pszP = strstr( pszOption, "å†»" ) ) != NULL ) ||
+					((pszP = strstr( pszOption, "ç‚" ) ) != NULL ) 
 #ifdef _PROFESSION_ADDSKILL
-					|| ((pszP = strstr( pszOption, "¿¹" ) ) != NULL )
+					|| ((pszP = strstr( pszOption, "æŠ—" ) ) != NULL )
 #endif
 					){					
 					for( i = 1; i < BATTLE_ST_END; i ++ ){
@@ -8547,8 +8547,8 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 				else
 					{
 #endif
-						// ³É¹¦ÂÊ
-						if( (pszP = strstr( pszOption, "³É%" ) ) != NULL )	sscanf( pszP+3, "%d", &Success );
+						// æˆåŠŸç‡
+						if( (pszP = strstr( pszOption, "æˆ%" ) ) != NULL )	sscanf( pszP+3, "%d", &Success );
 						Success = Success + skill_level * 5;
 #ifdef _BATTLE_NO_WANG
 						}
@@ -8556,9 +8556,9 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 				if( skill_type == BATTLE_COM_S_DRAGNET ){
 					int DRAGNET=0,dragnet_idx=-1;
 					int PLAYER=0;
-					//ÕÒ³ö¹¥·½ÊÇÄÇÒ»±ßµÄ
-					if( attackNo > 9 ){//×ó±ß
-						for(i=0;i<10;i++){//¼ÆËãÓÒ±ßÓĞ¶àÉÙÈËÖĞÌìÂŞ
+					//æ‰¾å‡ºæ”»æ–¹æ˜¯é‚£ä¸€è¾¹çš„
+					if( attackNo > 9 ){//å·¦è¾¹
+						for(i=0;i<10;i++){//è®¡ç®—å³è¾¹æœ‰å¤šå°‘äººä¸­å¤©ç½—
 							dragnet_idx = BATTLE_No2Index( battleindex, i );
 							if( CHAR_CHECKINDEX( dragnet_idx ) ){
 								PLAYER++;
@@ -8568,8 +8568,8 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 							}
 						}
 					}
-					else{//ÓÒ
-						for(i=10;i<20;i++){//¼ÆËã×ó±ßÓĞ¶àÉÙÈËÖĞÌìÂŞ
+					else{//å³
+						for(i=10;i<20;i++){//è®¡ç®—å·¦è¾¹æœ‰å¤šå°‘äººä¸­å¤©ç½—
 							dragnet_idx = BATTLE_No2Index( battleindex, i );
 							if( CHAR_CHECKINDEX( dragnet_idx ) ){
 								PLAYER++;
@@ -8589,23 +8589,23 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 
 				perStatus = Success;				
 
-				// »ØºÏÊı	
-				if( (skill_type == BATTLE_COM_S_INSTIGATE) && (skill_level == 10) ){		// Ìô²¦
+				// å›åˆæ•°	
+				if( (skill_type == BATTLE_COM_S_INSTIGATE) && (skill_level == 10) ){		// æŒ‘æ‹¨
 					turn = 4;
-				}else if( (skill_type == BATTLE_COM_S_RESIST_FIRE)    ||	// »ğ¿¹ĞÔÌáÉı
-						  (skill_type == BATTLE_COM_S_RESIST_ICE)     ||	// ±ù¿¹ĞÔÌáÉı
-						  (skill_type == BATTLE_COM_S_RESIST_THUNDER) ){	// À×¿¹ĞÔÌáÉı
+				}else if( (skill_type == BATTLE_COM_S_RESIST_FIRE)    ||	// ç«æŠ—æ€§æå‡
+						  (skill_type == BATTLE_COM_S_RESIST_ICE)     ||	// å†°æŠ—æ€§æå‡
+						  (skill_type == BATTLE_COM_S_RESIST_THUNDER) ){	// é›·æŠ—æ€§æå‡
 					
 					if( skill_level >= 10 )		turn = 5;
 					else if( skill_level >= 5 ) turn = 4; 
 					else						turn = 3;
-				}else if( skill_type == BATTLE_COM_S_OBLIVION ){			// ÒÅÍü
+				}else if( skill_type == BATTLE_COM_S_OBLIVION ){			// é—å¿˜
 					if( skill_level >= 10 ){		turn = 4;
 					}else if( skill_level >= 5 ){	turn = 3; 
 					}else{							turn = 2;	}
 				}
 #ifdef _PROFESSION_ADDSKILL
-				else if( skill_type == BATTLE_COM_S_RESIST_F_I_T ){     // ×ÔÈ»ÍşÄÜ
+				else if( skill_type == BATTLE_COM_S_RESIST_F_I_T ){     // è‡ªç„¶å¨èƒ½
 					skill_level = CHAR_GETWORKINT_HIGH( charaindex, CHAR_WORKBATTLECOM3);
 					if( skill_level >= 100 )		turn = 5;
 					else if( skill_level > 80 )	turn = 4; 
@@ -8615,14 +8615,14 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 
 				switch( skill_type ){
 					case BATTLE_COM_S_RESIST_FIRE:
-							CHAR_talkToCli( charaindex, -1 , "»ğ¿¹ĞÔÌáÉı" , CHAR_COLORYELLOW );	break;
+							CHAR_talkToCli( charaindex, -1 , "ç«æŠ—æ€§æå‡" , CHAR_COLORYELLOW );	break;
 					case BATTLE_COM_S_RESIST_ICE:
-							CHAR_talkToCli( charaindex, -1 , "±ù¿¹ĞÔÌáÉı" , CHAR_COLORYELLOW ); break;
+							CHAR_talkToCli( charaindex, -1 , "å†°æŠ—æ€§æå‡" , CHAR_COLORYELLOW ); break;
 					case BATTLE_COM_S_RESIST_THUNDER:
-							CHAR_talkToCli( charaindex, -1 , "À×¿¹ĞÔÌáÉı" , CHAR_COLORYELLOW ); break;
+							CHAR_talkToCli( charaindex, -1 , "é›·æŠ—æ€§æå‡" , CHAR_COLORYELLOW ); break;
 #ifdef _PROFESSION_ADDSKILL
                     case BATTLE_COM_S_RESIST_F_I_T:
-							CHAR_talkToCli( charaindex, -1 , "»ğ±ùÀ×¿¹ĞÔÌáÉı" , CHAR_COLORYELLOW ); break;
+							CHAR_talkToCli( charaindex, -1 , "ç«å†°é›·æŠ—æ€§æå‡" , CHAR_COLORYELLOW ); break;
 #endif
 				}		
 
@@ -8630,19 +8630,19 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 					toindex = BATTLE_No2Index( battleindex, ToList[i] );
 					if( CHAR_CHECKINDEX( toindex ) == FALSE )	return iRet;
 
-					// Ìô²¦²»¿ÉÊ©ì¶Íæ¼ÒÈËÎïÉíÉÏ
+					// æŒ‘æ‹¨ä¸å¯æ–½æ–¼ç©å®¶äººç‰©èº«ä¸Š
 					if( skill_type == BATTLE_COM_S_INSTIGATE ){
 						if( CHAR_getInt( toindex, CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER ){
-							CHAR_talkToCli( charaindex, -1, "²»¿ÉÊ©ì¶ÈËÎïÉíÉÏ", CHAR_COLORYELLOW );
+							CHAR_talkToCli( charaindex, -1, "ä¸å¯æ–½æ–¼äººç‰©èº«ä¸Š", CHAR_COLORYELLOW );
 							break;
 						}
 					}
 
-					// ×´Ì¬ÃüÖĞ¼ì¶¨
+					// çŠ¶æ€å‘½ä¸­æ£€å®š
 					if( (PROFESSION_BATTLE_StatusAttackCheck( charaindex, toindex, status, Success ) == 0 )
 						|| (CHAR_getInt( toindex, CHAR_HP ) <= 0 ) ){
 
-						//snprintf( szBuffer, sizeof(szBuffer), "(%s)ÎŞ·¨½«(%s)×ö³É(%s)(%d%%)",
+						//snprintf( szBuffer, sizeof(szBuffer), "(%s)æ— æ³•å°†(%s)åšæˆ(%s)(%d%%)",
 						//	CHAR_getUseName( charaindex ), CHAR_getUseName( toindex ),
 						//	aszStatusFull[status], perStatus );
 
@@ -8650,7 +8650,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 						//	(attackNo >= 10)? CHAR_COLORGRAY : CHAR_COLORPURPLE ) ;
 					}else{
 #ifdef _PROFESSION_ADDSKILL
-						if( status == BATTLE_ST_RESIST_F_I_T ){//×ÔÈ»ÍşÄÜ
+						if( status == BATTLE_ST_RESIST_F_I_T ){//è‡ªç„¶å¨èƒ½
 						    CHAR_setWorkInt( toindex, StatusTbl[BATTLE_ST_RESIST_F], turn + 1 );
                             CHAR_setWorkInt( toindex, StatusTbl[BATTLE_ST_RESIST_I], turn + 1 );
                             CHAR_setWorkInt( toindex, StatusTbl[BATTLE_ST_RESIST_T], turn + 1 );
@@ -8670,48 +8670,48 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 							||  status == BATTLE_ST_ICEARROW ){
 							CHAR_setWorkInt( toindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );
 						}
-						if( status == BATTLE_ST_DRAGNET ){//ÌìÂŞµØÍø
-							CHAR_setWorkInt( toindex, CHAR_DOOMTIME, 0 );//ÊÀ½çÄ©ÈÕ¼¯Æø
+						if( status == BATTLE_ST_DRAGNET ){//å¤©ç½—åœ°ç½‘
+							CHAR_setWorkInt( toindex, CHAR_DOOMTIME, 0 );//ä¸–ç•Œæœ«æ—¥é›†æ°”
 							CHAR_setWorkInt( toindex, CHAR_WORK_com1, 0 );
 							CHAR_setWorkInt( toindex, CHAR_WORK_toNo, 0 );
 							CHAR_setWorkInt( toindex, CHAR_WORK_mode, 0 );
 							CHAR_setWorkInt( toindex, CHAR_WORK_skill_level, 0 );
 							CHAR_setWorkInt( toindex, CHAR_WORK_array, 0 );
 						}
-						if( skill_type == BATTLE_COM_S_FIRE_ENCLOSE ){			// »ğ¸½Ìå
+						if( skill_type == BATTLE_COM_S_FIRE_ENCLOSE ){			// ç«é™„ä½“
 							CHAR_setWorkInt( toindex, CHAR_WORKMOD_F_ENCLOSE_2, skill_level );
-							// ¼Ó»ğÊìÁ·¶È¾­ÑéÖµ
+							// åŠ ç«ç†Ÿç»ƒåº¦ç»éªŒå€¼
 							PROFESSION_SKILL_LVEVEL_UP( charaindex, "PROFESSION_FIRE_PRACTICE" );
-						}else if(skill_type == BATTLE_COM_S_ICE_ENCLOSE ){		// ±ù¸½Ìå
+						}else if(skill_type == BATTLE_COM_S_ICE_ENCLOSE ){		// å†°é™„ä½“
 							CHAR_setWorkInt( toindex, CHAR_WORKMOD_I_ENCLOSE_2, skill_level );
-							// ¼Ó±ùÊìÁ·¶È¾­ÑéÖµ
+							// åŠ å†°ç†Ÿç»ƒåº¦ç»éªŒå€¼
 							PROFESSION_SKILL_LVEVEL_UP( charaindex, "PROFESSION_ICE_PRACTICE" );
-						}else if(skill_type == BATTLE_COM_S_THUNDER_ENCLOSE ){	// À×¸½Ìå
+						}else if(skill_type == BATTLE_COM_S_THUNDER_ENCLOSE ){	// é›·é™„ä½“
 							CHAR_setWorkInt( toindex, CHAR_WORKMOD_T_ENCLOSE_2, skill_level );
-							// ¼ÓÀ×ÊìÁ·¶È¾­ÑéÖµ	
+							// åŠ é›·ç†Ÿç»ƒåº¦ç»éªŒå€¼	
 							PROFESSION_SKILL_LVEVEL_UP( charaindex, "PROFESSION_THUNDER_PRACTICE" );
 						}
 
-						// ÒÅÍü ³èÎïÒÅÍü¼¼ÄÜ
+						// é—å¿˜ å® ç‰©é—å¿˜æŠ€èƒ½
 						if( skill_type == BATTLE_COM_S_OBLIVION ){
 							int toNo = -1, toNoindex = -1, pet_no = -1, num = 0;
 							char msg[20];
 
 							memset( msg, -1, sizeof(msg) );
 
-							// Ö÷ÈËindex
+							// ä¸»äººindex
 							toNo = ToList[i] - 5;
 							toNoindex = BATTLE_No2Index( battleindex, toNo );
 							
-							// ³èÎï±àºÅ
+							// å® ç‰©ç¼–å·
 							pet_no = CHAR_getInt( toNoindex, CHAR_DEFAULTPET );
 							
-							// ÒÅÍü³è¼¼ÊıÁ¿
+							// é—å¿˜å® æŠ€æ•°é‡
 							num = skill_level / 2;
 							if( num < 1 ) num = 1;
 							CHAR_setWorkInt( toindex, CHAR_WORKMODOBLIVION, num );
 
-							// ´«¸ø client ÒÅÍü¼¼ÄÜ
+							// ä¼ ç»™ client é—å¿˜æŠ€èƒ½
 							if( toNoindex != -1 ){
 								sprintf( msg, "W%d", pet_no );
 								CHAR_sendStatusString( toNoindex, msg );
@@ -8722,7 +8722,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 							}
 						}
 
-						// Ìô²¦ ½µÊôĞÔ
+						// æŒ‘æ‹¨ é™å±æ€§
 						if(skill_type == BATTLE_COM_S_INSTIGATE ){
 							int rate=0;
 							rate = skill_level * 1 + 10;
@@ -8737,9 +8737,9 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 
 						}
 
-						// Ê÷¸ù²øÈÆ ½µÃô
+						// æ ‘æ ¹ç¼ ç»• é™æ•
 						if(skill_type == BATTLE_COM_S_ENTWINE ){
-							if( (pszP = strstr( pszOption, "Ãô%" ) ) != NULL )	sscanf( pszP+3, "%d", &dex );
+							if( (pszP = strstr( pszOption, "æ•%" ) ) != NULL )	sscanf( pszP+3, "%d", &dex );
 							dex = skill_level * 4 + dex;
 							old_dex = CHAR_getWorkInt( toindex, CHAR_WORKFIXDEX);
 							old_dex = old_dex * (100 - dex) / 100;			
@@ -8748,7 +8748,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 							BATTLESTR_ADD( szCommand );
 						}
 
-						// »ğ¿¹ĞÔÌáÉı
+						// ç«æŠ—æ€§æå‡
 						if(skill_type == BATTLE_COM_S_RESIST_FIRE ){
 							int old_value =  CHAR_getWorkInt( toindex, CHAR_WORK_F_RESIST );
 							int up_value = skill_level + 10;
@@ -8756,7 +8756,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 							CHAR_setWorkInt( toindex, CHAR_WORK_F_RESIST,  old_value + up_value );
 						
 						}else
-						// ±ù¿¹ĞÔÌáÉı
+						// å†°æŠ—æ€§æå‡
 						if(skill_type == BATTLE_COM_S_RESIST_ICE ){
 							int old_value =  CHAR_getWorkInt( toindex, CHAR_WORK_I_RESIST );
 							int up_value = skill_level + 10;
@@ -8764,7 +8764,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 							CHAR_setWorkInt( toindex, CHAR_WORK_I_RESIST,  old_value + up_value );
 					
 						}else 
-						// À×¿¹ĞÔÌáÉı
+						// é›·æŠ—æ€§æå‡
 						if(skill_type == BATTLE_COM_S_RESIST_THUNDER ){
 							int old_value =  CHAR_getWorkInt( toindex, CHAR_WORK_T_RESIST );
 							int up_value = skill_level + 10;
@@ -8774,10 +8774,10 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 						}
 #ifdef _PROFESSION_ADDSKILL
                         else 
-						// ×ÔÈ»ÍşÄÜ
+						// è‡ªç„¶å¨èƒ½
 						if(skill_type == BATTLE_COM_S_RESIST_F_I_T ){
 							int old_value =  CHAR_getWorkInt( toindex, CHAR_WORK_F_RESIST );
-							int up_value = 2; //¿¹ĞÔÖµ
+							int up_value = 2; //æŠ—æ€§å€¼
 
 							if( skill_level >= 10 )		up_value = 20;
 				            else if( skill_level > 8 )	up_value = 18; 
@@ -8804,7 +8804,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 						}
 #endif
 						//snprintf( szBuffer, sizeof(szBuffer),
-						//	"(%s)½«(%s)×ö³É(%s)(%d%%)", CHAR_getUseName( charaindex ),
+						//	"(%s)å°†(%s)åšæˆ(%s)(%d%%)", CHAR_getUseName( charaindex ),
 						//	CHAR_getUseName( toindex ), aszStatusFull[status], perStatus );
 
 						//BATTLE_BroadCast( battleindex, szBuffer,
@@ -8815,8 +8815,8 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 				}
 				break;
 			}
-		// ÒÆ¶¯ĞÍ
-		case BATTLE_COM_S_SHIELD_ATTACK:	// ¶Ü»÷
+		// ç§»åŠ¨å‹
+		case BATTLE_COM_S_SHIELD_ATTACK:	// ç›¾å‡»
 			{
 				int itmid=-1;
 				int perStatus, status=-1, Success=-1;
@@ -8827,20 +8827,20 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 				itmid = CHAR_getItemIndex( charaindex, CHAR_EQSHIELD );				
 
 				if( ( itmid < 0 ) || ITEM_WSHIELD != ITEM_getInt( itmid , ITEM_TYPE ) ){
-					CHAR_talkToCli( charaindex, -1, "Î´×°±¸¶ÜÅÆ£¬ÎŞ·¨Ê¹ÓÃ´Ë¼¼ÄÜ", CHAR_COLORYELLOW);
+					CHAR_talkToCli( charaindex, -1, "æœªè£…å¤‡ç›¾ç‰Œï¼Œæ— æ³•ä½¿ç”¨æ­¤æŠ€èƒ½", CHAR_COLORYELLOW);
 					iRet = FALSE;	
 					break;
 				} 				
 
-				// ¹¥»÷Á¦¼õ°ë
+				// æ”»å‡»åŠ›å‡åŠ
 				if( skill_level != 10 )
 					CHAR_setWorkInt(charaindex,CHAR_WORKATTACKPOWER, (int)(CHAR_getWorkInt(charaindex,CHAR_WORKATTACKPOWER) * 0.5 ) );
 				
 				memset( ToList, -1, sizeof( ToList));
 				BATTLE_MultiList( battleindex, defNo2, ToList );
 
-				// ¸Ä±ä×´Ì¬
-				if( (pszP = strstr( pszOption, "ÔÎ" ) ) != NULL ){
+				// æ”¹å˜çŠ¶æ€
+				if( (pszP = strstr( pszOption, "æ™•" ) ) != NULL ){
 					for( i = 1; i < BATTLE_ST_END; i ++ ){
 						if( strncmp( pszP, aszStatus[i], 2 ) == 0 ){
 							status = i;
@@ -8849,8 +8849,8 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 					}	
 				}
 
-				// ³É¹¦ÂÊ
-				if( (pszP = strstr( pszOption, "³É%" ) ) != NULL )	sscanf( pszP+3, "%d", &Success );		
+				// æˆåŠŸç‡
+				if( (pszP = strstr( pszOption, "æˆ%" ) ) != NULL )	sscanf( pszP+3, "%d", &Success );		
 				Success += skill_level * 4;
 				perStatus = Success;
 
@@ -8863,15 +8863,15 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 					int hit = -1;
 					react = 0;
 
-					defindex = BATTLE_No2Index( battleindex, ToList[i] );		//ÊØ·½index
+					defindex = BATTLE_No2Index( battleindex, ToList[i] );		//å®ˆæ–¹index
 					if( CHAR_CHECKINDEX( defindex ) == FALSE )	continue;
 
-					if( (ReactType=BATTLE_GetDamageReact( defindex)) > 0 )	{	//ÓĞ¹â¾µÊØ
+					if( (ReactType=BATTLE_GetDamageReact( defindex)) > 0 )	{	//æœ‰å…‰é•œå®ˆ
 						react = ReactType;
 						skill_type=-1;
 					}
 
-					//È¡µÃ¹¥»÷áá×´Ì¬
+					//å–å¾—æ”»å‡»å¾ŒçŠ¶æ€
 					iWork = BATTLE_AttackSeq( charaindex, defindex, &damage, &Guardian, skill_type );
 
 					ultimate = BATTLE_DamageSub( charaindex, defindex, &damage, &petdamage, &react);
@@ -8882,14 +8882,14 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 
 					iRet = BATTLE_DefineAttack( charaindex, defindex, iWork, szBuffer, damage, react, &flg);
 
-					// ½« NORMAL ¼° CRITICAL µÄ flg ¸Ä³É Ö°ÒµµÄflg
+					// å°† NORMAL åŠ CRITICAL çš„ flg æ”¹æˆ èŒä¸šçš„flg
 					if( img2 != 0  ){
 						if( flg == BCF_NORMAL || flg == BCF_KAISHIN ){
 							hit=1;
-							if( (pszP = strstr( pszOption, "Ç°" ) ) != NULL ){
-								flg |= BCF_F_SKILLACT; //»÷ÖĞÇ°ĞãÍ¼
+							if( (pszP = strstr( pszOption, "å‰" ) ) != NULL ){
+								flg |= BCF_F_SKILLACT; //å‡»ä¸­å‰ç§€å›¾
 							}else{
-								flg |= BCF_B_SKILLACT; //»÷ÖĞááĞãÍ¼		
+								flg |= BCF_B_SKILLACT; //å‡»ä¸­å¾Œç§€å›¾		
 							}
 						}
 					}
@@ -8907,7 +8907,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 						if( (PROFESSION_BATTLE_StatusAttackCheck( charaindex, defindex, status, Success ) == 0 )
 							|| (CHAR_getInt( defindex, CHAR_HP ) <= 0 ) ){
 
-							//snprintf( szBuffer, sizeof(szBuffer), "(%s)ÎŞ·¨½«(%s)×ö³É(%s)(%d%%)", 
+							//snprintf( szBuffer, sizeof(szBuffer), "(%s)æ— æ³•å°†(%s)åšæˆ(%s)(%d%%)", 
 							//	CHAR_getUseName( charaindex ), CHAR_getUseName( defindex ), aszStatusFull[status], perStatus );
 
 							//BATTLE_BroadCast( battleindex, szBuffer,
@@ -8929,7 +8929,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 							}
 								
 							//snprintf( szBuffer, sizeof(szBuffer),
-							//	"(%s)½«(%s)×ö³É(%s)(%d%%)",
+							//	"(%s)å°†(%s)åšæˆ(%s)(%d%%)",
 							//	CHAR_getUseName( charaindex ),
 							//	CHAR_getUseName( defindex ),
 							//	aszStatusFull[status],
@@ -8957,7 +8957,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 			  	break;				
 
 			}
-		case BATTLE_COM_S_TOXIN_WEAPON:		// ¶¾ËØÎäÆ÷
+		case BATTLE_COM_S_TOXIN_WEAPON:		// æ¯’ç´ æ­¦å™¨
 			{
 				int perStatus, status=-1, Success=-1;
 				int defNo2 = CHAR_getWorkInt(charaindex,CHAR_WORKBATTLECOM2);
@@ -8965,8 +8965,8 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 				charaindex = BATTLE_No2Index( battleindex, attackNo );
 				if( CHAR_CHECKINDEX( charaindex ) == FALSE )	return iRet;
 
-				// ¸Ä±ä×´Ì¬
-				if( ((pszP = strstr( pszOption, "¶¾" ) ) != NULL ) ){
+				// æ”¹å˜çŠ¶æ€
+				if( ((pszP = strstr( pszOption, "æ¯’" ) ) != NULL ) ){
 
 					for( i = 1; i < BATTLE_ST_END; i ++ ){
 						if( strncmp( pszP, aszStatus[i], 2 ) == 0 ){
@@ -8976,8 +8976,8 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 					}	
 				}
 				
-				// ³É¹¦ÂÊ
-				if( (pszP = strstr( pszOption, "³É%" ) ) != NULL )	sscanf( pszP+3, "%d", &Success );
+				// æˆåŠŸç‡
+				if( (pszP = strstr( pszOption, "æˆ%" ) ) != NULL )	sscanf( pszP+3, "%d", &Success );
 				Success += skill_level * 2;
 				perStatus = Success;
 	
@@ -8998,7 +8998,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 
 					memset( szCommand, -1, sizeof(szCommand) );
 
-					// ÓĞÎŞ±äÉí
+					// æœ‰æ— å˜èº«
 #ifdef _PETSKILL_BECOMEPIG
 					if(CHAR_getWorkInt(charaindex, CHAR_WORKFOXROUND) > 0
 						|| CHAR_getWorkInt(charaindex, CHAR_BECOMEPIG) > 0) bChange = TRUE;
@@ -9006,7 +9006,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 					if(CHAR_getWorkInt(charaindex, CHAR_WORKFOXROUND) > 0) bChange = TRUE;
 #endif
 					if(!bChange){
-						// ÎäÆ÷ÎªÔ¶³ÌÎäÆ÷
+						// æ­¦å™¨ä¸ºè¿œç¨‹æ­¦å™¨
 						if( gWeponType == ITEM_BOW ){
 							sprintf( szCommand, "BB|a%X|w0|", attackNo );
 							BATTLESTR_ADD( szCommand );
@@ -9038,16 +9038,16 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 
 						//memset( szBuffer, 0, sizeof( szBuffer ) );
 
-						defindex = BATTLE_No2Index( battleindex, ToList[i] );		//ÊØ·½index
+						defindex = BATTLE_No2Index( battleindex, ToList[i] );		//å®ˆæ–¹index
 						if( CHAR_CHECKINDEX( defindex ) == FALSE )	continue;
 						if( CHAR_getInt( defindex, CHAR_HP ) <= 0 ) continue;
 	
-						if( (ReactType=BATTLE_GetDamageReact( defindex)) > 0 ){	//ÓĞ¹â¾µÊØ
+						if( (ReactType=BATTLE_GetDamageReact( defindex)) > 0 ){	//æœ‰å…‰é•œå®ˆ
 							react = ReactType;
 							skill_type=-1;
 						}
 
-						//È¡µÃ¹¥»÷áá×´Ì¬
+						//å–å¾—æ”»å‡»å¾ŒçŠ¶æ€
 						iWork = BATTLE_AttackSeq( charaindex, defindex, &damage, &Guardian, skill_type );
 						if(Guardian >= 0) defindex = BATTLE_No2Index( battleindex, Guardian );
 						
@@ -9070,7 +9070,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 							if( (PROFESSION_BATTLE_StatusAttackCheck( charaindex, defindex, status, perStatus ) == 0 )
 								|| (CHAR_getInt( defindex, CHAR_HP ) <= 0 ) ){
 
-								//snprintf( szBuffer, sizeof(szBuffer), "(%s)ÎŞ·¨½«(%s)×ö³É(%s)(%d%%)", 
+								//snprintf( szBuffer, sizeof(szBuffer), "(%s)æ— æ³•å°†(%s)åšæˆ(%s)(%d%%)", 
 								//	CHAR_getUseName( charaindex ), CHAR_getUseName( defindex ), aszStatusFull[status], perStatus );
 								//BATTLE_BroadCast( battleindex, szBuffer,
 								//	(attackNo >= 10)? CHAR_COLORGRAY : CHAR_COLORPURPLE ) ;							
@@ -9091,7 +9091,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 								}
 						
 								//snprintf( szBuffer, sizeof(szBuffer),
-								//	"(%s)½«(%s)×ö³É(%s)(%d%%)",
+								//	"(%s)å°†(%s)åšæˆ(%s)(%d%%)",
 								//	CHAR_getUseName( charaindex ),
 								//	CHAR_getUseName( defindex ),
 								//	aszStatusFull[status],
@@ -9102,7 +9102,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 							}
 						}
 						
-						// ÎäÆ÷ÎªÔ¶³ÌÎäÆ÷Ê±
+						// æ­¦å™¨ä¸ºè¿œç¨‹æ­¦å™¨æ—¶
 
 						if(((gWeponType == ITEM_BOW)
 							|| (gWeponType == ITEM_BOUNDTHROW)
@@ -9126,7 +9126,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 						iRet = TRUE;
 					}
 
-					// ÎäÆ÷ÎªÔ¶³ÌÎäÆ÷Ê±
+					// æ­¦å™¨ä¸ºè¿œç¨‹æ­¦å™¨æ—¶
 					if((( gWeponType == ITEM_BOW ) || ( gWeponType == ITEM_BOUNDTHROW ) || ( gWeponType == ITEM_BREAKTHROW ) || ( gWeponType == ITEM_BOOMERANG )) && !bChange){
 						snprintf( szCommand, sizeof( szCommand ), "FF|" );
 						BATTLESTR_ADD( szCommand );
@@ -9136,7 +9136,7 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 		  	break;
 			}
 #ifdef _PROFESSION_ADDSKILL
-		case BATTLE_COM_S_BOUNDARY:         // ËÄÊôĞÔ½á½ç
+		case BATTLE_COM_S_BOUNDARY:         // å››å±æ€§ç»“ç•Œ
             {
                 int ToList[SIDE_OFFSET*2+1],status=-1,power=20,toindex=-1,loop=1;
 				int defNo2 = defNo;//CHAR_getWorkInt(charaindex,CHAR_WORKBATTLECOM2);
@@ -9160,16 +9160,16 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 				else if( skill_level > 20 ) power = 30;
 				else power = 20;
 
-				if( ((pszP = strstr( pszOption, "µØ½á½ç" ) ) != NULL ) )
+				if( ((pszP = strstr( pszOption, "åœ°ç»“ç•Œ" ) ) != NULL ) )
 				    status = CHAR_WORKFIXEARTHAT_BOUNDARY;
-				else if( ((pszP = strstr( pszOption, "Ë®½á½ç" ) ) != NULL ) )
+				else if( ((pszP = strstr( pszOption, "æ°´ç»“ç•Œ" ) ) != NULL ) )
 				    status = CHAR_WORKFIXWATERAT_BOUNDARY;
-				else if( ((pszP = strstr( pszOption, "»ğ½á½ç" ) ) != NULL ) )
+				else if( ((pszP = strstr( pszOption, "ç«ç»“ç•Œ" ) ) != NULL ) )
 				    status = CHAR_WORKFIXFIREAT_BOUNDARY;
-				else if( ((pszP = strstr( pszOption, "·ç½á½ç" ) ) != NULL ) ){
+				else if( ((pszP = strstr( pszOption, "é£ç»“ç•Œ" ) ) != NULL ) ){
                     status = CHAR_WORKFIXWINDAT_BOUNDARY;
 				}
-				else{//ÆÆ½á½ç
+				else{//ç ´ç»“ç•Œ
                     status = CHAR_WORKFIXEARTHAT_BOUNDARY;
 					
 					if( skill_level >= 100 )		rand_boundary = 100;
@@ -9186,14 +9186,14 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 						loop = 0;
 				}
 
-				if( ((pszP = strstr( pszOption, "ÆÆ½á½ç" ) ) != NULL ) ){
+				if( ((pszP = strstr( pszOption, "ç ´ç»“ç•Œ" ) ) != NULL ) ){
 					if( defNo2 < 10 )defNo2 = 20;	else defNo2 = 21;
 				}
 
 				memset( ToList, -1, sizeof( ToList));
 				BATTLE_MultiList( battleindex, defNo2, ToList );
 
-				if( ((pszP = strstr( pszOption, "ÆÆ½á½ç" ) ) == NULL ) ){//ÏÈ°ÑËùÓĞ½á½çÇå³ı
+				if( ((pszP = strstr( pszOption, "ç ´ç»“ç•Œ" ) ) == NULL ) ){//å…ˆæŠŠæ‰€æœ‰ç»“ç•Œæ¸…é™¤
 					for( j=CHAR_WORKFIXEARTHAT_BOUNDARY; j<CHAR_WORKFIXEARTHAT_BOUNDARY+4; j++ ){
 						for( i = 0; ToList[i] != -1; i ++ ){
 							toindex = BATTLE_No2Index( battleindex, ToList[i] );
@@ -9210,14 +9210,14 @@ int battle_profession_status_chang_fun(int battleindex, int attackNo, int defNo,
 					}
 				}
 
-				// ½«Ä§·¨²ÎÊı´úÈë¶¯»­
+				// å°†é­”æ³•å‚æ•°ä»£å…¥åŠ¨ç”»
 	            analysis_profession_parameter( 2, CHAR_GETWORKINT_LOW( charaindex, CHAR_WORKBATTLECOM3), defNo2, charaindex );
 	            PROFESSION_MAGIC_ATTAIC_Effect( battleindex, attackNo, ToList, 2);
                 sprintf( szCommand , "%X|" , 0x5711438 );
 	            BATTLESTR_ADD( szCommand );
 
 				if( power == 0 ){
-                    if( defNo2 == 20 || defNo2 == 25 || defNo2 == 26 )//ÓÒ·½
+                    if( defNo2 == 20 || defNo2 == 25 || defNo2 == 26 )//å³æ–¹
 				        snprintf( szCommand, sizeof( szCommand ), "Ba|%X|%X|", 0, 1 );
 					else
                         snprintf( szCommand, sizeof( szCommand ), "Ba|%X|%X|", 0, 0 );
@@ -9325,7 +9325,7 @@ int BATTLE_PROFESSION_ATK_PET_DamageSub( int attackindex, int defindex, int *pDa
 		defpet = attackpet;
 
 	}else
-	if( *pRefrect == BATTLE_MD_TRAP ){		//ÏİÚå	
+	if( *pRefrect == BATTLE_MD_TRAP ){		//é™·é˜±	
 		int value=0;
 		value = CHAR_getWorkInt( defindex, CHAR_WORKMODTRAP );
 		damage = value;
@@ -9437,7 +9437,7 @@ int BATTLE_PROFESSION_ATK_PET_DamageSub( int attackindex, int defindex, int *pDa
 	if( BattleArray[battleindex].type == BATTLE_TYPE_P_vs_P ){
 	}
 #ifdef _PETSKILL_LER
-// À×¶û²»ÄÜ±»´ò·É
+// é›·å°”ä¸èƒ½è¢«æ‰“é£
 	if(CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101813 ||
 		 CHAR_getInt(defindex,CHAR_BASEBASEIMAGENUMBER) == 101814) IsUltimate = 0;
 #endif
@@ -9453,12 +9453,12 @@ int BATTLE_PROFESSION_ATK_PET_DamageSub( int attackindex, int defindex, int *pDa
 }
 
 
-// È¡µÃ»ØĞı¹¥»÷ÉËº¦
+// å–å¾—å›æ—‹æ”»å‡»ä¼¤å®³
 int BATTLE_PROFESSION_CONVOLUTE_GET_DAMAGE( int attackindex, int defindex, int skill_level ) 
 {
 	int damage = 0, old_atk = 0, atk = 0;
 	int rand_num = RAND(1, 10000 );
-	// »áĞÄÒ»»÷
+	// ä¼šå¿ƒä¸€å‡»
 	int perCri = BATTLE_CriticalCheck( attackindex, defindex );
 
 	old_atk = CHAR_getWorkInt( attackindex, CHAR_WORKATTACKPOWER );
@@ -9477,12 +9477,12 @@ int BATTLE_PROFESSION_CONVOLUTE_GET_DAMAGE( int attackindex, int defindex, int s
 	return damage;
 }
 
-// È¡µÃ¹á´©¹¥»÷ÉËº¦
+// å–å¾—è´¯ç©¿æ”»å‡»ä¼¤å®³
 int BATTLE_PROFESSION_THROUGH_ATTACK_GET_DAMAGE( int attackindex, int defindex ) 
 {
 	int damage = 0;
 	int rand_num = RAND(1, 10000 );
-	// »áĞÄÒ»»÷
+	// ä¼šå¿ƒä¸€å‡»
 	int perCri = BATTLE_CriticalCheck( attackindex, defindex );
 
 	if( rand_num < perCri ){
@@ -9497,7 +9497,7 @@ int BATTLE_PROFESSION_THROUGH_ATTACK_GET_DAMAGE( int attackindex, int defindex )
 	return damage;
 }
 
-// »ğ¡¢±ù¡¢À×¸½Ìå¸½¼Ó¹¥»÷
+// ç«ã€å†°ã€é›·é™„ä½“é™„åŠ æ”»å‡»
 int BATTLE_PROFESSION_RANG_ATTACK_DAMAGE( int charaindex, int attackNo, int defNo, int skill_type, int status, int turn, int perStatus, int effect, int img1, int img2 )
 {
 	int ReactType = 0, iRet = -1,defindex = -1,react = 0;
@@ -9506,10 +9506,10 @@ int BATTLE_PROFESSION_RANG_ATTACK_DAMAGE( int charaindex, int attackNo, int defN
 
 	//memset( szBuffer, 0, sizeof( szBuffer ) );
 
-	defindex = BATTLE_No2Index( battleindex, defNo);		//ÊØ·½index					
+	defindex = BATTLE_No2Index( battleindex, defNo);		//å®ˆæ–¹index					
 	if( defindex == -1 ) return iRet;
 
-	if( (ReactType=BATTLE_GetDamageReact( defindex)) > 0 ){	//ÓĞ¹â¾µÊØ
+	if( (ReactType=BATTLE_GetDamageReact( defindex)) > 0 ){	//æœ‰å…‰é•œå®ˆ
 		react = ReactType;
 		skill_type=-1;
 	}
@@ -9517,7 +9517,7 @@ int BATTLE_PROFESSION_RANG_ATTACK_DAMAGE( int charaindex, int attackNo, int defN
 	if( img1 != 0 ){
 		if( (PROFESSION_BATTLE_StatusAttackCheck( charaindex, defindex, status, perStatus ) == 0 )
 				|| (CHAR_getInt( defindex, CHAR_HP ) <= 0 ) ){
-				//snprintf( szBuffer, sizeof(szBuffer), "(%s)ÎŞ·¨½«(%s)×ö³É(%s)(%d%%)", 
+				//snprintf( szBuffer, sizeof(szBuffer), "(%s)æ— æ³•å°†(%s)åšæˆ(%s)(%d%%)", 
 				//					CHAR_getUseName( charaindex ), CHAR_getUseName( defindex ), aszStatusFull[status], perStatus );
 				//BATTLE_BroadCast( battleindex, szBuffer,(attackNo >= 10)? CHAR_COLORGRAY : CHAR_COLORPURPLE ) ;							
 		}
@@ -9536,7 +9536,7 @@ int BATTLE_PROFESSION_RANG_ATTACK_DAMAGE( int charaindex, int attackNo, int defN
 				) CHAR_setWorkInt( defindex, CHAR_WORKBATTLECOM1, BATTLE_COM_NONE );
 		
 			//snprintf( szBuffer, sizeof(szBuffer),
-			//		"(%s)½«(%s)×ö³É(%s)(%d%%)",
+			//		"(%s)å°†(%s)åšæˆ(%s)(%d%%)",
 			//		CHAR_getUseName( charaindex ),
 			//		CHAR_getUseName( defindex ),
 			//		aszStatusFull[status],
@@ -9556,7 +9556,7 @@ int BATTLE_PROFESSION_RANG_ATTACK_DAMAGE( int charaindex, int attackNo, int defN
 
 #ifdef _PETSKILL_LER
 extern ToCallMagic PROFESSION_magic[3];
-// À×¶û¼¼ - ÈºòğËÄ´Ü
+// é›·å°”æŠ€ - ç¾¤è å››çªœ
 void BATTLE_BatFly( int battleindex, int attackNo,int myside)
 {
 	int ToList[SIDE_OFFSET*2+1],i,toindex;
@@ -9567,14 +9567,14 @@ void BATTLE_BatFly( int battleindex, int attackNo,int myside)
 	if(CHAR_CHECKINDEX(charaindex) == FALSE) return;
 
 	memset(ToList,-1,sizeof(ToList));
-	if(myside) BATTLE_MultiList(battleindex,TARGET_SIDE_0,ToList);	// ´òÓÒÉÏ
-	else BATTLE_MultiList(battleindex,TARGET_SIDE_1,ToList);				// ´ò×óÏÂ
+	if(myside) BATTLE_MultiList(battleindex,TARGET_SIDE_0,ToList);	// æ‰“å³ä¸Š
+	else BATTLE_MultiList(battleindex,TARGET_SIDE_1,ToList);				// æ‰“å·¦ä¸‹
 	
 	PROFESSION_magic[2].uiSpriteNum = myside ? 101806:101807;
 	PROFESSION_magic[2].siSx = 320;
 	PROFESSION_magic[2].siSy = 240;
-	PROFESSION_magic[2].uiPrevMagicNum = myside ? 101808:101809;		// Ç°ÖÃ¶¯»­
-	PROFESSION_magic[2].uiPostMagicNum = 0xffffffff;								// ÎŞááÖÃ¶¯»­
+	PROFESSION_magic[2].uiPrevMagicNum = myside ? 101808:101809;		// å‰ç½®åŠ¨ç”»
+	PROFESSION_magic[2].uiPostMagicNum = 0xffffffff;								// æ— å¾Œç½®åŠ¨ç”»
 	PROFESSION_magic[2].uiShowType = 1;
 	PROFESSION_magic[2].uiShowBehindChar = 1;
 	PROFESSION_magic[2].siPrevMagicSx = 0;
@@ -9588,14 +9588,14 @@ void BATTLE_BatFly( int battleindex, int attackNo,int myside)
 		petidx = BATTLE_getRidePet(toindex);
 		if(!CHAR_CHECKINDEX(toindex))	continue;
 		charhp = CHAR_getInt(toindex,CHAR_HP);
-		// Ã»Æï³èÎï
+		// æ²¡éª‘å® ç‰©
 		if( -1 == petidx || CHAR_getInt(petidx,CHAR_HP) <= 0){
-			// Ê£ÏÂ²»µ½10µÎÑª
+			// å‰©ä¸‹ä¸åˆ°10æ»´è¡€
 			if((charhp/10) == 0){
 				CHAR_setInt(toindex,CHAR_HP,charhp - 1);
 				charhp = 1;
 			}
-			// ¿Û10%µÄHP
+			// æ‰£10%çš„HP
 			else{
 				CHAR_setInt(toindex,CHAR_HP,charhp - (charhp/10));
 				charhp /= 10;
@@ -9604,19 +9604,19 @@ void BATTLE_BatFly( int battleindex, int attackNo,int myside)
 			sprintf(szCommand,"BD|r%X|%X|0|d%X|p0|",ToList[i],BD_KIND_HP,charhp);
 		}
 		else{
-			// Ê£ÏÂ²»µ½20µÎÑª
+			// å‰©ä¸‹ä¸åˆ°20æ»´è¡€
 			if((charhp/20) == 0){
 				CHAR_setInt(toindex,CHAR_HP,charhp - 1);
 				charhp = 1;
 			}
-			// ÈËºÍ³è¸÷¿Û5%HP
+			// äººå’Œå® å„æ‰£5%HP
 			else{
 				CHAR_setInt(toindex,CHAR_HP,charhp - (charhp/20));
 				charhp /= 20;
 			}
 			addhp += charhp;
 			pethp = CHAR_getInt(petidx,CHAR_HP);
-			// Ê£ÏÂ²»µ½20µÎÑª
+			// å‰©ä¸‹ä¸åˆ°20æ»´è¡€
 			if((pethp/20) == 0){
 				CHAR_setInt(petidx,CHAR_HP,pethp - 1);
 				pethp = 1;
@@ -9644,7 +9644,7 @@ void BATTLE_BatFly( int battleindex, int attackNo,int myside)
 	BATTLESTR_ADD(szCommand);
 }
 
-// À×¶û¼¼ - ·ÖÉíµØÁÑ
+// é›·å°”æŠ€ - åˆ†èº«åœ°è£‚
 void BATTLE_DivideAttack( int battleindex, int attackNo,int myside)
 {
 	int ToList[SIDE_OFFSET*2+1],i,toindex;
@@ -9655,14 +9655,14 @@ void BATTLE_DivideAttack( int battleindex, int attackNo,int myside)
 	if(CHAR_CHECKINDEX(charaindex) == FALSE) return;
 
 	memset(ToList,-1,sizeof(ToList));
-	if(myside) BATTLE_MultiList(battleindex,TARGET_SIDE_0,ToList);	// ´ò×óÉÏ
-	else BATTLE_MultiList(battleindex,TARGET_SIDE_1,ToList);				// ´òÓÒÏÂ
+	if(myside) BATTLE_MultiList(battleindex,TARGET_SIDE_0,ToList);	// æ‰“å·¦ä¸Š
+	else BATTLE_MultiList(battleindex,TARGET_SIDE_1,ToList);				// æ‰“å³ä¸‹
 	
 	PROFESSION_magic[2].uiSpriteNum = myside ? 101798:101800;
 	PROFESSION_magic[2].siSx = 320;
 	PROFESSION_magic[2].siSy = 240;
-	PROFESSION_magic[2].uiPrevMagicNum = myside ? 101808:101809;		// Ç°ÖÃ¶¯»­
-	PROFESSION_magic[2].uiPostMagicNum = 0xffffffff;								// ÎŞááÖÃ¶¯»­
+	PROFESSION_magic[2].uiPrevMagicNum = myside ? 101808:101809;		// å‰ç½®åŠ¨ç”»
+	PROFESSION_magic[2].uiPostMagicNum = 0xffffffff;								// æ— å¾Œç½®åŠ¨ç”»
 	PROFESSION_magic[2].uiShowType = 1;
 	PROFESSION_magic[2].uiShowBehindChar = 0;
 	PROFESSION_magic[2].siPrevMagicSx = 0;
@@ -9671,14 +9671,14 @@ void BATTLE_DivideAttack( int battleindex, int attackNo,int myside)
 	sprintf(szCommand,"%X|",0x5711438);
 	BATTLESTR_ADD(szCommand);
 
-	// ÏÈÍê³É¿ÛMPµÄ¶¯×÷
+	// å…ˆå®Œæˆæ‰£MPçš„åŠ¨ä½œ
 	for(i=0;i<SIDE_OFFSET;i++){
 		toindex = BATTLE_No2Index(battleindex,ToList[i]);
 		if(!CHAR_CHECKINDEX(toindex))	continue;
-		// ÈôÊÇÍæ¼Ò
+		// è‹¥æ˜¯ç©å®¶
 		if(CHAR_getInt(toindex,CHAR_WHICHTYPE) == CHAR_TYPEPLAYER){
 			charmp = CHAR_getInt(toindex,CHAR_MP);
-			// ÈË¿Û1/2MP
+			// äººæ‰£1/2MP
 			CHAR_setInt(toindex,CHAR_MP,charmp - (charmp>>1));
 			charmp >>= 1;
 			sprintf(szCommand,"BD|r%X|%X|0|d%X|",ToList[i],BD_KIND_MP,charmp);
@@ -9691,9 +9691,9 @@ void BATTLE_DivideAttack( int battleindex, int attackNo,int myside)
 		if(!CHAR_CHECKINDEX(toindex))	continue;
 
 		charhp = CHAR_getInt(toindex,CHAR_HP);
-		// Ã»Æï³èÎï
+		// æ²¡éª‘å® ç‰©
 		if( -1 == petidx || CHAR_getInt(petidx,CHAR_HP) <= 0){
-			// ¿Û20%HP
+			// æ‰£20%HP
 			if((charhp/5) == 0){
 				CHAR_setInt(toindex,CHAR_HP,charhp - 1);
 				charhp = 1;
@@ -9705,7 +9705,7 @@ void BATTLE_DivideAttack( int battleindex, int attackNo,int myside)
 			sprintf(szCommand,"BD|r%X|%X|0|d%X|p0|",ToList[i],BD_KIND_HP,charhp);
 		}
 		else{
-			// ÈËºÍ³è¸÷¿Û10%HP
+			// äººå’Œå® å„æ‰£10%HP
 			if((charhp/10) == 0){
 				CHAR_setInt(toindex,CHAR_HP,charhp - 1);
 				charhp = 1;
@@ -9734,7 +9734,7 @@ void BATTLE_DivideAttack( int battleindex, int attackNo,int myside)
 	}
 }
 
-// À×¶ûËÀÍö,±äÉí
+// é›·å°”æ­»äº¡,å˜èº«
 void BATTLE_LerChange(int battleindex,int charaindex,int no)
 {
 	int array = -1,newindex = -1;
@@ -9766,11 +9766,11 @@ void BATTLE_LerChange(int battleindex,int charaindex,int no)
 
 #ifdef _PETSKILL_BATTLE_MODEL
 typedef struct _tsAttackObject{
-	int index;					// ¹¥»÷Îï¼ş±àºÅ
-	int target;					// Ä¿±ê±àºÅ
-	int actionNumber;		// ¹¥»÷Îï¼şÍ¼ºÅ
+	int index;					// æ”»å‡»ç‰©ä»¶ç¼–å·
+	int target;					// ç›®æ ‡ç¼–å·
+	int actionNumber;		// æ”»å‡»ç‰©ä»¶å›¾å·
 }AttackObject;
-// BATTLE_BattleModel ÓÃµÄ¹¥»÷º¯Ê½
+// BATTLE_BattleModel ç”¨çš„æ”»å‡»å‡½å¼
 void BATTLE_BattleModel_ATTACK(
 	int battleindex,
 	int charaindex,
@@ -9783,48 +9783,48 @@ void BATTLE_BattleModel_ATTACK(
 	int i,iDefindex,iPetindex,iToindex,iDamage,iPetDamage,iGuardian = -1,iDefState,iUltimate = 0,iTemp = 0,iTemp2 = 0,iFlg = 0;
 	char szCommand[1024];
 
-	// ¼ì²éÄ¿±ê´æ²»´æÔÚ»òÓĞÃ»ÓĞËÀÍö
+	// æ£€æŸ¥ç›®æ ‡å­˜ä¸å­˜åœ¨æˆ–æœ‰æ²¡æœ‰æ­»äº¡
 	if(!BATTLE_TargetCheck(battleindex,pAAttackObject->target)) return;
 	iToindex = iDefindex = BATTLE_No2Index(battleindex,pAAttackObject->target);
-	// ÈôÊÇ³èÎï,¼ì²éÖ÷ÈËÔÚ²»ÔÚ³¡ÉÏ
+	// è‹¥æ˜¯å® ç‰©,æ£€æŸ¥ä¸»äººåœ¨ä¸åœ¨åœºä¸Š
 	if(CHAR_getInt(iToindex,CHAR_WHICHTYPE ) == CHAR_TYPEPET){
 		if(pAAttackObject->target + 5 >= SIDE_OFFSET) iFlg = 1;
 		i = pAAttackObject->target + 5 - iFlg * SIDE_OFFSET;
 		if(BattleArray[battleindex].Side[iFlg].Entry[i].flg & BENT_FLG_ULTIMATE) return;
 	}
 	iPetindex = BATTLE_getRidePet(iToindex);
-	// ¼ÆËãÉËº¦
+	// è®¡ç®—ä¼¤å®³
 	iDefState = BATTLE_AttackSeq(charaindex,iToindex,&iDamage,&iGuardian,-1);
-	// iType & 0x00000004 Îª true ±íÊ¾ÎªÎïÀí¹¥»÷
+	// iType & 0x00000004 ä¸º true è¡¨ç¤ºä¸ºç‰©ç†æ”»å‡»
 	if(iType & 0x00000004){
-		// ÈôÖÒÈ®Ã»ËÀÍö,Éè¶¨ÖÒÈ®
+		// è‹¥å¿ çŠ¬æ²¡æ­»äº¡,è®¾å®šå¿ çŠ¬
 		if(BATTLE_TargetCheck(battleindex,iGuardian)){
-			// ÈôÓĞÖÒÈ®,°Ñ±»¹¥»÷ÕßÉè¶¨ÎªÊ¹ÓÃÖÒÈ®¼¼ÄÜµÄ½ÇÉ«,·ñÔò±»¹¥»÷ÕßÎªÔ­Ä¿±ê
+			// è‹¥æœ‰å¿ çŠ¬,æŠŠè¢«æ”»å‡»è€…è®¾å®šä¸ºä½¿ç”¨å¿ çŠ¬æŠ€èƒ½çš„è§’è‰²,å¦åˆ™è¢«æ”»å‡»è€…ä¸ºåŸç›®æ ‡
 			if(iGuardian >= 0) iDefindex = BATTLE_No2Index(battleindex,iGuardian);
 		}
 		else iGuardian = -1;
 	}
-	// Éè¶¨ CHAR_NPCWORKINT1 Îª BATTLE_COM_S_BATTLE_MODEL ÔÚ BATTLE_DamageSub »áÓÃµ½
+	// è®¾å®š CHAR_NPCWORKINT1 ä¸º BATTLE_COM_S_BATTLE_MODEL åœ¨ BATTLE_DamageSub ä¼šç”¨åˆ°
 	iTemp2 = CHAR_getWorkInt(iDefindex,CHAR_NPCWORKINT1);
 	CHAR_setWorkInt(iDefindex,CHAR_NPCWORKINT1,BATTLE_COM_S_BATTLE_MODEL);
-	// ÔÚÕâÖ®ááµÄ iDefindex ²ÅÊÇÕæÕı»áÊÜÉËµÄÄ¿±ê
+	// åœ¨è¿™ä¹‹å¾Œçš„ iDefindex æ‰æ˜¯çœŸæ­£ä¼šå—ä¼¤çš„ç›®æ ‡
 	if(gDamageDiv != 0.0 && iDamage > 0){
 		iDamage /= gDamageDiv;
 		if(iDamage <= 0) iDamage = 1;
 	}
-	// ÈôÃ»ÓĞÏÂÁĞÈÎÒ»Ïî,½øĞĞ¿ÛÑª
+	// è‹¥æ²¡æœ‰ä¸‹åˆ—ä»»ä¸€é¡¹,è¿›è¡Œæ‰£è¡€
 	if(!(iDefState == BATTLE_RET_DODGE)){
-		// ¿ÛÑª
-		// ÎïÀí¹¥»÷
+		// æ‰£è¡€
+		// ç‰©ç†æ”»å‡»
 		if(iType & 0x00000004) iUltimate = BATTLE_DamageSub(charaindex,iDefindex,&iDamage,&iPetDamage,&iTemp);
-		// ·ÇÎïÀí¹¥»÷
+		// éç‰©ç†æ”»å‡»
 		else{
 			iTemp = -1;
 			iUltimate = BATTLE_DamageSub(charaindex,iDefindex,&iDamage,&iPetDamage,&iTemp);
 		}
 	}
 	iFlg = 0;
-	// »Ø´«×´Ì¬¼ì²é
+	// å›ä¼ çŠ¶æ€æ£€æŸ¥
 	switch(iDefState){
 		case BATTLE_RET_ALLGUARD:iFlg |= BCF_GUARD;break;
 		case BATTLE_RET_MISS:iDamage = 0;break;
@@ -9842,17 +9842,17 @@ void BATTLE_BattleModel_ATTACK(
 #endif
 	}
 
-	//»èË¯Ê±,ÔÚÕâÀï½â³ı×´Ì¬(Ò²ÓĞÆäËüµÄ×´Ì¬)
+	//æ˜ç¡æ—¶,åœ¨è¿™é‡Œè§£é™¤çŠ¶æ€(ä¹Ÿæœ‰å…¶å®ƒçš„çŠ¶æ€)
 	if(iDamage > 0 && (iTemp != BATTLE_MD_ABSROB) && (iTemp != BATTLE_MD_VANISH)) BATTLE_DamageWakeUp(battleindex,iDefindex);
 
-	// Ä¿±êÊÇ·ñËÀÍö
+	// ç›®æ ‡æ˜¯å¦æ­»äº¡
 	if(CHAR_getInt(iDefindex,CHAR_HP) <= 0){
 		if(CHAR_getWorkInt(iDefindex,CHAR_WORKBATTLEFLG ) & CHAR_BATTLEFLG_ABIO) iUltimate = 1;
 		else if(CHAR_getInt(iDefindex,CHAR_WHICHTYPE) != CHAR_TYPEPLAYER && (iFlg & BCF_KAISHIN)){
 			if(RAND(1,100) < 50) iUltimate = 1;
 		}
 #ifdef _PETSKILL_LER
-		// À×¶û²»ÄÜ±»´ò·É
+		// é›·å°”ä¸èƒ½è¢«æ‰“é£
 		if(CHAR_getInt(iDefindex,CHAR_BASEBASEIMAGENUMBER) == 101813 ||
 			CHAR_getInt(iDefindex,CHAR_BASEBASEIMAGENUMBER) == 101814) iUltimate = 0;
 #endif
@@ -9867,16 +9867,16 @@ void BATTLE_BattleModel_ATTACK(
 		if(BATTLE_ItemCrushSeq(iDefindex) == TRUE)
 #endif
 			iFlg |= BCF_CRUSH;
-		// ×´Ì¬ÃüÖĞÅĞ¶¨
+		// çŠ¶æ€å‘½ä¸­åˆ¤å®š
 		if(iDamage > 0 && BATTLE_StatusAttackCheck(charaindex,iDefindex,iEffect,iEffectHit,30,1.0,&iTemp)){
 			CHAR_setWorkInt(iDefindex,StatusTbl[iEffect],iTurn);
 			if(iEffect == BATTLE_ST_DRUNK) CHAR_setWorkInt(iDefindex,CHAR_WORKDRUNK,CHAR_getWorkInt(iDefindex,CHAR_WORKDRUNK) >> 1);
-			// ÖĞÒÔÏÂ×´Ì¬µÄÄ¿±ê¸Ã»ØºÏÖ®áá²»ÄÜĞĞ¶¯
+			// ä¸­ä»¥ä¸‹çŠ¶æ€çš„ç›®æ ‡è¯¥å›åˆä¹‹å¾Œä¸èƒ½è¡ŒåŠ¨
 			if(iEffect == BATTLE_ST_PARALYSIS || iEffect == BATTLE_ST_SLEEP || iEffect == BATTLE_ST_STONE || iEffect == BATTLE_ST_BARRIER)
 				CHAR_setWorkInt(iDefindex,CHAR_WORKBATTLECOM1,BATTLE_COM_NONE);
-			// »Ø´«clientÄÇÒ»¸öÄ¿±êÒªÖ´ĞĞ×´Ì¬¸Ä±ä
-			if(iGuardian >= 0) BATTLE_BadStatusString(iGuardian,iEffect);	// iGuardian ´óì¶µÈì¶ 0 ±íÊ¾ÓĞÄ¿±êÊ¹ÓÃÁËÖÒÈ®,¸ÃÄ¿±ê×´Ì¬¸Ä±ä
-			else BATTLE_BadStatusString(pAAttackObject->target,iEffect);	// ·ñÔòÔ­Ä¿±ê×´Ì¬¸Ä±ä
+			// å›ä¼ clienté‚£ä¸€ä¸ªç›®æ ‡è¦æ‰§è¡ŒçŠ¶æ€æ”¹å˜
+			if(iGuardian >= 0) BATTLE_BadStatusString(iGuardian,iEffect);	// iGuardian å¤§æ–¼ç­‰æ–¼ 0 è¡¨ç¤ºæœ‰ç›®æ ‡ä½¿ç”¨äº†å¿ çŠ¬,è¯¥ç›®æ ‡çŠ¶æ€æ”¹å˜
+			else BATTLE_BadStatusString(pAAttackObject->target,iEffect);	// å¦åˆ™åŸç›®æ ‡çŠ¶æ€æ”¹å˜
 		}
 	}
 
@@ -9901,12 +9901,12 @@ void BATTLE_BattleModel_ATTACK(
 			iPetDamage,
 			pAAttackObject->actionNumber);
 	
-	// °ÑÃüÁîËÍÈë´«¸øclientµÄbuffer
+	// æŠŠå‘½ä»¤é€å…¥ä¼ ç»™clientçš„buffer
 	BATTLESTR_ADD(szCommand);
 	
 	iTemp = BATTLE_Index2No(battleindex,iDefindex);
 	
-	// iFlg ÒÑÃ»×÷ÓÃ,ÄÃÀ´×÷±ğµÄÓÃÍ¾
+	// iFlg å·²æ²¡ä½œç”¨,æ‹¿æ¥ä½œåˆ«çš„ç”¨é€”
 	iFlg = 0;
 	if(iTemp >= SIDE_OFFSET) iFlg = 1;
 	
@@ -9933,7 +9933,7 @@ void BATTLE_BattleModel(int battleindex,int attackNo,int myside)
 		return;
 	}
 
-	// È¡µÃĞ§¹û
+	// å–å¾—æ•ˆæœ
 	if(getStringFromIndexWithDelim(pszOption,"|",3,szData,sizeof(szData)) != FALSE){
 		for(i=1;i<BATTLE_ST_END;i++){
 			if(strncmp(szData,aszStatus[i],2) == 0){
@@ -9942,33 +9942,33 @@ void BATTLE_BattleModel(int battleindex,int attackNo,int myside)
 			}
 		}	
 	}
-	// ÓĞĞ§¹û
+	// æœ‰æ•ˆæœ
 	if(iEffect != -1){
-		// È¡µÃ»ØºÏÊı
+		// å–å¾—å›åˆæ•°
 		if(getStringFromIndexWithDelim(pszOption,"|",4,szData,sizeof(szData)) == FALSE)
-			// »ØºÏÊıÈ¡µÃÊ§°Ü
+			// å›åˆæ•°å–å¾—å¤±è´¥
 			printf("BATTLE_BattleModel: has setting effect but no turn number!!(file:%s,line:%d)\n",__FILE__,__LINE__);
 		else iTurn = atoi(szData);
-		// ÓĞ»ØºÏÊı
+		// æœ‰å›åˆæ•°
 		if(iTurn != -1){
-			// È¡µÃÃüÖĞ»úÂÊ
+			// å–å¾—å‘½ä¸­æœºç‡
 			if(getStringFromIndexWithDelim(pszOption,"|",5,szData,sizeof(szData)) == FALSE)
-				// ÃüÖĞ»úÂÊÈ¡µÃÊ§°Ü
+				// å‘½ä¸­æœºç‡å–å¾—å¤±è´¥
 				printf("BATTLE_BattleModel: has setting turn number but no hit probability!!(file:%s,line:%d)\n",__FILE__,__LINE__);
 			else iEffectHit = atoi(szData);
 		}
 	}
 
-	// È¡µÃÍ¼ºÅ(ÖÁÉÙÒªÓĞÒ»¸ö)
+	// å–å¾—å›¾å·(è‡³å°‘è¦æœ‰ä¸€ä¸ª)
 	if(getStringFromIndexWithDelim(pszOption,"|",7,szData,sizeof(szData)) == FALSE){
-		// Í¼ºÅÈ¡µÃÊ§°Ü,²»¶¯×÷
+		// å›¾å·å–å¾—å¤±è´¥,ä¸åŠ¨ä½œ
 		//printf("BATTLE_BattleModel: no picture number!!(file:%s,line:%d)\n",__FILE__,__LINE__);
 		BATTLE_NoAction(battleindex,attackNo);
 		return;
 	}
 	else{
 		for(i=0;i<4;i++){
-			// È¡µÃÍ¼ºÅ
+			// å–å¾—å›¾å·
 			if(getStringFromIndexWithDelim(szData," ",i+1,szData2,sizeof(szData2)) != FALSE) iActionNumber[i] = atoi(szData2);
 			else break;
 		}
@@ -9977,21 +9977,21 @@ void BATTLE_BattleModel(int battleindex,int attackNo,int myside)
 
 	memset(iToList,-1,sizeof(iToList));
 	memset(AAttackObject,-1,sizeof(AAttackObject));
-	if(myside) BATTLE_MultiList(battleindex,TARGET_SIDE_0,iToList);	// ´ò×óÉÏ
-	else BATTLE_MultiList(battleindex,TARGET_SIDE_1,iToList);				// ´òÓÒÏÂ
+	if(myside) BATTLE_MultiList(battleindex,TARGET_SIDE_0,iToList);	// æ‰“å·¦ä¸Š
+	else BATTLE_MultiList(battleindex,TARGET_SIDE_1,iToList);				// æ‰“å³ä¸‹
 
-	iType = CHAR_GETWORKINT_LOW(charaindex,CHAR_WORKBATTLECOM2);				// È¡µÃ¹¥»÷ÀàĞÍ
-	iObjectNum = CHAR_GETWORKINT_HIGH(charaindex,CHAR_WORKBATTLECOM2);	// È¡µÃ¹¥»÷Îï¼şÊıÁ¿
+	iType = CHAR_GETWORKINT_LOW(charaindex,CHAR_WORKBATTLECOM2);				// å–å¾—æ”»å‡»ç±»å‹
+	iObjectNum = CHAR_GETWORKINT_HIGH(charaindex,CHAR_WORKBATTLECOM2);	// å–å¾—æ”»å‡»ç‰©ä»¶æ•°é‡
 
 	i1 = 0;
-	// ³õÊ¼»¯ AAttackObject
+	// åˆå§‹åŒ– AAttackObject
 	for(i=0;i<iObjectNum;i++){
 		AAttackObject[i].index = i;
 		AAttackObject[i].actionNumber = iActionNumber[i1];
 		if(++i1 >= iActionAmount) i1 = 0;
 	}
 
-	// ¼ì²é³¡ÉÏÄ¿±êÊ£¼¸Ö»
+	// æ£€æŸ¥åœºä¸Šç›®æ ‡å‰©å‡ åª
 	for(i=0;i<SIDE_OFFSET;i++){
 		if(iToList[i] != -1) continue;
 		else break;
@@ -9999,54 +9999,54 @@ void BATTLE_BattleModel(int battleindex,int attackNo,int myside)
 
 	sprintf(szData,"Bb|a%X|",attackNo);
 	BATTLESTR_ADD(szData);
-	// ÅĞ¶ÏÄ¿±êÊıÁ¿ºÍ¹¥»÷Îï¼şÊıÁ¿
-	// µ±¹¥»÷Îï¼şÊıÁ¿´óì¶µÈì¶ÔÚ³¡µĞ·½ÊıÁ¿£¬Ôò¹¥»÷ËùÓĞÄ¿±ê£¬ÓĞµÄÄ¿±ê¿ÉÄÜÊÜµ½¶ş´ÎÒÔÉÏµÄ¹¥»÷
+	// åˆ¤æ–­ç›®æ ‡æ•°é‡å’Œæ”»å‡»ç‰©ä»¶æ•°é‡
+	// å½“æ”»å‡»ç‰©ä»¶æ•°é‡å¤§æ–¼ç­‰æ–¼åœ¨åœºæ•Œæ–¹æ•°é‡ï¼Œåˆ™æ”»å‡»æ‰€æœ‰ç›®æ ‡ï¼Œæœ‰çš„ç›®æ ‡å¯èƒ½å—åˆ°äºŒæ¬¡ä»¥ä¸Šçš„æ”»å‡»
 	if(iObjectNum >= i){
-		i0 = i;		// ¼ÇÂ¼³¡ÉÏÄ¿±êÖ»Êı
+		i0 = i;		// è®°å½•åœºä¸Šç›®æ ‡åªæ•°
 
 		for(i=0;i<iObjectNum;i++){
-			// Èô iToList[i] Îª -1 ±íÊ¾ÒÑ´òÍêËùÓĞµÄÄ¿±ê
+			// è‹¥ iToList[i] ä¸º -1 è¡¨ç¤ºå·²æ‰“å®Œæ‰€æœ‰çš„ç›®æ ‡
 			if(iToList[i] == -1) break;
-			// Éè¶¨¹¥»÷Ä¿±êÄÚÈİ
+			// è®¾å®šæ”»å‡»ç›®æ ‡å†…å®¹
 			if(AAttackObject[i].index != -1){
 				AAttackObject[i].target = iToList[i];
 				BATTLE_BattleModel_ATTACK(battleindex,charaindex,&AAttackObject[i],iEffect,iTurn,iEffectHit,iType);
 			}
 		}
-		// »¹ÓĞ¹¥»÷Îï¼şÃ»ÓĞÄ¿±ê¿ÉÒÔ¹¥»÷,½øĞĞËæ»úÄ¿±ê¹¥»÷
+		// è¿˜æœ‰æ”»å‡»ç‰©ä»¶æ²¡æœ‰ç›®æ ‡å¯ä»¥æ”»å‡»,è¿›è¡Œéšæœºç›®æ ‡æ”»å‡»
 		for(;i<iObjectNum;i++){
-			// Éè¶¨¹¥»÷Ä¿±êÄÚÈİ
+			// è®¾å®šæ”»å‡»ç›®æ ‡å†…å®¹
 			if(AAttackObject[i].index != -1){
 				AAttackObject[i].target = iToList[RAND(0,i0-1)];
 				BATTLE_BattleModel_ATTACK(battleindex,charaindex,&AAttackObject[i],iEffect,iTurn,iEffectHit,iType);
 			}
 		}
 	}
-	// µ±¹¥»÷Îï¼şÊıÁ¿Ğ¡ì¶ÔÚ³¡Ä¿±êÊıÁ¿£¬ÔòÒÔ¹¥»÷ÀàĞÍ¾ö¶¨¹¥»÷·½Ê½
+	// å½“æ”»å‡»ç‰©ä»¶æ•°é‡å°æ–¼åœ¨åœºç›®æ ‡æ•°é‡ï¼Œåˆ™ä»¥æ”»å‡»ç±»å‹å†³å®šæ”»å‡»æ–¹å¼
 	else{
-		i0 = i;		// ¼ÇÂ¼³¡ÉÏÄ¿±êÖ»Êı
-		// ĞÍÌ¬ 2 :Ã¿¸ö¹¥»÷Îï¼ş´òÍê¸Ã¹¥»÷Ä¿±êáá±ã²»ÔÙ¹¥»÷ÆäËüÄ¿±ê,Ã¿¸öÄ¿±êÖ»»áÊÜÒ»´Î¹¥»÷
-		// µ±iType & 0x00000001 Îª true Ö®ÍâµÄÖµ¶¼ÒÔĞÍÌ¬ 2 ´¦Àí
+		i0 = i;		// è®°å½•åœºä¸Šç›®æ ‡åªæ•°
+		// å‹æ€ 2 :æ¯ä¸ªæ”»å‡»ç‰©ä»¶æ‰“å®Œè¯¥æ”»å‡»ç›®æ ‡å¾Œä¾¿ä¸å†æ”»å‡»å…¶å®ƒç›®æ ‡,æ¯ä¸ªç›®æ ‡åªä¼šå—ä¸€æ¬¡æ”»å‡»
+		// å½“iType & 0x00000001 ä¸º true ä¹‹å¤–çš„å€¼éƒ½ä»¥å‹æ€ 2 å¤„ç†
 		for(i=0;i<iObjectNum;i++){
-			// Éè¶¨¹¥»÷Ä¿±êÄÚÈİ
+			// è®¾å®šæ”»å‡»ç›®æ ‡å†…å®¹
 			if(AAttackObject[i].index != -1){
 				AAttackObject[i].target = iToList[i];
 				BATTLE_BattleModel_ATTACK(battleindex,charaindex,&AAttackObject[i],iEffect,iTurn,iEffectHit,iType);
 			}
 		}
-		// ĞÍÌ¬ 1 :Ã¿¸öÄ¿±ê¶¼Òª´òµ½,»áÓĞÒ»¸ö¹¥»÷Îï¼ş´ò¶ş¸öÄ¿±êÒÔÉÏµÄÇéĞÎ,ËùÒÔÈôÎªĞÍÌ¬ 1 µÄ»°,³ıÁËĞÍÌ¬ 2 µÄ¹¥»÷´¦ÀíÒªÖ´Íâ,ÒªÔÙ×÷ÒÔÏÂ´¦Àí
+		// å‹æ€ 1 :æ¯ä¸ªç›®æ ‡éƒ½è¦æ‰“åˆ°,ä¼šæœ‰ä¸€ä¸ªæ”»å‡»ç‰©ä»¶æ‰“äºŒä¸ªç›®æ ‡ä»¥ä¸Šçš„æƒ…å½¢,æ‰€ä»¥è‹¥ä¸ºå‹æ€ 1 çš„è¯,é™¤äº†å‹æ€ 2 çš„æ”»å‡»å¤„ç†è¦æ‰§å¤–,è¦å†ä½œä»¥ä¸‹å¤„ç†
 		if(iType & 0x00000001){
-			// ´¦Àí»¹Ã»ÓĞ±»´òµÄÄ¿±ê
-			// i0 - iObjectNum ÎªÊ£ÏÂÃ»´òµÄÄ¿±êÊıÁ¿
-			for(i1=0;i1<i0 - iObjectNum;i1++){	// ¼ÆËãÊ£¼¸¸öÄ¿±êÃ»´ò
-				for(i2=0;i2<iObjectNum;i2++){			// ¹¥»÷Îï¼ş¼ÆÊı
-					// Èô iToList[i] Îª -1 ±íÊ¾ÒÑ´òÍêËùÓĞµÄÄ¿±ê
-					if(iToList[i] == -1) break;			// ÕâÀïµÄ i ±£ÁôĞÍÌ¬ 2 ´òÍêááµÄÖµ
-					// Éè¶¨¹¥»÷Ä¿±êÄÚÈİ
+			// å¤„ç†è¿˜æ²¡æœ‰è¢«æ‰“çš„ç›®æ ‡
+			// i0 - iObjectNum ä¸ºå‰©ä¸‹æ²¡æ‰“çš„ç›®æ ‡æ•°é‡
+			for(i1=0;i1<i0 - iObjectNum;i1++){	// è®¡ç®—å‰©å‡ ä¸ªç›®æ ‡æ²¡æ‰“
+				for(i2=0;i2<iObjectNum;i2++){			// æ”»å‡»ç‰©ä»¶è®¡æ•°
+					// è‹¥ iToList[i] ä¸º -1 è¡¨ç¤ºå·²æ‰“å®Œæ‰€æœ‰çš„ç›®æ ‡
+					if(iToList[i] == -1) break;			// è¿™é‡Œçš„ i ä¿ç•™å‹æ€ 2 æ‰“å®Œå¾Œçš„å€¼
+					// è®¾å®šæ”»å‡»ç›®æ ‡å†…å®¹
 					if(AAttackObject[i2].index != -1){
 						AAttackObject[i2].target = iToList[i];
 						BATTLE_BattleModel_ATTACK(battleindex,charaindex,&AAttackObject[i2],iEffect,iTurn,iEffectHit,iType);
-						i++;	// »»ÏÂÒ»¸öÄ¿±ê
+						i++;	// æ¢ä¸‹ä¸€ä¸ªç›®æ ‡
 					}
 				}
 			}
@@ -10063,7 +10063,7 @@ int	OFFLINE_MultiRessurect( int battleindex, int attackNo, int toNo, int HP, int
 	int charaindex=-1;
 
 	if( BATTLE_CHECKINDEX( battleindex ) == FALSE ) return FALSE;
-	charaindex = BATTLE_No2Index( battleindex, attackNo );	//¹¥·½index
+	charaindex = BATTLE_No2Index( battleindex, attackNo );	//æ”»æ–¹index
 	if( !CHAR_CHECKINDEX( charaindex))	return FALSE;
 
 	if( flg == 0 ){
