@@ -19,7 +19,7 @@ extern char hanzibuf[5000][8];
 #ifdef _JZ_NEWSCRIPT_LUA
 
 //////////////////////////////////////////////////////////////////////////////
-//ÉèÖÃÊı¾İµÄ½Ó¿Ú
+//è®¾ç½®æ•°æ®çš„æ¥å£
 int NPC_Lua_Char_ClrEvtEnd(lua_State *_NLL)
 {
 	CheckEx2(_NLL, 2, LUA_MINSTACK);
@@ -123,7 +123,7 @@ int NPC_Lua_Char_SetData(lua_State *_NLL)
 #ifdef _JZ_BILLING_SYSTEM
 			if(TM_Flg == CHAR_VIPPOINT)
 			{
-				saacproto_IncreaseMPoint_send(acfd, -1, CHAR_getChar( TM_Index, CHAR_CDKEY ), "Ôö¼Ó»áÔ±µã", TM_IntVal - CHAR_getInt(TM_Index, TM_Flg));
+				saacproto_IncreaseMPoint_send(acfd, -1, CHAR_getChar( TM_Index, CHAR_CDKEY ), "å¢åŠ ä¼šå‘˜ç‚¹", TM_IntVal - CHAR_getInt(TM_Index, TM_Flg));
 			}
 #endif
 			int TM_RetInt = CHAR_setInt(TM_Index, TM_Flg, TM_IntVal);
@@ -164,14 +164,14 @@ int NPC_Lua_Char_SetData(lua_State *_NLL)
 			LRetInt(_NLL, TM_RetInt);
 		}else
 		{
-			LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+			LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 		}
 	}
-	LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+	LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
 //////////////////////////////////////////////////////////////////////////////
-//ÊÂ¼şÉèÖÃµÄ½Ó¿Ú
+//äº‹ä»¶è®¾ç½®çš„æ¥å£
 int NPC_Lua_Char_SetWalkPreEvent(lua_State *_NLL)
 {
 	CheckEx(_NLL, 3);
@@ -182,7 +182,7 @@ int NPC_Lua_Char_SetWalkPreEvent(lua_State *_NLL)
 
 	if(TM_char == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 	
@@ -234,7 +234,7 @@ int NPC_Lua_Char_SetWalkPostEvent(lua_State *_NLL)
 
 	if(TM_char == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 	
@@ -286,7 +286,7 @@ int NPC_Lua_Char_SetPreOverEvent(lua_State *_NLL)
 
 	if(TM_char == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 	
@@ -338,7 +338,7 @@ int NPC_Lua_Char_SetPostOverEvent(lua_State *_NLL)
 
 	if(TM_char == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 	
@@ -390,7 +390,7 @@ int NPC_Lua_Char_SetWatchEvent(lua_State *_NLL)
 
 	if(TM_char == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 	
@@ -444,7 +444,7 @@ int NPC_Lua_Char_SetLoopEvent(lua_State *_NLL)
 
 	if(TM_char == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 
@@ -500,7 +500,7 @@ int NPC_Lua_Char_SetTalkedEvent(lua_State *_NLL)
 
 	if(TM_char == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 
@@ -552,7 +552,7 @@ int NPC_Lua_Char_SetOFFEvent(lua_State *_NLL)
 
 	if(TM_char == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 	
@@ -604,7 +604,7 @@ int NPC_Lua_Char_SetLookedEvent(lua_State *_NLL)
 
 	if(TM_char == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 	
@@ -656,7 +656,7 @@ int NPC_Lua_Char_SetItemPutEvent(lua_State *_NLL)
 
 	if(TM_char == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 	
@@ -708,7 +708,7 @@ int NPC_Lua_Char_SetWindowTalkedEvent(lua_State *_NLL)
 
 	if(TM_char == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 
@@ -763,7 +763,7 @@ int NPC_Lua_Char_SetCharLoopsEvent(lua_State *_NLL)
 
 	if(TM_char == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 
@@ -819,7 +819,7 @@ int NPC_Lua_Char_SetBattleProPertyEvent(lua_State *_NLL)
 
 	if(TM_char == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 
@@ -862,7 +862,7 @@ int NPC_Lua_Char_SetBattleProPertyEvent(lua_State *_NLL)
 }
 #endif
 //////////////////////////////////////////////////////////////////////////////
-//»ñÈ¡Êı¾İµÄ½Ó¿Ú
+//è·å–æ•°æ®çš„æ¥å£
 int NPC_Lua_Char_GetData(lua_State *_NLL)
 {
 	CheckEx(_NLL, 2);
@@ -903,10 +903,10 @@ int NPC_Lua_Char_GetData(lua_State *_NLL)
 			LRetBool(_NLL, TM_RetBOOL);
 		}else
 		{
-			LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+			LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 		}
 	}
-	LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+	LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
 int NPC_Lua_Char_IsEventEnd(lua_State *_NLL)
@@ -944,7 +944,7 @@ int NPC_Lua_Char_FindItemId(lua_State *_NLL)
 	int j = 0;
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	for( i = CHAR_STARTITEMARRAY ; i<CHAR_MAXITEMHAVE ; i++ )
@@ -957,7 +957,7 @@ int NPC_Lua_Char_FindItemId(lua_State *_NLL)
 		}
 	}
 	LRetInt(_NLL, j);
-	//LRetErrInt(_NLL, -2, "ÕÒ²»µ½Ö¸¶¨µÀ¾ß¡£");
+	//LRetErrInt(_NLL, -2, "æ‰¾ä¸åˆ°æŒ‡å®šé“å…·ã€‚");
 }
 
 int NPC_Lua_Char_VipPoint(lua_State *_NLL)
@@ -970,7 +970,7 @@ int NPC_Lua_Char_VipPoint(lua_State *_NLL)
 	char *TM_Cdkey;
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	
 	TM_Cdkey = CHAR_getChar(TM_Index,CHAR_CDKEY);
@@ -978,7 +978,7 @@ int NPC_Lua_Char_VipPoint(lua_State *_NLL)
 	int TM_MyPoint = sasql_vippoint(TM_Cdkey,TM_Point,TM_Flag);
 	
 	if(TM_MyPoint<0){
-		LRetErrInt(_NLL, -2, "Êı¾İ³ö´í");
+		LRetErrInt(_NLL, -2, "æ•°æ®å‡ºé”™");
 	}
 	LRetInt(_NLL, TM_MyPoint);
 }
@@ -994,7 +994,7 @@ int NPC_Lua_Char_FindPetEnemyId(lua_State *_NLL)
 
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	for( i = 0 ; i<CHAR_MAXPETHAVE ; i++ )
@@ -1005,7 +1005,7 @@ int NPC_Lua_Char_FindPetEnemyId(lua_State *_NLL)
 			LRetInt(_NLL, i);
 		}
 	}
-	LRetErrInt(_NLL, -2, "ÕÒ²»µ½Ö¸¶¨³èÎï¡£");
+	LRetErrInt(_NLL, -2, "æ‰¾ä¸åˆ°æŒ‡å®šå® ç‰©ã€‚");
 }
 
 int NPC_Lua_Char_GetItemId(lua_State *_NLL)
@@ -1017,17 +1017,17 @@ int NPC_Lua_Char_GetItemId(lua_State *_NLL)
 
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	if(TM_Pos >= 0 && TM_Pos < CHAR_MAXITEMHAVE)
 	{
 		int TM_ItemIndex = CHAR_getItemIndex(TM_Index, TM_Pos);
 		
-		if( ITEM_CHECKINDEX(TM_ItemIndex) == FALSE ) LRetErrInt(_NLL, -2, "¸ÃµÀ¾ßÀ¸Ã»ÓĞµÀ¾ß¡£");
+		if( ITEM_CHECKINDEX(TM_ItemIndex) == FALSE ) LRetErrInt(_NLL, -2, "è¯¥é“å…·æ æ²¡æœ‰é“å…·ã€‚");
 		LRetInt(_NLL, ITEM_getInt(TM_ItemIndex, ITEM_ID));
 	}
-	LRetErrInt(_NLL, -3, "´«ÈëµÄÎ»ÖÃ³¬³öµÀ¾ßÀ¸·¶Î§¡£");
+	LRetErrInt(_NLL, -3, "ä¼ å…¥çš„ä½ç½®è¶…å‡ºé“å…·æ èŒƒå›´ã€‚");
 }
 
 int NPC_Lua_Char_GetItemIndex(lua_State *_NLL)
@@ -1039,17 +1039,17 @@ int NPC_Lua_Char_GetItemIndex(lua_State *_NLL)
 
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	if(TM_Pos >= 0 && TM_Pos < CHAR_MAXITEMHAVE)
 	{
 		int TM_ItemIndex = CHAR_getItemIndex(TM_Index, TM_Pos);
 		
-		if( ITEM_CHECKINDEX(TM_ItemIndex) == FALSE ) LRetErrInt(_NLL, -2, "¸ÃµÀ¾ßÀ¸Ã»ÓĞµÀ¾ß¡£");
+		if( ITEM_CHECKINDEX(TM_ItemIndex) == FALSE ) LRetErrInt(_NLL, -2, "è¯¥é“å…·æ æ²¡æœ‰é“å…·ã€‚");
 		LRetInt(_NLL, TM_ItemIndex);
 	}
-	LRetErrInt(_NLL, -3, "´«ÈëµÄÎ»ÖÃ³¬³öµÀ¾ßÀ¸·¶Î§¡£");
+	LRetErrInt(_NLL, -3, "ä¼ å…¥çš„ä½ç½®è¶…å‡ºé“å…·æ èŒƒå›´ã€‚");
 }
 
 int NPC_Lua_Char_GetPetEnemyId(lua_State *_NLL)
@@ -1061,17 +1061,17 @@ int NPC_Lua_Char_GetPetEnemyId(lua_State *_NLL)
 
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	if(TM_Pos >= 0 && TM_Pos < CHAR_MAXPETHAVE)
 	{
 		int TM_PetIndex = CHAR_getCharPet(TM_Index, TM_Pos);
 		
-		if( CHAR_CHECKINDEX(TM_PetIndex) == FALSE ) LRetErrInt(_NLL, -2, "¸Ã³èÎïÀ¸Ã»ÓĞ³èÎï¡£");
+		if( CHAR_CHECKINDEX(TM_PetIndex) == FALSE ) LRetErrInt(_NLL, -2, "è¯¥å® ç‰©æ æ²¡æœ‰å® ç‰©ã€‚");
 		LRetInt(_NLL, CHAR_getInt(TM_PetIndex, CHAR_PETID));
 	}
-	LRetErrInt(_NLL, -3, "´«ÈëµÄÎ»ÖÃ³¬³ö³èÎïÀ¸·¶Î§¡£");
+	LRetErrInt(_NLL, -3, "ä¼ å…¥çš„ä½ç½®è¶…å‡ºå® ç‰©æ èŒƒå›´ã€‚");
 }
 
 int NPC_Lua_Char_GetPetIndex(lua_State *_NLL)
@@ -1083,17 +1083,17 @@ int NPC_Lua_Char_GetPetIndex(lua_State *_NLL)
 
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	if(TM_Pos >= 0 && TM_Pos < CHAR_MAXPETHAVE)
 	{
 		int TM_PetIndex = CHAR_getCharPet(TM_Index, TM_Pos);
 		
-		if( CHAR_CHECKINDEX(TM_PetIndex) == FALSE ) LRetErrInt(_NLL, -2, "¸Ã³èÎïÀ¸Ã»ÓĞ³èÎï¡£");
+		if( CHAR_CHECKINDEX(TM_PetIndex) == FALSE ) LRetErrInt(_NLL, -2, "è¯¥å® ç‰©æ æ²¡æœ‰å® ç‰©ã€‚");
 		LRetInt(_NLL, TM_PetIndex);
 	}
-	LRetErrInt(_NLL, -3, "´«ÈëµÄÎ»ÖÃ³¬³ö³èÎïÀ¸·¶Î§¡£");
+	LRetErrInt(_NLL, -3, "ä¼ å…¥çš„ä½ç½®è¶…å‡ºå® ç‰©æ èŒƒå›´ã€‚");
 }
 
 int NPC_Lua_Char_GetTeamIndex(lua_State *_NLL)
@@ -1105,17 +1105,17 @@ int NPC_Lua_Char_GetTeamIndex(lua_State *_NLL)
 
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	if(TM_Pos >= 1 && TM_Pos < CHAR_PARTYMAX)
 	{
 		int TM_ParIndex = CHAR_getWorkInt( TM_Index, TM_Pos + CHAR_WORKPARTYINDEX1);
 
-		if( CHAR_CHECKINDEX(TM_ParIndex) == FALSE ) LRetErrInt(_NLL, -2, "¸ÃÎ»ÖÃÃ»ÓĞ¶ÓÔ±¡£");
+		if( CHAR_CHECKINDEX(TM_ParIndex) == FALSE ) LRetErrInt(_NLL, -2, "è¯¥ä½ç½®æ²¡æœ‰é˜Ÿå‘˜ã€‚");
 		LRetInt(_NLL, TM_ParIndex);
 	}
-	LRetErrInt(_NLL, -3, "´«ÈëµÄÎ»ÖÃ³¬³ö¶ÓÔ±Î»ÖÃ·¶Î§¡£");
+	LRetErrInt(_NLL, -3, "ä¼ å…¥çš„ä½ç½®è¶…å‡ºé˜Ÿå‘˜ä½ç½®èŒƒå›´ã€‚");
 }
 
 int NPC_Lua_Char_HealAll(lua_State *_NLL)
@@ -1126,7 +1126,7 @@ int NPC_Lua_Char_HealAll(lua_State *_NLL)
 
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	NPC_HealerAllHeal(TM_Index);
@@ -1143,11 +1143,11 @@ int NPC_Lua_Char_GetPetSkillId(lua_State *_NLL)
 
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	if( !CHAR_CHECKPETSKILLINDEX( TM_SkillIndex)){
-	 	LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+	 	LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	
 	int TM_SkillId=CHAR_getPetSkill( TM_Index, TM_SkillIndex);
@@ -1161,7 +1161,7 @@ int NPC_Lua_Char_GetPetSkillName(lua_State *_NLL)
 	int TM_Index = (int)lua_tointeger(_NLL, 1);
 	int skillarray = PETSKILL_getPetskillArray( TM_Index);
 	if( PETSKILL_CHECKINDEX( skillarray) == FALSE ){
-		LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+		LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 	}
 	LRetMsg(_NLL, PETSKILL_getChar( skillarray, PETSKILL_NAME));
 }
@@ -1173,7 +1173,7 @@ int NPC_Lua_Char_GetPetSkillMsg(lua_State *_NLL)
 	int TM_Index = (int)lua_tointeger(_NLL, 1);
 	int skillarray = PETSKILL_getPetskillArray( TM_Index);
 	if( PETSKILL_CHECKINDEX( skillarray) == FALSE ){
-		LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+		LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 	}
 	LRetMsg(_NLL, PETSKILL_getChar( skillarray, PETSKILL_COMMENT));
 }
@@ -1187,15 +1187,15 @@ int NPC_Lua_Char_SetPetSkill(lua_State *_NLL)
 	int TM_SkillId = (int)lua_tointeger(_NLL, 3);
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	if( !CHAR_CHECKPETSKILLINDEX( TM_Slod)){
-	 	LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+	 	LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int skillarray = PETSKILL_getPetskillArray( TM_SkillId);
 	if( PETSKILL_CHECKINDEX( skillarray) == FALSE ){
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	CHAR_setPetSkill( TM_Index, TM_Slod, TM_SkillId);
 	LRetInt(_NLL, 1);
@@ -1231,7 +1231,7 @@ int NPC_Lua_Char_RandMsg(lua_State *_NLL)
 #ifdef _MM_NO_JIAOBEN
 			if(timep - randtime < getEditBaseTime()*randwrong){
 				char errbuf[256];
-				sprintf(errbuf,"Äú»¹ÓĞ%dÃë²Å¿ÉÒÔ¼ÌĞø´Ë²Ù×÷£¡",getEditBaseTime()*randwrong-(timep - randtime));
+				sprintf(errbuf,"æ‚¨è¿˜æœ‰%dç§’æ‰å¯ä»¥ç»§ç»­æ­¤æ“ä½œï¼",getEditBaseTime()*randwrong-(timep - randtime));
 				CHAR_talkToCli(TM_TalkIndex, -1, errbuf, CHAR_COLORRED);
 				LRetInt(_NLL, 0);
 			}
@@ -1297,7 +1297,7 @@ int NPC_Lua_Char_RandMsg(lua_State *_NLL)
 					sprintf(randtmpbuf[2],"%s",hanzibuf[RAND(1,5000)-1]);
 					sprintf(randtmpbuf[3],"%s",hanzibuf[RAND(1,5000)-1]);
 					sprintf(randquestion,"%s",str_hanzi_ganrao(randtmpbuf[0],randtmpbuf[1],randtmpbuf[2],randtmpbuf[3],0,0,0,0,0,0));
-					strcat(randquestion,"£¨ÇëÕÒ³öÏàÍ¬´Ê×é£©");
+					strcat(randquestion,"ï¼ˆè¯·æ‰¾å‡ºç›¸åŒè¯ç»„ï¼‰");
 					int newrand1 = RAND(1,100)-1;
 					int newrand2 = RAND(1,100)-1;
 					int newrand3 = RAND(1,100)-1;
@@ -1330,7 +1330,7 @@ int NPC_Lua_Char_RandMsg(lua_State *_NLL)
 			sprintf(randwronganswer2,"[%c%c%c%c%c]",tempbuf[0],tempbuf[1],tempbuf[4],tempbuf[2],tempbuf[3]);
 			sprintf(randwronganswer3,"[%c%c%c%c%c]",tempbuf[4],tempbuf[1],tempbuf[2],tempbuf[0],tempbuf[3]);
 			sprintf(randwronganswer4,"[%c%c%c%c%c]",tempbuf[1],tempbuf[0],tempbuf[2],tempbuf[3],tempbuf[4]);
-			sprintf(randquestion,"[%s]£¨ÇëÕÒ³öÏàÍ¬Ó¢ÎÄ£©",tempbuf);
+			sprintf(randquestion,"[%s]ï¼ˆè¯·æ‰¾å‡ºç›¸åŒè‹±æ–‡ï¼‰",tempbuf);
 			sprintf(randrightanswer,"[%s]",tempbuf);
 			char* randstr = NULL;
 			randstr = str_ganrao(randquestion);
@@ -1361,33 +1361,33 @@ int NPC_Lua_Char_RandMsg(lua_State *_NLL)
 		for(n=1;n<=5;n++){
 			if(n==randnum1){
 				if(qianhounum<=50)
-					sprintf(tempret[n-1],"Ñ¡Ïî( %d %s )",rightnum,randrightanswer);
+					sprintf(tempret[n-1],"é€‰é¡¹( %d %s )",rightnum,randrightanswer);
 				else
-					sprintf(tempret[n-1],"Ñ¡Ïî( %s %d )",randrightanswer,rightnum);
+					sprintf(tempret[n-1],"é€‰é¡¹( %s %d )",randrightanswer,rightnum);
 			}else{
 				if(m==1){
 					if(qianhounum<=50)
-						sprintf(tempret[n-1],"Ñ¡Ïî( %d %s )",wrongnum1,randwronganswer1);
+						sprintf(tempret[n-1],"é€‰é¡¹( %d %s )",wrongnum1,randwronganswer1);
 					else
-						sprintf(tempret[n-1],"Ñ¡Ïî( %s %d )",randwronganswer1,wrongnum1);
+						sprintf(tempret[n-1],"é€‰é¡¹( %s %d )",randwronganswer1,wrongnum1);
 					m = 2;
 				}else if(m==2){
 					if(qianhounum<=50)
-						sprintf(tempret[n-1],"Ñ¡Ïî( %d %s )",wrongnum2,randwronganswer2);
+						sprintf(tempret[n-1],"é€‰é¡¹( %d %s )",wrongnum2,randwronganswer2);
 					else
-						sprintf(tempret[n-1],"Ñ¡Ïî( %s %d )",randwronganswer2,wrongnum2);
+						sprintf(tempret[n-1],"é€‰é¡¹( %s %d )",randwronganswer2,wrongnum2);
 					m = 3;
 				}else if(m==3){
 					if(qianhounum<=50)
-						sprintf(tempret[n-1],"Ñ¡Ïî( %d %s )",wrongnum3,randwronganswer3);
+						sprintf(tempret[n-1],"é€‰é¡¹( %d %s )",wrongnum3,randwronganswer3);
 					else
-						sprintf(tempret[n-1],"Ñ¡Ïî( %s %d )",randwronganswer3,wrongnum3);
+						sprintf(tempret[n-1],"é€‰é¡¹( %s %d )",randwronganswer3,wrongnum3);
 					m = 4;
 				}else if(m==4){
 					if(qianhounum<=50)
-						sprintf(tempret[n-1],"Ñ¡Ïî( %d %s )",wrongnum4,randwronganswer4);
+						sprintf(tempret[n-1],"é€‰é¡¹( %d %s )",wrongnum4,randwronganswer4);
 					else
-						sprintf(tempret[n-1],"Ñ¡Ïî( %s %d )",randwronganswer4,wrongnum4);
+						sprintf(tempret[n-1],"é€‰é¡¹( %s %d )",randwronganswer4,wrongnum4);
 					m = 5;
 				}
 			}
@@ -1404,7 +1404,7 @@ int NPC_Lua_Char_RandMsg(lua_State *_NLL)
 		}
 		CHAR_setWorkChar(TM_TalkIndex, CHAR_WORKRANDMSG, buf);
 		int fd = getfdFromCharaIndex( TM_TalkIndex );
-		sprintf(buf,"%s\n%s\n%s\n%s\n%s\n%s\nÊäÈëÕıÈ·´ğ°¸À¨ºÅÄÚµÄ5Î»Êı×Ö»òÕßµãÑ¡´ğ°¸",randquestion,tempret[0],tempret[1],tempret[2],tempret[3],tempret[4]);
+		sprintf(buf,"%s\n%s\n%s\n%s\n%s\n%s\nè¾“å…¥æ­£ç¡®ç­”æ¡ˆæ‹¬å·å†…çš„5ä½æ•°å­—æˆ–è€…ç‚¹é€‰ç­”æ¡ˆ",randquestion,tempret[0],tempret[1],tempret[2],tempret[3],tempret[4]);
 		lssproto_WN_send( fd, windowtype, 
 			WINDOW_BUTTONTYPE_OK,
 			CHAR_WINDOWTYPE_LUANPC_RANDMSG,
@@ -1429,7 +1429,7 @@ int NPC_Lua_Char_GetBeatitudeNum(lua_State *_NLL)
 	
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	int petbeatitude = CHAR_getInt( TM_Index, CHAR_BEATITUDE);
@@ -1445,7 +1445,7 @@ int NPC_Lua_Char_GetBeatitudeNum(lua_State *_NLL)
 	LRetInt(_NLL, i);
 }
 
-//Í¨¹ıÕÊºÅ²éÑ¯ÈËÎïË÷Òı
+//é€šè¿‡å¸å·æŸ¥è¯¢äººç‰©ç´¢å¼•
 int NPC_Lua_Char_GetPlayerIndexByCdkey(lua_State *_NLL)
 {
 	CheckEx(_NLL, 1);
@@ -1465,7 +1465,7 @@ int NPC_Lua_Char_GetPlayerIndexByCdkey(lua_State *_NLL)
 		}
 	}
 
-	LRetErrInt(_NLL, -3, "¸ÃÕÊºÅ²»´æÔÚ»òÕßÎ´ÉÏÏß£¡");
+	LRetErrInt(_NLL, -3, "è¯¥å¸å·ä¸å­˜åœ¨æˆ–è€…æœªä¸Šçº¿ï¼");
 }
 
 int NPC_Lua_Char_getVipPoint(lua_State *_NLL)
@@ -1474,11 +1474,11 @@ int NPC_Lua_Char_getVipPoint(lua_State *_NLL)
   int TM_Index = (int)lua_tointeger(_NLL, 1);
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}  
    int TM_point = sasql_getVipPoint(TM_Index);
 	if(TM_point<0){
-		LRetErrInt(_NLL, -2, "Char_getVipPointÊı¾İ³ö´í");
+		LRetErrInt(_NLL, -2, "Char_getVipPointæ•°æ®å‡ºé”™");
 	}
   LRetInt(_NLL, TM_point);
 }
@@ -1489,11 +1489,11 @@ int NPC_Lua_Char_getjfPoint(lua_State *_NLL)
   int TM_Index = (int)lua_tointeger(_NLL, 1);
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}  
    int TM_point = sasql_jifenPoint(TM_Index);
 	if(TM_point<0){
-		LRetErrInt(_NLL, -2, "Char_getjfPointÊı¾İ³ö´í");
+		LRetErrInt(_NLL, -2, "Char_getjfPointæ•°æ®å‡ºé”™");
 	}
   LRetInt(_NLL, TM_point);
 }
@@ -1504,11 +1504,11 @@ int NPC_Lua_Char_getxjPoint(lua_State *_NLL)
   int TM_Index = (int)lua_tointeger(_NLL, 1);
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}  
    int TM_point = sasql_xjPoint(TM_Index);
 	if(TM_point<0){
-		LRetErrInt(_NLL, -2, "Char_getxjPointÊı¾İ³ö´í");
+		LRetErrInt(_NLL, -2, "Char_getxjPointæ•°æ®å‡ºé”™");
 	}
   LRetInt(_NLL, TM_point);
 }
@@ -1520,11 +1520,11 @@ int NPC_Lua_Char_setVipPoint(lua_State *_NLL)
   int TM_point = (int)lua_tointeger(_NLL, 2);
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}  
    int TM_kouj = sasql_setVipPoint(TM_Index,TM_point);
 	if(TM_point<0){
-		LRetErrInt(_NLL, -2, "Char_setVipPointÊı¾İ³ö´í");
+		LRetErrInt(_NLL, -2, "Char_setVipPointæ•°æ®å‡ºé”™");
 	}
   LRetInt(_NLL, TM_kouj);
 }
@@ -1536,11 +1536,11 @@ int NPC_Lua_Char_setjfPoint(lua_State *_NLL)
   int TM_point = (int)lua_tointeger(_NLL, 2);
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}  
    int TM_kouj = sasql_setJfPoint(TM_Index,TM_point);
 	if(TM_point<0){
-		LRetErrInt(_NLL, -2, "Char_setjfPointÊı¾İ³ö´í");
+		LRetErrInt(_NLL, -2, "Char_setjfPointæ•°æ®å‡ºé”™");
 	}
   LRetInt(_NLL, TM_kouj);
 }
@@ -1552,11 +1552,11 @@ int NPC_Lua_Char_setxjPoint(lua_State *_NLL)
   int TM_point = (int)lua_tointeger(_NLL, 2);
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}  
    int TM_kouj = sasql_setxjPoint(TM_Index,TM_point);
 	if(TM_point<0){
-		LRetErrInt(_NLL, -2, "Char_setxjPointÊı¾İ³ö´í");
+		LRetErrInt(_NLL, -2, "Char_setxjPointæ•°æ®å‡ºé”™");
 	}
   LRetInt(_NLL, TM_kouj);
 }
@@ -1570,7 +1570,7 @@ int NPC_Lua_Char_GetAllocPoint(lua_State *_NLL)
 	int PET_Ret = -1;
 	if(!CHAR_CHECKINDEX(PET_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	PET_Ret = CHAR_getInt( PET_Index, CHAR_ALLOCPOINT);
 	switch (PET_flg)
@@ -1599,7 +1599,7 @@ int NPC_Lua_Char_GetDataFromEnemyBase(lua_State *_NLL)
 	int PET_flg = (int)lua_tointeger(_NLL, 2);
 	if(ENEMYTEMP_getEnemyTempArrayFromTempNo(PET_ID) == -1)
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄEnemyBase³èÎïID²»´æÔÚ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„EnemyBaseå® ç‰©IDä¸å­˜åœ¨ã€‚");
 	}
 	PET_ID = ENEMY_getEnemyArrayFromTempNo( PET_ID);
 	PET_ID = ENEMYTEMP_getEnemyTempArray( PET_ID);
@@ -1619,7 +1619,7 @@ int NPC_Lua_Char_GetDataFromEnemyBase(lua_State *_NLL)
 	}
 	else 
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 	}
 }
 
@@ -1630,7 +1630,7 @@ int NPC_Lua_Char_GetPlayerIndex(lua_State *_NLL)
 
 		if(TM_PlayerID == NULL )
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	
 	int TM_playernum = CHAR_getPlayerMaxNum();
@@ -1644,7 +1644,7 @@ int NPC_Lua_Char_GetPlayerIndex(lua_State *_NLL)
 				}
 			}
 		}
-         LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+         LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
 int NPC_Lua_Char_FindItemIndex(lua_State *_NLL)
@@ -1659,11 +1659,11 @@ int NPC_Lua_Char_FindItemIndex(lua_State *_NLL)
 	
 	if(!CHAR_CHECKINDEX(TM_CharaIndex))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëÈËÎïµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥äººç‰©çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	if(!ITEM_CHECKINDEX(TM_ItemIndex))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÀ¾ßµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥é“å…·çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	
 	int i = 0;
@@ -1677,7 +1677,7 @@ int NPC_Lua_Char_FindItemIndex(lua_State *_NLL)
 		}
 	}
  
-	LRetErrInt(_NLL, -1, "Ã»ÓĞÕÒµ½¶ÔÓ¦ ItemIndex µÄµÀ¾ß");
+	LRetErrInt(_NLL, -1, "æ²¡æœ‰æ‰¾åˆ°å¯¹åº” ItemIndex çš„é“å…·");
 	
 }
 
@@ -1693,11 +1693,11 @@ int NPC_Lua_Char_FindPetIndex(lua_State *_NLL)
 	
 	if(!CHAR_CHECKINDEX(TM_CharaIndex))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëÈËÎïµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥äººç‰©çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	if(!CHAR_CHECKINDEX(TM_PetIndex))
 	{
-		LRetErrInt(_NLL, -1, "´«Èë³èÎïµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥å® ç‰©çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	
 	int i = 0;
@@ -1711,7 +1711,7 @@ int NPC_Lua_Char_FindPetIndex(lua_State *_NLL)
 		}
 	}
  
-	LRetErrInt(_NLL, -1, "Ã»ÓĞÕÒµ½¶ÔÓ¦ PetIndex µÄ³èÎï");
+	LRetErrInt(_NLL, -1, "æ²¡æœ‰æ‰¾åˆ°å¯¹åº” PetIndex çš„å® ç‰©");
 }
 
 int NPC_Lua_CHAR_CHECKINDEX(lua_State *_NLL)
@@ -1720,7 +1720,7 @@ int NPC_Lua_CHAR_CHECKINDEX(lua_State *_NLL)
 	int Charindex = (int)lua_tointeger(_NLL, 1);
 	if(Charindex == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	BOOL TM_Ret = CHAR_CHECKINDEX(Charindex);
 	LRetBool(_NLL, TM_Ret);
@@ -1738,7 +1738,7 @@ int NPC_Lua_Char_GetPetSkill(lua_State *_NLL)
 	if(CHAR_CHECKPETSKILLINDEX(TM_PetSkillIndex)){	
 		LRetInt(_NLL, CHAR_getPetSkill(TM_PetIndex,TM_PetSkillIndex));
 	}else{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄÎ»ÖÃ³¬³ö³èÎï¼¼ÄÜ·¶Î§¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ä½ç½®è¶…å‡ºå® ç‰©æŠ€èƒ½èŒƒå›´ã€‚");
 	}
 }
 
@@ -1754,7 +1754,7 @@ int NPC_Lua_Char_GetPetSkillNo(lua_State *_NLL)
 	if(CHAR_CHECKPETSKILLINDEX(TM_PetSkillIndex)){	
 		LRetInt(_NLL, CHAR_getPetSkill(TM_PetIndex,TM_PetSkillIndex));
 	}else{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄÎ»ÖÃ³¬³ö³èÎï¼¼ÄÜ·¶Î§¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ä½ç½®è¶…å‡ºå® ç‰©æŠ€èƒ½èŒƒå›´ã€‚");
 	}
 }
 
@@ -1767,7 +1767,7 @@ int NPC_Lua_Char_GetEmptyItemBoxNum(lua_State *_NLL)
 
 	if(!CHAR_CHECKINDEX(TM_CharIndex))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	LRetInt(_NLL, CHAR_getEmptyItemBoxNum(TM_CharIndex));
@@ -1782,7 +1782,7 @@ int NPC_Lua_Char_GetEmptyPetBoxNum(lua_State *_NLL)
 
 	if(!CHAR_CHECKINDEX(TM_CharIndex))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	LRetInt(_NLL, CHAR_getEmptyPetBoxNum(TM_CharIndex));
@@ -1799,7 +1799,7 @@ int NPC_Lua_Char_GetPlayerPetNum(lua_State *_NLL)
 
 	if(!CHAR_CHECKINDEX(TM_CharaIndex))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	LRetInt(_NLL, CHAR_getPlayerPetNum(TM_CharaIndex,TM_Petid));
@@ -1828,7 +1828,7 @@ int NPC_Lua_Char_GetPlayerItemNum(lua_State *_NLL)
 	
 	if(!CHAR_CHECKINDEX(TM_CharaIndex))
 	{
-			LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+			LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	LRetInt(_NLL, CHAR_getPlayerItemNum(TM_CharaIndex,TM_ItemID,TM_IsContainEquip,TM_IsContainPile));
@@ -1882,7 +1882,7 @@ int NPC_Lua_Char_SetPetSkill(lua_State *_NLL)
 	if(CHAR_CHECKPETSKILLINDEX(TM_PetSkillIndex)){	
 		LRetInt(_NLL, CHAR_setPetSkill(TM_PetIndex,TM_PetSkillIndex,TM_PetSkillNo));
 	}else{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄÎ»ÖÃ³¬³ö³èÎï¼¼ÄÜ·¶Î§¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ä½ç½®è¶…å‡ºå® ç‰©æŠ€èƒ½èŒƒå›´ã€‚");
 	}
 }
 */
@@ -1901,7 +1901,7 @@ int NPC_Lua_Char_SetPetSkillNo(lua_State *_NLL)
 	if(CHAR_CHECKPETSKILLINDEX(TM_PetSkillIndex)){	
 		LRetInt(_NLL, CHAR_setPetSkill(TM_PetIndex,TM_PetSkillIndex,TM_PetSkillNo));
 	}else{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄÎ»ÖÃ³¬³ö³èÎï¼¼ÄÜ·¶Î§¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ä½ç½®è¶…å‡ºå® ç‰©æŠ€èƒ½èŒƒå›´ã€‚");
 	}
 }
 
@@ -1914,7 +1914,7 @@ int NPC_Lua_Char_ComplianceParameter(lua_State *_NLL)
 	
 	if(!CHAR_CHECKINDEX(TM_CharaIndex))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄÈËÎïË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„äººç‰©ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	LRetInt(_NLL, CHAR_complianceParameter(TM_CharaIndex));
@@ -1932,7 +1932,7 @@ int NPC_Lua_Char_HcItemId(lua_State *_NLL)
 	int k = 0;
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	for( i = 0 ; i<CHAR_MAXITEMHAVE ; i++ )
@@ -1944,7 +1944,7 @@ int NPC_Lua_Char_HcItemId(lua_State *_NLL)
 		}
 	}
 	if (k > 0) LRetInt(_NLL, k);
-	LRetErrInt(_NLL, -2, "ÕÒ²»µ½Ö¸¶¨µÀ¾ß¡£");
+	LRetErrInt(_NLL, -2, "æ‰¾ä¸åˆ°æŒ‡å®šé“å…·ã€‚");
 }
 
 int NPC_Lua_Char_DelHcItem(lua_State *_NLL)
@@ -1956,11 +1956,11 @@ int NPC_Lua_Char_DelHcItem(lua_State *_NLL)
 
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	if( TM_ItemId < 9 || TM_ItemId > 23){ 
-		LRetErrInt(_NLL, -2, "ÕÒ²»µ½Ö¸¶¨µÄµÀ¾ßÎ»ÖÃ¡£");
+		LRetErrInt(_NLL, -2, "æ‰¾ä¸åˆ°æŒ‡å®šçš„é“å…·ä½ç½®ã€‚");
 	}
 	else {
 		CHAR_DelItem( TM_Index, TM_ItemId);
@@ -1988,7 +1988,7 @@ int NPC_Lua_Char_FindPetEnemyBaseId(lua_State *_NLL)
 	int petid = -1;
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int enemynum = ENEMY_getEnemyNum();
 	for( i = 0; i < enemynum; i ++ ) 
@@ -2009,7 +2009,7 @@ int NPC_Lua_Char_FindPetEnemyBaseId(lua_State *_NLL)
 			break;
 		}
 	}
-	LRetErrInt(_NLL, -2, "ÕÒ²»µ½Ö¸¶¨³èÎï¡£");
+	LRetErrInt(_NLL, -2, "æ‰¾ä¸åˆ°æŒ‡å®šå® ç‰©ã€‚");
 }
 
 int NPC_Lua_Char_ITEMID_NAME(lua_State *_NLL)
@@ -2061,10 +2061,10 @@ int NPC_Lua_Char_CharRidNo(lua_State *_NLL)
 
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
-	if (RidNo < 0 || RidNo > 63) LRetErrInt(_NLL, -1, "´«ÈëµÄÆï³è±àºÅÊÇÎŞĞ§µÄ¡£");
+	if (RidNo < 0 || RidNo > 63) LRetErrInt(_NLL, -1, "ä¼ å…¥çš„éª‘å® ç¼–å·æ˜¯æ— æ•ˆçš„ã€‚");
 
 	if (RIDEPET_getPETID( TM_Index, RidNo) >= 0)
 	{
@@ -2079,10 +2079,10 @@ int NPC_Lua_Char_GetPetOwner(lua_State *_NLL)
 	int TM_Index = (int)lua_tointeger(_NLL, 1);
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	if( CHAR_getInt( TM_Index, CHAR_WHICHTYPE ) != CHAR_TYPEPET ){
-		LRetErrInt(_NLL, -2, "´«ÈëµÄ¶ÔÏó²¢²»ÊÇ³èÎï£¡");
+		LRetErrInt(_NLL, -2, "ä¼ å…¥çš„å¯¹è±¡å¹¶ä¸æ˜¯å® ç‰©ï¼");
 	}
 	int charaindex = CHAR_getWorkInt(TM_Index, CHAR_WORKPLAYERINDEX);
 	LRetInt(_NLL, charaindex);
@@ -2103,7 +2103,7 @@ int NPC_Lua_Char_GetEnemyBaseIdFromEnemyId(lua_State *_NLL)
 			break;
 		}
 	}
-	if (i == enemynum) LRetErrInt(_NLL, -1, "´«ÈëµÄenemyIDÃ»ÓĞÕÒµ½£¡");
+	if (i == enemynum) LRetErrInt(_NLL, -1, "ä¼ å…¥çš„enemyIDæ²¡æœ‰æ‰¾åˆ°ï¼");
 
 	LRetInt(_NLL, petid);
 }
@@ -2123,7 +2123,7 @@ int NPC_Lua_Char_GetEnemyIdFromEnemyBaseId(lua_State *_NLL)
 			break;
 		}
 	}
-	if (i == enemynum) LRetErrInt(_NLL, -1, "´«ÈëµÄenemybaseIDÃ»ÓĞÕÒµ½£¡");
+	if (i == enemynum) LRetErrInt(_NLL, -1, "ä¼ å…¥çš„enemybaseIDæ²¡æœ‰æ‰¾åˆ°ï¼");
 
 	LRetInt(_NLL, EnemyId);
 }
@@ -2136,26 +2136,26 @@ int NPC_Lua_Char_GetIp(lua_State *_NLL)
 	int TM_Flg = (int)lua_tointeger(_NLL, 2);
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	if( CHAR_getInt( TM_Index, CHAR_WHICHTYPE ) != CHAR_TYPEPLAYER ){
-		LRetErrInt(_NLL, -2, "´«ÈëµÄ¶ÔÏó²¢²»ÊÇÈËÎï£¡");
+		LRetErrInt(_NLL, -2, "ä¼ å…¥çš„å¯¹è±¡å¹¶ä¸æ˜¯äººç‰©ï¼");
 	}
 	int fd = getfdFromCharaIndex( TM_Index ); 
 	if( fd == -1 ){
-		LRetErrInt(_NLL, -2, "¸ÃÈËÎï¿ÉÄÜÒÑ¾­ÏÂÏß£¡");
+		LRetErrInt(_NLL, -2, "è¯¥äººç‰©å¯èƒ½å·²ç»ä¸‹çº¿ï¼");
 	}
 	if(TM_Flg == 1)//IP
 	{
 		LRetMsg(_NLL,CONNECT_get_userip2(fd));
-	}else if(TM_Flg == 2)//¸øFD
+	}else if(TM_Flg == 2)//ç»™FD
 	{
 		LRetInt(_NLL,fd);
-	}else if(TM_Flg == 3)//¶Ë¿Ú
+	}else if(TM_Flg == 3)//ç«¯å£
 	{
 		LRetInt(_NLL,CONNECT_get_userport(fd));
 	}
-	LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+	LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
 int NPC_Lua_Char_SetAllocPoint(lua_State *_NLL)
@@ -2165,13 +2165,13 @@ int NPC_Lua_Char_SetAllocPoint(lua_State *_NLL)
 	int petindex = (int)lua_tointeger(_NLL, 1);
 	int type = (int)lua_tointeger(_NLL, 2);
 	int val = (int)lua_tointeger(_NLL, 3);
-	if (val < 0 || val > 255) LRetErrInt(_NLL, -1, "val±ØĞëÎª0-255¡£");
+	if (val < 0 || val > 255) LRetErrInt(_NLL, -1, "valå¿…é¡»ä¸º0-255ã€‚");
 	if(!CHAR_CHECKINDEX(petindex))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	if( CHAR_getInt( petindex, CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER ){
-		LRetErrInt(_NLL, -2, "´«ÈëµÄ¶ÔÏó²»ÄÜÊÇÈËÎï£¡");
+		LRetErrInt(_NLL, -2, "ä¼ å…¥çš„å¯¹è±¡ä¸èƒ½æ˜¯äººç‰©ï¼");
 	}
 	int	LevelUpPoint = CHAR_getInt( petindex, CHAR_ALLOCPOINT );
 	int t = (int )(( LevelUpPoint >> 24 ) & 0xFF);
@@ -2224,10 +2224,10 @@ int NPC_Lua_Char_SavePetToString(lua_State *_NLL)
 	int petindex = (int)lua_tointeger(_NLL, 1);
 	if(!CHAR_CHECKINDEX(petindex))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	if( CHAR_getInt( petindex, CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER ){
-		LRetErrInt(_NLL, -2, "´«ÈëµÄ¶ÔÏó²»ÄÜÊÇÈËÎï£¡");
+		LRetErrInt(_NLL, -2, "ä¼ å…¥çš„å¯¹è±¡ä¸èƒ½æ˜¯äººç‰©ï¼");
 		return;
 	}
 	petdata = CHAR_makePetStringFromPetIndex( petindex);
@@ -2244,7 +2244,7 @@ int NPC_Lua_Char_LoadPetFromString(lua_State *_NLL)
 	if( ret == TRUE ){
 		petindex = PET_initCharOneArray( &petone );
 		if( petindex < 0 ){
-			LRetErrInt(_NLL, -2, "ÖÆ×÷³èÎïÊ§°Ü");
+			LRetErrInt(_NLL, -2, "åˆ¶ä½œå® ç‰©å¤±è´¥");
 			return;
 		}
 	}
@@ -2314,19 +2314,19 @@ int NPC_Lua_Char_getFamilyPlayIndex(lua_State *_NLL)
 	int charaindex = (int)lua_tointeger(_NLL, 1);
 	if(!CHAR_CHECKINDEX(charaindex))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int familyindex = (int)lua_tointeger(_NLL, 1);
 	int familymode = (int)lua_tointeger(_NLL, 2);
 	int familycharaindex = (int)lua_tointeger(_NLL, 3);
 	if(familyindex > FAMILY_MAXNUM){
-		LRetErrInt(_NLL, -1, "´«ÈëµÄ¼Ò×åË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„å®¶æ—ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}else if (familymode > FAMILY_MAXCHANNEL)
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄ¼Ò×åÆµµÀÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„å®¶æ—é¢‘é“æ˜¯æ— æ•ˆçš„ã€‚");
 	}else if (familycharaindex > FAMILY_MAXMEMBER)
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄ¼Ò×åÈËÎïË÷ÒıÎŞĞ§¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„å®¶æ—äººç‰©ç´¢å¼•æ— æ•ˆã€‚");
 	}
 	int playindex =  channelMember[familyindex][familymode][familycharaindex];
 	LRetInt(_NLL,playindex);

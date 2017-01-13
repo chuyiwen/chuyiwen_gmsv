@@ -1,6 +1,7 @@
 //////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 /*
-    Provided by Íõ¿¡´¨, Northeastern University (www.neu.edu.cn)
+    Provided by ç‹ä¿Šå·, Northeastern University (www.neu.edu.cn)
     Email: blackdrn@sohu.com
 	This product is free for use.
 */
@@ -11,10 +12,10 @@ enum    {ENCRYPT,DECRYPT};
                             // and use 1 for true,0 for false;
 //////////////////////////////////////////////////////////////////////////
 
-// Type¡ªENCRYPT:¼ÓÃÜ,DECRYPT:½âÃÜ
-// Êä³ö»º³åÇø(Out)µÄ³¤¶È >= ((datalen+7)/8)*8,¼´±Èdatalen´óµÄÇÒÊÇ8µÄ±¶ÊıµÄ×îĞ¡ÕıÕûÊı
-// In ¿ÉÒÔ= Out,´ËÊ±¼Ó/½âÃÜºó½«¸²¸ÇÊäÈë»º³åÇø(In)µÄÄÚÈİ
-// µ±keylen>8Ê±ÏµÍ³×Ô¶¯Ê¹ÓÃ3´ÎDES¼Ó/½âÃÜ,·ñÔòÊ¹ÓÃ±ê×¼DES¼Ó/½âÃÜ.³¬¹ı16×Ö½ÚºóÖ»È¡Ç°16×Ö½Ú
+// Typeâ€”ENCRYPT:åŠ å¯†,DECRYPT:è§£å¯†
+// è¾“å‡ºç¼“å†²åŒº(Out)çš„é•¿åº¦ >= ((datalen+7)/8)*8,å³æ¯”datalenå¤§çš„ä¸”æ˜¯8çš„å€æ•°çš„æœ€å°æ­£æ•´æ•°
+// In å¯ä»¥= Out,æ­¤æ—¶åŠ /è§£å¯†åå°†è¦†ç›–è¾“å…¥ç¼“å†²åŒº(In)çš„å†…å®¹
+// å½“keylen>8æ—¶ç³»ç»Ÿè‡ªåŠ¨ä½¿ç”¨3æ¬¡DESåŠ /è§£å¯†,å¦åˆ™ä½¿ç”¨æ ‡å‡†DESåŠ /è§£å¯†.è¶…è¿‡16å­—èŠ‚ååªå–å‰16å­—èŠ‚
 
 bool Des_Go(char *Out,char *In,long datalen,const char *Key,int keylen,bool Type);
 

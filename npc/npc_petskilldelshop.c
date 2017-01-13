@@ -162,7 +162,7 @@ void NPC_PetSkillDelShopWindowTalked( int meindex, int talkerindex,
 
 	if(CHAR_getInt(talkerindex,CHAR_VIGOR) < cost){
 		CHAR_send_P_StatusString( talkerindex, CHAR_P_STRING_GOLD);
-		CHAR_talkToCli( talkerindex, -1, "ÄãµÄ»îÁ¦²»¹»£¡" , CHAR_COLORRED);
+		CHAR_talkToCli( talkerindex, -1, "ä½ çš„æ´»åŠ›ä¸å¤Ÿï¼" , CHAR_COLORRED);
 		return;
 	}
 	if(CHAR_getPetSkill( petindex, slot)!=skillID) return;
@@ -171,7 +171,7 @@ void NPC_PetSkillDelShopWindowTalked( int meindex, int talkerindex,
 
 		if( emptyitemindexinchara < 0 ){
 
-			CHAR_talkToCli( talkerindex, -1, "ÎïÆ·À¸Î»²»×ã¡£" , CHAR_COLORYELLOW);
+			CHAR_talkToCli( talkerindex, -1, "ç‰©å“æ ä½ä¸è¶³ã€‚" , CHAR_COLORYELLOW);
 
 			return;
 		}
@@ -185,7 +185,7 @@ void NPC_PetSkillDelShopWindowTalked( int meindex, int talkerindex,
 	CHAR_setPetSkill( petindex, slot, -1);
 
 	CHAR_setInt( talkerindex, CHAR_VIGOR, CHAR_getInt( talkerindex, CHAR_VIGOR ) - cost );
-	sprintf(msgbuf,"¿Û³ı%dµã»îÁ¦£¬µÃµ½<%s>£¡",cost,ITEM_getNameFromNumber( skillitem));
+	sprintf(msgbuf,"æ‰£é™¤%dç‚¹æ´»åŠ›ï¼Œå¾—åˆ°<%s>ï¼",cost,ITEM_getNameFromNumber( skillitem));
 	CHAR_talkToCli( talkerindex, -1, msgbuf, CHAR_COLORYELLOW);
 
 	snprintf( msgbuf, sizeof( msgbuf ), "W%d",pet-1);

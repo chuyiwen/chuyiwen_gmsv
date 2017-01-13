@@ -27,7 +27,7 @@ typedef enum
 #endif
 }LUAITEM_FUNC;
 
-lua_State *M_Script_Lua = NULL;	//ÊµÀı¾ä±ú
+lua_State *M_Script_Lua = NULL;	//å®ä¾‹å¥æŸ„
 unsigned int M_Create_Num = 0;
 char M_OutErrMsg[1024];
 
@@ -74,9 +74,9 @@ static luaL_Reg Spell_RegList[] = {
 	{"PETSKILL_GetData",NPC_Lua_Spell_PETSKILL_GetData},
 	{"PROFESSION_GetData",NPC_Lua_Spell_PROFESSION_GetData},
 	{"MAGIC_GetData",NPC_Lua_Spell_MAGIC_GetData},
-	{"PETSKILL_SetData",NPC_Lua_Spell_PETSKILL_SetData},//Î´²âÊÔ
-	{"PROFESSION_SetData",NPC_Lua_Spell_PROFESSION_SetData},//Î´²âÊÔ
-	{"MAGIC_SetData",NPC_Lua_Spell_MAGIC_SetData},//Î´²âÊÔ
+	{"PETSKILL_SetData",NPC_Lua_Spell_PETSKILL_SetData},//æœªæµ‹è¯•
+	{"PROFESSION_SetData",NPC_Lua_Spell_PROFESSION_SetData},//æœªæµ‹è¯•
+	{"MAGIC_SetData",NPC_Lua_Spell_MAGIC_SetData},//æœªæµ‹è¯•
 	{NULL, NULL},
 };
 
@@ -85,22 +85,22 @@ static luaL_Reg NL_RegList[] = {
 	{"GetErrorStr", NPC_Lua_NL_GetErrorStr},
 	{"CreateNpc", NPC_Lua_NL_CreateNpc},
 	{"DelNpc", NPC_Lua_NL_DelNpc},
-	{"GetStringFromIndexWithDelim", NPC_Lua_NL_GetStringFromIndexWithDelim},//²ğ·Ö×Ö·û
-	{"ANSI_PlayerLoop", NPC_Lua_NL_ANSI_PlayerLoop},//±éÀúËùÓĞÔÚÏß³èÎï ·µ»ØËùÓĞË÷Òı±àºÅ
-	{"PetLoopGetNext", NPC_Lua_NL_PetLoopGetNext},//±éÀúËùÓĞÔÚÏß³èÎï ·µ»ØËùÓĞË÷Òı±àºÅ
-	{"ItemLoopGetNext", NPC_Lua_NL_ItemLoopGetNext},//±éÀúËùÓĞµÀ¾ß ·µ»ØËùÓĞË÷Òı±àºÅ
-	{"PlayerLoopGetNext", NPC_Lua_NL_PlayerLoopGetNext},//±éÀúËùÓĞÈËÎï ·µ»ØËùÓĞË÷Òı±àºÅ
-	{"GetConfigLineType", NPC_Lua_NL_GetConfigLineType},//·µ»ØCF×Ö¶ÎÀàĞÍ
-	{"GetConfigLineVal", NPC_Lua_NL_GetConfigLineVal},//·µ»ØCF×Ö¶ÎÖµ
-	{"CheckNpcEventFree", NPC_Lua_CheckNpcEventFree},//Ê¹ÓÃNPC½Å±¾¼ì²âÌõ¼ş
-	{"DoNpcEventAction", NPC_Lua_DoNpcEventAction},//Ê¹ÓÃNPC½Å±¾ÓïÑÔ
-	{"SetTimer", NPC_Lua_NL_SetTimer},//Éè¶¨Ò»¸ö¶¨Ê±Æ÷·µ»Ø¶¨Ê±Æ÷ID
-	{"DelTimer", NPC_Lua_NL_DelTimer},//É¾³ıÒ»¸ö¶¨Ê±Æ÷ID
-	{"RunSaFuncII", NPC_Lua_NL_RunSaFuncII},//µ÷ÓÃÒ»¸ö·şÎñ¶ËÄÚ¶¨ÒåºÃµÄ2¸öINT²ÎÊıµÄº¯Êı¡£
-	{"RunSaFuncIII", NPC_Lua_NL_RunSaFuncIII},//µ÷ÓÃÒ»¸ö·şÎñ¶ËÄÚ¶¨ÒåºÃµÄ3¸öINT²ÎÊıµÄº¯Êı¡£
-	{"ANSI_PlayerLoop", NPC_Lua_NL_ANSI_PlayerLoop},//±éÀúÏÂÒ»¸öÈËÎïË÷Òı  (ºÍÇ°ÃæÖØ¸´£¬ÔİÊ±²»Àí
-	{"ANSI_PetLoop", NPC_Lua_NL_ANSI_PetLoop},//±éÀúÏÂÒ»¸ö³èÎïË÷Òı
-	{"ANSI_ItemLoop", NPC_Lua_NL_ANSI_ItemLoop},//±éÀúÏÂÒ»¸öµÀ¾ßË÷Òı)
+	{"GetStringFromIndexWithDelim", NPC_Lua_NL_GetStringFromIndexWithDelim},//æ‹†åˆ†å­—ç¬¦
+	{"ANSI_PlayerLoop", NPC_Lua_NL_ANSI_PlayerLoop},//éå†æ‰€æœ‰åœ¨çº¿å® ç‰© è¿”å›æ‰€æœ‰ç´¢å¼•ç¼–å·
+	{"PetLoopGetNext", NPC_Lua_NL_PetLoopGetNext},//éå†æ‰€æœ‰åœ¨çº¿å® ç‰© è¿”å›æ‰€æœ‰ç´¢å¼•ç¼–å·
+	{"ItemLoopGetNext", NPC_Lua_NL_ItemLoopGetNext},//éå†æ‰€æœ‰é“å…· è¿”å›æ‰€æœ‰ç´¢å¼•ç¼–å·
+	{"PlayerLoopGetNext", NPC_Lua_NL_PlayerLoopGetNext},//éå†æ‰€æœ‰äººç‰© è¿”å›æ‰€æœ‰ç´¢å¼•ç¼–å·
+	{"GetConfigLineType", NPC_Lua_NL_GetConfigLineType},//è¿”å›CFå­—æ®µç±»å‹
+	{"GetConfigLineVal", NPC_Lua_NL_GetConfigLineVal},//è¿”å›CFå­—æ®µå€¼
+	{"CheckNpcEventFree", NPC_Lua_CheckNpcEventFree},//ä½¿ç”¨NPCè„šæœ¬æ£€æµ‹æ¡ä»¶
+	{"DoNpcEventAction", NPC_Lua_DoNpcEventAction},//ä½¿ç”¨NPCè„šæœ¬è¯­è¨€
+	{"SetTimer", NPC_Lua_NL_SetTimer},//è®¾å®šä¸€ä¸ªå®šæ—¶å™¨è¿”å›å®šæ—¶å™¨ID
+	{"DelTimer", NPC_Lua_NL_DelTimer},//åˆ é™¤ä¸€ä¸ªå®šæ—¶å™¨ID
+	{"RunSaFuncII", NPC_Lua_NL_RunSaFuncII},//è°ƒç”¨ä¸€ä¸ªæœåŠ¡ç«¯å†…å®šä¹‰å¥½çš„2ä¸ªINTå‚æ•°çš„å‡½æ•°ã€‚
+	{"RunSaFuncIII", NPC_Lua_NL_RunSaFuncIII},//è°ƒç”¨ä¸€ä¸ªæœåŠ¡ç«¯å†…å®šä¹‰å¥½çš„3ä¸ªINTå‚æ•°çš„å‡½æ•°ã€‚
+	{"ANSI_PlayerLoop", NPC_Lua_NL_ANSI_PlayerLoop},//éå†ä¸‹ä¸€ä¸ªäººç‰©ç´¢å¼•  (å’Œå‰é¢é‡å¤ï¼Œæš‚æ—¶ä¸ç†
+	{"ANSI_PetLoop", NPC_Lua_NL_ANSI_PetLoop},//éå†ä¸‹ä¸€ä¸ªå® ç‰©ç´¢å¼•
+	{"ANSI_ItemLoop", NPC_Lua_NL_ANSI_ItemLoop},//éå†ä¸‹ä¸€ä¸ªé“å…·ç´¢å¼•)
 	{"ClsMk", NPC_Lua_NL_ClsMk},
 	{"AddCheckNum", NPC_Lua_NL_AddCheckNum},
 	{"Mkstring", NPC_Lua_NL_Mkstring},
@@ -111,7 +111,7 @@ static luaL_Reg NL_RegList[] = {
 };
 
 static luaL_Reg Char_RegList[] = {
-//»ñÈ¡Êı¾İµÄ½Ó¿Ú
+//è·å–æ•°æ®çš„æ¥å£
 	{"getVipPoint", NPC_Lua_Char_getVipPoint},
 	{"getjfPoint",  NPC_Lua_Char_getjfPoint},
 	{"getxjPoint",  NPC_Lua_Char_getxjPoint},
@@ -150,7 +150,7 @@ static luaL_Reg Char_RegList[] = {
   {"ITEMID_LEVEL", NPC_Lua_Char_ITEMID_LEVEL},
   {"ITEMID_GOLD", NPC_Lua_Char_ITEMID_GOLD},
   {"ITEMID_RANO", NPC_Lua_Char_ITEMID_RANO},
-//	{"CharRidNo", NPC_Lua_Char_CharRidNo},  //Æï³èÎ´Í¬²½£¬ÔİÊ±¹Ø±Õ
+//	{"CharRidNo", NPC_Lua_Char_CharRidNo},  //éª‘å® æœªåŒæ­¥ï¼Œæš‚æ—¶å…³é—­
 	{"GetPetOwner", NPC_Lua_Char_GetPetOwner},
 	{"GetEnemyBaseIdFromEnemyId", NPC_Lua_Char_GetEnemyBaseIdFromEnemyId},
   {"GetEnemyIdFromEnemyBaseId", NPC_Lua_Char_GetEnemyIdFromEnemyBaseId},
@@ -174,7 +174,7 @@ static luaL_Reg Char_RegList[] = {
 	{"GetTeamIndex", NPC_Lua_Char_GetTeamIndex},
 	{"GetPlayerIndexByCdkey", NPC_Lua_Char_GetPlayerIndexByCdkey},
 
-//ÉèÖÃÊı¾İµÄ½Ó¿Ú
+//è®¾ç½®æ•°æ®çš„æ¥å£
 	{"ClrEvtEnd", NPC_Lua_Char_ClrEvtEnd},
 	{"ClrEvtNow", NPC_Lua_Char_ClrEvtNow},
 	{"ClrClrEvt", NPC_Lua_Char_ClrEvt},
@@ -182,7 +182,7 @@ static luaL_Reg Char_RegList[] = {
 	{"SetEvtNow", NPC_Lua_Char_SetEvtNow},
 	{"SetData", NPC_Lua_Char_SetData},
 
-//ÊÂ¼şÉèÖÃµÄ½Ó¿Ú
+//äº‹ä»¶è®¾ç½®çš„æ¥å£
 	{"SetWalkPreEvent", NPC_Lua_Char_SetWalkPreEvent},
 	{"SetWalkPostEvent", NPC_Lua_Char_SetWalkPostEvent},
 	{"SetPreOverEvent", NPC_Lua_Char_SetPreOverEvent},
@@ -198,7 +198,7 @@ static luaL_Reg Char_RegList[] = {
 	{"SetCharLoopsEvent", NPC_Lua_Char_SetCharLoopsEvent},
 	{"SetBattleProPertyEvent", NPC_Lua_Char_SetBattleProPertyEvent},
 #endif
-//»áÔ±µã½Ó¿Ú
+//ä¼šå‘˜ç‚¹æ¥å£
 	{"VipPoint", NPC_Lua_Char_VipPoint},
 	{"HealAll", NPC_Lua_Char_HealAll},
 	{"GetPetSkillId", NPC_Lua_Char_GetPetSkillId},
@@ -219,13 +219,13 @@ static luaL_Reg GAME_RegList[] = {
 };
 
 static luaL_Reg Item_RegList[] = {
-//»ñÈ¡Êı¾İµÄ½Ó¿Ú
+//è·å–æ•°æ®çš„æ¥å£
 	{"GetData", NPC_Lua_Item_GetData},
 
-//ÉèÖÃÊı¾İµÄ½Ó¿Ú
+//è®¾ç½®æ•°æ®çš„æ¥å£
 	{"SetData", NPC_Lua_Item_SetData},
   {"GetDataFromItemSet", NPC_Lua_Item_GetDataFromItemSet},
-//ÊÂ¼şÉèÖÃµÄ½Ó¿Ú
+//äº‹ä»¶è®¾ç½®çš„æ¥å£
 	{"SetPreOverEvent", NPC_Lua_Item_SetPreOverEvent},
 	{"SetPostOverEvent", NPC_Lua_Item_SetPostOverEvent},
 	{"SetWatchEvent", NPC_Lua_Item_SetWatchEvent},
@@ -241,7 +241,7 @@ static luaL_Reg Item_RegList[] = {
 };
 
 static luaL_Reg Obj_RegList[] = {
-//»ñÈ¡Êı¾İµÄ½Ó¿Ú
+//è·å–æ•°æ®çš„æ¥å£
 	{"GetType", NPC_Lua_Obj_GetType},
 	{"GetCharType", NPC_Lua_Obj_GetCharType},
 	{"GetCharIndex", NPC_Lua_Obj_GetCharIndex},
@@ -249,7 +249,7 @@ static luaL_Reg Obj_RegList[] = {
 	{"GetY", NPC_Lua_Obj_GetY},
 	{"GetFloor", NPC_Lua_Obj_GetFloor},
 
-//ÊÂ¼şÉèÖÃµÄ½Ó¿Ú
+//äº‹ä»¶è®¾ç½®çš„æ¥å£
 	{"SetType", NPC_Lua_Obj_SetType},
 	{"SetCharType", NPC_Lua_Obj_SetCharType},
 	{"SetX", NPC_Lua_Obj_SetX},
@@ -259,20 +259,20 @@ static luaL_Reg Obj_RegList[] = {
 };
 
 static luaL_Reg Battle_RegList[] = {
-//»ñÈ¡Êı¾İµÄ½Ó¿Ú
+//è·å–æ•°æ®çš„æ¥å£
 	{"GetPlayIndex", NPC_Lua_Battle_GetPlayIndex},
   {"GetData", NPC_Lua_Battle_GetData},
   {"IndexToNo", NPC_Lua_Battle_IndexToNo},
   {"NoToIndex", NPC_Lua_Battle_NoToIndex},
   {"CheckIndex", NPC_Lua_Battle_CheckIndex},
-//ÉèÖÃÊı¾İµÄ½Ó¿Ú
+//è®¾ç½®æ•°æ®çš„æ¥å£
 	{"SetNORisk", NPC_Lua_Battle_SetNORisk},
 	{"SetMod", NPC_Lua_Battle_SetMod},
 	{"SetType", NPC_Lua_Battle_SetType},
 	{"SetData", NPC_Lua_Battle_SetData},
 	{"Exit", NPC_Lua_Battle_Exit},
 
-//ÊÂ¼şÉèÖÃµÄ½Ó¿Ú
+//äº‹ä»¶è®¾ç½®çš„æ¥å£
 	{"SetWinEvent", NPC_Lua_Battle_SetWinEvent},
 	{"SetEndEvent", NPC_Lua_Battle_SetEndEvent},
 	{NULL, NULL},
@@ -291,7 +291,7 @@ static luaL_Reg SQL_RegList[] = {
 
 
 static luaL_Reg NLG_RegList[] = {
-//¹¦ÄÜ½Ó¿Ú
+//åŠŸèƒ½æ¥å£
   {"UpItem", NPC_Lua_NLG_UpItem},
 	{"GiveItemOne", NPC_Lua_NLG_GiveItemOne},
 	{"HealAll", NPC_Lua_NLG_HealerAllHeal},
@@ -433,24 +433,24 @@ int NPC_Lua_Init(const char *_DoFile)
   }
   M_OutErrMsg[0] = '\0';
 
-  //Í£Ö¹À¬»øÊÕ¼¯
+  //åœæ­¢åƒåœ¾æ”¶é›†
   lua_gc(M_Script_Lua, LUA_GCSTOP, 0);
 
   luaL_openlibs(M_Script_Lua);
 
   lua_gc(M_Script_Lua, LUA_GCRESTART, 0);
 	
-	//ÉèÖÃÄÚÖÃ³£Á¿
+	//è®¾ç½®å†…ç½®å¸¸é‡
   lua_setconstlist(M_Script_Lua, M_Lua_RegConstList);
 
-	//ÉèÖÃLuaÒıÇæÀ©Õ¹
+	//è®¾ç½®Luaå¼•æ“æ‰©å±•
 	print("LUA RegFuncNum:%d\n", NPC_Lua_RegCallEx(M_Script_Lua, M_RegList));
 	print("LUA RegLibNum:%d\n", NPC_Lua_RegLibEx(M_Script_Lua, M_RegLib));
 	print("LUA RegClassNum:%d\n", NPC_Lua_RegClassEx(M_Script_Lua, M_RegClass));
 	print("LUA RegArrayNum:%d\n", NPC_Lua_RegArrayEx(M_Script_Lua, M_RegArray));
 
-	print("LNSÒıÇæ³õÊ¼»¯Íê³É ÒıÇæ°æ±¾: 1.1.26\n");
-	//É¾³ıÖ®Ç°LUA½¨Á¢µÄNPC
+	print("LNSå¼•æ“åˆå§‹åŒ–å®Œæˆ å¼•æ“ç‰ˆæœ¬: 1.1.26\n");
+	//åˆ é™¤ä¹‹å‰LUAå»ºç«‹çš„NPC
 	int i;
 	int charnum = getFdnum()+ getPetcharnum()+getOtherscharnum();
 	for(i=0;i<charnum;i++){
@@ -459,24 +459,24 @@ int NPC_Lua_Init(const char *_DoFile)
 			NPC_Lua_Del(i);
 		}
 	}
-	//¼ÓÔØ½Å±¾ÎÄ¼ş
+	//åŠ è½½è„šæœ¬æ–‡ä»¶
 	TM_Ret = luaL_loadfile(M_Script_Lua, _DoFile);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("LoadFile Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return M_Create_Num;
 	}
 
-	//Ö´ĞĞ½Å±¾ÎÄ¼ş
+	//æ‰§è¡Œè„šæœ¬æ–‡ä»¶
 	TM_Ret = lua_pcall(M_Script_Lua, 0, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("Do Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return M_Create_Num;
 	}
@@ -497,7 +497,7 @@ int NPC_Lua_Close(void)
 int pcall_callback_err_fun(lua_State* L,const char *_InitFuncName)
 {
 	lua_Debug debug;
-	//È¡µÃ²ãÊı
+	//å–å¾—å±‚æ•°
 	int level = 0;
 	while (lua_getstack(L, level, &debug)) {
 		level++;
@@ -507,11 +507,11 @@ int pcall_callback_err_fun(lua_State* L,const char *_InitFuncName)
 	}
 	lua_getstack(L, level, &debug);
 	lua_getinfo(L, "Sln", &debug);
-	lua_pop(L, 1);//³öÕ»
+	lua_pop(L, 1);//å‡ºæ ˆ
 	if(_InitFuncName != NULL && _InitFuncName[0] != '\0'){
-		print("Â·¾¶(%s)%dĞĞ´úÂëµ÷ÓÃº¯Êı(%s)³ö´í¡£\n",debug.short_src,debug.currentline,_InitFuncName);
+		print("è·¯å¾„(%s)%dè¡Œä»£ç è°ƒç”¨å‡½æ•°(%s)å‡ºé”™ã€‚\n",debug.short_src,debug.currentline,_InitFuncName);
 	}else{
-		print("Â·¾¶(%s)%d´úÂë³ö´í¡£\n",debug.short_src,debug.currentline);
+		print("è·¯å¾„(%s)%dä»£ç å‡ºé”™ã€‚\n",debug.short_src,debug.currentline);
 	}
 	return 1;
 }
@@ -531,7 +531,7 @@ int NPC_Lua_DoFile(const char *_DoFile)
 	int TM_Ret = luaL_loadfile(M_Script_Lua, _DoFile);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_DoFile LoadFile Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
 		return 1;
 	}
@@ -539,7 +539,7 @@ int NPC_Lua_DoFile(const char *_DoFile)
 	TM_Ret = lua_pcall(M_Script_Lua, 0, LUA_MULTRET, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_DoFile Do Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
 		return 1;
 	}
@@ -563,7 +563,7 @@ const char *NPC_Lua_CallFunc(const char *_FuncName, char *_RetBuff, size_t _n, i
 
 	if(lua_type(M_Script_Lua, -1) != LUA_TFUNCTION)
 	{
-		strcpy_s(_RetBuff, _n, "ÎŞ·¨Ö´ĞĞÖ¸¶¨º¯Êı¡£");
+		strcpy_s(_RetBuff, _n, "æ— æ³•æ‰§è¡ŒæŒ‡å®šå‡½æ•°ã€‚");
 		return _RetBuff;
 	}
 	lua_pushinteger(M_Script_Lua,(lua_Integer)index) ;
@@ -585,7 +585,7 @@ const char *NPC_Lua_CallFunc(const char *_FuncName, char *_RetBuff, size_t _n)
 
 	if(lua_type(M_Script_Lua, -1) != LUA_TFUNCTION)
 	{
-		strcpy_s(_RetBuff, _n, "ÎŞ·¨Ö´ĞĞÖ¸¶¨º¯Êı¡£");
+		strcpy_s(_RetBuff, _n, "æ— æ³•æ‰§è¡ŒæŒ‡å®šå‡½æ•°ã€‚");
 		return _RetBuff;
 	}
 	lua_pcall(M_Script_Lua, 0, 1, 0);
@@ -621,9 +621,9 @@ void NPC_Lua_BattleEndCallBack(int _battleindex)
 
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
-		print("NPC_Lua_BattleEndCallBack Lua Err :%d(%s)  »Øµ÷Ãû[%s]\n", TM_Ret, lua_tostring(M_Script_Lua, -1),TM_Battle->EndLuaFuncName);
-		//³öÕ»
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
+		print("NPC_Lua_BattleEndCallBack Lua Err :%d(%s)  å›è°ƒå[%s]\n", TM_Ret, lua_tostring(M_Script_Lua, -1),TM_Battle->EndLuaFuncName);
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -652,9 +652,9 @@ BOOL NPC_Lua_InitCallBack(int _meindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 1, 1, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_InitCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return FALSE;
 	}
@@ -686,9 +686,9 @@ BOOL NPC_Lua_WalkPreCallBack(int _meindex, int *_dir, int *_mode)
 	TM_Ret = lua_pcall(M_Script_Lua, 3, 3, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_WalkPreCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return FALSE;
 	}
@@ -721,9 +721,9 @@ void NPC_Lua_WalkPostCallBack(int _meindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 1, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_WalkPostCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -752,9 +752,9 @@ void NPC_Lua_PreOverCallBack(int _meindex, int _desindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_PreOverCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -783,9 +783,9 @@ void NPC_Lua_PostOverCallBack(int _meindex, int _desindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_PostOverCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -822,7 +822,7 @@ void NPC_Lua_WatchCallBack(int _meindex, int _objindex, int _chac, int _x, int _
 		lua_pushnil(M_Script_Lua);
 	}else
 	{
-		//µ÷ÓÃ NTInt ÊµÀı»¯º¯Êı
+		//è°ƒç”¨ NTInt å®ä¾‹åŒ–å‡½æ•°
 		lua_getglobal(M_Script_Lua, "AINew");
 		lua_pushinteger(M_Script_Lua, _watchoptlen);
 		TM_Ret = lua_pcall(M_Script_Lua, 1, 1, 0);
@@ -853,13 +853,13 @@ void NPC_Lua_WatchCallBack(int _meindex, int _objindex, int _chac, int _x, int _
 		}
 	}
 
-	//µ÷ÓÃÓÃ»§ÉèÖÃµÄ»Øµ÷º¯Êı
+	//è°ƒç”¨ç”¨æˆ·è®¾ç½®çš„å›è°ƒå‡½æ•°
 	TM_Ret = lua_pcall(M_Script_Lua, 7, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_WatchCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -887,9 +887,9 @@ int NPC_Lua_LoopCallBack(int _meindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 1, 1, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_LoopCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return FALSE;
 	}
@@ -952,9 +952,9 @@ void NPC_Lua_TalkedCallBack(int _meindex, int _tomeindex, const char *_messageer
 	TM_Ret = lua_pcall(M_Script_Lua, 5, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_TalkedCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -983,9 +983,9 @@ void NPC_Lua_OFFCallBack(int _meindex, int _desindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_OFFCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1014,9 +1014,9 @@ void NPC_Lua_LookedCallBack(int _meindex, int _desindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_LookedCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1046,9 +1046,9 @@ BOOL NPC_Lua_ItemPutCallBack(int _meindex, int _itemindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 1, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_ItemPutCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return FALSE;
 	}
@@ -1081,9 +1081,9 @@ void NPC_Lua_WindowTalkedCallBack(int _meindex, int _talkindex, int _seqno, int 
 	TM_Ret = lua_pcall(M_Script_Lua, 5, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_WindowTalkedCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1112,9 +1112,9 @@ int NPC_Lua_CharLoopsCallBack( int _meindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 1, 1, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_CharLoopsCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return 0;
 	}
@@ -1152,7 +1152,7 @@ int NPC_Lua_BattleProPertyCallBack(int _attackindex, int _defindex, int *_damage
 		lua_pushnil(M_Script_Lua);
 	}else
 	{
-		//µ÷ÓÃ NTInt ÊµÀı»¯º¯Êı
+		//è°ƒç”¨ NTInt å®ä¾‹åŒ–å‡½æ•°
 		lua_getglobal(M_Script_Lua, "AINew");
 		lua_pushinteger(M_Script_Lua, _arraynum);
 		TM_Ret = lua_pcall(M_Script_Lua, 1, 1, 0);
@@ -1186,9 +1186,9 @@ int NPC_Lua_BattleProPertyCallBack(int _attackindex, int _defindex, int *_damage
 	TM_Ret = lua_pcall(M_Script_Lua, 4, 1, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_BattleProPertyCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return 0;
 	}
@@ -1223,9 +1223,9 @@ void NPC_Lua_ItemPerOverCallBack(int _itemindex, int _playindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_ItemPerOverCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1254,9 +1254,9 @@ void NPC_Lua_ItemPostOverCallBack(int _itemindex, int _playindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_ItemPostOverCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1293,7 +1293,7 @@ void NPC_Lua_ItemWatchCallBack(int _meindex, int _objindex, int _chac, int _x, i
 		lua_pushnil(M_Script_Lua);
 	}else
 	{
-		//µ÷ÓÃ NTInt ÊµÀı»¯º¯Êı
+		//è°ƒç”¨ NTInt å®ä¾‹åŒ–å‡½æ•°
 		lua_getglobal(M_Script_Lua, "AINew");
 		lua_pushinteger(M_Script_Lua, _watchoptlen);
 		TM_Ret = lua_pcall(M_Script_Lua, 1, 1, 0);
@@ -1324,13 +1324,13 @@ void NPC_Lua_ItemWatchCallBack(int _meindex, int _objindex, int _chac, int _x, i
 		}
 	}
 
-	//µ÷ÓÃÓÃ»§ÉèÖÃµÄ»Øµ÷º¯Êı
+	//è°ƒç”¨ç”¨æˆ·è®¾ç½®çš„å›è°ƒå‡½æ•°
 	TM_Ret = lua_pcall(M_Script_Lua, 7, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_ItemWatchCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1360,9 +1360,9 @@ void NPC_Lua_ItemUseCallBack(int _playindex, int _to_charindex, int _haveitemind
 	TM_Ret = lua_pcall(M_Script_Lua, 3, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_ItemUseCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1391,9 +1391,9 @@ void NPC_Lua_ItemAttachCallBack(int _playindex, int _itemindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_ItemAttachCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1422,9 +1422,9 @@ void NPC_Lua_ItemDetachCallBack(int _playindex, int _itemindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_ItemDetachCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1453,9 +1453,9 @@ void NPC_Lua_ItemDropCallBack(int _playindex, int _itemindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_ItemDropCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1484,9 +1484,9 @@ void NPC_Lua_ItemPickUPCallBack(int _playindex, int _itemindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_ItemPickUPCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1517,9 +1517,9 @@ void NPC_Lua_ItemDieReLifeCallBack(int _playindex, int _itemindex, int _haveitem
 	TM_Ret = lua_pcall(M_Script_Lua, 3, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_ItemDieReLifeCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1556,9 +1556,9 @@ void NPC_Lua_BattleWinCallBack(int _battleindex, int _createindex)
 	TM_Ret = lua_pcall(M_Script_Lua, 2, 0, 0);
 	if(TM_Ret != 0)
 	{
-		//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+		//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 		print("NPC_Lua_BattleWinCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-		//³öÕ»
+		//å‡ºæ ˆ
 		lua_pop(M_Script_Lua, 1);
 		return ;
 	}
@@ -1592,7 +1592,7 @@ int NPC_GivePet(int charaindex, int lv, int enemyid)
 		{
 			int k = 0;
 			for( k = CHAR_getInt( petindex, CHAR_LV); k < lv; k++ )
-			{	//Éı¼¶
+			{	//å‡çº§
 				CHAR_PetLevelUpExInfc( petindex , k);
 				CHAR_PetAddVariableAi( petindex, AI_FIX_PETLEVELUP );
 				CHAR_setInt( petindex, CHAR_LV, k + 1);
@@ -1653,7 +1653,7 @@ int NPC_GiveItem(int charaindex, int itemid)
 			(
 				CHAR_getChar( charaindex, CHAR_NAME ),
 				CHAR_getChar( charaindex, CHAR_CDKEY ),
-#ifdef _add_item_log_name  // WON ADD ÔÚitemµÄlogÖĞÔö¼ÓitemÃû³Æ
+#ifdef _add_item_log_name  // WON ADD åœ¨itemçš„logä¸­å¢åŠ itemåç§°
 				itemindex,
 #else
 				ITEM_getInt( itemindex, ITEM_ID ),
@@ -1681,13 +1681,13 @@ int NPC_DelPet(int charaindex, int petsel)
 
 	if( !CHAR_CHECKINDEX(TM_PetIndex) ) return -1;
 
-	//Õ½¶·×´Ì¬²»ÔÊĞíÊÕ³è
+	//æˆ˜æ–—çŠ¶æ€ä¸å…è®¸æ”¶å® 
 	if( CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE) != BATTLE_CHARMODE_NONE )
 	{
 		return -1;
 	}
 
-	//ÏÈ¸Ä³ÉÎŞ²ÎÕ½³è
+	//å…ˆæ”¹æˆæ— å‚æˆ˜å® 
 	if( CHAR_getInt( charaindex, CHAR_DEFAULTPET) == petsel)
 	{
 		CHAR_setInt( charaindex, CHAR_DEFAULTPET, -1);
@@ -1704,18 +1704,18 @@ int NPC_DelPet(int charaindex, int petsel)
 
 	{
 		char TM_MsgBuff[128];
-		snprintf( TM_MsgBuff,sizeof( TM_MsgBuff), "½»³ö%s¡£",	CHAR_getChar( TM_PetIndex, CHAR_NAME));
+		snprintf( TM_MsgBuff,sizeof( TM_MsgBuff), "äº¤å‡º%sã€‚",	CHAR_getChar( TM_PetIndex, CHAR_NAME));
 		CHAR_talkToCli( charaindex, -1, TM_MsgBuff,  CHAR_COLORWHITE);
 	}
 
-	//¼ÇÂ¼ÈÕÖ¾
+	//è®°å½•æ—¥å¿—
 	LogPet
 	(
 		CHAR_getChar( charaindex, CHAR_NAME ),
 		CHAR_getChar( charaindex, CHAR_CDKEY ),
 		CHAR_getChar( TM_PetIndex, CHAR_NAME),
 		CHAR_getInt( TM_PetIndex, CHAR_LV),
-		"CHAR_DelPet(É¾³ı³èÎï)",
+		"CHAR_DelPet(åˆ é™¤å® ç‰©)",
 		CHAR_getInt( charaindex,CHAR_FLOOR),
 		CHAR_getInt( charaindex,CHAR_X ),
 		CHAR_getInt( charaindex,CHAR_Y ),
@@ -1752,14 +1752,14 @@ int NPC_Lua_CreateVsEnemy(lua_State *_NLL, int _CharaIndex, int _NpcIndex, const
 	}
 
 #ifdef _STREET_VENDOR
-	// °ÚÌ¯ÖĞ²»¿É½øÈëÕ½¶·
+	// æ‘†æ‘Šä¸­ä¸å¯è¿›å…¥æˆ˜æ–—
 	if( CHAR_getWorkInt(_CharaIndex, CHAR_WORKSTREETVENDOR) > -1)
 	{
 		return -2;
 	}
 #endif
 
-#ifdef _ANGEL_SUMMON // ×°±¸Ê¹ÕßĞÅÎï²»ÓöµĞ
+#ifdef _ANGEL_SUMMON // è£…å¤‡ä½¿è€…ä¿¡ç‰©ä¸é‡æ•Œ
 	if( CHAR_getWorkInt(_CharaIndex, CHAR_WORKANGELMODE) == TRUE )
 	{
 		return -3;
@@ -1768,11 +1768,11 @@ int NPC_Lua_CreateVsEnemy(lua_State *_NLL, int _CharaIndex, int _NpcIndex, const
 
 	if( CHAR_getWorkInt(_CharaIndex, CHAR_WORKBATTLEMODE ) != BATTLE_CHARMODE_NONE )
 	{
-		CHAR_talkToCli(_CharaIndex, -1, "¶şÖØÔâÓö¡£", CHAR_COLORYELLOW );
+		CHAR_talkToCli(_CharaIndex, -1, "äºŒé‡é­é‡ã€‚", CHAR_COLORYELLOW );
 		return -4;
 	}
 
-	//»ñÈ¡Ò»¸öÕ½¶·Ë÷Òı
+	//è·å–ä¸€ä¸ªæˆ˜æ–—ç´¢å¼•
 	TM_BattleIndex = BATTLE_CreateBattle(_CharaIndex);
 
 	if(TM_BattleIndex < 0)
@@ -1780,7 +1780,7 @@ int NPC_Lua_CreateVsEnemy(lua_State *_NLL, int _CharaIndex, int _NpcIndex, const
 		return -5;
 	}
 
-	//»ñÈ¡Íæ¼ÒµÄµØÍ¼ÁìÓò-ÓÃÓÚÕ½¶·±³¾°µÄÏÔÊ¾
+	//è·å–ç©å®¶çš„åœ°å›¾é¢†åŸŸ-ç”¨äºæˆ˜æ–—èƒŒæ™¯çš„æ˜¾ç¤º
 	TM_FieldNO = NPC_Lua_getBattleFieldNo
 		(
 			CHAR_getInt(_CharaIndex, CHAR_FLOOR),
@@ -1892,16 +1892,16 @@ int NPC_Lua_CreateVsEnemy(lua_State *_NLL, int _CharaIndex, int _NpcIndex, const
 	
 		if(lua_type(_NLL, -1) != LUA_TFUNCTION)
 		{
-			print("ÎŞ·¨Ö´ĞĞÖ¸¶¨º¯Êı¡£");
+			print("æ— æ³•æ‰§è¡ŒæŒ‡å®šå‡½æ•°ã€‚");
 			goto BATTLE_CreateVsEnemy_End;
 		}
 		lua_pushinteger(_NLL, (lua_Integer)TM_BattleIndex);
 		TM_CallRet = lua_pcall(_NLL, 1, 1, 0);
 		if(TM_CallRet != 0)
 		{
-			//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+			//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 			print("NPC_Lua_CreateVsEnemy Lua Err :%d(%s)\n", TM_CallRet, lua_tostring(_NLL, -1));
-			//³öÕ»
+			//å‡ºæ ˆ
 			lua_pop(_NLL, 1);
 			goto BATTLE_CreateVsEnemy_End;
 		}
@@ -2005,13 +2005,13 @@ int NPC_Lua_CreateVsPlayer(int *_OutBattleIndex, int charaindex0, int charaindex
 	if( CHAR_CHECKINDEX( charaindex1 ) == FALSE )return BATTLE_ERR_CHARAINDEX;
 
 	if( CHAR_getWorkInt( charaindex0, CHAR_WORKBATTLEMODE ) != BATTLE_CHARMODE_NONE ){
-		CHAR_talkToCli( charaindex0, -1, "¶şÖØÔâÓö¡£", CHAR_COLORYELLOW );
-		CHAR_talkToCli( charaindex1, -1, "¶şÖØÔâÓö¡£", CHAR_COLORYELLOW );
+		CHAR_talkToCli( charaindex0, -1, "äºŒé‡é­é‡ã€‚", CHAR_COLORYELLOW );
+		CHAR_talkToCli( charaindex1, -1, "äºŒé‡é­é‡ã€‚", CHAR_COLORYELLOW );
 		return BATTLE_ERR_ALREADYBATTLE;
 	}
 	if( CHAR_getWorkInt( charaindex1, CHAR_WORKBATTLEMODE ) != BATTLE_CHARMODE_NONE ){
-		CHAR_talkToCli( charaindex0, -1, "¶şÖØÔâÓö¡£", CHAR_COLORYELLOW );
-		CHAR_talkToCli( charaindex1, -1, "¶şÖØÔâÓö¡£", CHAR_COLORYELLOW );
+		CHAR_talkToCli( charaindex0, -1, "äºŒé‡é­é‡ã€‚", CHAR_COLORYELLOW );
+		CHAR_talkToCli( charaindex1, -1, "äºŒé‡é­é‡ã€‚", CHAR_COLORYELLOW );
 		return BATTLE_ERR_ALREADYBATTLE;
 	}
 #ifdef _DEATH_CONTEND
@@ -2026,8 +2026,8 @@ int NPC_Lua_CreateVsPlayer(int *_OutBattleIndex, int charaindex0, int charaindex
 		){
 		
 
-		CHAR_talkToCli( charaindex0, -1, "ÎŞĞ§Õ½¶·¡£", CHAR_COLORYELLOW );
-		CHAR_talkToCli( charaindex1, -1, "ÎŞĞ§Õ½¶·¡£", CHAR_COLORYELLOW );
+		CHAR_talkToCli( charaindex0, -1, "æ— æ•ˆæˆ˜æ–—ã€‚", CHAR_COLORYELLOW );
+		CHAR_talkToCli( charaindex1, -1, "æ— æ•ˆæˆ˜æ–—ã€‚", CHAR_COLORYELLOW );
 		return BATTLE_ERR_ALREADYBATTLE;
 	}
 /*
@@ -2035,13 +2035,13 @@ int NPC_Lua_CreateVsPlayer(int *_OutBattleIndex, int charaindex0, int charaindex
 	if( PKLIST_CheckPKReapetTeam(
 			CHAR_getInt( charaindex0, CHAR_PKLISTTEAMNUM),
 			CHAR_getInt( charaindex1, CHAR_PKLISTTEAMNUM) ) == FALSE ){
-		CHAR_talkToCli( charaindex0, -1, "ÖØ¸´Õ½¶·¡£", CHAR_COLORYELLOW );
-		CHAR_talkToCli( charaindex1, -1, "ÖØ¸´Õ½¶·¡£", CHAR_COLORYELLOW );
+		CHAR_talkToCli( charaindex0, -1, "é‡å¤æˆ˜æ–—ã€‚", CHAR_COLORYELLOW );
+		CHAR_talkToCli( charaindex1, -1, "é‡å¤æˆ˜æ–—ã€‚", CHAR_COLORYELLOW );
 		return BATTLE_ERR_ALREADYBATTLE;
 	}
 */	
 #endif
-	//»ñÈ¡Íæ¼ÒµÄµØÍ¼ÁìÓò-ÓÃÓÚÕ½¶·±³¾°µÄÏÔÊ¾
+	//è·å–ç©å®¶çš„åœ°å›¾é¢†åŸŸ-ç”¨äºæˆ˜æ–—èƒŒæ™¯çš„æ˜¾ç¤º
 	field_no = NPC_Lua_getBattleFieldNo(
 		CHAR_getInt( charaindex0, CHAR_FLOOR ) ,
 		CHAR_getInt( charaindex0, CHAR_X ),
@@ -2080,7 +2080,7 @@ int NPC_Lua_CreateVsPlayer(int *_OutBattleIndex, int charaindex0, int charaindex
 	BattleArray[battleindex].CreateTime = time(NULL);
 #endif
 
-#ifdef _DEATH_CONTEND//¼ÆËãÊ¤°Üfunc
+#ifdef _DEATH_CONTEND//è®¡ç®—èƒœè´¥func
 	BattleArray[battleindex].PkFunc = NPC_PKLIST_Finish_Exit;
 	//winside = 0
 	BattleArray[battleindex].menum = CHAR_getInt( charaindex0, CHAR_PKLISTTEAMNUM);
@@ -2171,7 +2171,7 @@ int NPC_PetUp(int charaindex, int lv, int petindex)
 		{
 			int k = 0;
 			for( k = CHAR_getInt( petindex, CHAR_LV); k < lv; k++ )
-			{	//Éı¼¶
+			{	//å‡çº§
 				//CHAR_PetLevelUp( petindex,1);
 				CHAR_PetLevelUp( petindex);
 				CHAR_PetAddVariableAi( petindex, AI_FIX_PETLEVELUP );
@@ -2245,7 +2245,7 @@ void NPC_Lua_SQLPushAdvCallBack(int luaresult,int luaflg,int luaerrno,char* luae
 	if (strcmp(filepath,"") != 0 || filepath[0] != '\0'){
 		if(NPC_Lua_DoFile(filepath) != 0)
 		{
-			print("SQL´¦Àí½Å±¾¼ÓÔØÊ§°Ü Lua Err :(%s)[%s]\n", lua_tostring(M_Script_Lua, -1),function);
+			print("SQLå¤„ç†è„šæœ¬åŠ è½½å¤±è´¥ Lua Err :(%s)[%s]\n", lua_tostring(M_Script_Lua, -1),function);
 			lua_pop(M_Script_Lua, 1);
 			return;
 		}
@@ -2254,7 +2254,7 @@ void NPC_Lua_SQLPushAdvCallBack(int luaresult,int luaflg,int luaerrno,char* luae
 	lua_getglobal(M_Script_Lua, (const char*)function);
 	if(lua_type(M_Script_Lua, -1) != LUA_TFUNCTION)
 	{
-		print("ÎŞ·¨Ö´ĞĞÖ¸¶¨º¯Êı NPC_Lua_SQLPushAdvCallBack\n");
+		print("æ— æ³•æ‰§è¡ŒæŒ‡å®šå‡½æ•° NPC_Lua_SQLPushAdvCallBack\n");
 		return ;
 	}
 	lua_pushinteger(M_Script_Lua, (lua_Integer)luaresult);
@@ -2266,7 +2266,7 @@ void NPC_Lua_SQLPushAdvCallBack(int luaresult,int luaflg,int luaerrno,char* luae
 	lua_pushinteger(M_Script_Lua, (lua_Integer)rowAt);
 	int i;
 	char buf[128] = "";
-	if (luaflg != 4) {//flg==4Ê± Ö»ÊÍ·Å½á¹û¼¯£¬²»ĞèÒª·ÅÈë²ÎÊı½á¹ûµÄÊı×éÁË¡£
+	if (luaflg != 4) {//flg==4æ—¶ åªé‡Šæ”¾ç»“æœé›†ï¼Œä¸éœ€è¦æ”¾å…¥å‚æ•°ç»“æœçš„æ•°ç»„äº†ã€‚
 		lua_newtable( M_Script_Lua );
 		for (i=0;i<luafieldCount;i++)
 		{
@@ -2300,7 +2300,7 @@ void NPC_Lua_SQLPushCallBack(char* _result,char* _filename,char* _function,int _
 	
 	if(NPC_Lua_DoFile(_filename) != 0)
 	{
-		CHAR_talkToCli(_playerindex, -1, "SQL´¦Àí½Å±¾¼ÓÔØÊ§°Ü£¬Ô­Òò:", CHAR_COLORRED);
+		CHAR_talkToCli(_playerindex, -1, "SQLå¤„ç†è„šæœ¬åŠ è½½å¤±è´¥ï¼ŒåŸå› :", CHAR_COLORRED);
 		CHAR_talkToCli(_playerindex, -1, NPC_Lua_popstring(-1), CHAR_COLORRED);
 	}else
 	{
@@ -2314,9 +2314,9 @@ void NPC_Lua_SQLPushCallBack(char* _result,char* _filename,char* _function,int _
 		TM_Ret = lua_pcall(M_Script_Lua, 4, 0, 0);
 		if(TM_Ret != 0)
 		{
-			//Ê§°Ü-Êä³ö´íÎóĞÅÏ¢
+			//å¤±è´¥-è¾“å‡ºé”™è¯¯ä¿¡æ¯
 			print("NPC_Lua_SQLPushCallBack Lua Err :%d(%s)\n", TM_Ret, lua_tostring(M_Script_Lua, -1));
-			//³öÕ»
+			//å‡ºæ ˆ
 			lua_pop(M_Script_Lua, 1);
 			return ;
 		}

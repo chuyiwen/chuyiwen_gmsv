@@ -98,28 +98,28 @@ static int autopkend=0;
 static int autopkone = 0;
 extern char *DebugMainFunction;
 /*------------------------------------------------------------
-* ÈÓ¡õÌï¼°ÇÁÚØ
+* æ‰”â–¡ç”°åŠæ©‡è°ª
 ------------------------------------------------------------*/
 typedef struct tag_serverState
 {
-	BOOL            acceptmore;     /*  1·ÖÔÈĞ×ÈÕ£ıaccept ØÆĞ×Ø¤Îç
-									ÇĞ½ïÈÊÆ¥£ıclose ÔÊÔÂ */
-	unsigned int    fdid;           /*  fd ¼°É§Ô»°À */
-	unsigned int    closeallsocketnum;  /*   closeallsocket   ¼°ËáÔ»¼°
-										ĞÑ*/
-	int				shutdown;		/*  ÈÓ¡õÌïÃ«shutdownÔÊÔÂÆ¹¡õÓñ 
-									*	0:É§éÙ ¹«Ä¾¶¯Â½:ÆËÅÒÓÀĞşÆËÅÒÓÀĞşÆ¹¡õÓñ
-									* Æ¹¡õÓñ±åØ¦ÔÈĞ×ÁİÃŞ»¥  ÔÈ»¯ÔÂ£Û
+	BOOL            acceptmore;     /*  1åˆ†åŒ€å‡¶æ—¥ï½accept ä»„å‡¶ä¸åˆ
+									åˆ‡æ–¤ä»åŒ¹ï½close å…æœˆ */
+	unsigned int    fdid;           /*  fd åŠéªšæ›°è¢„ */
+	unsigned int    closeallsocketnum;  /*   closeallsocket   åŠé…¸æ›°åŠ
+										é†’*/
+	int				shutdown;		/*  æ‰”â–¡ç”°æ¯›shutdownå…æœˆä¹’â–¡ç‰ 
+									*	0:éªšæ©˜ å…¬æœ¨åŠ¨é™†:æ‰‘ä¹“æ°¸ç„æ‰‘ä¹“æ°¸ç„ä¹’â–¡ç‰
+									* ä¹’â–¡ç‰åå…åŒ€å‡¶å‡›æ£‰äº’  åŒ€åŒ–æœˆï¼»
 									*/
-	int				dsptime;		/* shutdown Æ¹¡õÓñ¼°·¥¡õÛÍ  ĞÑ*/
-	int				limittime;		/* ³ğÄ¾ÊÖ */
+	int				dsptime;		/* shutdown ä¹’â–¡ç‰åŠä¼â–¡å¼  é†’*/
+	int				limittime;		/* ä»‡æœ¨æ‰‹ */
 }ServerState;
 
 #ifdef	_CAX_LNS_NLSUOXU
 typedef struct tagFuncKk
 {
-	char    *FileName;       /*½Å±¾Â·¾¶*/
-	char    *FuncName;       /*Ö´ĞĞº¯Êı*/
+	char    *FileName;       /*è„šæœ¬è·¯å¾„*/
+	char    *FuncName;       /*æ‰§è¡Œå‡½æ•°*/
 	unsigned int     EspTime;
 	unsigned int     MespTime;
 	int     ID;
@@ -127,7 +127,7 @@ typedef struct tagFuncKk
 }FuncKk;
 
 FuncKk TimerLua[50];
-void SetTimerLua(void)//³õÊ¼»¯LUA¶¨Ê±Æ÷
+void SetTimerLua(void)//åˆå§‹åŒ–LUAå®šæ—¶å™¨
 {
 	int i;
 	for( i = 0 ; i < arraysizeof( TimerLua ) ; i ++ ){
@@ -168,33 +168,33 @@ typedef struct tagCONNECT
 	int check_rb_time;
 	pthread_mutex_t mutex;
 
-	struct sockaddr_in sin; /* ÌÎÁ¸ÛÆ¼°Ê§ÓñÒÁµ© */
-	ConnectType ctype;       /* ÎìÉúÛÍÆËÒà¼ş¼°ÅË’“ */
+	struct sockaddr_in sin; /* æ¶›ç²®ç‡®åŠå¤±ç‰ä¼Šæ—¦ */
+	ConnectType ctype;       /* æˆŠç”Ÿå¼æ‰‘äº¦ä»¶åŠæ½˜æŒ€ */
 
 	char cdkey[ CDKEYLEN ];    /* CDKEY */
-	char passwd[ PASSWDLEN ];  /* ÓÉµ©·¥¡õÓñ */
-	LoginType state;        /* òØ»ş¼°·òºëÄÌ¼şÇÁÚØ */
+	char passwd[ PASSWDLEN ];  /* ç”±æ—¦ä¼â–¡ç‰ */
+	LoginType state;        /* èœ‡ç®•åŠå¤«å¼˜å¥¶ä»¶æ©‡è°ª */
 	int nstatecount;
-	char charname[ CHARNAMELEN ];  /* ·òºëÄÌ¼şáw¼°Æ½ÅÒ·Â’o */
-	int charaindex;     /* char?•d³ß¼°ÄÌ¼ş·¸ÓÀÛÍµ©©z
-						* ·òºëÄÌ¼şÔ‰±å°À»¥É¬ÀÃ½ñÄ¾ÔÂ©z-1»¥·¸°×ÇÉ»ïĞş
-						* ?•d±åØ¦ÖĞÁİ©z
+	char charname[ CHARNAMELEN ];  /* å¤«å¼˜å¥¶ä»¶é†±åŠå¹³ä¹“ä»¿æŠ© */
+	int charaindex;     /* char?æ˜«å°ºåŠå¥¶ä»¶çŠ¯æ°¸å¼æ—¦ï¹
+						* å¤«å¼˜å¥¶ä»¶è©¨åè¢„äº’æ¶©çƒ‚ä»Šæœ¨æœˆï¹-1äº’çŠ¯ç™½å·§ä¼™ç„
+						* ?æ˜«åå…ä¸­å‡›ï¹
 						*/
-	char CAbuf[ 2048 ];         /*  CA() Ã«×öÁÂÔÊÔÂ¿Ğ¼°ÌïÓÀ°×Ñë */
-	int CAbufsiz;       /*  CAbuf ¼°ÈÓÄÌÊõ  */
+	char CAbuf[ 2048 ];         /*  CA() æ¯›åšè°…å…æœˆå•ƒåŠç”°æ°¸ç™½å¤® */
+	int CAbufsiz;       /*  CAbuf åŠæ‰”å¥¶æœ¯  */
 
-	struct timeval lastCAsendtime;     /*¯Ô‰±åCAÃ«ËªÔÈĞ×ÁİÃŞ */
+	struct timeval lastCAsendtime;     /*ç˜‰è©¨åCAæ¯›éœœåŒ€å‡¶å‡›æ£‰ */
 
-	char CDbuf[ 2048 ];         /*  CD() Ã«×öÁÂÔÊÔÂ¿Ğ¼°ÌïÓÀ°×Ñë */
-	int CDbufsiz;       /*  CDbuf ¼°ÈÓÄÌÊõ  */
+	char CDbuf[ 2048 ];         /*  CD() æ¯›åšè°…å…æœˆå•ƒåŠç”°æ°¸ç™½å¤® */
+	int CDbufsiz;       /*  CDbuf åŠæ‰”å¥¶æœ¯  */
 
-	struct timeval lastCDsendtime;     /*¯Ô‰±åCDÃ«ËªÔÈĞ×ÁİÃŞ */
+	struct timeval lastCDsendtime;     /*ç˜‰è©¨åCDæ¯›éœœåŒ€å‡¶å‡›æ£‰ */
 
-	struct timeval lastCharSaveTime; /* ¯Ô‰±åÆ½ÅÒ·Â·¸¡õÕıÃ«±¾¡õÆ¤ØÆĞ×ÁİÃŞ */
+	struct timeval lastCharSaveTime; /* ç˜‰è©¨åå¹³ä¹“ä»¿çŠ¯â–¡æ­£æ¯›æœ¬â–¡çš®ä»„å‡¶å‡›æ£‰ */
 
-	struct timeval lastprocesstime;    /* ¯Ô‰±åÃó·òĞşÎì»ïÃ«ÖÊ†AØÆĞ×ÁİÃŞ*/
+	struct timeval lastprocesstime;    /* ç˜‰è©¨åçš¿å¤«ç„æˆŠä¼™æ¯›è´¨å’¥ä»„å‡¶å‡›æ£‰*/
 
-	struct timeval lastreadtime;       /* ¯Ô‰±åreadØÆĞ×ÁİÃŞ©zÏşÎç·´ÇĞ»¥µ¤*/
+	struct timeval lastreadtime;       /* ç˜‰è©¨åreadä»„å‡¶å‡›æ£‰ï¹æ™“åˆååˆ‡äº’ä¸¹*/
 
 	// Nuke start 08/27 : For acceleration avoidance
 	// WALK_TOLERANCE: Permit n W messages in a second (3: is the most restricted)
@@ -227,7 +227,7 @@ typedef struct tagCONNECT
 	int toxication;
 #endif
 
-#ifdef _ITEM_ADDEXP //vincent ¾­ÑéÌá•N
+#ifdef _ITEM_ADDEXP //vincent ç»éªŒææ˜‡
 	int EDTime;
 #endif
 	//    unsigned int      BEO;
@@ -275,7 +275,7 @@ typedef struct tagCONNECT
 
 	int close_request; //the second have this
 
-	int appendwb_overflow_flag;  /* 1¼ÔÆ¥ÊÖappendWb»¥ÁÃ?ØÆĞ×ÈÕ1±åÔÊÔÂ */
+	int appendwb_overflow_flag;  /* 1èšåŒ¹æ‰‹appendWbäº’æ’©?ä»„å‡¶æ—¥1åå…æœˆ */
 	//ttom+1 avoidance the watch the battle be kept out
 	BOOL in_watch_mode;
 	BOOL b_shut_up; //for avoid the user wash the screen
@@ -325,10 +325,10 @@ typedef struct tagCONNECT
 }
 CONNECT;
 
-CONNECT *Connect;     /*¥³¥Í¥¯¥·¥ç¥óÊİ¤ÁÍÑ*/
+CONNECT *Connect;     /*ã‚³ãƒã‚¯ã‚·ãƒ§ãƒ³ç˜¦ã¡è„±*/
 
 
-/* ´Ø¿ô¤ÎÀèÆ¬¤Ë¤Ä¤±¤Æ¤ï¤«¤ë¤è¤¦¤Ë¤¹¤ë¤À¤±¤Î¥Ş¥¯¥í */
+/* ç°‡çœ¶ã®é»ç‰‡ã«ã¤ã‘ã¦ã‚ã‹ã‚‹ã‚ˆã†ã«ã™ã‚‹ã ã‘ã®ãƒã‚¯ãƒ­ */
 #define SINGLETHREAD
 #define MUTLITHREAD
 #define ANYTHREAD
@@ -350,7 +350,7 @@ pthread_mutex_t MTIO_servstate_m;
 #define CONNECT_LOCK(i)
 #define CONNECT_UNLOCK(i)
 */
-char*  encrypt_key(char*   ip)//¼ÓÃÜº¯Êı 
+char*  encrypt_key(char*   ip)//åŠ å¯†å‡½æ•° 
 {       
 	int   b[]={3,7,8,2,9,5,4}; 
 	int   i=0; 
@@ -364,7 +364,7 @@ char*  encrypt_key(char*   ip)//¼ÓÃÜº¯Êı
 	return ip;
 }
 
-char*  decrypt_key(char*   id)//½âÃÜº¯Êı 
+char*  decrypt_key(char*   id)//è§£å¯†å‡½æ•° 
 { 
 	int   b[]={3,7,8,2,9,5,4}; 
 	int   i=0; 
@@ -378,9 +378,9 @@ char*  decrypt_key(char*   id)//½âÃÜº¯Êı
 	return id;
 }
 /*------------------------------------------------------------
-* servstateÃ«âÙÓå¼ÀÔÊÔÂ©z
-* Â¦ĞÑ©yß¯Ô»°À
-*  Ø¦ØÆ
+* servstateæ¯›èµ“æ¸ç¥­å…æœˆï¹
+* å¨„é†’ï¹œå¿’æ›°è¢„
+*  å…ä»„
 ------------------------------------------------------------*/
 ANYTHREAD static void SERVSTATE_initserverState( void )
 {
@@ -599,7 +599,7 @@ SINGLETHREAD int lsrpcClientWriteFunc( int fd , char* buf , int size )
 
 	if ( ( r < 0 ) && ( fd != acfd ) ) {
 		Connect[ fd ].appendwb_overflow_flag = 1;
-		//print("´íÎó11111");
+		//print("é”™è¯¯11111");
 		CONNECT_endOne_debug( fd );
 		// Nuke + 1 0901: Why close
 		//  print("closed in lsrpcClientWriteFunc");
@@ -705,7 +705,7 @@ ANYTHREAD BOOL initConnectOne( int sockfd, struct sockaddr_in* sin ,int len )
 	Connect[ sockfd ].check_rb_oneline_b = 0;
 	Connect[ sockfd ].check_rb_time = 0;
 
-	Connect[ sockfd ].close_request = 0;      /* å©Ó¬Û¢·Æ°×·Âºë */
+	Connect[ sockfd ].close_request = 0;      /* æ¿ è‡é‚°è²ç™½ä»¿å¼˜ */
 	// Nuke 08/27 For acceleration avoidance
 	Connect[ sockfd ].Walktime = 0;
 	Connect[ sockfd ].lastWalktime = 0;
@@ -725,7 +725,7 @@ ANYTHREAD BOOL initConnectOne( int sockfd, struct sockaddr_in* sin ,int len )
 #ifdef _TYPE_TOXICATION
 	Connect[ sockfd ].toxication = 0;
 #endif
-#ifdef _ITEM_ADDEXP	//vincent ¾­ÑéÌáÉı
+#ifdef _ITEM_ADDEXP	//vincent ç»éªŒæå‡
 	Connect[ sockfd ].EDTime = 0;
 #endif
 	//      Connect[sockfd].BEO = 0;
@@ -782,7 +782,7 @@ ANYTHREAD BOOL initConnectOne( int sockfd, struct sockaddr_in* sin ,int len )
 	Connect[sockfd].selectbutton=1;
 	// shan End
 #endif
-	// ¼ÇÂ¼¿ªÊ¼Ê±¼ä
+	// è®°å½•å¼€å§‹æ—¶é—´
 	time_t curtime;
 	struct tm *p;
 	time(&curtime);
@@ -852,7 +852,7 @@ ANYTHREAD BOOL _CONNECT_endOne( char *file, int fromline, int sockfd , int line 
 	if( Connect[sockfd].use == FALSE ){
 		CONNECT_UNLOCK_ARG2(sockfd,line);
 		//andy_log
-		//print("Á¬½ÓÒÑ¹Ø±Õ[%d]!!\n", sockfd );
+		//print("è¿æ¥å·²å…³é—­[%d]!!\n", sockfd );
 		return TRUE;
 	}
 	Connect[sockfd].use = FALSE;
@@ -870,7 +870,7 @@ ANYTHREAD BOOL _CONNECT_endOne( char *file, int fromline, int sockfd , int line 
 		}
 		//print("\ndrop line from %s:%d,__FD_SETSIZE=%d\n",file,fromline,__FD_SETSIZE);
 		sasql_online(Connect[sockfd].cdkey,NULL,NULL,NULL,NULL,0);
-		print( "ÍË³öÕËºÅ=%s \n", Connect[sockfd].cdkey );
+		print( "é€€å‡ºè´¦å·=%s \n", Connect[sockfd].cdkey );
 	}
 		Connect[sockfd].charaindex=-1;
 	}else{
@@ -882,7 +882,7 @@ ANYTHREAD BOOL _CONNECT_endOne( char *file, int fromline, int sockfd , int line 
 #ifdef _NO_ATTACK
 	else{
 		if(strlen(Connect[sockfd].cdkey)<1){
-			// ¼ÆËãÊ±¼ä²î
+			// è®¡ç®—æ—¶é—´å·®
 			time_t curtime;
 			struct tm *p;
 			time(&curtime);
@@ -907,7 +907,7 @@ ANYTHREAD BOOL _CONNECT_endOne( char *file, int fromline, int sockfd , int line 
 							Connect[sockfd].CDbufsiz = 0;
 							CONNECT_UNLOCK_ARG2(sockfd,line);
 
-							print( "·Ç·¨±àºÅ=%d ·Ç·¨IP=%s \n", sockfd, ip );
+							print( "éæ³•ç¼–å·=%d éæ³•IP=%s \n", sockfd, ip );
 							close(sockfd);
 #ifdef _CAX_OFF_IPTABLES
 							if(strcmp(ip,"0.0.0.0")!=0){
@@ -947,7 +947,7 @@ ANYTHREAD BOOL _CONNECT_endOne( char *file, int fromline, int sockfd , int line 
 	Connect[sockfd].CAbufsiz = 0;
 	Connect[sockfd].CDbufsiz = 0;
 	CONNECT_UNLOCK_ARG2(sockfd,line);
-	//print( "±àºÅ=%d \n", sockfd );
+	//print( "ç¼–å·=%d \n", sockfd );
 	close(sockfd);
 	return TRUE;
 }
@@ -994,7 +994,7 @@ SINGLETHREAD BOOL initConnect( int size )
 
 	}
 
-	print( "Ô¤Ô¼ %d ½ÓÁ¬...·ÖÅä %.2f MB ¿Õ¼ä...", size, (sizeof( CONNECT ) * size + RBSIZE * size + WBSIZE * size) / 1024.0 / 1024.0 );
+	print( "é¢„çº¦ %d æ¥è¿...åˆ†é… %.2f MB ç©ºé—´...", size, (sizeof( CONNECT ) * size + RBSIZE * size + WBSIZE * size) / 1024.0 / 1024.0 );
 
 	SERVSTATE_initserverState( );
 
@@ -1045,7 +1045,7 @@ ANYTHREAD void endConnect( void )
 		lco = close( i );
 
 		if ( lco == 0 ) {
-			//print("´íÎó22222");
+			//print("é”™è¯¯22222");
 			CONNECT_endOne_debug( i );
 		}
 
@@ -1059,7 +1059,7 @@ ANYTHREAD void endConnect( void )
 ANYTHREAD BOOL CONNECT_appendCAbuf( int fd , char* data, int size )
 {
 	CONNECT_LOCK( fd );
-	/*  ºÇ¸å¤Î¥Ç¥ê¥ß¥¿¤Î ',' ¤ÎÊ¬Â¿¤¯³ÎÊİ¤·¤Ê¤¤¤«¤ó»ö¤ËÃí°Õ   */
+	/*  å‘µç¨¿ã®ãƒ‡ãƒªãƒŸã‚¿ã® ',' ã®å°¸é©´ãæ¾„ç˜¦ã—ãªã„ã‹ã‚“ç¥¸ã«åº™ç½¢   */
 	if ( ( Connect[ fd ].CAbufsiz + size ) >= sizeof( Connect[ fd ].CAbuf ) ) {
 		CONNECT_UNLOCK( fd );
 		return FALSE;
@@ -1203,7 +1203,7 @@ ANYTHREAD void CONNECT_checkStatecount( int a )
 			Connect[ i ].nstatecount = ( int ) time( NULL ) + 60;
 		}else{
 			if ( Connect[ i ].nstatecount < ( int ) time( NULL ) ) {
-				//print("´íÎó33333");
+				//print("é”™è¯¯33333");
 				CONNECT_endOne_debug( i );
 				count++;
 			}
@@ -1558,21 +1558,21 @@ ANYTHREAD int CONNECT_getTradecardcharaindex( int fd, int i )
 
 ANYTHREAD void CONNECT_setCloseRequest( int fd, int count)
 {
-	//		print("\n¹Ø±ÕÇëÇóÉèÖÃÎª FILE:%s,LINE:%d ", file, line);
+	//		print("\nå…³é—­è¯·æ±‚è®¾ç½®ä¸º FILE:%s,LINE:%d ", file, line);
 	CONNECT_LOCK(fd);
 	Connect[fd].close_request = count;
 	// Nuke
-	//    print("\n¹Ø±ÕÇëÇóÉèÖÃÎª %d ",fd);
+	//    print("\nå…³é—­è¯·æ±‚è®¾ç½®ä¸º %d ",fd);
 	CONNECT_UNLOCK(fd);
 }
 
 
 /*------------------------------------------------------------
-* CAcheck ¤Ê¤É¤Ë»È¤ï¤ì¤ë´Ø¿ô¡£¼Âºİ¤ËÁ÷¤ë¡£
-* °ú¿ô
-*  fd      int     ¥Õ¥¡¥¤¥ë¥Ç¥£¥¹¥¯¥ê¥×¥¿
-* ÊÖ¤êÃÍ
-*  ¤Ê¤·
+* CAcheck ãªã©ã«è—ã‚ã‚Œã‚‹ç°‡çœ¶ã€‚æ‚¸ç‹ ã«æµã‚‹ã€‚
+* è‹çœ¶
+*  fd      int     ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿
+* æ‰‹ã‚ŠçŒ›
+*  ãªã—
 ------------------------------------------------------------*/
 ANYTHREAD void CAsend( int fd )
 {
@@ -1584,7 +1584,7 @@ ANYTHREAD void CAsend( int fd )
 
 	//print("\nshan--->(CAsend)->%s fd->%d", buf, fd);
 
-	/*ºÇ¸å¤Î¥Ç¥ê¥ß¥¿ ',' ¤ò'\0' ¤È¤«¤¨¤ë*/
+	/*å‘µç¨¿ã®ãƒ‡ãƒªãƒŸã‚¿ ',' ã‚’'\0' ã¨ã‹ãˆã‚‹*/
 	buf[bufuse-1] = '\0';
 	
 	lssproto_CA_send( fd , buf );
@@ -1594,10 +1594,10 @@ ANYTHREAD void CAsend( int fd )
 
 
 /*------------------------------------------------------------
-* CA¤òÁ÷¤ë¡£
-* °ú¿ô
-* ÊÖ¤êÃÍ
-*  ¤Ê¤·
+* CAã‚’æµã‚‹ã€‚
+* è‹çœ¶
+* æ‰‹ã‚ŠçŒ›
+*  ãªã—
 ------------------------------------------------------------*/
 ANYTHREAD void CAcheck( void )
 {
@@ -1605,7 +1605,7 @@ ANYTHREAD void CAcheck( void )
 #ifndef _WAN_FIX
 	unsigned int interval_us = getCAsendinterval_ms()*1000;
 #endif
-	/* Connect¼°òÛĞÑÛĞ·ÖØêÖ§ÔÂ¾®ÈÕºÖÖĞÊÏ·ÖØ¦£Û */
+	/* ConnectåŠèœŠé†’åŒåˆ†ä»ƒæ”¯æœˆäº•æ—¥è¤ä¸­æ°åˆ†å…ï¼» */
 	for( i = 0; i < ConnectLen; i ++) {
 #ifndef _WAN_FIX
 		struct timeval t;
@@ -1632,14 +1632,14 @@ ANYTHREAD void CAflush( int charaindex )
 
 
 /*------------------------------------------------------------
-* CDbuf ¤ËÄÉ²Ã¤¹¤ë¡£
-* °ú¿ô
-*  fd      int     ¥Õ¥¡¥¤¥ë¥Ç¥£¥¹¥¯¥ê¥×¥¿
-*  data    char*   ¥Ç¡¼¥¿
-*  size    int     ¥Ç¡¼¥¿¤Î¥µ¥¤¥º
-* ÊÖ¤êÃÍ
-*  À®¸ù    TRUE(1)
-*  ¼ºÇÔ    FALSE(0)
+* CDbuf ã«çº³è£ã™ã‚‹ã€‚
+* è‹çœ¶
+*  fd      int     ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿
+*  data    char*   ãƒ‡ã€–ã‚¿
+*  size    int     ãƒ‡ã€–ã‚¿ã®ã‚µã‚¤ã‚º
+* æ‰‹ã‚ŠçŒ›
+*  å–‡æ ¹    TRUE(1)
+*  å·±çªƒ    FALSE(0)
 ------------------------------------------------------------*/
 ANYTHREAD BOOL CONNECT_appendCDbuf( int fd , char* data, int size )
 {
@@ -1658,11 +1658,11 @@ ANYTHREAD BOOL CONNECT_appendCDbuf( int fd , char* data, int size )
 
 
 /*------------------------------------------------------------
-* CDcheck ¤Ê¤É¤Ë»È¤ï¤ì¤ë´Ø¿ô¡£¼Âºİ¤ËÁ÷¤ë¡£
-* °ú¿ô
-*  fd      int     ¥Õ¥¡¥¤¥ë¥Ç¥£¥¹¥¯¥ê¥×¥¿
-* ÊÖ¤êÃÍ
-*  ¤Ê¤·
+* CDcheck ãªã©ã«è—ã‚ã‚Œã‚‹ç°‡çœ¶ã€‚æ‚¸ç‹ ã«æµã‚‹ã€‚
+* è‹çœ¶
+*  fd      int     ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿
+* æ‰‹ã‚ŠçŒ›
+*  ãªã—
 ------------------------------------------------------------*/
 ANYTHREAD void CDsend( int fd )
 {
@@ -1677,10 +1677,10 @@ ANYTHREAD void CDsend( int fd )
 
 
 /*------------------------------------------------------------
-* CD¤òÁ÷¤ë¡£
-* °ú¿ô
-* ÊÖ¤êÃÍ
-*  ¤Ê¤·
+* CDã‚’æµã‚‹ã€‚
+* è‹çœ¶
+* æ‰‹ã‚ŠçŒ›
+*  ãªã—
 ------------------------------------------------------------*/
 ANYTHREAD void CDcheck( void )
 {
@@ -1756,10 +1756,10 @@ void chardatasavecheck( void )
 }
 
 /*------------------------------------------------------------
-* fd »¥ valid Ø¦ÊÖ¼°¾®Éıµ¤¾®Ã«Æ©ÍÍÔÂ
-* Â¦ĞÑ
+* fd äº’ valid å…æ‰‹åŠäº•å‡ä¸¹äº•æ¯›è­¬å±¯æœˆ
+* å¨„é†’
 *  fd          int         fd
-* ß¯Ô»°À
+* å¿’æ›°è¢„
 *  valid   TRUE(1)
 *  invalid FALSE(0)
 ------------------------------------------------------------*/
@@ -1780,11 +1780,11 @@ ANYTHREAD INLINE int CONNECT_checkfd( int fd )
 
 
 /*------------------------------------------------------------
-* cdkey ¤«¤é fd ¤òÆÀ¤ë¡£
-* °ú¿ô
+* cdkey ã‹ã‚‰ fd ã‚’è¯„ã‚‹ã€‚
+* è‹çœ¶
 *  cd      char*       cdkey
-* ÊÖ¤êÃÍ
-*  ¥Õ¥¡¥¤¥ë¥Ç¥£¥¹¥¯¥ê¥×¥¿  ¤è¤Ã¤Æ¡¢ -1 ¤Î»ş¤Ï¥¨¥é¡¼
+* æ‰‹ã‚ŠçŒ›
+*  ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿  ã‚ˆã£ã¦ã€ -1 ã®ç®•ã¯ã‚¨ãƒ©ã€–
 ------------------------------------------------------------*/
 ANYTHREAD int getfdFromCdkey( char* cd )
 {
@@ -1803,12 +1803,12 @@ ANYTHREAD int getfdFromCdkey( char* cd )
 
 
 /*------------------------------------------------------------
-* charaindex ¾®ÈÕ fd Ã«  ÔÂ£Û
-*   Â½ÖÊ  ¼°ÃñÄáÓÀÛÍÃ«ÄôÈÊØÆĞ×£Û
-* Â¦ĞÑ
-*  charaindex      int     Æ½ÅÒ·Â¼°ÄÌ¼ş·¸ÓÀÛÍµ©
-* ß¯Ô»°À
-*  °×ÑëÄÌ»ï·¸Å«µ©ÛÍØøÃóÕı  ·½ÔÈ»¯£ı -1 ¼°Áİ·´¾Ş·Â¡õ
+* charaindex äº•æ—¥ fd æ¯›  æœˆï¼»
+*   é™†è´¨  åŠæ°‘å°¼æ°¸å¼æ¯›è‚ä»ä»„å‡¶ï¼»
+* å¨„é†’
+*  charaindex      int     å¹³ä¹“ä»¿åŠå¥¶ä»¶çŠ¯æ°¸å¼æ—¦
+* å¿’æ›°è¢„
+*  ç™½å¤®å¥¶ä¼™çŠ¯å¥´æ—¦å¼ä¼‰çš¿æ­£  æ–¹åŒ€åŒ–ï½ -1 åŠå‡›åå·¨ä»¿â–¡
 ------------------------------------------------------------*/
 ANYTHREAD int getfdFromCharaIndex( int charaindex )
 {
@@ -1834,11 +1834,11 @@ ANYTHREAD int getfdFromCharaIndex( int charaindex )
 #endif
 }
 /*------------------------------------------------------------
-* charaindex ¾®ÈÕ cdkey Ã«  ÔÂ£Û
-* Â¦ĞÑ
-*  charaindex  int     Æ½ÅÒ·Â¼°ÄÌ¼ş·¸ÓÀÛÍµ©
-* ß¯Ô»°À
-*  0Ø¦ÈÕÔÀ  £ı  Ø¦ÈÕÁÃ  
+* charaindex äº•æ—¥ cdkey æ¯›  æœˆï¼»
+* å¨„é†’
+*  charaindex  int     å¹³ä¹“ä»¿åŠå¥¶ä»¶çŠ¯æ°¸å¼æ—¦
+* å¿’æ›°è¢„
+*  0å…æ—¥å²³  ï½  å…æ—¥æ’©  
 ------------------------------------------------------------*/
 ANYTHREAD int getcdkeyFromCharaIndex( int charaindex , char *out, int outlen )
 {
@@ -1859,11 +1859,11 @@ ANYTHREAD int getcdkeyFromCharaIndex( int charaindex , char *out, int outlen )
 
 
 /*------------------------------------------------------------
-* Æ±¤¸fdid ¤ÎÅÛ¤òÃµ¤¹
-* °ú¿ô
-*  fdid    int     fd¤Îid
-* ÊÖ¤êÃÍ
-*  -1 ¼°Áİ·´¾Ş·Â¡õ
+* ç¥¨ã˜fdid ã®è¢ã‚’ç«ã™
+* è‹çœ¶
+*  fdid    int     fdã®id
+* æ‰‹ã‚ŠçŒ›
+*  -1 åŠå‡›åå·¨ä»¿â–¡
 ------------------------------------------------------------*/
 ANYTHREAD int getfdFromFdid( int fdid )
 {
@@ -1882,12 +1882,12 @@ ANYTHREAD int getfdFromFdid( int fdid )
 }
 
 /*------------------------------------------------------------
-* fdid ¤«¤é¥­¥ã¥é¤Îindex ¤ò¤â¤È¤á¤ë¡£
-* °ú¿ô
-*  fdid    int     fd¤Îid
-* ÊÖ¤êÃÍ
-*  -1 ¤Î»ş¤Ï¥í¥°¥¤¥óÃæ¤Î¥­¥ã¥é¤Ï¤ß¤Ä¤«¤é¤Ê¤«¤Ã¤¿¡£0°Ê¾å¤Ê¤é
-* ¥í¥°¥¤¥óÃæ¤Î¥­¥ã¥é¤Î¥­¥ã¥é¤Ï¤¤¤ì¤Ä¤Ø¤Î index
+* fdid ã‹ã‚‰ã‚­ãƒ£ãƒ©ã®index ã‚’ã‚‚ã¨ã‚ã‚‹ã€‚
+* è‹çœ¶
+*  fdid    int     fdã®id
+* æ‰‹ã‚ŠçŒ›
+*  -1 ã®ç®•ã¯ãƒ­ã‚°ã‚¤ãƒ³é¢ã®ã‚­ãƒ£ãƒ©ã¯ã¿ã¤ã‹ã‚‰ãªã‹ã£ãŸã€‚0ç¬†æƒ§ãªã‚‰
+* ãƒ­ã‚°ã‚¤ãƒ³é¢ã®ã‚­ãƒ£ãƒ©ã®ã‚­ãƒ£ãƒ©ã¯ã„ã‚Œã¤ã¸ã® index
 ------------------------------------------------------------*/
 ANYTHREAD int getCharindexFromFdid( int fdid )
 {
@@ -1908,10 +1908,10 @@ ANYTHREAD int getCharindexFromFdid( int fdid )
 	return -1;
 }
 /*------------------------------------------------------------
-* ¥­¥ã¥éindex ¤«¤é fdid ¤ò¤â¤È¤á¤ë¡£
-* °ú¿ô
-*  charind  int     ¥Õ¥¡¥¤¥ë¥Ç¥£¥¹¥¯¥ê¥×¥¿
-* ¤«¤¨¤ê¤Á fdid  Éé¤À¤Ã¤¿¤é¥­¥ã¥éind¤¬¤ª¤«¤·¤¤
+* ã‚­ãƒ£ãƒ©index ã‹ã‚‰ fdid ã‚’ã‚‚ã¨ã‚ã‚‹ã€‚
+* è‹çœ¶
+*  charind  int     ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿
+* ã‹ãˆã‚Šã¡ fdid  ç ·ã ã£ãŸã‚‰ã‚­ãƒ£ãƒ©indãŒãŠã‹ã—ã„
 ------------------------------------------------------------*/
 ANYTHREAD int getFdidFromCharaIndex( int charind )
 {
@@ -1933,10 +1933,10 @@ ANYTHREAD int getFdidFromCharaIndex( int charind )
 
 
 /*------------------------------------------------------------
-* fd¤Ë³ä¤êÅö¤Æ¤é¤ì¤¿ÀÜÂ³¤¬¥¯¥é¥¤¥¢¥ó¥È¤À¤È¡¢BOOL¤òÊÖ¤¹
-* ºÙ¤¤¥¨¥é¡¼¥Á¥§¥Ã¥¯¤Ï¤·¤Ê¤¤¡£
-* °ú¿ô
-*  fd  int     ¥Õ¥¡¥¤¥ë¥Ç¥£¥¹¥¯¥ê¥×¥¿
+* fdã«å……ã‚Šç¢°ã¦ã‚‰ã‚ŒãŸå„¡é²ãŒã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã ã¨ã€BOOLã‚’æ‰‹ã™
+* å˜¿ã„ã‚¨ãƒ©ã€–ãƒã‚§ãƒƒã‚¯ã¯ã—ãªã„ã€‚
+* è‹çœ¶
+*  fd  int     ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿
 ------------------------------------------------------------*/
 ANYTHREAD BOOL CONNECT_isCLI( int fd )
 {
@@ -1949,10 +1949,10 @@ ANYTHREAD BOOL CONNECT_isCLI( int fd )
 
 
 /*------------------------------------------------------------
-* fd¤Ë³ä¤êÅö¤Æ¤é¤ì¤¿ÀÜÂ³¤¬¥¢¥«¥¦¥ó¥È¥µ¡¼¥Ğ¤À¤È¡¢BOOL¤òÊÖ¤¹
-* ºÙ¤¤¥¨¥é¡¼¥Á¥§¥Ã¥¯¤Ï¤·¤Ê¤¤¡£
-* °ú¿ô
-*  fd  int     ¥Õ¥¡¥¤¥ë¥Ç¥£¥¹¥¯¥ê¥×¥¿
+* fdã«å……ã‚Šç¢°ã¦ã‚‰ã‚ŒãŸå„¡é²ãŒã‚¢ã‚«ã‚¦ãƒ³ãƒˆã‚µã€–ãƒã ã¨ã€BOOLã‚’æ‰‹ã™
+* å˜¿ã„ã‚¨ãƒ©ã€–ãƒã‚§ãƒƒã‚¯ã¯ã—ãªã„ã€‚
+* è‹çœ¶
+*  fd  int     ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿
 ------------------------------------------------------------*/
 ANYTHREAD BOOL CONNECT_isAC( int fd )
 {
@@ -1964,10 +1964,10 @@ ANYTHREAD BOOL CONNECT_isAC( int fd )
 }
 
 /*------------------------------------------------------------
-* fd¤Ë³ä¤êÅö¤Æ¤é¤ì¤¿ÀÜÂ³¤¬¥í¥°¥¤¥ó¾õÂÖ¤Ç¤¢¤ë¤«¤É¤¦¤«
-* ¤òÊÖ¤¹
-* °ú¿ô
-*  fd  int     ¥Õ¥¡¥¤¥ë¥Ç¥£¥¹¥¯¥ê¥×¥¿
+* fdã«å……ã‚Šç¢°ã¦ã‚‰ã‚ŒãŸå„¡é²ãŒãƒ­ã‚°ã‚¤ãƒ³è§‰è½®ã§ã‚ã‚‹ã‹ã©ã†ã‹
+* ã‚’æ‰‹ã™
+* è‹çœ¶
+*  fd  int     ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿
 ------------------------------------------------------------*/
 ANYTHREAD BOOL CONNECT_isUnderLogin( int fd )
 {
@@ -1979,9 +1979,9 @@ ANYTHREAD BOOL CONNECT_isUnderLogin( int fd )
 }
 
 /*------------------------------------------------------------
-* Login½èÍıÃæ¤«¤É¤¦¤«Ä´¤Ù¤ë
-* °ú¿ô
-*  fd  int     ¥Õ¥¡¥¤¥ë¥Ç¥£¥¹¥¯¥ê¥×¥¿
+* Loginå€Ÿå¦„é¢ã‹ã©ã†ã‹æ‹‡ã¹ã‚‹
+* è‹çœ¶
+*  fd  int     ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿
 ------------------------------------------------------------*/
 ANYTHREAD BOOL CONNECT_isWhileLogin( int fd )
 {
@@ -1993,10 +1993,10 @@ ANYTHREAD BOOL CONNECT_isWhileLogin( int fd )
 }
 
 /*------------------------------------------------------------
-* ¥í¥°¥¤¥ó¤·¤Æ¤¤¤Ê¤¤¾õÂÖ¤«
-* ¤É¤¦¤«¤òÊÖ¤¹
-* °ú¿ô
-*  fd  int     ¥Õ¥¡¥¤¥ë¥Ç¥£¥¹¥¯¥ê¥×¥¿
+* ãƒ­ã‚°ã‚¤ãƒ³ã—ã¦ã„ãªã„è§‰è½®ã‹
+* ã©ã†ã‹ã‚’æ‰‹ã™
+* è‹çœ¶
+*  fd  int     ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿
 ------------------------------------------------------------*/
 ANYTHREAD BOOL CONNECT_isNOTLOGIN( int fd )
 {
@@ -2008,10 +2008,10 @@ ANYTHREAD BOOL CONNECT_isNOTLOGIN( int fd )
 }
 
 /*------------------------------------------------------------
-* ¥í¥°¥¤¥ó¤·¤Æ¤¤¤ë¾õÂÖ¤«
-* ¤É¤¦¤«¤òÊÖ¤¹
-* °ú¿ô
-*  fd  int     ¥Õ¥¡¥¤¥ë¥Ç¥£¥¹¥¯¥ê¥×¥¿
+* ãƒ­ã‚°ã‚¤ãƒ³ã—ã¦ã„ã‚‹è§‰è½®ã‹
+* ã©ã†ã‹ã‚’æ‰‹ã™
+* è‹çœ¶
+*  fd  int     ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿
 ------------------------------------------------------------*/
 ANYTHREAD BOOL CONNECT_isLOGIN( int fd )
 {
@@ -2025,25 +2025,25 @@ ANYTHREAD BOOL CONNECT_isLOGIN( int fd )
 
 
 /*------------------------------------------------------------
-* Á´°÷¤ÎÀÜÂ³¤òÀÚ¤Ã¤Æ¡¢¥¢¥«¥¦¥ó¥È¥µ¡¼¥Ğ¤Ë¥Ç¡¼¥¿¤òÊİÂ¸¤·¤è¤¦¤È¤¹¤ë¡£
-* °ú¿ô¡¢ÊÖ¤êÃÍ
-*  ¤Ê¤·
+* é“¾é•‘ã®å„¡é²ã‚’ç£Šã£ã¦ã€ã‚¢ã‚«ã‚¦ãƒ³ãƒˆã‚µã€–ãƒã«ãƒ‡ã€–ã‚¿ã‚’ç˜¦èµ‚ã—ã‚ˆã†ã¨ã™ã‚‹ã€‚
+* è‹çœ¶ã€æ‰‹ã‚ŠçŒ›
+*  ãªã—
 ------------------------------------------------------------*/
 void closeAllConnectionandSaveData( void )
 {
 	int     i;
 	int		num;
 
-	/*  ¤³¤ì°Ê¾å accept ¤·¤Ê¤¤¤è¤¦¤Ë¤¹¤ë    */
+	/*  ã“ã‚Œç¬†æƒ§ accept ã—ãªã„ã‚ˆã†ã«ã™ã‚‹    */
 	SERVSTATE_setCloseallsocketnum(0);
 
-	/*  Á´Éôºï½ü¤¹¤ë    */
+	/*  é“¾å©¶çŒ´è¿‘ã™ã‚‹    */
 	for( i = 0 ; i<ConnectLen ; i++ ){
 		if( CONNECT_getUse_debug(i,1413) == TRUE ){
 			BOOL    clilogin=FALSE;
 			if( CONNECT_isAC( i ) )continue;
 			if( CONNECT_isCLI( i ) && CONNECT_isLOGIN( i ) )clilogin = TRUE;
-			//print("´íÎó444444");
+			//print("é”™è¯¯444444");
 			CONNECT_endOne_debug(i);
 			// Nuke +1 0901: Why close
 			//print("closed in closeAllConnectionandSaveData");
@@ -2061,7 +2061,7 @@ void closeAllConnectionandSaveData( void )
 	}else {
 		SERVSTATE_SetAcceptMore( 0 );
 	}
-	print( "\n·¢ËÍÈËÎïÊı¾İÊıÄ¿:%d\n", num );
+	print( "\nå‘é€äººç‰©æ•°æ®æ•°ç›®:%d\n", num );
 }
 //andy_add 2003/02/12
 void CONNECT_SysEvent_Loop( void)
@@ -2077,7 +2077,7 @@ void CONNECT_SysEvent_Loop( void)
 	if( checkT != NowTimes && (checkT+10) <= NowTimes )	{
 		int i;
 		checkT = time(NULL);
-		chikulatime++;//Ã¿10Ãë
+		chikulatime++;//æ¯10ç§’
 		if( chikulatime > 10000 ) chikulatime = 0;
 		if( getReloadNpcTime() > 0){
 					if ( chikulatime % getReloadNpcTime() == 0 ) {
@@ -2087,7 +2087,7 @@ void CONNECT_SysEvent_Loop( void)
 					}
 				}
 		
-		if( chikulatime % 60 == 0 ){ //Ã¿600ÃëÖØ¶ÁÌøÔ¾µã
+		if( chikulatime % 60 == 0 ){ //æ¯600ç§’é‡è¯»è·³è·ƒç‚¹
 			MAPPOINT_resetMapWarpPoint( 1);
 			MAPPOINT_loadMapWarpPoint();
 		}
@@ -2096,22 +2096,22 @@ void CONNECT_SysEvent_Loop( void)
 		int charaindex;
 		for ( charaindex = 0;charaindex < playernum; charaindex++ ) {
 			if( !CHAR_CHECKINDEX(charaindex) )continue;
-        if ( chikulatime % 6 == 0 ) { // Ã¿60Ãë
+        if ( chikulatime % 6 == 0 ) { // æ¯60ç§’
           // shan 2001/12/27 Begin
 
 #ifdef _PETSKILL_BECOMEPIG
         if ( CHAR_CHECKINDEX( charaindex ) )
-          if ( CHAR_getInt( charaindex, CHAR_BECOMEPIG ) > -1 ) { //´¦ì¶ÎÚÁ¦»¯×´Ì¬
+          if ( CHAR_getInt( charaindex, CHAR_BECOMEPIG ) > -1 ) { //å¤„æ–¼ä¹ŒåŠ›åŒ–çŠ¶æ€
 
-            if ( ( CHAR_getInt( charaindex, CHAR_BECOMEPIG ) - 1 ) <= 0 ) { //ÎÚÁ¦Ê±¼ä½áÊøÁË
+            if ( ( CHAR_getInt( charaindex, CHAR_BECOMEPIG ) - 1 ) <= 0 ) { //ä¹ŒåŠ›æ—¶é—´ç»“æŸäº†
               CHAR_setInt( charaindex, CHAR_BECOMEPIG, 0 );
 
-              if ( CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE ) == BATTLE_CHARMODE_NONE ) { //²»ÊÇÔÚÕ½¶·×´Ì¬ÏÂ
-                CHAR_setInt( charaindex, CHAR_BECOMEPIG, -1 ); //½áÊøÎÚÁ¦×´Ì¬
+              if ( CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE ) == BATTLE_CHARMODE_NONE ) { //ä¸æ˜¯åœ¨æˆ˜æ–—çŠ¶æ€ä¸‹
+                CHAR_setInt( charaindex, CHAR_BECOMEPIG, -1 ); //ç»“æŸä¹ŒåŠ›çŠ¶æ€
                 CHAR_complianceParameter( charaindex );
                 CHAR_sendCToArroundCharacter( CHAR_getWorkInt( charaindex , CHAR_WORKOBJINDEX ) );
                 CHAR_send_P_StatusString( charaindex , CHAR_P_STRING_BASEBASEIMAGENUMBER );
-                CHAR_talkToCli( charaindex, -1, "ÎÚÁ¦»¯Ê§Ğ§ÁË¡£", CHAR_COLORWHITE );
+                CHAR_talkToCli( charaindex, -1, "ä¹ŒåŠ›åŒ–å¤±æ•ˆäº†ã€‚", CHAR_COLORWHITE );
               }
             }
             else {
@@ -2121,8 +2121,8 @@ void CONNECT_SysEvent_Loop( void)
 #endif
         }
 
-				if ( chikulatime % 30 == 0 ) { // Ã¿300Ãë
-#ifdef _ITEM_ADDEXP	//vincent ¾­ÑéÌáÉı
+				if ( chikulatime % 30 == 0 ) { // æ¯300ç§’
+#ifdef _ITEM_ADDEXP	//vincent ç»éªŒæå‡
 					if ( CHAR_getInt( charaindex, CHAR_ADDEXPPOWER ) > 0 &&
 						CHAR_getInt( charaindex, CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER ) {
 							int exptime;
@@ -2131,16 +2131,16 @@ void CONNECT_SysEvent_Loop( void)
 							if ( exptime <= 0 ) {
 								CHAR_setInt( charaindex, CHAR_ADDEXPPOWER, 0 );
 								CHAR_setInt( charaindex, CHAR_ADDEXPTIME, 0 );
-								CHAR_talkToCli( charaindex,-1,"ÌáÉıÑ§Ï°¾­ÑéµÄÄÜÁ¦ÏûÊ§ÁË!",CHAR_COLORYELLOW);
+								CHAR_talkToCli( charaindex,-1,"æå‡å­¦ä¹ ç»éªŒçš„èƒ½åŠ›æ¶ˆå¤±äº†!",CHAR_COLORYELLOW);
 							}
 							else {
 								CHAR_setInt( charaindex, CHAR_ADDEXPTIME, exptime );
-								//print("\n ¼ì²éADDEXPTIME %d ", exptime);
+								//print("\n æ£€æŸ¥ADDEXPTIME %d ", exptime);
 
 								if ( ( exptime % ( 60 * 60 ) ) < 300 && exptime >= ( 60 * 60 ) ) {
 									char msg[ 1024 ];
-									sprintf( msg, "ÌáÉıÑ§Ï°¾­ÑéµÄÄÜÁ¦Ê£´óÔ¼ %d Ğ¡Ê±¡£", (int)(exptime/(60*60)) );
-									//sprintf( msg, "ÌáÉıÑ§Ï°¾­ÑéµÄÄÜÁ¦Ê£´óÔ¼ %d ·Ö¡£", (int)(exptime/(60)) );
+									sprintf( msg, "æå‡å­¦ä¹ ç»éªŒçš„èƒ½åŠ›å‰©å¤§çº¦ %d å°æ—¶ã€‚", (int)(exptime/(60*60)) );
+									//sprintf( msg, "æå‡å­¦ä¹ ç»éªŒçš„èƒ½åŠ›å‰©å¤§çº¦ %d åˆ†ã€‚", (int)(exptime/(60)) );
 									CHAR_talkToCli( charaindex, -1, msg, CHAR_COLORYELLOW );
 								}
 							}
@@ -2170,13 +2170,13 @@ void CONNECT_SysEvent_Loop( void)
 							if ( nviptime <= 0 ) {
 								CHAR_setInt( charaindex, CHAR_NVIPEXP, 0 );
 								CHAR_setInt( charaindex, CHAR_NVIPTIME, 0 );
-								CHAR_talkToCli( charaindex,-1,"¶îÍâ¾­ÑéÊ±¼äÒÑµ½ÆÚ¡£",CHAR_COLORYELLOW);
+								CHAR_talkToCli( charaindex,-1,"é¢å¤–ç»éªŒæ—¶é—´å·²åˆ°æœŸã€‚",CHAR_COLORYELLOW);
 							}
 							else {
 								CHAR_setInt( charaindex, CHAR_NVIPTIME, nviptime );
 								if ( ( nviptime % ( 60 * 60 ) ) < 300 && nviptime >= ( 60 * 60 ) ) {
 									char token[ 1024 ];
-									sprintf( token, "¶îÍâ¾­ÑéÊ±¼äÊ£Óà %d Ğ¡Ê±¡£", (int)(nviptime/(60*60)) );
+									sprintf( token, "é¢å¤–ç»éªŒæ—¶é—´å‰©ä½™ %d å°æ—¶ã€‚", (int)(nviptime/(60*60)) );
 									CHAR_talkToCli( charaindex, -1, token, CHAR_COLORYELLOW );
 								}
 							}
@@ -2203,41 +2203,41 @@ void CONNECT_SysEvent_Loop( void)
 					if ( CHAR_getWorkInt( charaindex, CHAR_WORKITEMMETAMO ) < NowTime.tv_sec
 						&& CHAR_getWorkInt( charaindex, CHAR_WORKITEMMETAMO ) != 0 ) {
 							CHAR_setWorkInt( charaindex, CHAR_WORKITEMMETAMO, 0 );
-							CHAR_setWorkInt( charaindex, CHAR_WORKNPCMETAMO, 0 ); //Óënpc¶Ô»°ááµÄ±äÉíÒ²Òª±ä»ØÀ´
+							CHAR_setWorkInt( charaindex, CHAR_WORKNPCMETAMO, 0 ); //ä¸npcå¯¹è¯å¾Œçš„å˜èº«ä¹Ÿè¦å˜å›æ¥
 							CHAR_complianceParameter( charaindex );
 							CHAR_sendCToArroundCharacter( CHAR_getWorkInt( charaindex , CHAR_WORKOBJINDEX ) );
 							CHAR_send_P_StatusString( charaindex , CHAR_P_STRING_BASEBASEIMAGENUMBER );
-							CHAR_talkToCli( charaindex, -1, "±äÉíÊ§Ğ§ÁË¡£", CHAR_COLORWHITE );
+							CHAR_talkToCli( charaindex, -1, "å˜èº«å¤±æ•ˆäº†ã€‚", CHAR_COLORWHITE );
 					}
 
 #endif
 #ifdef _ITEM_TIME_LIMIT
-					ITEM_TimeLimit( charaindex ); // (¿É¿ª·Å) shan time limit of item. code:shan
+					ITEM_TimeLimit( charaindex ); // (å¯å¼€æ”¾) shan time limit of item. code:shan
 
 #endif
 
 				} //%30
         
 #ifdef _PETSKILL_BECOMEPIG
-        if ( CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE ) == BATTLE_CHARMODE_NONE ) { //²»ÊÇÔÚÕ½¶·×´Ì¬ÏÂ
+        if ( CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE ) == BATTLE_CHARMODE_NONE ) { //ä¸æ˜¯åœ¨æˆ˜æ–—çŠ¶æ€ä¸‹
 
-          if ( CHAR_getInt( charaindex, CHAR_BECOMEPIG ) > -1 ) { //´¦ì¶ÎÚÁ¦»¯×´Ì¬
+          if ( CHAR_getInt( charaindex, CHAR_BECOMEPIG ) > -1 ) { //å¤„æ–¼ä¹ŒåŠ›åŒ–çŠ¶æ€
             char temp[ 256 ];
-            sprintf( temp, "ÎÚÁ¦Ê±¼ä:%dÃë", CHAR_getInt( charaindex, CHAR_BECOMEPIG ) );
+            sprintf( temp, "ä¹ŒåŠ›æ—¶é—´:%dç§’", CHAR_getInt( charaindex, CHAR_BECOMEPIG ) );
             CHAR_talkToCli( charaindex, -1, temp, CHAR_COLORWHITE );
           }
         }
 
 #endif
-        //10Ãë
+        //10ç§’
 #ifdef _MAP_TIME
         if ( CHAR_getWorkInt( charaindex, CHAR_WORK_MAP_TIME ) > 0
              && CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE ) == BATTLE_CHARMODE_NONE ) {
           CHAR_setWorkInt( charaindex, CHAR_WORK_MAP_TIME, CHAR_getWorkInt( charaindex, CHAR_WORK_MAP_TIME ) - 10 );
 
           if ( CHAR_getWorkInt( charaindex, CHAR_WORK_MAP_TIME ) <= 0 ) {
-            // Ê±¼äµ½ÁË,´«»ØÈë¿Ú
-            CHAR_talkToCli( charaindex, -1, "ÄãÒòÎªÊÜ²»ÁË¸ßÈÈ¶øÈÈËÀ£¡´«»ØÁÑ·ìÈë¿Ú¡£", CHAR_COLORRED );
+            // æ—¶é—´åˆ°äº†,ä¼ å›å…¥å£
+            CHAR_talkToCli( charaindex, -1, "ä½ å› ä¸ºå—ä¸äº†é«˜çƒ­è€Œçƒ­æ­»ï¼ä¼ å›è£‚ç¼å…¥å£ã€‚", CHAR_COLORRED );
             CHAR_warpToSpecificPoint( charaindex, 30008, 39, 38 );
             CHAR_setInt( charaindex, CHAR_HP, 1 );
             CHAR_AddCharm( charaindex, -3 );
@@ -2246,7 +2246,7 @@ void CONNECT_SysEvent_Loop( void)
           }
           else {
             char szMsg[ 64 ];
-            sprintf( szMsg, "ÔÚÕâ¸ßÈÈµÄ»·¾³ÏÂÄãÖ»ÄÜÔÙ´ı %d Ãë¡£", CHAR_getWorkInt( charaindex, CHAR_WORK_MAP_TIME ) );
+            sprintf( szMsg, "åœ¨è¿™é«˜çƒ­çš„ç¯å¢ƒä¸‹ä½ åªèƒ½å†å¾… %d ç§’ã€‚", CHAR_getWorkInt( charaindex, CHAR_WORK_MAP_TIME ) );
             CHAR_talkToCli( charaindex, -1, szMsg, CHAR_COLORRED );
           }
         }
@@ -2256,7 +2256,7 @@ void CONNECT_SysEvent_Loop( void)
 			if ( ( Connect[ i ].use ) && ( i != acfd )) {
 				
 
-				if ( chikulatime % 6 == 0 ) { // Ã¿60Ãë
+				if ( chikulatime % 6 == 0 ) { // æ¯60ç§’
 					// shan 2001/12/27 Begin
 
 					if ( CHAR_getWorkInt( Connect[ i ].charaindex, CHAR_WORKBATTLEMODE )
@@ -2266,7 +2266,7 @@ void CONNECT_SysEvent_Loop( void)
 							CONNECT_GetBattleRecvTime( i, &recvtime );
 
 							if ( time_diff( NowTime, recvtime ) > 360 ) {
-								//print("´íÎó55555");
+								//print("é”™è¯¯55555");
 								CONNECT_endOne_debug( i );
 							}
 					}
@@ -2275,13 +2275,13 @@ void CONNECT_SysEvent_Loop( void)
 				} //%30
 				
 #ifdef	_OFFLINE_SYSTEM
-				if( chikulatime % 60 == 0 ){//Ã¿600Ãë
+				if( chikulatime % 60 == 0 ){//æ¯600ç§’
 					if ( CHAR_getWorkInt( Connect[ i ].charaindex, CHAR_WORK_OFFLINE )==0){
 						if( strlen(CHAR_getChar(Connect[ i ].charaindex,CHAR_OFFBUF))<1){
 							time_t timep;
 							struct tm *p;
 							time(&timep);
-							p=localtime(&timep); /*È¡µÃµ±µØÊ±¼ä*/
+							p=localtime(&timep); /*å–å¾—å½“åœ°æ—¶é—´*/
 							int mon=1+p->tm_mon;
 							int date=p->tm_mday;
 							char offbuf[64];
@@ -2306,7 +2306,7 @@ void CONNECT_SysEvent_Loop( void)
 							time_t timep;
 							struct tm *p;
 							time(&timep);
-							p=localtime(&timep); /*È¡µÃµ±µØÊ±¼ä*/
+							p=localtime(&timep); /*å–å¾—å½“åœ°æ—¶é—´*/
 							int mon=1+p->tm_mon;
 							int date=p->tm_mday;
 							if(mymon!=mon || mydate!=date){
@@ -2331,7 +2331,7 @@ void CONNECT_SysEvent_Loop( void)
 #endif
 
 #ifndef _USER_CHARLOOPS
-				//here Ô­µØÓöµĞ
+				//here åŸåœ°é‡æ•Œ
 				if ( Connect[ i ].stayencount ) {
 					if ( Connect[ i ].BDTime < time( NULL ) ) {
 						if ( CHAR_getWorkInt( Connect[ i ].charaindex, CHAR_WORKBATTLEMODE ) == BATTLE_CHARMODE_NONE ) {
@@ -2344,13 +2344,13 @@ void CONNECT_SysEvent_Loop( void)
 
 #endif
 #ifdef _CHIKULA_STONE
-				if ( chikulatime % 3 == 0 && getChiStone( i ) > 0 ) { //×Ô¶¯²¹Ñª
+				if ( chikulatime % 3 == 0 && getChiStone( i ) > 0 ) { //è‡ªåŠ¨è¡¥è¡€
 					CHAR_AutoChikulaStone( Connect[ i ].charaindex, getChiStone( i ) );
 				}
 
 #endif
 
-				if ( chikulatime % 6 == 0 ) { //Ë®ÊÀ½ç×´Ì¬
+				if ( chikulatime % 6 == 0 ) { //æ°´ä¸–ç•ŒçŠ¶æ€
 #ifdef _STATUS_WATERWORD
 					CHAR_CheckWaterStatus( Connect[ i ].charaindex );
 #endif
@@ -2360,13 +2360,13 @@ void CONNECT_SysEvent_Loop( void)
 						Connect[ i ].noenemy--;
 
 						if ( Connect[ i ].noenemy == 0 ) {
-							CHAR_talkToCli( CONNECT_getCharaindex( i ), -1, "ÊØ»¤ÏûÊ§ÁË¡£", CHAR_COLORWHITE );
+							CHAR_talkToCli( CONNECT_getCharaindex( i ), -1, "å®ˆæŠ¤æ¶ˆå¤±äº†ã€‚", CHAR_COLORWHITE );
 						}
 					}
 				}
 
-				//Ã¿10Ãë
-#ifdef _TYPE_TOXICATION //ÖĞ¶¾
+				//æ¯10ç§’
+#ifdef _TYPE_TOXICATION //ä¸­æ¯’
 				if ( Connect[ i ].toxication > 0 ) {
 					CHAR_ComToxicationHp( Connect[ i ].charaindex );
 				}
@@ -2415,7 +2415,7 @@ void CONNECT_SysEvent_Loop( void)
 					CONNECT_endOne_debug( i );
 				}
 
-				//10Ãë
+				//10ç§’
 
 			}
 		}
@@ -2425,26 +2425,26 @@ void CONNECT_SysEvent_Loop( void)
 //	if ( checkT2 != NowTimes && ( checkT2 ) <= NowTimes ) {
 //		int i;
 //		checkT2 = time( NULL );
-//		++chikulatime2; //Ã¿1Ãë
+//		++chikulatime2; //æ¯1ç§’
 //
 //		if ( chikulatime2 > 1000 ) chikulatime2 = 0;
 //
 //		for ( i = 0;i < ConnectLen; i++ ) {
 //			if ( ( Connect[ i ].use ) && ( i != acfd )) {
-//				//¼ÆËãÓÃ
+//				//è®¡ç®—ç”¨
 //
 //				if ( CHAR_CHECKINDEX( Connect[ i ].charaindex ) )
-//					if ( CHAR_getInt( Connect[ i ].charaindex, CHAR_BECOMEPIG ) > -1 ) { //´¦ì¶ÎÚÁ¦»¯×´Ì¬
+//					if ( CHAR_getInt( Connect[ i ].charaindex, CHAR_BECOMEPIG ) > -1 ) { //å¤„æ–¼ä¹ŒåŠ›åŒ–çŠ¶æ€
 //
-//						if ( ( CHAR_getInt( Connect[ i ].charaindex, CHAR_BECOMEPIG ) - 1 ) <= 0 ) { //ÎÚÁ¦Ê±¼ä½áÊøÁË
+//						if ( ( CHAR_getInt( Connect[ i ].charaindex, CHAR_BECOMEPIG ) - 1 ) <= 0 ) { //ä¹ŒåŠ›æ—¶é—´ç»“æŸäº†
 //							CHAR_setInt( Connect[ i ].charaindex, CHAR_BECOMEPIG, 0 );
 //
-//							if ( CHAR_getWorkInt( Connect[ i ].charaindex, CHAR_WORKBATTLEMODE ) == BATTLE_CHARMODE_NONE ) { //²»ÊÇÔÚÕ½¶·×´Ì¬ÏÂ
-//								CHAR_setInt( Connect[ i ].charaindex, CHAR_BECOMEPIG, -1 ); //½áÊøÎÚÁ¦×´Ì¬
+//							if ( CHAR_getWorkInt( Connect[ i ].charaindex, CHAR_WORKBATTLEMODE ) == BATTLE_CHARMODE_NONE ) { //ä¸æ˜¯åœ¨æˆ˜æ–—çŠ¶æ€ä¸‹
+//								CHAR_setInt( Connect[ i ].charaindex, CHAR_BECOMEPIG, -1 ); //ç»“æŸä¹ŒåŠ›çŠ¶æ€
 //								CHAR_complianceParameter( Connect[ i ].charaindex );
 //								CHAR_sendCToArroundCharacter( CHAR_getWorkInt( Connect[ i ].charaindex , CHAR_WORKOBJINDEX ) );
 //								CHAR_send_P_StatusString( Connect[ i ].charaindex , CHAR_P_STRING_BASEBASEIMAGENUMBER );
-//								CHAR_talkToCli( Connect[ i ].charaindex, -1, "ÎÚÁ¦»¯Ê§Ğ§ÁË¡£", CHAR_COLORWHITE );
+//								CHAR_talkToCli( Connect[ i ].charaindex, -1, "ä¹ŒåŠ›åŒ–å¤±æ•ˆäº†ã€‚", CHAR_COLORWHITE );
 //							}
 //						}
 //						else {
@@ -2495,11 +2495,11 @@ int isThereThisIP(unsigned long ip)
 		//if ( Connect[ i ].state == NOTLOGIN || Connect[ i ].state == WHILEDOWNLOADCHARLIST ) {
 		memcpy( &ipa, &Connect[ i ].sin.sin_addr, 4 );
 		if (ipa==ip && Connect[ i ].state == NOTLOGIN ) return 1;
-		//if(getLoginJqmType()==1) return 0; //¿ªÆô»úÆ÷ÂëºóIPÏŞÖÆÎŞĞ§
+		//if(getLoginJqmType()==1) return 0; //å¼€å¯æœºå™¨ç åIPé™åˆ¶æ— æ•ˆ
 		if (ipa==ip) cmpnum++;
 		 
 		if (cmpnum >= j){
-			//print("ÏŞÖÆµÇÂ½IPÊı:%d %d",cmpnum,j);
+			//print("é™åˆ¶ç™»é™†IPæ•°:%d %d",cmpnum,j);
 			return 1;
 		}
 	}
@@ -2532,7 +2532,7 @@ int isSameThisIP(unsigned long ip,int ipcnt)
 
 		if (ipa==ip) cmpnum++;
 		if (cmpnum >= ipcnt){
-			//print("ÏŞÖÆµÇÂ½IPÊı:%d %d",cmpnum,j);
+			//print("é™åˆ¶ç™»é™†IPæ•°:%d %d",cmpnum,j);
 			return 1;
 		}
 	}
@@ -2601,8 +2601,8 @@ SINGLETHREAD BOOL netloop_faster( void )
 		struct sockaddr_in sin;
 		int addrlen=sizeof( struct sockaddr_in );
 		int sockfd;
-		//    int flags=fcntl(bindedfd,F_GETFL,0);//Í¨¹ı F_GETFL »ñÈ¡ÎÄ¼şÃèÊö±êÖ¾¸øflags
-		//		fcntl(bindedfd,F_SETFL,flags|O_NONBLOCK|O_NDELAY);//´Ë´¦Ö»ÊÇ°ÑÃèÊö·û¼Ä´æÎ»ÖÆÎªO_NONBLOCK
+		//    int flags=fcntl(bindedfd,F_GETFL,0);//é€šè¿‡ F_GETFL è·å–æ–‡ä»¶æè¿°æ ‡å¿—ç»™flags
+		//		fcntl(bindedfd,F_SETFL,flags|O_NONBLOCK|O_NDELAY);//æ­¤å¤„åªæ˜¯æŠŠæè¿°ç¬¦å¯„å­˜ä½åˆ¶ä¸ºO_NONBLOCK
 		sockfd = accept( bindedfd ,(struct sockaddr*) &sin  , &addrlen );
 		if( sockfd == -1 && errno == EINTR ){
 			print( "accept err:%s\n", strerror(errno));;
@@ -2620,7 +2620,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 			memcpy( &sinip, &sin.sin_addr, 4);
 //			if( isThereInvalidIP( sinip, userip, useripcount ) )
 //			{
-//				// ¹¥»÷ÁË£¬ºÃÅÂ°¡£¡£¡£¡
+//				// æ”»å‡»äº†ï¼Œå¥½æ€•å•Šï¼ï¼ï¼
 //				int ipa,ipb,ipc,ipd;
 //				char ip[32];
 //				ipa=(sinip % 0x100); sinip=sinip / 0x100;
@@ -2652,12 +2652,12 @@ SINGLETHREAD BOOL netloop_faster( void )
 				}
 				if (cono_check&CONO_CHECK_ITEM)
 					if ((total_item_use+3000) >= MAX_item_use){
-						print("¿ÉÊ¹ÓÃÎïÆ·ÊıÒÑÂú!!");
+						print("å¯ä½¿ç”¨ç‰©å“æ•°å·²æ»¡!!");
 						cono=0;
 					}
 					if (cono_check&CONO_CHECK_PET)
 						if( (petcnt+1000) >= CHAR_getPetMaxNum() ){
-							print("¿ÉÊ¹ÓÃ³èÎïÊıÒÑÂú!!");
+							print("å¯ä½¿ç”¨å® ç‰©æ•°å·²æ»¡!!");
 							cono=0;
 						}
 
@@ -2676,7 +2676,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 						
 						if((cono == 0) || (acceptmore <= 0) || isThereThisIP( sinip) ){
 							// Nuke +2 Errormessage
-							char mess[64]="EËÅ·şÆ÷Ã¦ÏßÖĞ£¬ÇëÉÔºòÔÙÊÔ¡£";
+							char mess[64]="Eä¼ºæœå™¨å¿™çº¿ä¸­ï¼Œè¯·ç¨å€™å†è¯•ã€‚";
 							if (!from_acsv)
 								write(sockfd,mess,strlen(mess)+1);
 							//print( "accept but drop[cono:%d,acceptmore:%d,isThereThisIP=%d]\n", cono, acceptmore,isThereThisIP( sinip));
@@ -2684,7 +2684,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 #ifdef _SAME_IP_ONLINE_NUM
     	       }else if(SameIpOnlineNum(sinip) == 1){
                char mess[64];
-               sprintf(mess, "EÄúµÄIPÒÑÓĞ%d¸öÔÚÏßÁË£¬ÇëÎğ¹ıÁ¿µÇÂ½£¬×Ô¾õÎ¬»¤ÓÎÏ·Æ½ºâ£¡\n", getSameIpOnlineNum());
+               sprintf(mess, "Eæ‚¨çš„IPå·²æœ‰%dä¸ªåœ¨çº¿äº†ï¼Œè¯·å‹¿è¿‡é‡ç™»é™†ï¼Œè‡ªè§‰ç»´æŠ¤æ¸¸æˆå¹³è¡¡ï¼\n", getSameIpOnlineNum());
                write(sockfd,mess,strlen(mess)+1);
 	             close(sockfd);
 #endif
@@ -2697,7 +2697,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 							}else
 								mess[0]='$';
 							
-							//char mess[1024]="EËÅ·şÆ÷Ã¦ÏßÖĞ£¬ÇëÉÔºòÔÙÊÔ¡£";
+							//char mess[1024]="Eä¼ºæœå™¨å¿™çº¿ä¸­ï¼Œè¯·ç¨å€™å†è¯•ã€‚";
 							int servertype=0;
 							if (!from_acsv){
 #ifdef _NO_FULLPLAYER_ATT
@@ -2822,7 +2822,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 							}
 						}else if (strcmp(Connect[ sockfd ].cdkey, "gm")!=0) {
 							// Nuke +2 Errormessage	            
-							char mess[64]="EËÅ·şÆ÷ÈËÊıÒÑÂú£¬ÇëÉÔºòÔÙÊÔ¡£";
+							char mess[64]="Eä¼ºæœå™¨äººæ•°å·²æ»¡ï¼Œè¯·ç¨å€™å†è¯•ã€‚";
 							if (!from_acsv){ 
 									int j;
 									for(j=12;j<ConnectLen;j++){
@@ -2880,7 +2880,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 		//DebugMainFunction="netloop_faster7";
 		gettimeofday( &et, NULL );
 		//DebugMainFunction="netloop_faster8";
-		if( time_diff_us( et,st) >= looptime_us ) //Ö´ĞĞÃ¿³¬¹ı0.1Ãë×ÊÒª×öµÄµÄ¹¤×÷
+		if( time_diff_us( et,st) >= looptime_us ) //æ‰§è¡Œæ¯è¶…è¿‡0.1ç§’èµ„è¦åšçš„çš„å·¥ä½œ
 		{
 #define LOOP_NUM_ADD_CREDIT 5
 #define CREDIT_SPOOL 3
@@ -2895,17 +2895,17 @@ SINGLETHREAD BOOL netloop_faster( void )
 		if ( !b_first_shutdown ) {
 			b_first_shutdown = TRUE;
 			i_shutdown_time = SERVSTATE_getLimittime();
-			print("\n ¹Ø±Õ·şÎñÆ÷Ê±¼ä=%d",i_shutdown_time);
+			print("\n å…³é—­æœåŠ¡å™¨æ—¶é—´=%d",i_shutdown_time);
 		}
 		break;
 	default:
 		{
 			static int i_counter=0;
-			// Syu ADD ¶¨Ê±¶ÁÈ¡Announce
+			// Syu ADD å®šæ—¶è¯»å–Announce
 			static int j_counter=0;
-			// Syu ADD Ã¿Ğ¡Ê±ÖØĞÂ¸üĞÂÓ¢ĞÛÕ½³§ÅÅĞĞ°ñ×ÊÁÏ
+			// Syu ADD æ¯å°æ—¶é‡æ–°æ›´æ–°è‹±é›„æˆ˜å‚æ’è¡Œæ¦œèµ„æ–™
 			static int h_counter=0;
-			// ²»»á¹éÁãµÄ¼ÆÊ±Æ÷
+			// ä¸ä¼šå½’é›¶çš„è®¡æ—¶å™¨
 			static long total_count=0;
       static int checktime_counter=0;
 
@@ -2926,7 +2926,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 			int i;
 			int item_max;
 
-			if ( i_counter > 10 ) { //10Ãë
+			if ( i_counter > 10 ) { //10ç§’
 				player_online = 0; //looptime_us
 #ifdef _AC_PIORITY
 				//print("\n<TL:%0.2f,FD=%d,LOOP=%d,ACFD=%d>",
@@ -2963,7 +2963,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 					memset( buff1, 0, sizeof( buff1));
 					CHAR_getCharOnArrayPercentage( 1, &max, &min, &petcnt);
 					/*
-					sprintf( buff1,"\nÍæ¼Ò=%d ³èÎï=%3.1f%% ÎïÆ·=%3.1f%% ÓÊ¼ş:%d Õ½¶·:%d\n%s",
+					sprintf( buff1,"\nç©å®¶=%d å® ç‰©=%3.1f%% ç‰©å“=%3.1f%% é‚®ä»¶:%d æˆ˜æ–—:%d\n%s",
 					player_online, (float)((float)(petcnt*100)/max),
 					(float)((float)(total_item_use*100)/MaxItemNums),
 					PETMAIL_getPetMailTotalnums(), Battle_getTotalBattleNum(), szBuff1 );
@@ -2971,7 +2971,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 					if((petcnt+500)>=getPetcharnum() || (total_item_use+2000)>=getItemnum()*0.98){
 						lssproto_Shutdown_recv(0, "hogehoge", 1);
 					}
-					sprintf( buff1,"\nÍæ¼Ò=%d ³èÎï=%d ÎïÆ·=%d ÓÊ¼ş:%d Õ½¶·:%d",
+					sprintf( buff1,"\nç©å®¶=%d å® ç‰©=%d ç‰©å“=%d é‚®ä»¶:%d æˆ˜æ–—:%d",
 						player_online, petcnt,total_item_use,
 						PETMAIL_getPetMailTotalnums(), 
 						Battle_getTotalBattleNum() );
@@ -3041,7 +3041,7 @@ SINGLETHREAD BOOL netloop_faster( void )
 				for( i = 0 ; i < playernum ; i++) {
 					if( CHAR_getCharUse(i) != FALSE ) {
 						char buff[36];
-						snprintf( buff, sizeof( buff),"%s¹«¸æ¡£",getGameserverID());
+						snprintf( buff, sizeof( buff),"%så…¬å‘Šã€‚",getGameserverID());
 						CHAR_talkToCli( i, -1, buff, CHAR_COLORYELLOW);
 						CHAR_talkToCli( i, -1, getLoopAnnounce(index % getLoopAnnounceMax()), CHAR_COLORYELLOW);
 					}
@@ -3074,8 +3074,8 @@ LUCKBEGIN:
 				else
 				{
 					luckname=CHAR_getChar(luckcharaindex,CHAR_NAME);
-					CHAR_talkToCli( luckcharaindex, -1, "¹§Ï²Äú³ÉÎª±¾´ÎĞÒÔËĞÇ£¡", CHAR_COLORYELLOW);
-					sprintf( luckbuf, "¹§Ï²Íæ¼Ò¡¾%s¡¿³ÉÎª±¾´ÎĞÒÔËĞÇ£¬»ñµÃ½±Æ·¡¾%s¡¿£¡",luckname,ITEM_getChar(luckitemindex,ITEM_NAME));
+					CHAR_talkToCli( luckcharaindex, -1, "æ­å–œæ‚¨æˆä¸ºæœ¬æ¬¡å¹¸è¿æ˜Ÿï¼", CHAR_COLORYELLOW);
+					sprintf( luckbuf, "æ­å–œç©å®¶ã€%sã€‘æˆä¸ºæœ¬æ¬¡å¹¸è¿æ˜Ÿï¼Œè·å¾—å¥–å“ã€%sã€‘ï¼",luckname,ITEM_getChar(luckitemindex,ITEM_NAME));
 					for( i = 0 ; i < playernum ; i++) {
 						if( CHAR_getCharUse(i) != FALSE ) {
 							CHAR_talkToCli( i, -1, luckbuf, CHAR_COLORRED);
@@ -3139,7 +3139,7 @@ LUCKBEGIN:
 							for(i=0;i<playernum;i++){
 								if(CHAR_CHECKINDEX(i) == FALSE) continue;
 								if(CHAR_getInt(i, CHAR_FLOOR) == 20000 )
-		 							CHAR_talkToCli( i, -1, "±¾ÂÖPK±ÈÈü½áÊø£¬60Ãëºó¿ªÊ¼ÏÂÒ»ÂÖ±ÈÈü£¡", CHAR_COLORRED );
+		 							CHAR_talkToCli( i, -1, "æœ¬è½®PKæ¯”èµ›ç»“æŸï¼Œ60ç§’åå¼€å§‹ä¸‹ä¸€è½®æ¯”èµ›ï¼", CHAR_COLORRED );
 							}*/
 							autopkend = 0;
 						}else{
@@ -3152,7 +3152,7 @@ LUCKBEGIN:
 						time_t timep;
 						struct tm *p;
 						time(&timep);
-						p=localtime(&timep); /*È¡µÃµ±µØÊ±¼ä*/
+						p=localtime(&timep); /*å–å¾—å½“åœ°æ—¶é—´*/
 						int hour=p->tm_hour;
 						int min=p->tm_min;
 						if(getAutoPkTime() == hour+1 && min >=30){
@@ -3164,11 +3164,11 @@ LUCKBEGIN:
 			}
 #endif
 
-			// Syu ADD ¶¨Ê±¶ÁÈ¡Announce
+			// Syu ADD å®šæ—¶è¯»å–Announce
 			if ( j_counter > 60*60 )
-			{//6000 Ô¼ 600Ãë=10·ÖÖÓ
+			{//6000 çº¦ 600ç§’=10åˆ†é’Ÿ
 				j_counter=0;
-				print("\n¶¨Ê±¶ÁÈ¡¹«¸æ");
+				print("\nå®šæ—¶è¯»å–å…¬å‘Š");
 				LoadAnnounce();
 			}
 
@@ -3180,29 +3180,29 @@ LUCKBEGIN:
       //  }
    	  }
 			/*
-			#ifdef _ALLDOMAN     // Syu ADD ÅÅĞĞ°ñNPC
-			// Syu ADD Ã¿Ğ¡Ê±ÖØĞÂ¸üĞÂÓ¢ĞÛÕ½³§ÅÅĞĞ°ñ×ÊÁÏ
-			if ( h_counter > 60*60 ){//36000 Ô¼ 3600Ãë=60·ÖÖÓ
+			#ifdef _ALLDOMAN     // Syu ADD æ’è¡Œæ¦œNPC
+			// Syu ADD æ¯å°æ—¶é‡æ–°æ›´æ–°è‹±é›„æˆ˜å‚æ’è¡Œæ¦œèµ„æ–™
+			if ( h_counter > 60*60 ){//36000 çº¦ 3600ç§’=60åˆ†é’Ÿ
 			h_counter=0;
 			print("\nSyu log LoadHerolist");
-			saacproto_UpdataStele_send ( acfd , "FirstLoad", "LoadHerolist" , "»ªÒå" , 0 , 0 , 0 , 999 ) ;
+			saacproto_UpdataStele_send ( acfd , "FirstLoad", "LoadHerolist" , "åä¹‰" , 0 , 0 , 0 , 999 ) ;
 			}
 			#endif
 			*/
 
-			if ( i_timeNu != time( NULL ) )  // Ã¿ÕûÃëÖ´ĞĞÒ»´Î
+			if ( i_timeNu != time( NULL ) )  // æ¯æ•´ç§’æ‰§è¡Œä¸€æ¬¡
 			{
 				i_timeNu = time( NULL );
 
 #ifdef _DEL_DROP_GOLD
-				//if( total_count % 60 == 0 ) { //Ã¿·ÖÖÓÖ´ĞĞ
+				//if( total_count % 60 == 0 ) { //æ¯åˆ†é’Ÿæ‰§è¡Œ
 				// GOLD_DeleteTimeCheckLoop();
 				//}
 #endif
-				//if( total_count % 60*10 == 0 ) { //Ã¿10·ÖÖÓÖ´ĞĞ
+				//if( total_count % 60*10 == 0 ) { //æ¯10åˆ†é’Ÿæ‰§è¡Œ
 				//}
 #ifdef _ALLBLUES_LUA_1_5
-						if( total_count % 60 == 0 ) { //Ã¿·ÖÖÓÖ´ĞĞ
+						if( total_count % 60 == 0 ) { //æ¯åˆ†é’Ÿæ‰§è¡Œ
 							NetLoopFunction();
 						}
 #endif				
@@ -3211,7 +3211,7 @@ LUCKBEGIN:
 				time_t timep;
 				struct tm *p;
 				time(&timep);
-				p=localtime(&timep); /*È¡µÃµ±µØÊ±¼ä*/
+				p=localtime(&timep); /*å–å¾—å½“åœ°æ—¶é—´*/
 				int hour=p->tm_hour;
 				int min=p->tm_min;
 				if(hour>=getPkLuckTimeMin()&&hour<=getPkLuckTimeMax()&&pkluckhour!=hour){
@@ -3257,9 +3257,9 @@ LUCKBEGIN:
 									char tmpbuf[256];
 									int mapnum = getPkLuckFloor(CHAR_getInt(pkluckplayerindex[n-1],CHAR_FLOOR));
 									char *mapname = getPkLuckMapName(mapnum-1);
-									sprintf(tmpbuf,"[£Ğ£Ë¿ìÑ¶]¹§Ï²Íæ¼Ò[%s]ÔÚ[%s]µÄPKÖĞ±»ºÃÔËÔÒÖĞ",CHAR_getChar(pkluckplayerindex[n-1],CHAR_NAME),mapname);
+									sprintf(tmpbuf,"[ï¼°ï¼«å¿«è®¯]æ­å–œç©å®¶[%s]åœ¨[%s]çš„PKä¸­è¢«å¥½è¿ç ¸ä¸­",CHAR_getChar(pkluckplayerindex[n-1],CHAR_NAME),mapname);
 									int lucktemp[4];
-									char luckbuf[4][32] = {"ÉùÍû","»îÁ¦","»áÔ±µã","»ı·Ö"};
+									char luckbuf[4][32] = {"å£°æœ›","æ´»åŠ›","ä¼šå‘˜ç‚¹","ç§¯åˆ†"};
 									lucktemp[0] = getPkLuckFame();
 									lucktemp[1] = getPkLuckVigor();
 									lucktemp[2] = getPkLuckVipPoint();
@@ -3285,7 +3285,7 @@ LUCKBEGIN:
 									else if(lucktype==4){
 										sasql_ampoint(CHAR_getChar(pkluckplayerindex[n-1],CHAR_CDKEY),lucktemp[3],1);
 									}
-									sprintf(tmpbuf,"%s,»ñµÃ%s %d!",tmpbuf,luckbuf[lucktype-1],lucktemp[lucktype-1]);
+									sprintf(tmpbuf,"%s,è·å¾—%s %d!",tmpbuf,luckbuf[lucktype-1],lucktemp[lucktype-1]);
 									pkluckplayerindex[n-1] = -1;
 									int     i;
 									int     playernum = CHAR_getPlayerMaxNum();
@@ -3302,7 +3302,7 @@ LUCKBEGIN:
 #endif
 
 #ifdef	_17CSA_YANZHENG
-				if( total_count % (60*60) == 0 ) { //Ã¿60·ÖÖÓÖ´ĞĞ
+				if( total_count % (60*60) == 0 ) { //æ¯60åˆ†é’Ÿæ‰§è¡Œ
 					if(yzcnt>0){
 						if(yzcnt>=3){
 							exit(1);
@@ -3316,7 +3316,7 @@ LUCKBEGIN:
 					}
 				}
 				
-				if( total_count % (60*60*24) == 0 ) { //Ã¿24Ğ¡Ê±Ö´ĞĞ
+				if( total_count % (60*60*24) == 0 ) { //æ¯24å°æ—¶æ‰§è¡Œ
 					if(attestation()<1){
 						if(yzcnt<3){
 							yzcnt++;
@@ -3332,9 +3332,9 @@ LUCKBEGIN:
 					h_autopk++;
 #endif
 				i_counter++;
-				// Syu ADD ¶¨Ê±¶ÁÈ¡Announce
+				// Syu ADD å®šæ—¶è¯»å–Announce
 				j_counter++;
-				// Syu ADD Ã¿Ğ¡Ê±ÖØĞÂ¸üĞÂÓ¢ĞÛÕ½³§ÅÅĞĞ°ñ×ÊÁÏ
+				// Syu ADD æ¯å°æ—¶é‡æ–°æ›´æ–°è‹±é›„æˆ˜å‚æ’è¡Œæ¦œèµ„æ–™
 				h_counter++;
 
 				total_count++;
@@ -3361,7 +3361,7 @@ LUCKBEGIN:
 							questionstarttime=0;
 							questionman=0;
 							char answerbuf[256];
-							sprintf(answerbuf,"¡¾ÔÚÏßÎÊ´ğ¡¿±¾Ìâ´ğ°¸ÊÇ(%s)£¬ÇëÃ»ÓĞ´ğ¶ÔµÄÍæ¼Ò¼Ç×¡´ğ°¸Å¶£¡",answer);
+							sprintf(answerbuf,"ã€åœ¨çº¿é—®ç­”ã€‘æœ¬é¢˜ç­”æ¡ˆæ˜¯(%s)ï¼Œè¯·æ²¡æœ‰ç­”å¯¹çš„ç©å®¶è®°ä½ç­”æ¡ˆå“¦ï¼",answer);
 							int i_count,playmaxnum;
 							playmaxnum=CHAR_getPlayerMaxNum();
 							for( i_count = 0 ; i_count < playmaxnum ; i_count++) {
@@ -3457,7 +3457,7 @@ LUCKBEGIN:
 				    	logKong(ip);
 				    	system(token);
 #endif				    	
-						  char mess[64]="E·âip";
+						  char mess[64]="Eå°ip";
 						  write(fdremember,mess,strlen(mess)+1);
 							CONNECT_endOne_debug(fdremember );
 				    	continue;
@@ -3487,18 +3487,18 @@ LUCKBEGIN:
 		if ( ret > 0 && FD_ISSET( fdremember, &rfds ) ) {
 			errno = 0;
 			memset( buf, 0, sizeof( buf ) );
-			//      int flags=fcntl(fdremember,F_GETFL,0);//Í¨¹ı F_GETFL »ñÈ¡ÎÄ¼şÃèÊö±êÖ¾¸øflags
-			//			fcntl(fdremember,F_SETFL,flags|O_NONBLOCK|O_NDELAY);//´Ë´¦Ö»ÊÇ°ÑÃèÊö·û¼Ä´æÎ»ÖÆÎªO_NONBLOCK
+			//      int flags=fcntl(fdremember,F_GETFL,0);//é€šè¿‡ F_GETFL è·å–æ–‡ä»¶æè¿°æ ‡å¿—ç»™flags
+			//			fcntl(fdremember,F_SETFL,flags|O_NONBLOCK|O_NDELAY);//æ­¤å¤„åªæ˜¯æŠŠæè¿°ç¬¦å¯„å­˜ä½åˆ¶ä¸ºO_NONBLOCK
 			ret = read( fdremember, buf, sizeof( buf ) );
 
 			if ( ret > 0 && sizeof( buf ) <= ret ) {
-				//print( "¶ÁÈ¡(%s)»º³å³¤¶È:%d - %d !!\n", ( fdremember == acfd ) ? "SAAC" : "ÆäËü", ret, sizeof( buf ) );
+				//print( "è¯»å–(%s)ç¼“å†²é•¿åº¦:%d - %d !!\n", ( fdremember == acfd ) ? "SAAC" : "å…¶å®ƒ", ret, sizeof( buf ) );
 			}
 
 			if( (ret == -1 && errno != EINTR) || ret == 0 ){
 				if( fdremember == acfd ){
-					print( "¶ÁÈ¡·µ»Ø:%d %s\n",ret,strerror(errno));
-					print( "gmsvÓëacsvÊ§È¥Á¬½Ó! Òì³£ÖÕÖ¹...\n" );
+					print( "è¯»å–è¿”å›:%d %s\n",ret,strerror(errno));
+					print( "gmsvä¸acsvå¤±å»è¿æ¥! å¼‚å¸¸ç»ˆæ­¢...\n" );
 					sigshutdown( -1 );
 					exit(1);
 				}else {
@@ -3506,7 +3506,7 @@ LUCKBEGIN:
 						if(errno==113 || errno==104){
 							continue;
 						}else{
-							//print( "¶ÁÈ¡·µ»Ø: %d %s \n", errno, strerror( errno));
+							//print( "è¯»å–è¿”å›: %d %s \n", errno, strerror( errno));
 						}
 					}
 					//print( "\nRCL " );
@@ -3516,7 +3516,7 @@ LUCKBEGIN:
 				}
 			}else{
 				if( appendRB( fdremember, buf, ret ) == -2 && getErrUserDownFlg() == 1){
-					//print("´íÎó77777");
+					//print("é”™è¯¯77777");
 					CONNECT_endOne_debug(fdremember );
 					continue;
 				}else{
@@ -3528,7 +3528,7 @@ LUCKBEGIN:
 		}else if( ret < 0 && errno != EINTR){
 			if( fdremember != acfd ){
 				//if(CHAR_getWorkInt(Connect[fdremember].charaindex,CHAR_WORKNOONLINE)!=1){
-					//print( "\n¶ÁÈ¡Á¬½Ó´íÎó:%d %s\n", errno, strerror( errno ));
+					//print( "\nè¯»å–è¿æ¥é”™è¯¯:%d %s\n", errno, strerror( errno ));
 					CONNECT_endOne_debug(fdremember );
 					continue;
 				//}
@@ -3546,7 +3546,7 @@ LUCKBEGIN:
 			if ( !( ( rbmess[ 0 ] == '\r' && rbmess[ 1 ] == '\n' ) || rbmess[ 0 ] == '\n' ) ) {
 				if ( fdremember == acfd ) {
 #ifdef _DEBUG
-					//printf("¶ÁÈ¡SAACÊı¾İ:%s\n",rbmess);
+					//printf("è¯»å–SAACæ•°æ®:%s\n",rbmess);
 #endif
 					//DebugMainFunction="netloop_faster14";
 					if ( saacproto_ClientDispatchMessage( fdremember, rbmess ) < 0 ) {
@@ -3554,7 +3554,7 @@ LUCKBEGIN:
 					}
 				}else {
 #ifdef _DEBUG
-					//printf("¶ÁÈ¡¿Í»§¶ËÊı¾İ:%s\n",rbmess);
+					//printf("è¯»å–å®¢æˆ·ç«¯æ•°æ®:%s\n",rbmess);
 #endif
 					//DebugMainFunction="netloop_faster15";
 					if ( lssproto_ServerDispatchMessage( fdremember, rbmess ) < 0 ) {
@@ -3578,7 +3578,7 @@ LUCKBEGIN:
 //							if( userip[j] == tmpip ){
 //								if(userip_count_data[j]>=getAttDmeCnt()){
 //
-//									print( "·Ç·¨±àºÅ=%d ·Ç·¨IP=%s \n", fdremember, ip );
+//									print( "éæ³•ç¼–å·=%d éæ³•IP=%s \n", fdremember, ip );
 //
 //									char systemerrstr[256];
 //									sprintf(systemerrstr,"iptables -I INPUT -s %s -j DROP",ip);
@@ -3613,7 +3613,7 @@ LUCKBEGIN:
 						if(CONNECT_getState(fdremember)==NOTLOGIN){
 							Connect[ fdremember ].rightnum++;
 						}
-						if(Connect[ fdremember ].rightnum>getRightNum()){	//·ÀÖ¹ÕıÈ··â°ü¹¥»÷
+						if(Connect[ fdremember ].rightnum>getRightNum()){	//é˜²æ­¢æ­£ç¡®å°åŒ…æ”»å‡»
 							unsigned long tmpip;
     					int a,b,c,d;
     					char ip[32];
@@ -3721,7 +3721,7 @@ LUCKBEGIN:
 		}
 		//DebugMainFunction="netloop_faster20";
 		if ( Connect[ fdremember ].errornum > allowerrornum ) {
-			//print( "ÓÃ»§:%s·¢ÉúÌ«¶à´íÎóÁË£¬ËùÒÔÇ¿ÖÆ¹Ø±Õ\n",inet_ntoa(Connect[fdremember].sin.sin_addr ));
+			//print( "ç”¨æˆ·:%så‘ç”Ÿå¤ªå¤šé”™è¯¯äº†ï¼Œæ‰€ä»¥å¼ºåˆ¶å…³é—­\n",inet_ntoa(Connect[fdremember].sin.sin_addr ));
 			logHackKick(fdremember);
 				CONNECT_endOne_debug( fdremember );
 				continue;
@@ -3752,13 +3752,13 @@ LUCKBEGIN:
 
 			if ( ret > 0 && FD_ISSET( fdremember , &wfds )) {
 				//Nuke start 0907: Protect gmsv
-				//				int flags=fcntl(fdremember,F_GETFL,0);//Í¨¹ı F_GETFL »ñÈ¡ÎÄ¼şÃèÊö±êÖ¾¸øflags
-				//				fcntl(fdremember,F_SETFL,flags|O_NONBLOCK|O_NDELAY);//´Ë´¦Ö»ÊÇ°ÑÃèÊö·û¼Ä´æÎ»ÖÆÎªO_NONBLOCK
+				//				int flags=fcntl(fdremember,F_GETFL,0);//é€šè¿‡ F_GETFL è·å–æ–‡ä»¶æè¿°æ ‡å¿—ç»™flags
+				//				fcntl(fdremember,F_SETFL,flags|O_NONBLOCK|O_NDELAY);//æ­¤å¤„åªæ˜¯æŠŠæè¿°ç¬¦å¯„å­˜ä½åˆ¶ä¸ºO_NONBLOCK
 				if ( fdremember == acfd ) {
 					ret = write( fdremember , Connect[ fdremember ].wb ,
 						( Connect[fdremember].wbuse < acwritesize) ? Connect[fdremember].wbuse : acwritesize );
 #ifdef _DEBUG
-					//printf("·¢ËÍSAACÄÚÈİ:%s\n",Connect[ fdremember ].wb);
+					//printf("å‘é€SAACå†…å®¹:%s\n",Connect[ fdremember ].wb);
 					memset( Connect[ fdremember ].wb, 0, WBSIZE );
 #endif
 				}else {
@@ -3770,7 +3770,7 @@ LUCKBEGIN:
 				// Nuke end
 
 				if ( ret == -1 && errno != EINTR ) {
-					//print( "Ğ´Èë·µ»Ø: %d %s \n", errno, strerror( errno));
+					//print( "å†™å…¥è¿”å›: %d %s \n", errno, strerror( errno));
 					CONNECT_endOne_debug( fdremember );
 					continue;
 				} else if( ret > 0 ){
@@ -3778,19 +3778,19 @@ LUCKBEGIN:
 				}
 			}else if( ret < 0 && errno != EINTR  ){
 				//if(CHAR_getWorkInt(Connect[fdremember].charaindex,CHAR_WORKNOONLINE)!=1){
-					//print( "\nĞ´ÈëÁ¬½Ó´íÎó:%d %s\n",errno, strerror( errno ));
+					//print( "\nå†™å…¥è¿æ¥é”™è¯¯:%d %s\n",errno, strerror( errno ));
 					CONNECT_endOne_debug(fdremember );
 				//}
 			}
 		}
 		//DebugMainFunction="netloop_faster24";
-		/* ¥¿¥¤¥à¥¢¥¦¥È¤Î½èÍı */
+		/* ã‚¿ã‚¤ãƒ ã‚¢ã‚¦ãƒˆã®å€Ÿå¦„ */
 		if ( fdremember == acfd )
 			continue;
 		//DebugMainFunction="netloop_faster25";
 		//ttom start : because of the second have this
 		if ( Connect[ fdremember ].close_request ) {
-			     //print( "Ç¿ÆÈ¹Ø±Õ:%s \n",inet_ntoa(Connect[fdremember].sin.sin_addr ));
+			     //print( "å¼ºè¿«å…³é—­:%s \n",inet_ntoa(Connect[fdremember].sin.sin_addr ));
 			CONNECT_endOne_debug( fdremember );
 			continue;
 		}
@@ -3912,11 +3912,11 @@ ANYTHREAD void outputNetProcLog( int fd, int mode)
 }
 
 /*------------------------------------------------------------
-* cdkey ¤«¤é fd ¤òÆÀ¤ë¡£
-* °ú¿ô
+* cdkey ã‹ã‚‰ fd ã‚’è¯„ã‚‹ã€‚
+* è‹çœ¶
 *  cd      char*       cdkey
-* ÊÖ¤êÃÍ
-*  ¥Õ¥¡¥¤¥ë¥Ç¥£¥¹¥¯¥ê¥×¥¿  ¤è¤Ã¤Æ¡¢ -1 ¤Î»ş¤Ï¥¨¥é¡¼
+* æ‰‹ã‚ŠçŒ›
+*  ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‡ã‚£ã‚¹ã‚¯ãƒªãƒ—ã‚¿  ã‚ˆã£ã¦ã€ -1 ã®ç®•ã¯ã‚¨ãƒ©ã€–
 ------------------------------------------------------------*/
 ANYTHREAD int getfdFromCdkeyWithLogin( char* cd )
 {
@@ -3940,7 +3940,7 @@ ANYTHREAD int getfdFromCdkeyWithLogin( char* cd )
 
 
 /***********************************************************************
-MTIO èú›Ÿ
+MTIO æ¥®æ´˜
 ***********************************************************************/
 // Nuke start 08/27: For acceleration avoidance
 //ttom+1
@@ -4069,7 +4069,7 @@ int CHAR_players()
 	int players = 0, pets = 0, others = 0;
 	int whichtype = -1;
 	int objnum = OBJECT_getNum();
-	/* ÒıÄÚ·´obj¼°ÇÁÚØ */
+	/* å¼•å†…åobjåŠæ©‡è°ª */
 
 	for ( i = 0 ; i < objnum ; i++ ) {
 		switch ( OBJECT_getType( i ) ) {
@@ -4101,7 +4101,7 @@ void sigusr2(int i)
 {
 	signal( SIGUSR2, sigusr2 );
 	print( "\nReceived Shutdown signal...\n\n" );
-	lssproto_Shutdown_recv( 0, "hogehoge", 5 ); // 5·ÖÖÓááÎ¬ĞŞ
+	lssproto_Shutdown_recv( 0, "hogehoge", 5 ); // 5åˆ†é’Ÿå¾Œç»´ä¿®
 }
 
 // Nuke end
@@ -4375,7 +4375,7 @@ void RescueEntryBTime( int charaindex, int fd, unsigned int lowTime, unsigned in
 	//Connect[fd].CBTime+battletime
 }
 
-BOOL CheckDefBTime( int charaindex, int fd, unsigned int lowTime, unsigned int battletime, unsigned int addTime)//lowTimeÑÓ³ÙÊ±¼ä
+BOOL CheckDefBTime( int charaindex, int fd, unsigned int lowTime, unsigned int battletime, unsigned int addTime)//lowTimeå»¶è¿Ÿæ—¶é—´
 {
 #ifdef CXC_BOXC_WUGUA
 	if( fd < 0 ||  fd >= ConnectLen ){
@@ -4392,7 +4392,7 @@ BOOL CheckDefBTime( int charaindex, int fd, unsigned int lowTime, unsigned int b
 	if ( ( Connect[ fd ].CBTime + battletime ) > lowTime ) lowTime = Connect[ fd ].CBTime + battletime;
 #ifndef CXC_BOXC_WUGUA		
 
-	if ( NowTime < lowTime ) { //lowTimeÓ¦¸ÃµÄÕ½¶·½áÊøÊ±¼ä
+	if ( NowTime < lowTime ) { //lowTimeåº”è¯¥çš„æˆ˜æ–—ç»“æŸæ—¶é—´
 		int r = 0;
 		delayTime = lowTime - NowTime;
 		delayTime = ( delayTime <= 0 ) ? 1 : delayTime;
@@ -4411,11 +4411,11 @@ BOOL CheckDefBTime( int charaindex, int fd, unsigned int lowTime, unsigned int b
 	//Connect[fd].BDTime = (NowTime+20)+delayTime;
 #ifdef _FIX_CHARLOOPS
 	if(getCharloops()>0)
-		Connect[fd].BDTime = NowTime + rand() % getCharloops() ; // ¶ñ±¦µÈ´ıÊ±¼ä
+		Connect[fd].BDTime = NowTime + rand() % getCharloops() ; // æ¶å®ç­‰å¾…æ—¶é—´
 	else
 		Connect[fd].BDTime = NowTime;
 #else
-	Connect[ fd ].BDTime = ( NowTime + rand() % 5 ) + delayTime + addTime; // ¶ñ±¦µÈ´ıÊ±¼ä
+	Connect[ fd ].BDTime = ( NowTime + rand() % 5 ) + delayTime + addTime; // æ¶å®ç­‰å¾…æ—¶é—´
 #endif
 	//print(" BDTime=%d ", Connect[fd].BDTime);
 	return TRUE;
@@ -4434,46 +4434,46 @@ void SetTcpBuf( int sockfd )
 	int nRecvBuf = getrecvbuffer()*1024;
 	int nSendBuf = getsendbuffer()*1024;
 	//  int nRecvlowatBuf = getrecvlowatbuffer();
-	//	int nNetTimeout=0;//0Ãë
+	//	int nNetTimeout=0;//0ç§’
 	//	BOOL bDontLinger = FALSE; 
 	//	BOOL bReuseaddr=TRUE;
 
 	struct linger rLinger;
-	rLinger.l_onoff  = 1;   // ´ò¿ªlinegr¿ª¹Ø
-	rLinger.l_linger = 0;   // ÉèÖÃÑÓ³ÙÊ±¼äÎª 0 Ãë, ×¢Òâ TCPIPÁ¢¼´¹Ø±Õ£¬µ«ÊÇÓĞ¿ÉÄÜ³öÏÖ»¯Éí
+	rLinger.l_onoff  = 1;   // æ‰“å¼€linegrå¼€å…³
+	rLinger.l_linger = 0;   // è®¾ç½®å»¶è¿Ÿæ—¶é—´ä¸º 0 ç§’, æ³¨æ„ TCPIPç«‹å³å…³é—­ï¼Œä½†æ˜¯æœ‰å¯èƒ½å‡ºç°åŒ–èº«
 
-	//ÉèÖÃ½ÓÊÕ»º³å
+	//è®¾ç½®æ¥æ”¶ç¼“å†²
 	if(setsockopt(sockfd, SOL_SOCKET, SO_RCVBUF,(char*)&nRecvBuf, sizeof(int)) < 0)
-		print( "\nÉèÖÃSO_RCVBUFÊ§°Ü!!!!\n" );
+		print( "\nè®¾ç½®SO_RCVBUFå¤±è´¥!!!!\n" );
 
-	//ÉèÖÃ·¢ËÍ»º³å
+	//è®¾ç½®å‘é€ç¼“å†²
 	if(setsockopt(sockfd, SOL_SOCKET, SO_SNDBUF, (char*)&nSendBuf, sizeof(int)) < 0)
-		print( "\nÉèÖÃSO_SNDBUFÊ§°Ü!!!!\n" );
+		print( "\nè®¾ç½®SO_SNDBUFå¤±è´¥!!!!\n" );
 	/*	
 	if(setsockopt(sockfd, SOL_SOCKET, SO_SNDTIMEO, (char*)&nNetTimeout, sizeof(int)) < 0)
-	print( "\nÉèÖÃSO_SNDTIMEOÊ§°Ü!!!!\n" );
+	print( "\nè®¾ç½®SO_SNDTIMEOå¤±è´¥!!!!\n" );
 
 	if(setsockopt(sockfd, SOL_SOCKET, SO_RCVTIMEO, (char*)&nNetTimeout, sizeof(int)) < 0)
-	print( "\nÉèÖÃSO_RCVTIMEOÊ§°Ü!!!!\n" );
+	print( "\nè®¾ç½®SO_RCVTIMEOå¤±è´¥!!!!\n" );
 
 	if(setsockopt(sockfd,SOL_SOCKET,SO_DONTLINGER,(const char*)&bDontLinger,sizeof(BOOL)) < 0)
-	print( "\nÉèÖÃSO_DONTLINGERÊ§°Ü!!!!\n" );
+	print( "\nè®¾ç½®SO_DONTLINGERå¤±è´¥!!!!\n" );
 
 	if(setsockopt(sockfd,SOL_SOCKET ,SO_REUSEADDR,(const char*)&bReuseaddr,sizeof(BOOL)) < 0)
-	print( "\nÉèÖÃSO_REUSEADDRÊ§°Ü!!!!\n" );
+	print( "\nè®¾ç½®SO_REUSEADDRå¤±è´¥!!!!\n" );
 	*/
 	if(setsockopt(sockfd, SOL_SOCKET, SO_LINGER, (char *)&rLinger, sizeof(rLinger)) < 0)
-		print( "\nÉèÖÃSO_LINGERÊ§°Ü!!!!\n" );
-	/*  //ÉèÖÃ½ÓÊÕ»º³åÏÂÏŞ
+		print( "\nè®¾ç½®SO_LINGERå¤±è´¥!!!!\n" );
+	/*  //è®¾ç½®æ¥æ”¶ç¼“å†²ä¸‹é™
 	if (setsockopt( sockfd, SOL_SOCKET, SO_RCVLOWAT, (char*)&nRecvlowatBuf, sizeof(int) < 0)
-	print( "\nÉèÖÃ½ÓÊÕSO_RCVLOWATÊ§°Ü!!!!\n" );
+	print( "\nè®¾ç½®æ¥æ”¶SO_RCVLOWATå¤±è´¥!!!!\n" );
 	*/
 
 	//	if(ioctl(sockfd, FIONBIO, &param))
-	//		print( "\nÉèÖÃ½ÓÊÕFIONBIOÊ§°Ü!!!!\n" );
+	//		print( "\nè®¾ç½®æ¥æ”¶FIONBIOå¤±è´¥!!!!\n" );
 
-	//	int flags=fcntl(sockfd,F_GETFL,0);//Í¨¹ı F_GETFL »ñÈ¡ÎÄ¼şÃèÊö±êÖ¾¸øflags
-	//	fcntl(sockfd,F_SETFL,flags|O_NONBLOCK|O_NDELAY);//´Ë´¦Ö»ÊÇ°ÑÃèÊö·û¼Ä´æÎ»ÖÆÎªO_NONBLOCK
+	//	int flags=fcntl(sockfd,F_GETFL,0);//é€šè¿‡ F_GETFL è·å–æ–‡ä»¶æè¿°æ ‡å¿—ç»™flags
+	//	fcntl(sockfd,F_SETFL,flags|O_NONBLOCK|O_NDELAY);//æ­¤å¤„åªæ˜¯æŠŠæè¿°ç¬¦å¯„å­˜ä½åˆ¶ä¸ºO_NONBLOCK
 }
 
 

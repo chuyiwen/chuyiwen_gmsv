@@ -15,7 +15,7 @@
 #include "npc_eventaction.h"
 
 #ifdef	_FM_NPC_LOOK_WAR1
-//ÌØµØ´ÓÌìÌÃ¸ßĞ½ÍÚ½ÇÀ´µÄ"´«ËÍÊ¦"
+//ç‰¹åœ°ä»å¤©å ‚é«˜è–ªæŒ–è§’æ¥çš„"ä¼ é€å¸ˆ"
 enum {
 	WINDOW_START=1,
 	WINDOW_SELECT,
@@ -59,10 +59,10 @@ void NPC_FmLookWarMan1Talked( int meindex, int talkerindex, char *msg, int color
 		if(NPC_Util_isFaceToChara( talkerindex, meindex, 1) == FALSE)
 			return;
 	}
-// Syu ADD Ìì²Å´«ËÍÊ¦ÅĞ¶Ï×é¶Ó×´Ì¬
+// Syu ADD å¤©æ‰ä¼ é€å¸ˆåˆ¤æ–­ç»„é˜ŸçŠ¶æ€
 	if( CHAR_getWorkInt ( talkerindex , CHAR_WORKPARTYMODE) != CHAR_PARTY_NONE)
 	{
-		CHAR_talkToCli( talkerindex, meindex, "²»ÔÊĞí×é¶Ó£¡",CHAR_COLORYELLOW);
+		CHAR_talkToCli( talkerindex, meindex, "ä¸å…è®¸ç»„é˜Ÿï¼",CHAR_COLORYELLOW);
 		return;
 	}
 	CHAR_setWorkInt( talkerindex, CHAR_WORKSHOPRELEVANT, 0);
@@ -114,14 +114,14 @@ static void NPC_FmLookWarMan1_selectWindow( int meindex, int toindex, int num,in
 
 	switch( num)	{
 	case WINDOW_START:
-		sprintf(token,"2\nÎÒÊÇÔ¶³Ì¹ÛÕ½Ô±£¬Ìá¹©ÉíÁÙÆä¾³µÄ¹ÛÕ½·şÎñ¡£\n"
-									"ÏÂÃæÇëÑ¡ÔñÄúĞèÒª¹Û¿´µÄÕ½¶·£º\n"
-									"                ÒÁµéÔ°×¯Ô°×åÕ½\n"
-									"                Ëş¶ûËş×¯Ô°×åÕ½\n"
-									"                Äá¿ËË¹×¯Ô°×åÕ½\n"
-									"                ¸¥ÁÒ¶Ù×¯Ô°×åÕ½\n"
-									"                ÑÇÒÁÅ·×¯Ô°×åÕ½\n"
-									"                Èğ¶ûÑÇË¹×¯×åÕ½\n");
+		sprintf(token,"2\næˆ‘æ˜¯è¿œç¨‹è§‚æˆ˜å‘˜ï¼Œæä¾›èº«ä¸´å…¶å¢ƒçš„è§‚æˆ˜æœåŠ¡ã€‚\n"
+									"ä¸‹é¢è¯·é€‰æ‹©æ‚¨éœ€è¦è§‚çœ‹çš„æˆ˜æ–—ï¼š\n"
+									"                ä¼Šç”¸å›­åº„å›­æ—æˆ˜\n"
+									"                å¡”å°”å¡”åº„å›­æ—æˆ˜\n"
+									"                å°¼å…‹æ–¯åº„å›­æ—æˆ˜\n"
+									"                å¼—çƒˆé¡¿åº„å›­æ—æˆ˜\n"
+									"                äºšä¼Šæ¬§åº„å›­æ—æˆ˜\n"
+									"                ç‘å°”äºšæ–¯åº„æ—æˆ˜\n");
 		CHAR_setWorkInt( toindex, CHAR_WORKSHOPRELEVANT, WINDOW_START);
 		buttontype = WINDOW_BUTTONTYPE_CANCEL;
 		windowno = NPC_FMLOOKWARMAN1_SELECT;
@@ -152,7 +152,7 @@ static void NPC_FmLookWarMan1_selectWindow( int meindex, int toindex, int num,in
 			}
 			
 			if(fmwarnum<1){
-				CHAR_talkToCli( toindex, meindex, "ºÜÒÅº¶£¬¸ÃµØÍ¼Ä¿Ç°ÎŞÕ½¶·¿ÉÒÔ¹Û¿´¡£",CHAR_COLORYELLOW);
+				CHAR_talkToCli( toindex, meindex, "å¾ˆé—æ†¾ï¼Œè¯¥åœ°å›¾ç›®å‰æ— æˆ˜æ–—å¯ä»¥è§‚çœ‹ã€‚",CHAR_COLORYELLOW);
 				return;
 			}
 			if(PREVTYPE==1)
@@ -163,7 +163,7 @@ static void NPC_FmLookWarMan1_selectWindow( int meindex, int toindex, int num,in
 				CHAR_setWorkInt(toindex,CHAR_WORKLISTSELECT,select);
 			sprintf(token,SearchFmWar(toindex,select));
 			if(strcmp(token,"err")==0){
-				CHAR_talkToCli( toindex, meindex, "ºÜÒÅº¶£¬¸ÃµØÍ¼Ä¿Ç°ÎŞÕ½¶·¿ÉÒÔ¹Û¿´¡£",CHAR_COLORYELLOW);
+				CHAR_talkToCli( toindex, meindex, "å¾ˆé—æ†¾ï¼Œè¯¥åœ°å›¾ç›®å‰æ— æˆ˜æ–—å¯ä»¥è§‚çœ‹ã€‚",CHAR_COLORYELLOW);
 				return;
 			}
 			CHAR_setWorkInt( toindex, CHAR_WORKSHOPRELEVANT, WINDOW_SELECT);
@@ -185,7 +185,7 @@ static void NPC_FmLookWarMan1_selectWindow( int meindex, int toindex, int num,in
 		break;
 	case WINDOW_LOOKSELECT:
 		if(LookFmWarIndex(toindex,select)==-1){
-			CHAR_talkToCli( toindex, meindex, "ºÜÒÅº¶£¬¹ÛÕ½Ê§°Ü¡£",CHAR_COLORYELLOW);
+			CHAR_talkToCli( toindex, meindex, "å¾ˆé—æ†¾ï¼Œè§‚æˆ˜å¤±è´¥ã€‚",CHAR_COLORYELLOW);
 			return;
 		}
 		break;
@@ -211,7 +211,7 @@ BOOL FmLookWarMan1_Run( int meindex, int toindex, int select)
 			if(SearchFmWarRandIndex(toindex,5042)==0){
 				return TRUE;
 			}else{
-				CHAR_talkToCli( toindex, meindex, "ºÜÒÅº¶£¬¸ÃµØÍ¼Ä¿Ç°ÎŞÕ½¶·¿ÉÒÔ¹Û¿´¡£",CHAR_COLORYELLOW);
+				CHAR_talkToCli( toindex, meindex, "å¾ˆé—æ†¾ï¼Œè¯¥åœ°å›¾ç›®å‰æ— æˆ˜æ–—å¯ä»¥è§‚çœ‹ã€‚",CHAR_COLORYELLOW);
 				return FALSE;
 			}
 			break;
@@ -219,7 +219,7 @@ BOOL FmLookWarMan1_Run( int meindex, int toindex, int select)
 			if(SearchFmWarRandIndex(toindex,6032)==0){
 				return TRUE;
 			}else{
-				CHAR_talkToCli( toindex, meindex, "ºÜÒÅº¶£¬¸ÃµØÍ¼Ä¿Ç°ÎŞÕ½¶·¿ÉÒÔ¹Û¿´¡£",CHAR_COLORYELLOW);
+				CHAR_talkToCli( toindex, meindex, "å¾ˆé—æ†¾ï¼Œè¯¥åœ°å›¾ç›®å‰æ— æˆ˜æ–—å¯ä»¥è§‚çœ‹ã€‚",CHAR_COLORYELLOW);
 				return FALSE;
 			}
 			break;
@@ -227,7 +227,7 @@ BOOL FmLookWarMan1_Run( int meindex, int toindex, int select)
 			if(SearchFmWarRandIndex(toindex,7032)==0){
 				return TRUE;
 			}else{
-				CHAR_talkToCli( toindex, meindex, "ºÜÒÅº¶£¬¸ÃµØÍ¼Ä¿Ç°ÎŞÕ½¶·¿ÉÒÔ¹Û¿´¡£",CHAR_COLORYELLOW);
+				CHAR_talkToCli( toindex, meindex, "å¾ˆé—æ†¾ï¼Œè¯¥åœ°å›¾ç›®å‰æ— æˆ˜æ–—å¯ä»¥è§‚çœ‹ã€‚",CHAR_COLORYELLOW);
 				return FALSE;
 			}
 			break;
@@ -235,7 +235,7 @@ BOOL FmLookWarMan1_Run( int meindex, int toindex, int select)
 			if(SearchFmWarRandIndex(toindex,8032)==0){
 				return TRUE;
 			}else{
-				CHAR_talkToCli( toindex, meindex, "ºÜÒÅº¶£¬¸ÃµØÍ¼Ä¿Ç°ÎŞÕ½¶·¿ÉÒÔ¹Û¿´¡£",CHAR_COLORYELLOW);
+				CHAR_talkToCli( toindex, meindex, "å¾ˆé—æ†¾ï¼Œè¯¥åœ°å›¾ç›®å‰æ— æˆ˜æ–—å¯ä»¥è§‚çœ‹ã€‚",CHAR_COLORYELLOW);
 				return FALSE;
 			}
 			break;
@@ -243,7 +243,7 @@ BOOL FmLookWarMan1_Run( int meindex, int toindex, int select)
 			if(SearchFmWarRandIndex(toindex,9032)==0){
 				return TRUE;
 			}else{
-				CHAR_talkToCli( toindex, meindex, "ºÜÒÅº¶£¬¸ÃµØÍ¼Ä¿Ç°ÎŞÕ½¶·¿ÉÒÔ¹Û¿´¡£",CHAR_COLORYELLOW);
+				CHAR_talkToCli( toindex, meindex, "å¾ˆé—æ†¾ï¼Œè¯¥åœ°å›¾ç›®å‰æ— æˆ˜æ–—å¯ä»¥è§‚çœ‹ã€‚",CHAR_COLORYELLOW);
 				return FALSE;
 			}
 			break;
@@ -251,7 +251,7 @@ BOOL FmLookWarMan1_Run( int meindex, int toindex, int select)
 			if(SearchFmWarRandIndex(toindex,10032)==0){
 				return TRUE;
 			}else{
-				CHAR_talkToCli( toindex, meindex, "ºÜÒÅº¶£¬¸ÃµØÍ¼Ä¿Ç°ÎŞÕ½¶·¿ÉÒÔ¹Û¿´¡£",CHAR_COLORYELLOW);
+				CHAR_talkToCli( toindex, meindex, "å¾ˆé—æ†¾ï¼Œè¯¥åœ°å›¾ç›®å‰æ— æˆ˜æ–—å¯ä»¥è§‚çœ‹ã€‚",CHAR_COLORYELLOW);
 				return FALSE;
 			}
 			break;

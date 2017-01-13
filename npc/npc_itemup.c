@@ -180,7 +180,7 @@ void NPC_ItemupManLoop( int meindex)
 BOOL ItemupMan_GetItemStr( int meindex, int toindex, char *npcarg, char *token, int num)
 {
 	char buf1[1024], buf2[256], buf3[256],buf0[2048];
-	char NullName[256] = {"δ֪����Ʒ"};
+	char NullName[256] = {"未知的物品"};
 	BOOL FINDS=FALSE;
 	int talkNo=1;
 	int addID;
@@ -223,7 +223,7 @@ BOOL ItemupMan_GetItemStr( int meindex, int toindex, char *npcarg, char *token, 
 BOOL ItemupMan_GetNeedStr( int meindex, int toindex, char *npcarg, char *token, int num )
 {
 	char buf1[1024], buf2[256], buf3[256],buf0[2048],buf4[256];
-	char NullName[256] = {"δ֪����Ʒ"};
+	char NullName[256] = {"未知的物品"};
 	int talkNo=1, addID, i=0,itemnum=1;
 	BOOL FINDS = FALSE;
 	if( npcarg == NULL ) return FALSE;

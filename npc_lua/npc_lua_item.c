@@ -28,7 +28,7 @@ typedef enum
 #endif
 }LUAITEM_FUNC;
 
-//»ñÈ¡Êı¾İµÄ½Ó¿Ú
+//è·å–æ•°æ®çš„æ¥å£
 int NPC_Lua_Item_GetData(lua_State *_NLL)
 {
 	CheckEx(_NLL, 2);
@@ -55,13 +55,13 @@ int NPC_Lua_Item_GetData(lua_State *_NLL)
 			LRetInt(_NLL, TM_RetWorkInt);
 		}else
 		{
-			LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+			LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 		}
 	}
-	LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+	LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
-//ÉèÖÃÊı¾İµÄ½Ó¿Ú
+//è®¾ç½®æ•°æ®çš„æ¥å£
 int NPC_Lua_Item_SetData(lua_State *_NLL)
 {
 	CheckEx(_NLL, 3);
@@ -95,13 +95,13 @@ int NPC_Lua_Item_SetData(lua_State *_NLL)
 			LRetInt(_NLL, TM_RetInt);
 		}else
 		{
-			LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+			LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 		}
 	}
-	LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+	LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
-//ÊÂ¼şÉèÖÃµÄ½Ó¿Ú
+//äº‹ä»¶è®¾ç½®çš„æ¥å£
 int NPC_Lua_Item_SetPreOverEvent(lua_State *_NLL)
 {
 	CheckEx(_NLL, 3);
@@ -112,7 +112,7 @@ int NPC_Lua_Item_SetPreOverEvent(lua_State *_NLL)
 
 	if(TM_Item == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 
@@ -164,7 +164,7 @@ int NPC_Lua_Item_SetPostOverEvent(lua_State *_NLL)
 
 	if(TM_Item == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 
@@ -216,7 +216,7 @@ int NPC_Lua_Item_SetWatchEvent(lua_State *_NLL)
 
 	if(TM_Item == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 
@@ -268,7 +268,7 @@ int NPC_Lua_Item_SetUseEvent(lua_State *_NLL)
 
 	if(TM_Item == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 
@@ -320,7 +320,7 @@ int NPC_Lua_Item_SetAttachEvent(lua_State *_NLL)
 
 	if(TM_Item == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 
@@ -372,7 +372,7 @@ int NPC_Lua_Item_SetDetachEvent(lua_State *_NLL)
 
 	if(TM_Item == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 
@@ -424,7 +424,7 @@ int NPC_Lua_Item_SetDropEvent(lua_State *_NLL)
 
 	if(TM_Item == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 
@@ -476,7 +476,7 @@ int NPC_Lua_Item_SetPickUPEvent(lua_State *_NLL)
 
 	if(TM_Item == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 
@@ -529,7 +529,7 @@ int NPC_Lua_Item_SetDieReLifeEvent(lua_State *_NLL)
 
 	if(TM_Item == NULL)
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
 
@@ -579,7 +579,7 @@ int NPC_Lua_Item_GetDataFromItemSet(lua_State *_NLL)
 	int TM_Flg = (int)lua_tointeger(_NLL, 2);
 	if( !ITEM_CHECKITEMTABLE( TM_ID) )
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄµÀ¾ßIDÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„é“å…·IDæ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	if (TM_Flg<LUA_DATALINE1) 
 	{
@@ -589,7 +589,7 @@ int NPC_Lua_Item_GetDataFromItemSet(lua_State *_NLL)
 	{
 		LRetMsg(_NLL, ITEMTBL_getChar( TM_ID, TM_Flg));
 	}
-	LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+	LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
 #endif //#ifdef _JZ_NEWSCRIPT_LUA

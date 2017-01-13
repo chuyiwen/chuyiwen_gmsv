@@ -35,7 +35,7 @@ BOOL initObjectArray( int num )
         memset( &obj[i], 0 , sizeof( Object ));
         obj[i].type = OBJTYPE_NOUSE;
     }
-    print( "·ÖÅä %.2f MB MB ¿Õ¼ä...", sizeof( Object ) * objnum / 1024.0 / 1024.0 );
+    print( "åˆ†é… %.2f MB MB ç©ºé—´...", sizeof( Object ) * objnum / 1024.0 / 1024.0 );
     return TRUE;
 }
 
@@ -183,10 +183,10 @@ INLINE int OBJECT_setTime( int index, int newvalue )
 
 
 /*------------------------------------------------------------
- * index Ã«  ÔÂ
- * Â¦ĞÑ
- *  index      int     ÄÌ¼ş·¸ÓÀÛÍµ©
- * ß¯Ô»°À
+ * index æ¯›  æœˆ
+ * å¨„é†’
+ *  index      int     å¥¶ä»¶çŠ¯æ°¸å¼æ—¦
+ * å¿’æ›°è¢„
  *  int
  ------------------------------------------------------------*/
 INLINE int OBJECT_getIndex( int index )
@@ -194,12 +194,12 @@ INLINE int OBJECT_getIndex( int index )
     return obj[index].index;
 }
 /*------------------------------------------------------------
- * y Ã«É¬ÀÃÔÊÔÂ
- * Â¦ĞÑ
- *  index      int     ÄÌ¼ş·¸ÓÀÛÍµ©
- *  newvalue    int     Ş¥ØÆÖĞ°À
- * ß¯Ô»°À
- *  int éÉ¼°°À
+ * y æ¯›æ¶©çƒ‚å…æœˆ
+ * å¨„é†’
+ *  index      int     å¥¶ä»¶çŠ¯æ°¸å¼æ—¦
+ *  newvalue    int     è•™ä»„ä¸­è¢„
+ * å¿’æ›°è¢„
+ *  int æ¨¯åŠè¢„
  ------------------------------------------------------------*/
 INLINE int OBJECT_setIndex( int index, int newvalue )
 {
@@ -211,10 +211,10 @@ INLINE int OBJECT_setIndex( int index, int newvalue )
 
 
 /*------------------------------------------------------------
- * ×óÆ¤³âÄáÛÍĞş¼°    ĞÑÃ«·Æ»§ÔÂ
- * Â¦ĞÑ
- *  Ø¦ØÆ
- * ß¯Ô»°À
+ * å·¦çš®æ–¥å°¼å¼ç„åŠ    é†’æ¯›è²æˆ·æœˆ
+ * å¨„é†’
+ *  å…ä»„
+ * å¿’æ›°è¢„
  *  int
  ------------------------------------------------------------*/
 INLINE int OBJECT_getNum( void )
@@ -223,17 +223,17 @@ INLINE int OBJECT_getNum( void )
 }
 
 /*------------------------------------------------------------
- *  ×óÆ¤³âÄáÛÍĞşÑáÕ°  ¼°¶ª¼şÌïÃ«òå  Â¦ĞÑ±å  ÔÈ»¯
- *  ×óÆ¤³âÄáÛÍĞşÑáÕ°  Ã«×ÛÔ»ÇëØÆ»¯£ıè¶  ÔÊÔÂ£Û
+ *  å·¦çš®æ–¥å°¼å¼ç„åŒç»  åŠä¸¢ä»¶ç”°æ¯›èˆ  å¨„é†’å  åŒ€åŒ–
+ *  å·¦çš®æ–¥å°¼å¼ç„åŒç»  æ¯›ç»¼æ›°è¯·ä»„åŒ–ï½ç“’  å…æœˆï¼»
  *
- * Â¦ĞÑ
- *  type    OBJTYPE     ×óÆ¤³âÄáÛÍĞş¼°ÕıÄÌÃó
- *  index   int         ¹«Ä¾ÈßÄ¾¼°    Æ¥¼°index
- *  x       int         xÕç  
- *  y       int         yÕç  
+ * å¨„é†’
+ *  type    OBJTYPE     å·¦çš®æ–¥å°¼å¼ç„åŠæ­£å¥¶çš¿
+ *  index   int         å…¬æœ¨å†—æœ¨åŠ    åŒ¹åŠindex
+ *  x       int         xç”„  
+ *  y       int         yç”„  
  *  floor   int         floorid
- * ß¯Ô»°À
- *   int  à«Ô»ñ²»¯Ä¾Ğ×index, ÁÃ  ¼°Áİ·´£ı -1
+ * å¿’æ›°è¢„
+ *   int  å–ƒæ›°ç™«åŒ–æœ¨å‡¶index, æ’©  åŠå‡›åï½ -1
  ------------------------------------------------------------*/
 int initObjectFromObjectMember(
     OBJTYPE type, int index, int x, int y , int floor )
@@ -317,15 +317,15 @@ BOOL storeObjects( char* dirname )
     	snprintf( igfilename ,sizeof( igfilename ) ,"%s/%s_extra" ,dirname ,
               ITEMGOLDSTOREFILENAME );
 
-                print( "\n---- Êı¾İ±£´æÖĞ£¬Çë±ğ¹Ø±ÕGMSV ----- \n");
+                print( "\n---- æ•°æ®ä¿å­˜ä¸­ï¼Œè¯·åˆ«å…³é—­GMSV ----- \n");
 	}
     igfile = fopen( igfilename , "w" );
     if( igfile == NULL ){
-        print( "\n\n---- ²»ÄÜ´ò¿ª (%s) ±¸·İÎïÆ·ÎÄ¼ş. ----- \n\n", igfilename );
+        print( "\n\n---- ä¸èƒ½æ‰“å¼€ (%s) å¤‡ä»½ç‰©å“æ–‡ä»¶. ----- \n\n", igfilename );
     	return FALSE;
     }
 
-    print( "ÔÚÏßÊı¾İ±£´æ...");
+    print( "åœ¨çº¿æ•°æ®ä¿å­˜...");
     for( i = 0 ; i < objnum ; i ++ ){
         switch( obj[i].type ){
         case OBJTYPE_ITEM:
@@ -358,9 +358,9 @@ BOOL storeObjects( char* dirname )
         }
     }
     fclose( igfile );
-    print( "Íê³É\n");
+    print( "å®Œæˆ\n");
 //		system( "./itemda.pl" );
-    print( "Êı¾İ±£´æ½áÊø\n");
+    print( "æ•°æ®ä¿å­˜ç»“æŸ\n");
     return TRUE;
 }
 #endif
@@ -437,7 +437,7 @@ BOOL restoreObjects( char* dirname )
 					  int objindex;
 				    int petindex = PET_initCharOneArray( &ch );
 				    if( petindex < 0 ) {
-				     	print( "³èÎïÖÆ×÷Ê§°Ü¡£\n");
+				     	print( "å® ç‰©åˆ¶ä½œå¤±è´¥ã€‚\n");
 				    }
 					  object.type = OBJTYPE_CHARA;
 					  object.index = petindex;
@@ -465,7 +465,7 @@ BOOL restoreObjects( char* dirname )
 #endif
 
 #ifdef _CAX_LNS_MAPSUOXU
-INLINE int get_mappointindex( int fl,int x, int y)//ÕÒ³öµØÍ¼´«ËÍµãË÷Òı
+INLINE int get_mappointindex( int fl,int x, int y)//æ‰¾å‡ºåœ°å›¾ä¼ é€ç‚¹ç´¢å¼•
 {
 	int i;
 	for(i=0;i<objnum;i++)

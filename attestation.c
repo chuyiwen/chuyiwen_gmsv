@@ -56,15 +56,15 @@ int attestation( void )
 #endif
 	readpasswd(name, passwd);
 //	if(strlen(name)==0){
-//		printf("ÇëÊäÈëÓÃ»§Ãû£º");
+//		printf("è¯·è¾“å…¥ç”¨æˆ·åï¼š");
 //		scanf("%32s",name); 
 //	}
 //	if(strlen(passwd)==0){
-//		printf("ÇëÊäÈëÃÜÂë£º");
+//		printf("è¯·è¾“å…¥å¯†ç ï¼š");
 //		scanf("%32s",passwd); 
 //	}
 	if(strlen(name)==0){
-		print("Çë½¨Á¢pass.txtÎÄ¼şÔÚGMSVÄ¿Â¼ÏÂ£¬²¢ÇÒ°ÑÄúµÄÓÃ»§ÃûºÍÃÜÂëĞ´ÈëÆäÖĞ\n¸ñÊ½Îª[ÓÃ»§Ãû:ÃÜÂë:]£¬ÀıÈç123:123:\n");
+		print("è¯·å»ºç«‹pass.txtæ–‡ä»¶åœ¨GMSVç›®å½•ä¸‹ï¼Œå¹¶ä¸”æŠŠæ‚¨çš„ç”¨æˆ·åå’Œå¯†ç å†™å…¥å…¶ä¸­\næ ¼å¼ä¸º[ç”¨æˆ·å:å¯†ç :]ï¼Œä¾‹å¦‚123:123:\n");
 		return 0;
 	}
 	int rnd=0, nowTime=0, id=0;
@@ -104,11 +104,11 @@ int attestation( void )
 		memset( des1, 0, sizeof( des1 ) );
 		memset( des3, 0, sizeof( des3 ) );
 		sprintf(mess, "%s;%s;%s;%s", name, passwd,_17CSA_VERSION,servertime);
-		//print("\n¼ÓÃÜÇ°=%s\n",mess);
+		//print("\nåŠ å¯†å‰=%s\n",mess);
 		Des_Go(mess, mess, strlen(mess), key, sizeof(key), ENCRYPT);
-		//print("\n¼ÓÃÜºó=%s\n",mess);
+		//print("\nåŠ å¯†å=%s\n",mess);
 		//Des_Go(mess, mess, strlen(mess), key, sizeof(key), DECRYPT);
-		//print("\n½âÃÜºó=%s\n",mess);
+		//print("\nè§£å¯†å=%s\n",mess);
 		send(svfd,mess,strlen(mess)+1,0);
 		}
 	}

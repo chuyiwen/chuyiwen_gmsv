@@ -59,12 +59,12 @@ typedef enum
 {
     CHAR_WALKSUCCESSED,     /* successed      */
     CHAR_WALKSYSTEMERROR,   /* system error's array of index check 
-                             * ���Ⱦ��������羮 */
+                             * 夫匀井井匀凶午井 */
     CHAR_WALKEXTEND,        /*    overflow of walking.just for npc*/
     CHAR_WALKHITOBJECT,     /*  cant walk cause hit object    */
     CHAR_WALKPREWALK,       /*  cant walk cause prewalk event  */
     CHAR_WALKDIE,           /*  cant walk cause death  */
-    CHAR_WALK1357,          /*  cant walk to 1357 (б����)  */
+    CHAR_WALK1357,          /*  cant walk to 1357 (斜方向)  */
 }CHAR_WALKRET;
 
 /*====================function of character's walk====================*/
@@ -81,7 +81,7 @@ CHAR_WALKRET CHAR_walk(int index, int dir, int mode);
 
 #ifdef _CAX_LNS_NLGSUOXU 
 CHAR_WALKRET CHAR_walk_jjc( int index, int floor, int ox, int oy, int dir);
-CHAR_WALKRET CHAR_walk_jc( int charaindex, int of, int ox, int oy, int dir );//���ǰ���ϰ�
+CHAR_WALKRET CHAR_walk_jc( int charaindex, int of, int ox, int oy, int dir );//检查前方障碍
 #endif
 
 char* CHAR_makeOptionString( Char* ch );
@@ -244,14 +244,14 @@ typedef enum
 	WINDOWS_MESSAGETYPE_PETSKILLSHOW,
 #endif
 
-#ifdef _PROFESSION_SKILL			// WON ADD ����ְҵ����
+#ifdef _PROFESSION_SKILL			// WON ADD 人物职业技能
 	WINDOW_MESSAGETYPE_PROFESSIONSHOP,
 #endif
 
 #ifdef _NEW_MANOR_LAW
-	WINDOW_FMMESSAGETYPE_10_MEMONTUM,	// ʮ�����Ƽ���
-	WINDOW_FMMESSAGETYPE_FM_MEMONTUM,	// �Լ�������������
-	WINDOW_FMMESSAGETYPE_MANOR_SCHEDULE,	// ��սׯ԰����
+	WINDOW_FMMESSAGETYPE_10_MEMONTUM,	// 十大气势家族
+	WINDOW_FMMESSAGETYPE_FM_MEMONTUM,	// 自己家族气势排名
+	WINDOW_FMMESSAGETYPE_MANOR_SCHEDULE,	// 挑战庄园排行
 #endif
 
 #ifdef _ANGEL_SUMMON
@@ -273,27 +273,27 @@ typedef enum
 
 typedef enum
 {
-    CHAR_WINDOWTYPE_RETURNTOELDER=-1,   /*  ���س��ϴ���    */
-    CHAR_WINDOWTYPE_RESURRECTION=-2,   /*  �����    */
+    CHAR_WINDOWTYPE_RETURNTOELDER=-1,   /*  返回长老窗口    */
+    CHAR_WINDOWTYPE_RESURRECTION=-2,   /*  复活窗口    */
 
-	CHAR_WINDOWTYPE_SELECTBATTLE = 1,		/*   ����ս��ѡ�񴰿� */
-	CHAR_WINDOWTYPE_SELECTDUEL = 2,  		/*   �������ѡ�񴰿� DUEL = ���� */
-	CHAR_WINDOWTYPE_SELECTTRADECARD = 3, 	/*   ������Ƭ���� */
-	CHAR_WINDOWTYPE_SELECTPARTY = 4, 		/*   ѡ���ŶӴ��� */
-	CHAR_WINDOWTYPE_SELECTBATTLEWATCH = 5, 	/*  ѡ���ս���� */
-	CHAR_WINDOWTYPE_MICMESSAGE = 6,			/* ʹ��MICNPC��ʾ���� */
+	CHAR_WINDOWTYPE_SELECTBATTLE = 1,		/*   进入战斗选择窗口 */
+	CHAR_WINDOWTYPE_SELECTDUEL = 2,  		/*   进入决斗选择窗口 DUEL = 决斗 */
+	CHAR_WINDOWTYPE_SELECTTRADECARD = 3, 	/*   交换名片窗口 */
+	CHAR_WINDOWTYPE_SELECTPARTY = 4, 		/*   选择团队窗口 */
+	CHAR_WINDOWTYPE_SELECTBATTLEWATCH = 5, 	/*  选择观战窗口 */
+	CHAR_WINDOWTYPE_MICMESSAGE = 6,			/* 使用MICNPC提示窗口 */
 
 	// CoolFish: Trade 2001/4/18
-	CHAR_WINDOWTYPE_SELECTTRADE = 7,	/* ���� Window */
+	CHAR_WINDOWTYPE_SELECTTRADE = 7,	/* 交易 Window */
 
-	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE1 = 10,	/*   ѡ��������Ƶ��� */
-	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE2 = 11,	/*   ѡ��������Ƶ��� */
-	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE3 = 12,	/*   ѡ��������Ƶ��� */
-	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE4 = 13,	/*   ѡ��������Ƶ��� */
-	CHAR_WINDOWTYPE_SELECTRENAMEITEM_RENAME = 14,	/*   �������ִ��� */
-	CHAR_WINDOWTYPE_SELECTRENAMEITEM_RENAME_ATTENTION  = 15,	/*   �������ִ��� */
+	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE1 = 10,	/*   选择更改名称道具 */
+	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE2 = 11,	/*   选择更改名称道具 */
+	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE3 = 12,	/*   选择更改名称道具 */
+	CHAR_WINDOWTYPE_SELECTRENAMEITEM_PAGE4 = 13,	/*   选择更改名称道具 */
+	CHAR_WINDOWTYPE_SELECTRENAMEITEM_RENAME = 14,	/*   输入名字窗口 */
+	CHAR_WINDOWTYPE_SELECTRENAMEITEM_RENAME_ATTENTION  = 15,	/*   输入名字窗口 */
 	
-	CHAR_WINDOWTYPE_DENGON = 50,			/* ���԰�   */
+	CHAR_WINDOWTYPE_DENGON = 50,			/* 留言板   */
 
 	CHAR_WINDOWTYPE_WINDOWMAN_START = 100,
 	CHAR_WINDOWTYPE_WINDOWMAN_STARTMSG = CHAR_WINDOWTYPE_WINDOWMAN_START,
@@ -404,16 +404,16 @@ typedef enum
 	CHAR_WINDOWTYPE_MANORPK_END = 362,
 
         // shan
-        CHAR_WINDOWTYPE_FM_DENGON      = 370,     // �������԰�
-        CHAR_WINDOWTYPE_FM_FMSDENGON   = 371,     // ����֮�����԰�
-        CHAR_WINDOWTYPE_FM_MESSAGE1    = 372,     // ˵���Ӵ�(�ݵ�)
-        CHAR_WINDOWTYPE_FM_MESSAGE2    = 373,     // ˵���Ӵ�(��Ա)
-        CHAR_WINDOWTYPE_FM_SELECT      = 374,     // ѡ���Ӵ�
-        CHAR_WINDOWTYPE_FM_MEMBERLIST  = 375,     // ��Ա�б�
-        CHAR_WINDOWTYPE_FM_POINTLIST   = 376,     // �ݵ��б�
-        CHAR_WINDOWTYPE_FM_DPTOP       = 377,     // ǿ�߱�(ǰ��ʮ���а�)
-        CHAR_WINDOWTYPE_FM_DPME        = 378,     // ǿ�߱�(�Լ����а�)
-        CHAR_WINDOWTYPE_FM_DPSELECT    = 379,     // ǿ�߱���ѡ���Ӵ�
+        CHAR_WINDOWTYPE_FM_DENGON      = 370,     // 家族留言板
+        CHAR_WINDOWTYPE_FM_FMSDENGON   = 371,     // 家族之间留言板
+        CHAR_WINDOWTYPE_FM_MESSAGE1    = 372,     // 说明视窗(据点)
+        CHAR_WINDOWTYPE_FM_MESSAGE2    = 373,     // 说明视窗(成员)
+        CHAR_WINDOWTYPE_FM_SELECT      = 374,     // 选项视窗
+        CHAR_WINDOWTYPE_FM_MEMBERLIST  = 375,     // 成员列表
+        CHAR_WINDOWTYPE_FM_POINTLIST   = 376,     // 据点列表
+        CHAR_WINDOWTYPE_FM_DPTOP       = 377,     // 强者表(前叁十大列榜)
+        CHAR_WINDOWTYPE_FM_DPME        = 378,     // 强者表(自己的列榜)
+        CHAR_WINDOWTYPE_FM_DPSELECT    = 379,     // 强者表的选项视窗
 
 #ifdef _PET_TRANS
 		CHAR_WINDOWTYPE_PETTRANS_START		= 384,
@@ -461,11 +461,11 @@ typedef enum
 	NPC_ITEMCHANGE_MESSAGE,
 	NPC_ITEMCHANGE_END,
 #endif
-#ifdef _ADD_FAMILY_TAX			   // WON ADD ����ׯ԰˰��
+#ifdef _ADD_FAMILY_TAX			   // WON ADD 增加庄园税收
 	CHAR_WINDOWTYPE_FAMILY_TAX = 450,
 #endif
 
-#ifdef _ALLDOMAN // (���ɿ�) Syu ADD ���а�NPC
+#ifdef _ALLDOMAN // (不可开) Syu ADD 排行榜NPC
 	NPC_ALLDOMAN_START = 460,
 	NPC_ALLDOMAN_START2,
 	NPC_ALLDOMAN_START3,
@@ -628,10 +628,10 @@ extern struct MissionTable missiontable[MAXMISSIONTABLE];
 #define MAXMISSIONFLAG 1000
 typedef struct _DailyFileType
 {
-	int jobid;			//������
-	char rule[64];		//�����ж�
-	char explain[64];		//����˵��
-	char state[64];			//״̬˵��
+	int jobid;			//任务编号
+	char rule[64];		//条件判断
+	char explain[64];		//任务说明
+	char state[64];			//状态说明
 }DailyFileType;
 //extern struct DailyFileType dailyfile[MAXDAILYLIST];
 
@@ -683,10 +683,10 @@ void CHAR_PetAddVariableAi( int petindex, int iValue );
 void CHAR_PartyUpdate( int charaindex, int senddata );
 char *CHAR_getUseName( int charaindex );
 char *CHAR_getUseID( int charaindex );
-EXTERN int EnemyMoveNum;	/*   ͬʱ�����ƶ��������� */
+EXTERN int EnemyMoveNum;	/*   同时最大可移动敌人数量 */
 
-#define DB_DUELPOINT	"db_duel"			// DP���� ���ݿ�
-#define DB_ADDRESSBOOK	"db_addressbook"	// ��ַ�����ݿ�
+#define DB_DUELPOINT	"db_duel"			// DP点数 数据库
+#define DB_ADDRESSBOOK	"db_addressbook"	// 地址集数据库
 
 BOOL CHAR_send_DpDBUpdate( int charaindex );
 BOOL CHAR_send_DpDBUpdate_AddressBook( int charaindex, int mode );
@@ -707,7 +707,7 @@ int CHAR_setChatMagicCDKey( int mode, char *cdkey);
 
 float GetRecoveryRate( int charaindex );
 int storeCharaData( void );
-#ifdef _MAGIC_REHPAI	//��ѪAI
+#ifdef _MAGIC_REHPAI	//补血AI
 int Magic_RideGetHP( int toindex, int petindex, int flg);
 #endif
 // CoolFish: Trade 2001/4/18
@@ -718,19 +718,19 @@ int CHAR_findTotalEmptyItem(int index);
 int CHAR_CHECKJOINENEMY( int index);
 #endif
 
-#ifdef _SEND_EFFECT	   	        // WON ADD AC����ѩ���������Ч
+#ifdef _SEND_EFFECT	   	        // WON ADD AC送下雪、下雨等特效
 #define		CHAR_EFFECT_SETTINGBUFFER	256
 typedef struct tagCHAR_effectsetting
 {
-    int     floor;								//	¥����
-	int		effect;								//	�ݳ���
-	int		level;								//	�ݳ����𣬱���ǿ��
-	int		sendflg;							//	  �Ƿ�����effect
-	char	month[CHAR_EFFECT_SETTINGBUFFER];	//	  �����·�
-	char	day[CHAR_EFFECT_SETTINGBUFFER];		//	  ��������
-	char	hour[CHAR_EFFECT_SETTINGBUFFER];	//	  ����Сʱ
-	char	min[CHAR_EFFECT_SETTINGBUFFER];		//	  ���з���
-	char	expire[CHAR_EFFECT_SETTINGBUFFER];	//	  �������˶�����
+    int     floor;								//	楼层数
+	int		effect;								//	演出号
+	int		level;								//	演出级别，表现强度
+	int		sendflg;							//	  是否发送了effect
+	char	month[CHAR_EFFECT_SETTINGBUFFER];	//	  运行月份
+	char	day[CHAR_EFFECT_SETTINGBUFFER];		//	  运行日期
+	char	hour[CHAR_EFFECT_SETTINGBUFFER];	//	  运行小时
+	char	min[CHAR_EFFECT_SETTINGBUFFER];		//	  运行分钟
+	char	expire[CHAR_EFFECT_SETTINGBUFFER];	//	  共运行了多少秒
 	
 }CHAR_effectsetting;
 

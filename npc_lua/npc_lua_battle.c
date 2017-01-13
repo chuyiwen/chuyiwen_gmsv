@@ -23,14 +23,14 @@ int NPC_Lua_Battle_GetPlayIndex(lua_State *_NLL)
 	
 	if( BATTLE_CHECKINDEX( TM_battleindex ) == FALSE )
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒýÊÇÎÞÐ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	BATTLE *TM_Battle = &BattleArray[TM_battleindex];
 
 	if(TM_Battle == NULL)
 	{
-		LRetErrInt(_NLL , -2, "ÎÞ·¨»ñÈ¡Ö¸Õë¡£");
+		LRetErrInt(_NLL , -2, "æ— æ³•èŽ·å–æŒ‡é’ˆã€‚");
 	}
 	int TM_Ret = -1;
 
@@ -39,7 +39,7 @@ int NPC_Lua_Battle_GetPlayIndex(lua_State *_NLL)
 		TM_Ret = TM_Battle->Side[TM_side].Entry[TM_num].charaindex;
 	}else
 	{
-		LRetErrInt(_NLL , -3, "·¶Î§´íÎó¡£");
+		LRetErrInt(_NLL , -3, "èŒƒå›´é”™è¯¯ã€‚");
 	}
 	LRetInt(_NLL, TM_Ret);
 }
@@ -54,14 +54,14 @@ int NPC_Lua_Battle_SetNORisk(lua_State *_NLL)
 	
 	if( BATTLE_CHECKINDEX( TM_battleindex ) == FALSE )
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒýÊÇÎÞÐ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	BATTLE *TM_Battle = &BattleArray[TM_battleindex];
 
 	if(TM_Battle == NULL)
 	{
-		LRetErrInt(_NLL , -2, "ÎÞ·¨»ñÈ¡Ö¸Õë¡£");
+		LRetErrInt(_NLL , -2, "æ— æ³•èŽ·å–æŒ‡é’ˆã€‚");
 	}
 	
 	int TM_Ret = TM_Battle->norisk;
@@ -80,14 +80,14 @@ int NPC_Lua_Battle_SetMod(lua_State *_NLL)
 	
 	if( BATTLE_CHECKINDEX( TM_battleindex ) == FALSE )
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒýÊÇÎÞÐ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	BATTLE *TM_Battle = &BattleArray[TM_battleindex];
 
 	if(TM_Battle == NULL)
 	{
-		LRetErrInt(_NLL , -2, "ÎÞ·¨»ñÈ¡Ö¸Õë¡£");
+		LRetErrInt(_NLL , -2, "æ— æ³•èŽ·å–æŒ‡é’ˆã€‚");
 	}
 	
 	int TM_Ret = TM_Battle->mode;
@@ -106,14 +106,14 @@ int NPC_Lua_Battle_SetType(lua_State *_NLL)
 	
 	if( BATTLE_CHECKINDEX( TM_battleindex ) == FALSE )
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒýÊÇÎÞÐ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	BATTLE *TM_Battle = &BattleArray[TM_battleindex];
 
 	if(TM_Battle == NULL)
 	{
-		LRetErrInt(_NLL , -2, "ÎÞ·¨»ñÈ¡Ö¸Õë¡£");
+		LRetErrInt(_NLL , -2, "æ— æ³•èŽ·å–æŒ‡é’ˆã€‚");
 	}
 	
 	int TM_Ret = TM_Battle->type;
@@ -131,14 +131,14 @@ int NPC_Lua_Battle_SetWinEvent(lua_State *_NLL)
 
 	if( BATTLE_CHECKINDEX( TM_battleindex ) == FALSE )
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒýÊÇÎÞÐ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	BATTLE *TM_Battle = &BattleArray[TM_battleindex];
 
 	if(TM_Battle == NULL)
 	{
-		LRetErrInt(_NLL , -2, "ÎÞ·¨»ñÈ¡Ö¸Õë¡£");
+		LRetErrInt(_NLL , -2, "æ— æ³•èŽ·å–æŒ‡é’ˆã€‚");
 	}
 
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);
@@ -174,14 +174,14 @@ int NPC_Lua_Battle_GetData(lua_State *_NLL)
 	char* TM_Buff = "\0";
 	if( BATTLE_CHECKINDEX( TM_battleindex ) == FALSE )
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒýÊÇÎÞÐ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	BATTLE *TM_Battle = &BattleArray[TM_battleindex];
 
 	if(TM_Battle == NULL)
 	{
-		LRetErrInt(_NLL , -2, "ÎÞ·¨»ñÈ¡Ö¸Õë¡£");
+		LRetErrInt(_NLL , -2, "æ— æ³•èŽ·å–æŒ‡é’ˆã€‚");
 	}
 
 	if (TM_FLG == 0)
@@ -265,7 +265,7 @@ int NPC_Lua_Battle_GetData(lua_State *_NLL)
 	}
 	else LRetInt(_NLL, TM_Ret);
 
-	LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+	LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
 int NPC_Lua_Battle_IndexToNo(lua_State *_NLL)
@@ -277,11 +277,11 @@ int NPC_Lua_Battle_IndexToNo(lua_State *_NLL)
 
 	if( BATTLE_CHECKINDEX( TM_battleindex ) == FALSE )
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒýÊÇÎÞÐ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	if( CHAR_CHECKINDEX( TM_index ) == FALSE )
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒýÊÇÎÞÐ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = BATTLE_Index2No( TM_battleindex, TM_index );
 	LRetInt(_NLL, TM_Ret);
@@ -296,7 +296,7 @@ int NPC_Lua_Battle_NoToIndex(lua_State *_NLL)
 
 	if( BATTLE_CHECKINDEX( TM_battleindex ) == FALSE )
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒýÊÇÎÞÐ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int TM_Ret = BATTLE_No2Index( TM_battleindex, TM_No );
 	LRetInt(_NLL, TM_Ret);
@@ -325,7 +325,7 @@ int NPC_Lua_Battle_SetData(lua_State *_NLL)
 	char *TM_MSG = "\0";
 	if( BATTLE_CHECKINDEX( TM_battleindex ) == FALSE )
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒýÊÇÎÞÐ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	if (TM_FLG >=6 && TM_FLG <= 9) {
 		TM_MSG = lua_tostring(_NLL, 3);
@@ -336,7 +336,7 @@ int NPC_Lua_Battle_SetData(lua_State *_NLL)
 
 	if(TM_Battle == NULL)
 	{
-		LRetErrInt(_NLL , -2, "ÎÞ·¨»ñÈ¡Ö¸Õë¡£");
+		LRetErrInt(_NLL , -2, "æ— æ³•èŽ·å–æŒ‡é’ˆã€‚");
 	}
 
 	if (TM_FLG == 0)
@@ -439,7 +439,7 @@ int NPC_Lua_Battle_SetData(lua_State *_NLL)
 	}
 	else LRetInt(_NLL, TM_Ret);
 
-	LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+	LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
 int NPC_Lua_Battle_Exit(lua_State *_NLL)
@@ -451,18 +451,18 @@ int NPC_Lua_Battle_Exit(lua_State *_NLL)
 
 	if( BATTLE_CHECKINDEX( TM_battleindex ) == FALSE )
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒýÊÇÎÞÐ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	if( CHAR_CHECKINDEX( TM_index ) == FALSE )
 	{
-		LRetErrInt(_NLL , -2, "´«ÈëµÄË÷ÒýÊÇÎÞÐ§µÄ¡£");
+		LRetErrInt(_NLL , -2, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	BATTLE_Exit( TM_index, TM_battleindex );
-	// ÓÉ¡õ  Å«  ØêÔÂ
+	// ç”±â–¡  å¥´  ä»ƒæœˆ
 	CHAR_DischargePartyNoMsg( TM_index );
 
 	CHAR_talkToCli( TM_index, -1,
-		"Õ½¶·ÖÐÖ¹¡£", CHAR_COLORYELLOW );
+		"æˆ˜æ–—ä¸­æ­¢ã€‚", CHAR_COLORYELLOW );
 
 	lssproto_B_send( getfdFromCharaIndex( TM_index ), "BU" );
 
@@ -480,14 +480,14 @@ int NPC_Lua_Battle_SetEndEvent(lua_State *_NLL)
 
 	if( BATTLE_CHECKINDEX( TM_battleindex ) == FALSE )
 	{
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒýÊÇÎÞÐ§µÄ¡£");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	BATTLE *TM_Battle = &BattleArray[TM_battleindex];
 
 	if(TM_Battle == NULL)
 	{
-		LRetErrInt(_NLL , -2, "ÎÞ·¨»ñÈ¡Ö¸Õë¡£");
+		LRetErrInt(_NLL , -2, "æ— æ³•èŽ·å–æŒ‡é’ˆã€‚");
 	}
 
 	int TM_Ret = NPC_Lua_GetFuncPoint(_NLL);

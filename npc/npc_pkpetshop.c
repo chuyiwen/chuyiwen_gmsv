@@ -44,13 +44,13 @@ typedef struct {
 }NPC_POOLITEMSHOP_MSG;
 
 NPC_POOLITEMSHOP_MSG		poolshopmsg[] = {
-	{ "main_msg",		"»¶Ó­"},
-	{ "pool_main",		"Òª¼Ä·ÅÊ²÷áÄØ"},
-	{ "draw_main",		"ÒªÁìÑøÊ²÷áÄØ"},
-	{ "realy_msg",		"ÕæµÄÒªÄÇ¸öÂğ"},
-	{ "stone_msg",		"Ç®²»¹»à¸!"},
-	{ "poolfull_msg",	"³¬¹ıµÄÎŞ·¨´¦Àíà¸"},
-	{ "itemfull_msg",	"ÏîÄ¿ÓĞºÜ¶à"}
+	{ "main_msg",		"æ¬¢è¿"},
+	{ "pool_main",		"è¦å¯„æ”¾ä»€éº½å‘¢"},
+	{ "draw_main",		"è¦é¢†å…»ä»€éº½å‘¢"},
+	{ "realy_msg",		"çœŸçš„è¦é‚£ä¸ªå—"},
+	{ "stone_msg",		"é’±ä¸å¤Ÿå–”!"},
+	{ "poolfull_msg",	"è¶…è¿‡çš„æ— æ³•å¤„ç†å–”"},
+	{ "itemfull_msg",	"é¡¹ç›®æœ‰å¾ˆå¤š"}
 };
 
 static BOOL NPC_PoolItemShop_DrawItem( int meindex, int talkerindex, int num);

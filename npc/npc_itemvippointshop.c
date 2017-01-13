@@ -54,26 +54,26 @@ typedef struct {
 
 
 static NPC_Shop		TypeTable[] = {
-	{ "FIST",		0 }, //È­
-	{ "AXE",		1 }, //¸«
-	{ "CLUB",		2 }, //¹÷°ô
-	{ "SPEAR",		3},  //Ã¬
-	{ "BOW",		4},  //¹­
-	{ "SHIELD",		5},  //¶Ü
-	{ "HELM",		6 }, //Í·¿ø
-	{ "ARMOUR",		7 }, //¿ø¼×
-	{ "BRACELET",	8},  //ÊÖïí
-	{ "ANCLET",		9 }, //õ×ÊÎ
-	{ "NECKLACE",	10}, //ÏîÁ´
-	{ "RING",		11}, //½äÖ¸
-	{ "BELT",		12}, //Ñü´ø
-	{ "EARRING",	13}, //¶ú»·
-	{ "NOSERING",	14}, //±Ç»·
-	{ "AMULET",		15}, //»¤Éí·û
+	{ "FIST",		0 }, //æ‹³
+	{ "AXE",		1 }, //æ–§
+	{ "CLUB",		2 }, //æ£æ£’
+	{ "SPEAR",		3},  //çŸ›
+	{ "BOW",		4},  //å¼“
+	{ "SHIELD",		5},  //ç›¾
+	{ "HELM",		6 }, //å¤´ç›”
+	{ "ARMOUR",		7 }, //ç›”ç”²
+	{ "BRACELET",	8},  //æ‰‹é•¯
+	{ "ANCLET",		9 }, //è¸é¥°
+	{ "NECKLACE",	10}, //é¡¹é“¾
+	{ "RING",		11}, //æˆ’æŒ‡
+	{ "BELT",		12}, //è…°å¸¦
+	{ "EARRING",	13}, //è€³ç¯
+	{ "NOSERING",	14}, //é¼»ç¯
+	{ "AMULET",		15}, //æŠ¤èº«ç¬¦
 	{ "OTHER",		16}, 
-	{ "BOOMERANG",	17}, //»ØÁ¦±ê
+	{ "BOOMERANG",	17}, //å›åŠ›æ ‡
 	{ "BOUNDTHROW",	18}, 
-	{ "BREAKTHROW",	19}, //Í¶ÖÀÎï
+	{ "BREAKTHROW",	19}, //æŠ•æ·ç‰©
 #ifdef _ITEM_TYPETABLE
 	{ "DISH",	20},
 	{ "METAL",	21},
@@ -86,9 +86,9 @@ static NPC_Shop		TypeTable[] = {
 	{ "ANGELTOKEN",	28},
 	{ "HEROTOKEN",	29},
 #endif
-	{ "ACCESSORY",	30}, //Åä¼ş
-	{ "OFFENCE",	40}, //¹¥»÷
-	{ "DEFENCE",	50}, //·ÀÓù
+	{ "ACCESSORY",	30}, //é…ä»¶
+	{ "OFFENCE",	40}, //æ”»å‡»
+	{ "DEFENCE",	50}, //é˜²å¾¡
 
 };
 
@@ -135,26 +135,26 @@ void NPC_ItemVippointShopTalked( int meindex , int talker , char *szMes ,int col
     	return;
     }
 
-	if(NPC_Util_isFaceToFace( meindex, talker, 2) == FALSE) {//½»Ì¸Ê±¼ì²éÊÇ·ñÃæ¶ÔÃæ
-		if( NPC_Util_CharDistance( talker, meindex ) > 1) return; //Èô¾àÀë´óì¶1Ìø³ö
+	if(NPC_Util_isFaceToFace( meindex, talker, 2) == FALSE) {//äº¤è°ˆæ—¶æ£€æŸ¥æ˜¯å¦é¢å¯¹é¢
+		if( NPC_Util_CharDistance( talker, meindex ) > 1) return; //è‹¥è·ç¦»å¤§æ–¼1è·³å‡º
 	}
 
-	//È¡µÃnpcÂòÂôÉè¶¨µµÄÚµÄÄÚÈİ,ÈôÎªNULL,Ôò´íÎó
+	//å–å¾—npcä¹°å–è®¾å®šæ¡£å†…çš„å†…å®¹,è‹¥ä¸ºNULL,åˆ™é”™è¯¯
     if(NPC_Util_GetArgStr( meindex, argstr, sizeof( argstr)) == NULL){
     	print("itemshopGetArgStrErr");
     	return;
     }
 
-	//È¡µÃNPCÖ»ÄÜÂôµÄÑ¶Ï¢
+	//å–å¾—NPCåªèƒ½å–çš„è®¯æ¯
 	if( NPC_Util_GetStrFromStrWithDelim( argstr, "sellonly_msg", token, sizeof( token))	!= NULL){
-		sellonlyflg = TRUE; //NPC²»ÄÜÂòÍæ¼ÒµÄ¶«Î÷
-		strcpysafe(sellmsg, sizeof( sellmsg), token);//ÀıÈç:sellmsgµÄÖµ¿ÉÄÜÊÇ->²¢²»ÊÇ×¨ÃÅÊÕÂò¶«Î÷µÄµê¡£
+		sellonlyflg = TRUE; //NPCä¸èƒ½ä¹°ç©å®¶çš„ä¸œè¥¿
+		strcpysafe(sellmsg, sizeof( sellmsg), token);//ä¾‹å¦‚:sellmsgçš„å€¼å¯èƒ½æ˜¯->å¹¶ä¸æ˜¯ä¸“é—¨æ”¶ä¹°ä¸œè¥¿çš„åº—ã€‚
 	}
 
-    //È¡µÃÍæ¼ÒÂò¶«Î÷µÄÖ¸Áî. buffÎªÒ»´®Âò¶«Î÷Ö¸ÁîµÄ×Ö´®,ÀıÈç:Âò,¹ºÂò,¸ĞĞ»Äú,kau,buy,menu,Ğ»Ğ»,Âò¶«Î÷,µ±Íæ¼Ò´ò³öÕâĞ©×Ö¾äÊ±,¾Í¿ÉÒÔÂò¶«Î÷ÁË
+    //å–å¾—ç©å®¶ä¹°ä¸œè¥¿çš„æŒ‡ä»¤. buffä¸ºä¸€ä¸²ä¹°ä¸œè¥¿æŒ‡ä»¤çš„å­—ä¸²,ä¾‹å¦‚:ä¹°,è´­ä¹°,æ„Ÿè°¢æ‚¨,kau,buy,menu,è°¢è°¢,ä¹°ä¸œè¥¿,å½“ç©å®¶æ‰“å‡ºè¿™äº›å­—å¥æ—¶,å°±å¯ä»¥ä¹°ä¸œè¥¿äº†
 	if( NPC_Util_GetStrFromStrWithDelim( argstr, "buy_msg",	buff, sizeof( buff)) != NULL ){
 	    while(getStringFromIndexWithDelim(buff,",",i,buf2,sizeof(buf2)) != FALSE ){
-			i++; //ÈôÂò¶«Î÷µÄÖ¸ÁîÓĞ8¸ö,i¾Í»á¼Óµ½8
+			i++; //è‹¥ä¹°ä¸œè¥¿çš„æŒ‡ä»¤æœ‰8ä¸ª,iå°±ä¼šåŠ åˆ°8
 			if( strstr( szMes, buf2) != NULL) {
 				if( CHAR_getWorkInt( meindex, NPC_SHOP_WORK_EV) == 0) {
 					if( CHAR_getWorkInt( meindex, NPC_SHOP_WORK_NO) == 1) {
@@ -183,7 +183,7 @@ void NPC_ItemVippointShopTalked( int meindex , int talker , char *szMes ,int col
 	}
 	i=1;
 
-    //È¡µÃÍæ¼ÒÂô¶«Î÷µÄÖ¸Áî. buffÎªÒ»´®Âô¶«Î÷Ö¸ÁîµÄ×Ö´®,ÀıÈç:Âô¶«Î÷,Âô,sell,uru  µ±Íæ¼Ò´ò³öÕâĞ©×Ö¾äÊ±,¾Í¿ÉÒÔÂô¶«Î÷ÁË
+    //å–å¾—ç©å®¶å–ä¸œè¥¿çš„æŒ‡ä»¤. buffä¸ºä¸€ä¸²å–ä¸œè¥¿æŒ‡ä»¤çš„å­—ä¸²,ä¾‹å¦‚:å–ä¸œè¥¿,å–,sell,uru  å½“ç©å®¶æ‰“å‡ºè¿™äº›å­—å¥æ—¶,å°±å¯ä»¥å–ä¸œè¥¿äº†
 	if( NPC_Util_GetStrFromStrWithDelim( argstr, "sell_msg", buff, sizeof( buff)) != NULL ){
 	    while( getStringFromIndexWithDelim(buff,",", i,buf2,sizeof(buf2)) != FALSE ){
 			i++;
@@ -195,7 +195,7 @@ void NPC_ItemVippointShopTalked( int meindex , int talker , char *szMes ,int col
 	}
 	i = 1;
 
-	//ÆäËüÑ¶Ï¢
+	//å…¶å®ƒè®¯æ¯
 	if( NPC_Util_GetStrFromStrWithDelim( argstr, "other_msg", buff, sizeof( buff)) != NULL ){
 	    while(getStringFromIndexWithDelim( buff, ",", i, buf2, sizeof( buf2)) != FALSE ){
 			i++;
@@ -243,28 +243,28 @@ static void NPC_ItemVippointShop_selectWindow( int meindex, int talker, int num,
 {
 	switch( num) {
 	  case 0:
-		CHAR_send_P_StatusString( talker, CHAR_P_STRING_GOLD);//´«ËÍ½ğÇ®,Èô100Ôª ËÍ³öÈ¥µÄ×ÊÁÏ¸ñÊ½¿ÉÄÜÎª P8Nz2|100|
+		CHAR_send_P_StatusString( talker, CHAR_P_STRING_GOLD);//ä¼ é€é‡‘é’±,è‹¥100å…ƒ é€å‡ºå»çš„èµ„æ–™æ ¼å¼å¯èƒ½ä¸º P8Nz2|100|
 		
 		if(CHAR_getWorkInt( meindex, NPC_SHOP_WORK_EXPRESS) == 1 ) {
 			if(CHAR_getWorkInt( meindex, NPC_SHOP_WORK_NO) ==0 ) {
-				NPC_VippointExpressmanCheck( meindex, talker);//³¤Ã«Ïó¿ìµİ 
+				NPC_VippointExpressmanCheck( meindex, talker);//é•¿æ¯›è±¡å¿«é€’ 
 			}
 		}else if(CHAR_getWorkInt( meindex, NPC_SHOP_WORK_NO) == 1) {
 		
 		}else{
-		  	NPC_ItemVippointShop_Menu( meindex, talker);//Ñ¡Ôñ(Âò,Âô,Àë¿ª)µÄĞ¡ÊÓ´°	
+		  	NPC_ItemVippointShop_Menu( meindex, talker);//é€‰æ‹©(ä¹°,å–,ç¦»å¼€)çš„å°è§†çª—	
 		}
 	  	break;
 
-	  case 1://½øÈëÂòÊÓ´°
-		CHAR_sendStatusString( talker,"I");//´«ËÍÍæ¼ÒÉíÉÏËùÓĞµÄµÀ¾ß¸øClient
+	  case 1://è¿›å…¥ä¹°è§†çª—
+		CHAR_sendStatusString( talker,"I");//ä¼ é€ç©å®¶èº«ä¸Šæ‰€æœ‰çš„é“å…·ç»™Client
 	  	NPC_ItemVippointShop_BuyMain( meindex, talker, select);
 	  	break;
 
-	  case 2://½øÈëÂôÊÓ´°
+	  case 2://è¿›å…¥å–è§†çª—
 		//CHAR_sendStatusString( talker,"I");
 	  	//NPC_ItemVippointShop_SellMain( meindex, talker, select);
-	  	CHAR_talkToCli( talker, meindex, "´ËNPCÎŞ´Ë¹¦ÄÜ£¡",CHAR_COLORWHITE);
+	  	CHAR_talkToCli( talker, meindex, "æ­¤NPCæ— æ­¤åŠŸèƒ½ï¼",CHAR_COLORWHITE);
 	  	break;
 
 	  case 3:
@@ -289,7 +289,7 @@ void NPC_ItemVippointShopWindowTalked( int meindex, int talkerindex,
 	  case CHAR_WINDOWTYPE_WINDOWITEMSHOP_STARTMSG:
 		if(atoi( data) == 1 )	NPC_ItemVippointShop_selectWindow(meindex, talkerindex, 1, -1);
 		if(atoi( data) == 2)	NPC_ItemVippointShop_selectWindow(meindex, talkerindex, 2, -1);
-		if(atoi( data) == 3)	return;/*--ÖÏÊÖØÆØ¦ÖĞ--*/
+		if(atoi( data) == 3)	return;/*--çª’æ‰‹ä»„å…ä¸­--*/
 		break;
 	  case CHAR_WINDOWTYPE_WINDOWITEMSHOP_BUY_MSG:
 		if(NPC_SetNewItemVippoint(meindex , talkerindex, data) == TRUE) {
@@ -358,7 +358,7 @@ void NPC_ItemVippointShop_BuyMain(int meindex,int talker,int before )
 
 		NPC_Util_GetStrFromStrWithDelim( argstr, "main_msg", buff, sizeof( buff));
 		NPC_Util_GetStrFromStrWithDelim( argstr, "buy_main", buff2, sizeof( buff2));
-		sprintf(buff2,"%s\n¡¾»áÔ±µãÊı£º%d¡¿",buff2,sasql_vippoint(CHAR_getUseID(talker),0,0));
+		sprintf(buff2,"%s\nã€ä¼šå‘˜ç‚¹æ•°ï¼š%dã€‘",buff2,sasql_vippoint(CHAR_getUseID(talker),0,0));
 		sprintf(token,"0|1|%d|%s|%s|%s|", CHAR_WINDOWTYPE_WINDOWITEMSHOP_STARTMSG,
 				CHAR_getChar( meindex, CHAR_NAME), buff, buff2);
 
@@ -452,7 +452,7 @@ void NPC_GetItemVippointList(char *argstr,char *argtoken)
 				}
 				end++;
 				for(; start < end ; start++ ) {
-					/*--ÒıÄÚ’oó¡???--*/
+					/*--å¼•å†…æŠ©èŸ†???--*/
 
 				 	name = ITEM_getNameFromNumber( start );
 					if(name == "\0") continue;
@@ -496,13 +496,13 @@ void NPC_GetItemVippointList(char *argstr,char *argtoken)
 	makeEscapeString( escape, info, sizeof( info));
 	makeEscapeString( name, escape, sizeof( escape));
 	char tempbuf[64];
-	if(iCostVippoint==0) sprintf(tempbuf,"Ãâ·ÑÁìÈ¡   ");
-	else if(iCostVippoint<10) sprintf(tempbuf,"     %dµã   ",iCostVippoint);
-	else if(iCostVippoint<100) sprintf(tempbuf,"    %dµã   ",iCostVippoint);
-	else if(iCostVippoint<1000) sprintf(tempbuf,"   %dµã   ",iCostVippoint);
-	else if(iCostVippoint<10000) sprintf(tempbuf,"  %dµã   ",iCostVippoint);
-	else if(iCostVippoint<100000) sprintf(tempbuf," %dµã   ",iCostVippoint);
-	else sprintf(tempbuf,"%dµã   ",iCostVippoint);
+	if(iCostVippoint==0) sprintf(tempbuf,"å…è´¹é¢†å–   ");
+	else if(iCostVippoint<10) sprintf(tempbuf,"     %dç‚¹   ",iCostVippoint);
+	else if(iCostVippoint<100) sprintf(tempbuf,"    %dç‚¹   ",iCostVippoint);
+	else if(iCostVippoint<1000) sprintf(tempbuf,"   %dç‚¹   ",iCostVippoint);
+	else if(iCostVippoint<10000) sprintf(tempbuf,"  %dç‚¹   ",iCostVippoint);
+	else if(iCostVippoint<100000) sprintf(tempbuf," %dç‚¹   ",iCostVippoint);
+	else sprintf(tempbuf,"%dç‚¹   ",iCostVippoint);
 	char newescape[256];
 	sprintf(newescape,"%s%s",tempbuf,escape);
 #ifdef _NEW_MANOR_LAW
@@ -534,7 +534,7 @@ BOOL NPC_SetNewItemVippoint(int meindex,int talker,char *data)
 	int kosuucnt = 0;
 	int itemindex;
 
-	/*--ß¯ÔÈ»¯ÎåĞ×·¸¡õÕıÃ«±¾ÒÁÛÍĞşÎçòÛĞÑ±åÛĞİ©--*/
+	/*--å¿’åŒ€åŒ–äº”å‡¶çŠ¯â–¡æ­£æ¯›æœ¬ä¼Šå¼ç„åˆèœŠé†’ååŒè¸--*/
 	getStringFromIndexWithDelim( data, "|", 1, buf, sizeof( buf));
 	select = atoi(buf);
 	if(select == 0) return FALSE;
@@ -542,7 +542,7 @@ BOOL NPC_SetNewItemVippoint(int meindex,int talker,char *data)
 	kosuu = atoi(buf);
 	if( kosuu <= 0 ) return FALSE;
 	
-	/*--òÛĞÑ¼°ÃñÄáÓÀÛÍ  ñ²±åòå    ÔÂ¾®£¢-*/
+	/*--èœŠé†’åŠæ°‘å°¼æ°¸å¼  ç™«åèˆ    æœˆäº•ï¼‚-*/
 	for( i = CHAR_STARTITEMARRAY ; i < CHAR_MAXITEMHAVE ; i++ ) {
 		itemindex = CHAR_getItemIndex( talker , i );
 		if( !ITEM_CHECKINDEX( itemindex) ) {
@@ -550,22 +550,22 @@ BOOL NPC_SetNewItemVippoint(int meindex,int talker,char *data)
 		}
 	}
 
-	/*--ß¯ÔÈ»¯  Ğ×òÛĞÑ¼°  »¥  ¶Ë¼°òÛĞÑ  ÈÓ¡õÌï´¡  ·½Ô»ÄôÖĞÎçÔÆ¾®ØÆÖĞ¼°Æ¥--*/
-	/*--ÈÓ¡õÌï¡õ´¡¼°  Ã«  Ä¾ÔÂ--*/
+	/*--å¿’åŒ€åŒ–  å‡¶èœŠé†’åŠ  äº’  ç«¯åŠèœŠé†’  æ‰”â–¡ç”°ç¡€  æ–¹æ›°è‚ä¸­åˆäº‘äº•ä»„ä¸­åŠåŒ¹--*/
+	/*--æ‰”â–¡ç”°â–¡ç¡€åŠ  æ¯›  æœ¨æœˆ--*/
 	if( kosuucnt < kosuu) kosuu = kosuucnt;
 		
-	/*--Î´·ò¼°èëÄş·´¾Ş·Â¡õ--*/
+	/*--æœªå¤«åŠæ¡¦å®åå·¨ä»¿â–¡--*/
 	if(kosuucnt == 0 ) return FALSE;
 
 	i = 1;
 
-	/*--ÔÆ÷Ò¼°°×ÑëÄÌ»ï  ÖĞÛè·´°×ÑëÄÌ»ï»¥·°ØêØ¦¾®ÔÈĞ×ÎçÎå·´±Î  --*/
+	/*--äº‘é¥•åŠç™½å¤®å¥¶ä¼™  ä¸­å­åç™½å¤®å¥¶ä¼™äº’é’’ä»ƒå…äº•åŒ€å‡¶åˆäº”åè”½  --*/
 	if(NPC_Util_GetArgStr( meindex, argstr, sizeof(argstr)) == NULL) {
    	print("shop_GetArgStr_Err");
    	return FALSE;
 	}
 
-	/*---ÒÁ¡õĞşÃ«äú    Ø¦ØêÄ¾ÈÉ1.0)-*/
+	/*---ä¼Šâ–¡ç„æ¯›æ½¸    å…ä»ƒæœ¨å£¬1.0)-*/
 	if(NPC_Util_GetStrFromStrWithDelim( argstr, "buy_rate", buf, sizeof( buf)) != NULL) {
 		rate= atof( buf);
 	}
@@ -577,7 +577,7 @@ BOOL NPC_SetNewItemVippoint(int meindex,int talker,char *data)
 	if(NPC_Util_GetStrFromStrWithDelim(argstr,"ChangeItemCost",buff5,sizeof(buff5)) == NULL) iChangeItemCost = -1;
 #endif
 
-	/*--Ê§ÄÌ  Ø©¼°Ü°µÑÃ«µæµ¤Îç³ğÇ·-*/
+	/*--å¤±å¥¶  ä¸åŠé¦¨ç¬›æ¯›å«ä¸¹åˆä»‡æ¬ -*/
 	if( NPC_Util_GetStrFromStrWithDelim( argstr, "ItemList", buf, sizeof( buf)) != NULL ){
 		while(getStringFromIndexWithDelim(buf , "," , j, buff2, sizeof(buff2)) != FALSE ){
 #ifdef _NEW_MANOR_LAW
@@ -589,12 +589,12 @@ BOOL NPC_SetNewItemVippoint(int meindex,int talker,char *data)
 			}
 #endif
 			j++;
-			/*--  "-"»¥Ö³ÒıÄ¾»¯ÖĞÔÂ¾®Éıµ¤¾®--*/
+			/*--  "-"äº’æ®–å¼•æœ¨åŒ–ä¸­æœˆäº•å‡ä¸¹äº•--*/
 			if(strstr( buff2, "-") == NULL) {
 				if( ITEM_getcostFromITEMtabl(atoi(buff2)) !=-1) {
 					if ( i == select) {
-						/*---Ê§ÄÌ  Ø©¼°×ÛÔÀ---*/
-						/*--òÛĞÑÛĞ×ÛÔÀ--*/
+						/*---å¤±å¥¶  ä¸åŠç»¼å²³---*/
+						/*--èœŠé†’åŒç»¼å²³--*/
 #ifdef _NEW_MANOR_LAW
 						if(NPC_AddItemVippointBuy(meindex, talker,atoi(buff2),kosuu,rate,iCostVippoint,iChangeItemCost) != TRUE)
 #else
@@ -608,30 +608,30 @@ BOOL NPC_SetNewItemVippoint(int meindex,int talker,char *data)
 					i++;		
 				}
 			}else{
-				/*--Ê§ÄÌ  Ø©»¥  15-25  ¼°äßÆ¥ËªÈÕÄ¾Ğ×èëÄş--*/
+				/*--å¤±å¥¶  ä¸äº’  15-25  åŠæº¥åŒ¹éœœæ—¥æœ¨å‡¶æ¡¦å®--*/
 				int start;
 				int end;
 
-				/* "-"Æ¥à¼å©ÈÕÄ¾Ğ×ï§»§¼°ĞÑ°ÀÎç  ¼°ĞÑ°ÀÃ«äú  --*/
+				/* "-"åŒ¹å—‰æ¿ æ—¥æœ¨å‡¶é“µæˆ·åŠé†’è¢„åˆ  åŠé†’è¢„æ¯›æ½¸  --*/
 				getStringFromIndexWithDelim( buff2, "-", 1, argstr, sizeof(argstr));
 				start = atoi( argstr);
 				getStringFromIndexWithDelim( buff2, "-", 2 ,argstr, sizeof(argstr));
 				end = atoi( argstr);
 				end++;
 
-				/*--  Ä¯»¥İÑ±åØ¦ÔÈ»¯ÖĞĞ×ÈÕ£ı  Ä¾×¸ÒüÔÂ**/
+				/*--  å¯äº’è…åå…åŒ€åŒ–ä¸­å‡¶æ—¥ï½  æœ¨èµ˜å°¹æœˆ**/
 				if(start > end){
 					gold = start;
 					start = end;
 					end = gold;
 				}
 
-				/*--"-"Æ¥à¼å©ÈÕÄ¾Ğ×ÛĞ¼°Ê§ÄÌ  Ø©Ã«Ê÷  Ã«  ÔÂ--*/
+				/*--"-"åŒ¹å—‰æ¿ æ—¥æœ¨å‡¶åŒåŠå¤±å¥¶  ä¸æ¯›æ ‘  æ¯›  æœˆ--*/
 				for(; start < end ; start++ ) {
 					if( ITEM_getcostFromITEMtabl( start) != -1) {
 						if ( i == select) {
-							/*---Ê§ÄÌ  Ø©¼°×ÛÔÀ---*/
-							/*--òÛĞÑÛĞ×ÛÔÀ--*/
+							/*---å¤±å¥¶  ä¸åŠç»¼å²³---*/
+							/*--èœŠé†’åŒç»¼å²³--*/
 #ifdef _NEW_MANOR_LAW
 							if(NPC_AddItemVippointBuy(meindex, talker, start, kosuu, rate,iCostVippoint,iChangeItemCost) != TRUE)
 #else
@@ -654,7 +654,7 @@ BOOL NPC_SetNewItemVippoint(int meindex,int talker,char *data)
 }
 
 /*---------------------------------------------
- *Ê§ÄÌ  Ø©¼°Ü°µÑÃ«µæµ¤
+ *å¤±å¥¶  ä¸åŠé¦¨ç¬›æ¯›å«ä¸¹
  *--------------------------------------------*/
 #ifdef _NEW_MANOR_LAW
 BOOL NPC_AddItemVippointBuy(int meindex, int talker,int itemID,int kosuu,double rate,int iCostVippoint,int iChangeItemCost)
@@ -684,7 +684,7 @@ BOOL NPC_AddItemVippointBuy(int meindex, int talker,int itemID,int kosuu,double 
 	if(iCostVippoint > 0){
 		iTotalCostVippoint= iCostVippoint * kosuu;
 		if(sasql_vippoint(CHAR_getUseID(talker),0,0) < iTotalCostVippoint){
-			CHAR_talkToCli( talker, meindex, "ÄúµÄ»áÔ±µã²»×ã¡£",CHAR_COLORWHITE);
+			CHAR_talkToCli( talker, meindex, "æ‚¨çš„ä¼šå‘˜ç‚¹ä¸è¶³ã€‚",CHAR_COLORWHITE);
 			return FALSE;
 		}
 	}
@@ -712,19 +712,19 @@ BOOL NPC_AddItemVippointBuy(int meindex, int talker,int itemID,int kosuu,double 
 	if(iTotalCostVippoint > 0){
 		sasql_vippoint( CHAR_getUseID(talker), -iTotalCostVippoint,1);
 		char tmpbuf[128];
-		sprintf( tmpbuf, "¿Û³ı%d»áÔ±µã", iTotalCostVippoint);
+		sprintf( tmpbuf, "æ‰£é™¤%dä¼šå‘˜ç‚¹", iTotalCostVippoint);
 		CHAR_talkToCli( talker, -1, tmpbuf, CHAR_COLORYELLOW);
 	}
 	//int fd = getfdFromCharaIndex( talker);
 	CHAR_charSaveFromConnect(talker, FALSE);
-	CHAR_talkToCli(talker, -1, "ÏµÍ³ÎªÄã×Ô¶¯´æµµ£¡", CHAR_COLORRED);
+	CHAR_talkToCli(talker, -1, "ç³»ç»Ÿä¸ºä½ è‡ªåŠ¨å­˜æ¡£ï¼", CHAR_COLORRED);
 #endif
 	//CHAR_send_P_StatusString( talker, CHAR_P_STRING_GOLD);
 	return TRUE;
 
 }
 
-//Ñ¡Ôñ (Âò,Âô,³öÈ¥) µÄĞ¡ÊÓ´°
+//é€‰æ‹© (ä¹°,å–,å‡ºå») çš„å°è§†çª—
 void NPC_ItemVippointShop_Menu(int meindex,int talker)
 {	
 	char	argstr[NPC_UTIL_GETARGSTR_BUFSIZE];
@@ -732,13 +732,13 @@ void NPC_ItemVippointShop_Menu(int meindex,int talker)
 	char buff[256];
 	int fd = getfdFromCharaIndex( talker);
 
-    //argstrÈ¡µÃÕû¸öÉè¶¨µµµÄÑ¶Ï¢: ÀıÈç->buy_rate:1.0|sell_rate:0.2|buy_msg:Âò,¹ºÂò,¸ĞĞ»Äú,kau,buy............. (ÖĞ¼äµÄ·Ö¸ñºÅÊÇ¶ÁÈëÊ±¼ÓÈëµÄ)
+    //argstrå–å¾—æ•´ä¸ªè®¾å®šæ¡£çš„è®¯æ¯: ä¾‹å¦‚->buy_rate:1.0|sell_rate:0.2|buy_msg:ä¹°,è´­ä¹°,æ„Ÿè°¢æ‚¨,kau,buy............. (ä¸­é—´çš„åˆ†æ ¼å·æ˜¯è¯»å…¥æ—¶åŠ å…¥çš„)
     if(NPC_Util_GetArgStr( meindex, argstr, sizeof(argstr)) == NULL) {
 		print("shop_GetArgStr_Err");
        	return;
     }
     
-	//tokenÎªÊÓ´°ÉÏÃæµÄtitleÎÄ×Ö  ÀıÈç: ÈøÄ·¼ª¶ûµÄ·À¾ßµê|»¶Ó­¹âÁÙ
+	//tokenä¸ºè§†çª—ä¸Šé¢çš„titleæ–‡å­—  ä¾‹å¦‚: è¨å§†å‰å°”çš„é˜²å…·åº—|æ¬¢è¿å…‰ä¸´
     NPC_Util_GetStrFromStrWithDelim( argstr, "main_msg", buff, sizeof( buff));
 #ifdef _NEW_MANOR_LAW
 	snprintf(token, sizeof(token),"%s|%s|%d",CHAR_getChar(meindex,CHAR_NAME),buff,CHAR_getInt(talker,CHAR_FAME)/100);
@@ -760,7 +760,7 @@ void NPC_ItemVippointShop_SellMain(int meindex,int talker,int before)
 	char	token[NPC_UTIL_GETARGSTR_BUFSIZE];
 	int fd = getfdFromCharaIndex( talker);
 
-	//È¡µÃnpcÉè¶¨×ÊÁÏ
+	//å–å¾—npcè®¾å®šèµ„æ–™
     if(NPC_Util_GetArgStr( meindex, argstr, sizeof(argstr)) == NULL) {
        	print("shop_GetArgStr_Err");
        	return;
@@ -799,7 +799,7 @@ void NPC_ItemVippointShop_SellMain(int meindex,int talker,int before)
 			NPC_Util_GetStrFromStrWithDelim( argstr, "realy_msg", buff2, sizeof( buff2));
 		}
 		sprintf( token2,"%s|%s|", buff, buff2);
-		NPC_GetLimtItemVippointList( talker,argstr, token2, -1);//ÏêÏ¸Íæ¼ÒÒªÂô³öµÄµÀ¾ß×ÊÁÏ
+		NPC_GetLimtItemVippointList( talker,argstr, token2, -1);//è¯¦ç»†ç©å®¶è¦å–å‡ºçš„é“å…·èµ„æ–™
 		strncat( token, token2, sizeof( token));
 
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_ITEMSHOPMAIN+
@@ -948,7 +948,7 @@ int NPC_GetLimtItemVippointList(int talker, char *argstr, char* token2,int sell)
 
 /*----------------------------------------------------------
 
-	ÛÍ·ÂÄÌÊ§¼şĞş±åËªññÔÊÔÂÃó·òĞşÎì»ï¼°×ÛÔÀ
+	å¼ä»¿å¥¶å¤±ä»¶ç„åéœœè€¨å…æœˆçš¿å¤«ç„æˆŠä¼™åŠç»¼å²³
 
  *----------------------------------------------------------*/
 int NPC_GetSellItemVippointList(int itemindex,int flg, char *argstr,char *argtoken,int select,int sell)
@@ -1070,7 +1070,7 @@ BOOL NPC_SellNewItemVippoint(int meindex,int talker,char *data)
 	cost = NPC_GetLimtItemVippointList( talker,argstr, token2,select);
 	if( cost == -1 || (cost*sellnum)+MyGold >= MaxGold || !ITEM_CHECKINDEX( itemindex) ){
 		int fd = getfdFromCharaIndex( talker);
-		sprintf(token,"\n\n°¥Ñ½!¶Ô²»Æğ" "\n\n¶Ô²»Æğ°¡ ! ¿É²»¿ÉÒÔÔÙÑ¡Ò»´ÎÄØ£¿" );	
+		sprintf(token,"\n\nå“å‘€!å¯¹ä¸èµ·" "\n\nå¯¹ä¸èµ·å•Š ! å¯ä¸å¯ä»¥å†é€‰ä¸€æ¬¡å‘¢ï¼Ÿ" );	
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE, 
 				WINDOW_BUTTONTYPE_OK, 
 				CHAR_WINDOWTYPE_WINDOWITEMSHOP_LIMIT,
@@ -1085,12 +1085,12 @@ BOOL NPC_SellNewItemVippoint(int meindex,int talker,char *data)
 		LogItem(
 			CHAR_getChar( talker, CHAR_NAME ),
 			CHAR_getChar( talker, CHAR_CDKEY ),
-#ifdef _add_item_log_name  // WON ADD ÔÚitemµÄlogÖĞÔö¼ÓitemÃû³Æ
+#ifdef _add_item_log_name  // WON ADD åœ¨itemçš„logä¸­å¢åŠ itemåç§°
 			itemindex,
 #else
 	   		ITEM_getInt( itemindex, ITEM_ID ),
 #endif
-			"Sell(ÂôµÀ¾ß)",
+			"Sell(å–é“å…·)",
 			CHAR_getInt( talker,CHAR_FLOOR),
 			CHAR_getInt( talker,CHAR_X ),
 			CHAR_getInt( talker,CHAR_Y ),
@@ -1131,7 +1131,7 @@ void NPC_LimitItemVippointShop(int meindex,int talker,int select)
 				token);
 
 	}else{
-		CHAR_talkToCli( talker, meindex, "ÕâÊÇÂòÂô×¨ÃÅµê¡£",CHAR_COLORWHITE);
+		CHAR_talkToCli( talker, meindex, "è¿™æ˜¯ä¹°å–ä¸“é—¨åº—ã€‚",CHAR_COLORWHITE);
 	}
 	return;
 }
@@ -1148,9 +1148,9 @@ void NPC_VippointExpressmanCheck(int meindex,int talker)
        	return;
 	}
 	NPC_Util_GetStrFromStrWithDelim( argstr, "main_msg", buf, sizeof( buf));
-	sprintf(token,"4\n¡¡¡¡¡¡¡¡¡¡¡¡¡¡%s\n\n%s"
-					"\n\n¡¡¡¡¡¡¡¡¡¡£¼  ´ò¹¤  £¾¡¡¡¡¡¡"
-				  "\n\n¡¡¡¡¡¡¡¡  £¼½»¸¶ĞĞÀî£¾"
+	sprintf(token,"4\nã€€ã€€ã€€ã€€ã€€ã€€ã€€%s\n\n%s"
+					"\n\nã€€ã€€ã€€ã€€ã€€ï¼œ  æ‰“å·¥  ï¼ã€€ã€€ã€€"
+				  "\n\nã€€ã€€ã€€ã€€  ï¼œäº¤ä»˜è¡Œæï¼"
 					,CHAR_getChar(meindex,CHAR_NAME),buf);
 	lssproto_WN_send( fd, WINDOW_MESSAGETYPE_SELECT, 
 			WINDOW_BUTTONTYPE_CANCEL, 

@@ -128,14 +128,14 @@ int lssproto_ServerDispatchMessage(int fd, char *encoded)
 				//DME();
 		return -1;
 	}
-	//printf("\n¿Í»§¶Ë½Ó¿Ú=%d\n",func);
+	//printf("\nå®¢æˆ·ç«¯æ¥å£=%d\n",func);
 #ifdef _SERVER_DEF
-if (func != 71 && func != 79 && func != 87 && func != 77 && func != 81 && func != 73 && func != 75)//µÇÂ¼Ç°·â°ü È«²¿¿ÉÖ´ĞĞ£¬ÆäËû·â°ü¼ì²éÊÇ·ñÒÑ¾­ÓĞÍæ¼ÒÔÚÏß£¡
+if (func != 71 && func != 79 && func != 87 && func != 77 && func != 81 && func != 73 && func != 75)//ç™»å½•å‰å°åŒ… å…¨éƒ¨å¯æ‰§è¡Œï¼Œå…¶ä»–å°åŒ…æ£€æŸ¥æ˜¯å¦å·²ç»æœ‰ç©å®¶åœ¨çº¿ï¼
 		{
-			if( !CHAR_CHECKINDEX( CONNECT_getCharaindex(fd) ) )//²¢Ã»ÓĞµÇÈëÈËÎï£¬½ö½öÊÇÒ»¸öÁ¬½Ó£¡
+			if( !CHAR_CHECKINDEX( CONNECT_getCharaindex(fd) ) )//å¹¶æ²¡æœ‰ç™»å…¥äººç‰©ï¼Œä»…ä»…æ˜¯ä¸€ä¸ªè¿æ¥ï¼
 			{
-        close(fd);//¶Ï¿ªÍæ¼ÒÖ®¼äµÄÁ¬½Ó
-				return -1;//ÄãÒª×öµÄÊÂ!
+        close(fd);//æ–­å¼€ç©å®¶ä¹‹é—´çš„è¿æ¥
+				return -1;//ä½ è¦åšçš„äº‹!
 			}
 		}
 #endif	
@@ -572,7 +572,7 @@ if (func != 71 && func != 79 && func != 87 && func != 77 && func != 81 && func !
 					//DME();
 		return -1;
 		}
-		sprintf(errraw,"%s","¿Õ");
+		sprintf(errraw,"%s","ç©º");
 		logFengBao(fd,playcdkey,func,errraw);
 		//print("\nfunc=%d,raw=%s\n",func,errraw);
 		lssproto_AB_recv(fd);
@@ -1440,7 +1440,7 @@ if (func==LSSPROTO_CLIENTLOGIN_RECV) {
 					//DME();
 		return -1;
 		}
-		sprintf(errraw,"%s","¿Õ");
+		sprintf(errraw,"%s","ç©º");
 		logFengBao(fd,playcdkey,func,errraw);
 		//print("\nfunc=%d,raw=%s\n",func,errraw);
 		lssproto_CharList_recv( fd);
@@ -1484,7 +1484,7 @@ if (func==LSSPROTO_CLIENTLOGIN_RECV) {
 					//DME();
 		return -1;
 		}
-		sprintf(errraw,"%s","¿Õ");
+		sprintf(errraw,"%s","ç©º");
 		logFengBao(fd,playcdkey,func,errraw);
 		//print("\nfunc=%d,raw=%s\n",func,errraw);
 		lssproto_ProcGet_recv(fd);
@@ -1501,7 +1501,7 @@ if (func==LSSPROTO_CLIENTLOGIN_RECV) {
 					//DME();
 		return -1;
 		}
-		sprintf(errraw,"%s","¿Õ");
+		sprintf(errraw,"%s","ç©º");
 		logFengBao(fd,playcdkey,func,errraw);
 		//print("\nfunc=%d,raw=%s\n",func,errraw);
 		lssproto_PlayerNumGet_recv(fd);
@@ -1615,7 +1615,7 @@ if (func==LSSPROTO_CLIENTLOGIN_RECV) {
 	if (func==LSSPROTO_CS_RECV) {
 	    char buffer[2];
 	    buffer[0] = '\0';
-	  sprintf(errraw,"%s","¿Õ");
+	  sprintf(errraw,"%s","ç©º");
 	  logFengBao(fd,playcdkey,func,errraw);
 		//print("\nfunc=%d,raw=%s\n",func,errraw);
 		lssproto_CS_recv( fd );
@@ -1669,7 +1669,7 @@ if (func==LSSPROTO_CLIENTLOGIN_RECV) {
 	}
 #endif
 
-#ifdef _CHATROOMPROTOCOL			// (²»¿É¿ª) Syu ADD ÁÄÌìÊÒÆµµÀ
+#ifdef _CHATROOMPROTOCOL			// (ä¸å¯å¼€) Syu ADD èŠå¤©å®¤é¢‘é“
 	if (func==LSSPROTO_CHATROOM_RECV) {
 		int checksum=0, checksumrecv;
 		char test[1024 * 64];
@@ -1691,11 +1691,11 @@ if (func==LSSPROTO_CLIENTLOGIN_RECV) {
 	}
 #endif
 
-#ifdef _NEWREQUESTPROTOCOL			// (²»¿É¿ª) Syu ADD ĞÂÔöProtocolÒªÇóÏ¸Ïî
+#ifdef _NEWREQUESTPROTOCOL			// (ä¸å¯å¼€) Syu ADD æ–°å¢Protocolè¦æ±‚ç»†é¡¹
 	if ( func==LSSPROTO_RESIST_RECV ) {
 	    char buffer[2];
 	    buffer[0] = '\0';
-	  sprintf(errraw,"%s","¿Õ");
+	  sprintf(errraw,"%s","ç©º");
 	  logFengBao(fd,playcdkey,func,errraw);
 		//print("\nfunc=%d,raw=%s\n",func,errraw);
 		lssproto_RESIST_recv( fd );
@@ -1703,7 +1703,7 @@ if (func==LSSPROTO_CLIENTLOGIN_RECV) {
 		return 0;
 	}
 #endif
-#ifdef _OUTOFBATTLESKILL			// (²»¿É¿ª) Syu ADD ·ÇÕ½¶·Ê±¼¼ÄÜProtocol
+#ifdef _OUTOFBATTLESKILL			// (ä¸å¯å¼€) Syu ADD éæˆ˜æ–—æ—¶æŠ€èƒ½Protocol
 		if(func==LSSPROTO_BATTLESKILL_RECV){
 				int checksum = 0, checksumrecv;
 				int iNum;
@@ -1887,7 +1887,7 @@ if (func==LSSPROTO_CLIENTLOGIN_RECV) {
 		return 0;
 	}	
 #endif	
-	printf("\nÎŞ·¨ÕÒµ½¿Í»§¶Ë½Ó¿Ú=%d\n",func);
+	printf("\næ— æ³•æ‰¾åˆ°å®¢æˆ·ç«¯æ¥å£=%d\n",func);
 
 	util_DiscardMessage();
 	logHack(fd,HACK_NOTDISPATCHED);
@@ -2686,7 +2686,7 @@ void lssproto_TD_send(int fd, int index, char* message)
 	util_mkint(fd,buffer, checksum);
 	util_SendMesg(fd, LSSPROTO_TD_SEND, buffer);
 }
-#ifdef _CHATROOMPROTOCOL			// (²»¿É¿ª) Syu ADD ÁÄÌìÊÒÆµµÀ
+#ifdef _CHATROOMPROTOCOL			// (ä¸å¯å¼€) Syu ADD èŠå¤©å®¤é¢‘é“
 void lssproto_CHATROOM_send ( int fd , char* message )
 {
 	char buffer[1024 * 64];
@@ -2702,7 +2702,7 @@ void lssproto_CHATROOM_send ( int fd , char* message )
 	util_SendMesg(fd, LSSPROTO_CHATROOM_SEND, buffer);
 }
 #endif
-#ifdef _NEWREQUESTPROTOCOL			// (²»¿É¿ª) Syu ADD ĞÂÔöProtocolÒªÇóÏ¸Ïî
+#ifdef _NEWREQUESTPROTOCOL			// (ä¸å¯å¼€) Syu ADD æ–°å¢Protocolè¦æ±‚ç»†é¡¹
 void lssproto_RESIST_send ( int fd , char* message )
 {
 	char buffer[1024 * 64];
@@ -2718,7 +2718,7 @@ void lssproto_RESIST_send ( int fd , char* message )
 	util_SendMesg(fd, LSSPROTO_RESIST_SEND, buffer);
 }
 #endif
-#ifdef _OUTOFBATTLESKILL			// (²»¿É¿ª) Syu ADD ·ÇÕ½¶·Ê±¼¼ÄÜProtocol
+#ifdef _OUTOFBATTLESKILL			// (ä¸å¯å¼€) Syu ADD éæˆ˜æ–—æ—¶æŠ€èƒ½Protocol
 void lssproto_BATTLESKILL_send ( int fd , char* message )
 {
 	char buffer[1024 * 64];
@@ -2797,7 +2797,7 @@ void lssproto_IC_send(int fd, int x, int y)
 	util_SendMesg(fd, LSSPROTO_IC_SEND, buffer);
 }
 #endif
-#ifdef _MAGIC_NOCAST             // ¾«Áé:³ÁÄ¬
+#ifdef _MAGIC_NOCAST             // ç²¾çµ:æ²‰é»˜
 void lssproto_NC_send(int fd,int flg)
 {
 	if(fd<0) return;
@@ -2942,7 +2942,7 @@ void lssproto_DENGON_send(int fd, char *data, int color, int num)
 {
 	if( CONNECT_checkfd(fd) == FALSE )return;
 #ifdef _DEBUG_SEND_CLI
-	printf("[·¢ËÍ]lssproto_DENGON_send-data:%s,%d,%d\n", data, color, num);
+	printf("[å‘é€]lssproto_DENGON_send-data:%s,%d,%d\n", data, color, num);
 #endif
 	char buffer[65500];
 	int checksum=0;

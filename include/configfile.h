@@ -18,7 +18,7 @@ void AnnounceToPlayerWN(int fd);
 void LoadAnnounce(void);
 
 #ifdef _PET_TALKPRO
-	#define PETTALK_MAXID 10        //Ôö¼ÓpettalkÊıÁ¿µ½10
+	#define PETTALK_MAXID 10        //å¢åŠ pettalkæ•°é‡åˆ°10
 	typedef struct {
 		int ID;
 		char DATA[1024*64];	//1M
@@ -165,7 +165,7 @@ char* getPetskillfile( void );
 char *getItematomfile( void );
 char *getQuizfile( void );
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 char* getProfession( void );
 #endif
 
@@ -345,7 +345,7 @@ int getNowEvent(int Num);
 int getEndEvent(int Num);
 #endif
 
-#ifdef _JK_CF_DELPETITEM        //É¾³ıCFÖ¸¶¨ÎïÆ·ºÍ³èÎï
+#ifdef _JK_CF_DELPETITEM        //åˆ é™¤CFæŒ‡å®šç‰©å“å’Œå® ç‰©
 char *getDelPet(void);
 char *getDelItem(void);
 #endif

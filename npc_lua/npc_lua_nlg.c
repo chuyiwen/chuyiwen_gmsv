@@ -15,7 +15,7 @@
 extern int StateTable[];
 
 //////////////////////////////////////////////////////////////////////////////
-//¹¦ÄÜ½Ó¿Ú
+//åŠŸèƒ½æ¥å£
 int NPC_Lua_NLG_CheckInFront(lua_State *_NLL)
 {
 	CheckEx(_NLL, 3);
@@ -111,7 +111,7 @@ int NPC_Lua_NLG_CreateBattle(lua_State *_NLL)
 	{
 		TM_Flg = (int)lua_tointeger(_NLL, 7);
 	}
-//Õâ¸öÒª·ÅÔÚ×îºó
+//è¿™ä¸ªè¦æ”¾åœ¨æœ€å
 	if(TM_Top >= 4)
 	{
 		TM_ArLen = luaL_getn(_NLL, 4);
@@ -123,9 +123,9 @@ int NPC_Lua_NLG_CreateBattle(lua_State *_NLL)
 			lua_pop(_NLL, 1);
 		}
 	}
-//È»ºóÔÙµ÷ÓÃ´´½¨Õ½¶·µÄº¯Êı
+//ç„¶åå†è°ƒç”¨åˆ›å»ºæˆ˜æ–—çš„å‡½æ•°
 	int TM_Ret = NPC_Lua_CreateVsEnemy(_NLL, TM_CharIndex, TM_NpcIndex, TM_DoFunc, &TM_CreateEnemy, TM_ArLen, TM_Flg);
-//·µ»Ø¸ºÊı±íÊ¾Ê§°Ü
+//è¿”å›è´Ÿæ•°è¡¨ç¤ºå¤±è´¥
 	LRetInt(_NLL, TM_Ret);
 }
 
@@ -162,7 +162,7 @@ int NPC_Lua_NLG_DelPet(lua_State *_NLL)
 		if(TM_Ret < 0)
 		{
 			char TM_MsgBuff[128];
-			snprintf(TM_MsgBuff, sizeof(TM_MsgBuff), "É¾³ı³èÎïÊ±²úÉú´íÎó ´íÎóºÅ: %d¡£", TM_Ret);
+			snprintf(TM_MsgBuff, sizeof(TM_MsgBuff), "åˆ é™¤å® ç‰©æ—¶äº§ç”Ÿé”™è¯¯ é”™è¯¯å·: %dã€‚", TM_Ret);
 			LRetErrInt(_NLL , -1, TM_MsgBuff);
 		}
 
@@ -186,20 +186,20 @@ int NPC_Lua_NLG_DelHaveIndexPet(lua_State *_NLL)
 	int TM_Ret = 0;
 	
 	if(TM_PetHaveIndex<0 || TM_PetHaveIndex>4){
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 		TM_PetIndex = CHAR_getCharPet( TM_Index, TM_PetHaveIndex);
 		
 		if(!CHAR_CHECKINDEX(TM_PetIndex))
 		{
-			LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+			LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 		}
 
 		TM_Ret = NPC_DelPet( TM_Index, TM_PetHaveIndex);
 		if(TM_Ret < 0)
 		{
 			char TM_MsgBuff[128];
-			snprintf(TM_MsgBuff, sizeof(TM_MsgBuff), "É¾³ı³èÎïÊ±²úÉú´íÎó ´íÎóºÅ: %d¡£", TM_Ret);
+			snprintf(TM_MsgBuff, sizeof(TM_MsgBuff), "åˆ é™¤å® ç‰©æ—¶äº§ç”Ÿé”™è¯¯ é”™è¯¯å·: %dã€‚", TM_Ret);
 			LRetErrInt(_NLL , -1, TM_MsgBuff);
 		}
 
@@ -235,7 +235,7 @@ int NPC_Lua_NLG_DelItemByPos(lua_State *_NLL)
 	int TM_ItemIndex = -1;
 	
 	if( TM_ItemPos < CHAR_STARTITEMARRAY || TM_ItemPos > CHAR_MAXITEMHAVE -1 ) {
-		CHAR_talkToCli( TM_Index, -1, "Î»ÖÃ²»ÕıÈ·¡£",  CHAR_COLORWHITE);
+		CHAR_talkToCli( TM_Index, -1, "ä½ç½®ä¸æ­£ç¡®ã€‚",  CHAR_COLORWHITE);
 		return;
 	}
    TM_ItemId = CHAR_getItemIndex(TM_Index, TM_ItemPos);
@@ -245,7 +245,7 @@ int NPC_Lua_NLG_DelItemByPos(lua_State *_NLL)
 	}
 	TM_ItemIndex = CHAR_getItemIndex(TM_Index,TM_ItemPos);
 	char TM_Buff[128];
-	snprintf(TM_Buff, sizeof(TM_Buff), "½»³ö 1 ¸ö %s¡£", ITEM_getChar( TM_ItemIndex, ITEM_NAME));
+	snprintf(TM_Buff, sizeof(TM_Buff), "äº¤å‡º 1 ä¸ª %sã€‚", ITEM_getChar( TM_ItemIndex, ITEM_NAME));
 	CHAR_talkToCli( TM_Index, -1, TM_Buff, CHAR_COLORYELLOW);
 	CHAR_DelItem( TM_Index, TM_ItemPos);
 	LRetBool(_NLL, TRUE);
@@ -285,7 +285,7 @@ int NPC_Lua_NLG_GivePet(lua_State *_NLL)
 	}
 	if(TM_Num <= 0)
 	{
-		LRetErrInt(_NLL, -1, "¸øÓèÊıÁ¿²»ÄÜÉÙÓÚµÈÓÚ0¡£");
+		LRetErrInt(_NLL, -1, "ç»™äºˆæ•°é‡ä¸èƒ½å°‘äºç­‰äº0ã€‚");
 	}
 	int i = 0;
 	for(i = 0; i < TM_Num; i++)
@@ -301,7 +301,7 @@ int NPC_Lua_NLG_GivePet(lua_State *_NLL)
 	if(TM_Count > 0)
 	{
 		char TM_Buff[128];
-		snprintf(TM_Buff, sizeof(TM_Buff), "»ñµÃ %d Ö» %s¡£", TM_Count, CHAR_getChar( TM_PetIndex, CHAR_NAME));
+		snprintf(TM_Buff, sizeof(TM_Buff), "è·å¾— %d åª %sã€‚", TM_Count, CHAR_getChar( TM_PetIndex, CHAR_NAME));
 		CHAR_talkToCli( TM_Index, -1, TM_Buff, CHAR_COLORYELLOW);
 	}
 	LRetInt(_NLL, TM_Count);
@@ -323,7 +323,7 @@ int NPC_Lua_NLG_GiveOnePet(lua_State *_NLL)
 	}
 	TM_PetIndex = NPC_GivePet(TM_Index, TM_Level, TM_EnemyId);
 	char TM_Buff[128];
-	snprintf(TM_Buff, sizeof(TM_Buff), "»ñµÃ1Ö» %s¡£", CHAR_getChar( TM_PetIndex, CHAR_NAME));
+	snprintf(TM_Buff, sizeof(TM_Buff), "è·å¾—1åª %sã€‚", CHAR_getChar( TM_PetIndex, CHAR_NAME));
 	CHAR_talkToCli( TM_Index, -1, TM_Buff, CHAR_COLORYELLOW);
 	LRetInt(_NLL, TM_PetIndex);
 }
@@ -358,7 +358,7 @@ int NPC_Lua_NLG_GiveItem(lua_State *_NLL)
 	if(TM_Count > 0)
 	{
 		char TM_Buff[128];
-		snprintf(TM_Buff, sizeof(TM_Buff), "»ñµÃ %d ¸ö %s¡£", TM_Count, ITEM_getChar( TM_ItemIndex, ITEM_NAME));
+		snprintf(TM_Buff, sizeof(TM_Buff), "è·å¾— %d ä¸ª %sã€‚", TM_Count, ITEM_getChar( TM_ItemIndex, ITEM_NAME));
 		CHAR_talkToCli( TM_Index, -1, TM_Buff, CHAR_COLORYELLOW);
 	}
 	LRetInt(_NLL, TM_Count);
@@ -377,7 +377,7 @@ int NPC_Lua_NLG_GiveOneItem(lua_State *_NLL)
 	if(TM_ItemIndex >= 0)
 	{
 		char TM_Buff[128];
-		snprintf(TM_Buff, sizeof(TM_Buff), "»ñµÃ 1 ¸ö %s¡£", ITEM_getChar( TM_ItemIndex, ITEM_NAME));
+		snprintf(TM_Buff, sizeof(TM_Buff), "è·å¾— 1 ä¸ª %sã€‚", ITEM_getChar( TM_ItemIndex, ITEM_NAME));
 		CHAR_talkToCli( TM_Index, -1, TM_Buff, CHAR_COLORYELLOW);
 	}else{
 		LRetInt(_NLL, -1);
@@ -439,7 +439,7 @@ int NPC_Lua_NLG_GiveRandItem(lua_State *_NLL)
 	}
 	if(TM_Int>=0){
 		char TM_Buff[256];
-		snprintf(TM_Buff, sizeof(TM_Buff), "»ñµÃ %s¡£", ITEM_getChar( TM_Int, ITEM_NAME));
+		snprintf(TM_Buff, sizeof(TM_Buff), "è·å¾— %sã€‚", ITEM_getChar( TM_Int, ITEM_NAME));
 		CHAR_talkToCli( TM_Index, -1, TM_Buff, CHAR_COLORYELLOW);
 		if(TM_Type>0){
 			time_t timep;
@@ -449,7 +449,7 @@ int NPC_Lua_NLG_GiveRandItem(lua_State *_NLL)
 			timep = mktime(p);
 			TM_Type = timep + TM_Type;
 			ITEM_setInt(TM_Int,ITEM_TIME,TM_Type);
-			sprintf(TM_Buff,"[ÏŞÊ±]%s",ITEM_getChar(TM_Int,ITEM_NAME));
+			sprintf(TM_Buff,"[é™æ—¶]%s",ITEM_getChar(TM_Int,ITEM_NAME));
 			ITEM_setChar(TM_Int,ITEM_NAME,TM_Buff);
 			ITEM_setChar(TM_Int,ITEM_SECRETNAME,TM_Buff);
 			CHAR_sendStatusString(TM_Index,"I");
@@ -472,7 +472,7 @@ int NPC_Lua_NLG_GiveRandItem(lua_State *_NLL)
 //			else sprintf(minbuf,"%d",min);
 //			if(sec<10) sprintf(secbuf,"0%d",sec);
 //			else sprintf(secbuf,"%d",sec);
-//			sprintf(TM_Buff,"ÓĞĞ§ÆÚ:%d.%s.%s/%s:%s:%s  %s",year,monbuf,datebuf,hourbuf,minbuf,secbuf,ITEM_getChar(TM_Int,ITEM_EFFECTSTRING));
+//			sprintf(TM_Buff,"æœ‰æ•ˆæœŸ:%d.%s.%s/%s:%s:%s  %s",year,monbuf,datebuf,hourbuf,minbuf,secbuf,ITEM_getChar(TM_Int,ITEM_EFFECTSTRING));
 //			ITEM_setChar(TM_Int,ITEM_EFFECTSTRING,TM_Buff);
 		}
 	}
@@ -492,7 +492,7 @@ int NPC_Lua_NLG_ShowWindowTalked(lua_State *_NLL)
 
 	if(TM_data == NULL)
 	{
-		LRetErrInt(_NLL , -1, "¶Ô»°¿òÄÚÈİ²»ÄÜÎªnil");
+		LRetErrInt(_NLL , -1, "å¯¹è¯æ¡†å†…å®¹ä¸èƒ½ä¸ºnil");
 	}
 
 	int TM_MeIndex = -1;
@@ -517,7 +517,7 @@ int NPC_Lua_NLG_SetAction(lua_State *_NLL)
 
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	CHAR_sendWatchEvent( CHAR_getWorkInt( TM_Index, CHAR_WORKOBJINDEX),	TM_Action, NULL, 0,TRUE);
@@ -535,7 +535,7 @@ int NPC_Lua_NLG_TalkToCli(lua_State *_NLL)
 	char *TM_Msg = lua_tostring(_NLL, 2);
 	if(TM_Msg == NULL)
 	{
-		LRetErrInt(_NLL , -1, "Ëµ»°ÄÚÈİ²»ÄÜÎªnil¡£");
+		LRetErrInt(_NLL , -1, "è¯´è¯å†…å®¹ä¸èƒ½ä¸ºnilã€‚");
 	}
 
 	int TM_color = CHAR_COLORWHITE;
@@ -559,7 +559,7 @@ int NPC_Lua_NLG_TalkToCli(lua_State *_NLL)
 
 	if(TM_toindex == -1)
 	{
-		//¶ÔÈ«·şÎñÆ÷Ëµ»°
+		//å¯¹å…¨æœåŠ¡å™¨è¯´è¯
 		int TM_playernum = CHAR_getPlayerMaxNum();
 		int i = 0;
 
@@ -576,7 +576,7 @@ int NPC_Lua_NLG_TalkToCli(lua_State *_NLL)
 		}
 	}else
 	{
-		//¶ÔÖ¸¶¨Íæ¼ÒËµ»°
+		//å¯¹æŒ‡å®šç©å®¶è¯´è¯
 	#ifdef _FONT_SIZE
 		TM_Ret = CHAR_talkToCliExt(TM_toindex, TM_Talkindex, TM_Msg, TM_color, TM_fontsize);
 	#else
@@ -588,7 +588,7 @@ int NPC_Lua_NLG_TalkToCli(lua_State *_NLL)
 		LRetInt(_NLL, 0);
 	}else
 	{
-		LRetErrInt(_NLL , -2, "Î´ÖªÔ­Òòµ¼ÖÂ·¢ËÍËµ»°Ê§°Ü¡£");
+		LRetErrInt(_NLL , -2, "æœªçŸ¥åŸå› å¯¼è‡´å‘é€è¯´è¯å¤±è´¥ã€‚");
 	}
 }
 
@@ -601,7 +601,7 @@ int NPC_Lua_NLG_TalkToFloor(lua_State *_NLL)
 	char *TM_Msg = lua_tostring(_NLL, 2);
 	if(TM_Msg == NULL)
 	{
-		LRetErrInt(_NLL , -1, "Ëµ»°ÄÚÈİ²»ÄÜÎªnil¡£");
+		LRetErrInt(_NLL , -1, "è¯´è¯å†…å®¹ä¸èƒ½ä¸ºnilã€‚");
 	}
 
 	int TM_color = CHAR_COLORWHITE;
@@ -621,7 +621,7 @@ int NPC_Lua_NLG_TalkToFloor(lua_State *_NLL)
 		CheckIndexNull(_NLL, 5);
 		TM_Talkindex = (int)lua_tointeger(_NLL, 5);
 	}
-	//Ö¸¶¨µØÍ¼Ëµ»°
+	//æŒ‡å®šåœ°å›¾è¯´è¯
 	BOOL TM_Ret = FALSE;
 	int TM_playernum = CHAR_getPlayerMaxNum();
 	int i = 0;
@@ -647,7 +647,7 @@ int NPC_Lua_NLG_TalkToFloor(lua_State *_NLL)
 		LRetInt(_NLL, 0);
 	}else
 	{
-		LRetErrInt(_NLL , -2, "Î´ÖªÔ­Òòµ¼ÖÂ·¢ËÍËµ»°Ê§°Ü¡£");
+		LRetErrInt(_NLL , -2, "æœªçŸ¥åŸå› å¯¼è‡´å‘é€è¯´è¯å¤±è´¥ã€‚");
 	}
 }
 
@@ -658,7 +658,7 @@ int NPC_Lua_NLG_UpChar(lua_State *_NLL)
 	int TM_Index = (int)lua_tointeger(_NLL, 1);
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	CHAR_complianceParameter( TM_Index );
@@ -666,7 +666,7 @@ int NPC_Lua_NLG_UpChar(lua_State *_NLL)
 	if(CHAR_getInt(TM_Index,CHAR_WHICHTYPE)==CHAR_TYPEPET){
 		int playindex = CHAR_getWorkInt(TM_Index,CHAR_WORKPLAYERINDEX);
 		if(!CHAR_CHECKINDEX(playindex)){
-			LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+			LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 		}else{
 			int i;
 			for( i = 0; i < CHAR_MAXPETHAVE; i ++ ) {
@@ -817,7 +817,7 @@ int NPC_Lua_NLG_UpStateBySecond(lua_State *_NLL)
 	
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	char TM_Buff[128];
@@ -862,11 +862,11 @@ int NPC_Lua_NLG_CreateBattlePvP(lua_State *_NLL)
 	int TM_BattleIndex = -1;
 
 	if( (CHAR_getInt( TM_Index2, CHAR_WHICHTYPE) != CHAR_TYPEPLAYER) || (CHAR_getInt( TM_Index1, CHAR_WHICHTYPE) != CHAR_TYPEPLAYER)){
-		LRetErrInt(_NLL, -1, "¶ÔÏóÀàĞÍ²»ÊÇÍæ¼Ò");
+		LRetErrInt(_NLL, -1, "å¯¹è±¡ç±»å‹ä¸æ˜¯ç©å®¶");
 	}
 	if( (CHAR_getWorkInt( TM_Index2, CHAR_WORKBATTLEMODE) != BATTLE_CHARMODE_NONE) || (CHAR_getWorkInt( TM_Index1, CHAR_WORKBATTLEMODE) != BATTLE_CHARMODE_NONE))
 	{
-		LRetErrInt(_NLL, -2, "¶ÔÏóÕıÔÚ¶ÔÕ½ÖĞ");
+		LRetErrInt(_NLL, -2, "å¯¹è±¡æ­£åœ¨å¯¹æˆ˜ä¸­");
 	}
 	if( CHAR_getWorkInt( TM_Index2, CHAR_WORKPARTYMODE ) == CHAR_PARTY_CLIENT )
 	{
@@ -874,7 +874,7 @@ int NPC_Lua_NLG_CreateBattlePvP(lua_State *_NLL)
 
 		if( TM_Index < 0 )
 		{
-			LRetErrInt(_NLL, -3, "¶ÔÏóµÄ¶ÓÎéÒì³£");
+			LRetErrInt(_NLL, -3, "å¯¹è±¡çš„é˜Ÿä¼å¼‚å¸¸");
 		}
 	}
 	if( CHAR_getWorkInt( TM_Index1, CHAR_WORKPARTYMODE ) == CHAR_PARTY_CLIENT )
@@ -883,14 +883,14 @@ int NPC_Lua_NLG_CreateBattlePvP(lua_State *_NLL)
 
 		if( TM_Index < 0 )
 		{
-			LRetErrInt(_NLL, -3, "¶ÔÏóµÄ¶ÓÎéÒì³£");
+			LRetErrInt(_NLL, -3, "å¯¹è±¡çš„é˜Ÿä¼å¼‚å¸¸");
 		}
 	}
 	TM_Ret = NPC_Lua_CreateVsPlayer(&TM_BattleIndex, TM_Index1, TM_Index2);
 	if(TM_Ret != 0)
 	{
 		char TM_Buff[64];
-		snprintf(TM_Buff, sizeof(TM_Buff), "ÔâÓöÊ§°Ü£¡´íÎóºÅ:%d", TM_Ret);
+		snprintf(TM_Buff, sizeof(TM_Buff), "é­é‡å¤±è´¥ï¼é”™è¯¯å·:%d", TM_Ret);
 		LRetErrInt(_NLL, -4, TM_Buff);
 	}
 	LRetInt(_NLL, TM_BattleIndex);
@@ -905,11 +905,11 @@ int NPC_Lua_NLG_SearchWatchBattleRandIndex(lua_State *_NLL)
 	int TM_Ret = -1;
 
 	if( (CHAR_getInt( TM_Index, CHAR_WHICHTYPE) != CHAR_TYPEPLAYER) ){
-		LRetErrInt(_NLL, -1, "¶ÔÏóÀàĞÍ²»ÊÇÍæ¼Ò");
+		LRetErrInt(_NLL, -1, "å¯¹è±¡ç±»å‹ä¸æ˜¯ç©å®¶");
 	}
 	if( (CHAR_getWorkInt( TM_Index, CHAR_WORKBATTLEMODE) != BATTLE_CHARMODE_NONE) )
 	{
-		LRetErrInt(_NLL, -2, "¶ÔÏóÕıÔÚ¶ÔÕ½ÖĞ");
+		LRetErrInt(_NLL, -2, "å¯¹è±¡æ­£åœ¨å¯¹æˆ˜ä¸­");
 	}
 	if( CHAR_getWorkInt( TM_Index, CHAR_WORKPARTYMODE ) == CHAR_PARTY_CLIENT )
 	{
@@ -917,14 +917,14 @@ int NPC_Lua_NLG_SearchWatchBattleRandIndex(lua_State *_NLL)
 
 		if( TM_Index2 < 0 )
 		{
-			LRetErrInt(_NLL, -3, "¶ÔÏóµÄ¶ÓÎéÒì³£");
+			LRetErrInt(_NLL, -3, "å¯¹è±¡çš„é˜Ÿä¼å¼‚å¸¸");
 		}
 	}
 	TM_Ret = SearchFmWarRandIndex(TM_Index, TM_Floor);
 	if(TM_Ret != 0)
 	{
 		char TM_Buff[64];
-		snprintf(TM_Buff, sizeof(TM_Buff), "ÎŞÕ½¶·¿É¿´£¡´íÎóºÅ:%d", TM_Floor);
+		snprintf(TM_Buff, sizeof(TM_Buff), "æ— æˆ˜æ–—å¯çœ‹ï¼é”™è¯¯å·:%d", TM_Floor);
 		LRetErrInt(_NLL, -4, TM_Buff);
 	}
 	LRetInt(_NLL, TM_Ret);
@@ -943,7 +943,7 @@ int NPC_Lua_NLG_CheckPlayIndex(lua_State *_NLL)
 	int TM_Index = (int)lua_tointeger(_NLL, 1);
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	LRetInt(_NLL, TM_Index);
 }
@@ -955,7 +955,7 @@ int NPC_Lua_NLG_Save(lua_State *_NLL)
 	int TM_Index = (int)lua_tointeger(_NLL, 1);
 	if(!CHAR_CHECKINDEX(TM_Index))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	CHAR_charSaveFromConnect(TM_Index, FALSE);
 	LRetInt(_NLL, TM_Index);
@@ -968,7 +968,7 @@ int NPC_Lua_NLG_SetExp(lua_State *_NLL)
 	int TM_Exp = (int)lua_tointeger(_NLL, 1);
 	if( TM_Exp <= 0 )
 	{
-		LRetErrInt(_NLL, -3, "¾­Ñé²ÎÊı´íÎó");
+		LRetErrInt(_NLL, -3, "ç»éªŒå‚æ•°é”™è¯¯");
 	}
 	setBattleexp(TM_Exp);
 	LRetNull(_NLL);
@@ -1009,7 +1009,7 @@ int NPC_Lua_NLG_GetPetTransRange(lua_State *_NLL)
 		int ret = getPetTransRangeZ();
 		LRetInt(_NLL, ret);
 	}
-		LRetErrInt(_NLL, -1, "´«ÈëµÄ²ÎÊıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„å‚æ•°æ˜¯æ— æ•ˆçš„ã€‚");
 }
 #endif
 
@@ -1060,7 +1060,7 @@ int NPC_Lua_NLG_GivePetOne(lua_State *_NLL)
 	{
 		TM_PetIndex = TM_Int;
 		char TM_Buff[128];
-		snprintf(TM_Buff, sizeof(TM_Buff), "»ñµÃ 1 Ö» %s¡£", CHAR_getChar( TM_PetIndex, CHAR_NAME));
+		snprintf(TM_Buff, sizeof(TM_Buff), "è·å¾— 1 åª %sã€‚", CHAR_getChar( TM_PetIndex, CHAR_NAME));
 		CHAR_talkToCli( TM_Index, -1, TM_Buff, CHAR_COLORYELLOW);
 	}
 	LRetInt(_NLL, TM_PetIndex);
@@ -1081,7 +1081,7 @@ int NPC_Lua_NLG_GiveItemOne(lua_State *_NLL)
 	{
 		TM_ItemIndex = TM_Int;
 		char TM_Buff[128];
-		snprintf(TM_Buff, sizeof(TM_Buff), "»ñµÃ 1 ¸ö %s¡£", ITEM_getChar( TM_ItemIndex, ITEM_NAME));
+		snprintf(TM_Buff, sizeof(TM_Buff), "è·å¾— 1 ä¸ª %sã€‚", ITEM_getChar( TM_ItemIndex, ITEM_NAME));
 		CHAR_talkToCli( TM_Index, -1, TM_Buff, CHAR_COLORYELLOW);
 	}
 	LRetInt(_NLL, TM_ItemIndex);
@@ -1198,7 +1198,7 @@ int NPC_Lua_NLG_GetXY(lua_State *_NLL)
 	LRetInt(_NLL, QuBiao(TM_MAP));
 }
 
-int NPC_Lua_NLG_WalkJc(lua_State *_NLL)//¼ì²éÇ°·½ÕÏ°­
+int NPC_Lua_NLG_WalkJc(lua_State *_NLL)//æ£€æŸ¥å‰æ–¹éšœç¢
 {
 	CheckEx(_NLL, 5);
 	CheckIndexNull(_NLL, 1);
@@ -1222,7 +1222,7 @@ int NPC_Lua_NLG_KickPlayer(lua_State *_NLL)
 	CheckIndexNull(_NLL, 1);
 	int TM_index = (int)lua_tointeger(_NLL, 1);
 	if( !CHAR_CHECKINDEX( TM_index)) {
-		LRetErrInt(_NLL , -1, "ÈËÎï´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ£¡");
+		LRetErrInt(_NLL , -1, "äººç‰©ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ï¼");
 		return;
 	}
 	CONNECT_setCloseRequest( getfdFromCharaIndex(TM_index) , 1 );
@@ -1235,7 +1235,7 @@ int NPC_Lua_NLG_HealOne(lua_State *_NLL)
 	CheckIndexNull(_NLL, 1);
 	int TM_index = (int)lua_tointeger(_NLL, 1);
 	if( !CHAR_CHECKINDEX( TM_index)) {
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ£¡");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ï¼");
 		return;
 	}
 	CHAR_setInt( TM_index , CHAR_HP,99999999 );
@@ -1253,7 +1253,7 @@ int NPC_Lua_NLG_HealAll(lua_State *_NLL)
 	int TM_index = (int)lua_tointeger(_NLL, 1);
 	int TM_PetIndex = -1;
 	if( !CHAR_CHECKINDEX( TM_index)) {
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ£¡");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ï¼");
 		return;
 	}
 	CHAR_setInt( TM_index , CHAR_HP,99999999 );
@@ -1293,15 +1293,15 @@ int NPC_Lua_NLG_LevelUpTo(lua_State *_NLL)
 	int TM_LV = (int)lua_tointeger(_NLL, 2);
 	int i;
 	if( !CHAR_CHECKINDEX( TM_index)) {
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ£¡");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ï¼");
 		return;
 	}
 	TM_LV = TM_LV - CHAR_getInt( TM_index, CHAR_LV);
-	if (TM_LV <= 0) //·µ»ØÊ§°Ü
+	if (TM_LV <= 0) //è¿”å›å¤±è´¥
 	{
 		LRetBool(_NLL, FALSE);
 	}
-	if (CHAR_getInt( TM_index, CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER)//Èç¹ûÊÇÈËÎïµÄ»°
+	if (CHAR_getInt( TM_index, CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER)//å¦‚æœæ˜¯äººç‰©çš„è¯
 	{
 		CHAR_setInt(TM_index,CHAR_SKILLUPPOINT,
 			CHAR_getInt(TM_index,CHAR_SKILLUPPOINT)+TM_LV*3);
@@ -1309,16 +1309,16 @@ int NPC_Lua_NLG_LevelUpTo(lua_State *_NLL)
 		CHAR_setInt(TM_index,CHAR_LV, CHAR_getInt( TM_index, CHAR_LV) + TM_LV);
 		CHAR_send_P_StatusString( TM_index , CHAR_P_STRING_LV|CHAR_P_STRING_NEXTEXP);
 		LRetBool(_NLL, TRUE);
-	}else if (CHAR_getInt( TM_index, CHAR_WHICHTYPE ) == CHAR_TYPEPET)//Èç¹ûÊÇ³èÎïµÄ»°
+	}else if (CHAR_getInt( TM_index, CHAR_WHICHTYPE ) == CHAR_TYPEPET)//å¦‚æœæ˜¯å® ç‰©çš„è¯
 	{
 		char token[128];
-		for( i = 1; i <= TM_LV; i ++ ){	//Éı¼¶
+		for( i = 1; i <= TM_LV; i ++ ){	//å‡çº§
 			//CHAR_PetLevelUp( TM_index ,1);
 			CHAR_PetLevelUp( TM_index);
 			CHAR_PetAddVariableAi( TM_index, AI_FIX_PETLEVELUP );
 			CHAR_setInt( TM_index, CHAR_LV, CHAR_getInt( TM_index, CHAR_LV) +1 );
 		}
-		int PLAYER = CHAR_getWorkInt(TM_index, CHAR_WORKPLAYERINDEX);//»ñµÃÖ÷ÈËµÄË÷Òı
+		int PLAYER = CHAR_getWorkInt(TM_index, CHAR_WORKPLAYERINDEX);//è·å¾—ä¸»äººçš„ç´¢å¼•
 		for( i = 0; i < CHAR_MAXPETHAVE; i ++ )
 		{
 			if( CHAR_getCharPet( PLAYER, i ) == TM_index )break;
@@ -1347,15 +1347,15 @@ int NPC_Lua_NLG_AddExp(lua_State *_NLL)
 	int TM_index = (int)lua_tointeger(_NLL, 1);
 	int TM_EXP = (int)lua_tointeger(_NLL, 2);
 	if( !CHAR_CHECKINDEX( TM_index)) {
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ£¡");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ï¼");
 		return;
 	}
 	CHAR_setInt( TM_index, CHAR_EXP,CHAR_getInt(TM_index,CHAR_EXP) + TM_EXP);
 
-	if (CHAR_getInt( TM_index, CHAR_WHICHTYPE ) == CHAR_TYPEPET)//Èç¹ûÊÇ³èÎïµÄ»°
+	if (CHAR_getInt( TM_index, CHAR_WHICHTYPE ) == CHAR_TYPEPET)//å¦‚æœæ˜¯å® ç‰©çš„è¯
 	{
 		char token[128];
-		int PLAYER = CHAR_getWorkInt(TM_index, CHAR_WORKPLAYERINDEX);//»ñµÃÖ÷ÈËµÄË÷Òı
+		int PLAYER = CHAR_getWorkInt(TM_index, CHAR_WORKPLAYERINDEX);//è·å¾—ä¸»äººçš„ç´¢å¼•
 		for( i = 0; i < CHAR_MAXPETHAVE; i ++ )
 		{
 			if( CHAR_getCharPet( PLAYER, i ) == TM_index )break;
@@ -1384,7 +1384,7 @@ int NPC_Lua_NLG_UpPet(lua_State *_NLL)
 	int petindex;
 	char token[64];
 	if( !CHAR_CHECKINDEX( TM_Index)) {
-		LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ£¡");
+		LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ï¼");
 		return;
 	}
 	if (TM_Top == 2)
@@ -1412,7 +1412,7 @@ int NPC_Lua_NLG_UpPet(lua_State *_NLL)
 	{
 		petindex = CHAR_getCharPet( i, TM_It);
 		if( !CHAR_CHECKINDEX( petindex) ) {
-			LRetErrInt(_NLL , -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ£¡");
+			LRetErrInt(_NLL , -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ï¼");
 		}
 		CHAR_complianceParameter( petindex );
 		snprintf( token, sizeof( token ), "K%d", TM_It );
@@ -1436,10 +1436,10 @@ int NPC_Lua_NLG_DelPetByPos(lua_State *_NLL)
 	int TM_Ret = 0;
 	TM_PetID -= 1;
 	if( !CHAR_CHECKINDEX( TM_Index)) {
-		LRetErrInt(_NLL , -1, "ÈËÎï´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ£¡");
+		LRetErrInt(_NLL , -1, "äººç‰©ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ï¼");
 		return;
 	}
-	if (TM_PetID < 0 || TM_PetID > 4) LRetErrInt(_NLL , -1, "Ö¸¶¨µÄ³èÎïÀ¸Î»Ã»ÓĞ³èÎï£¡");
+	if (TM_PetID < 0 || TM_PetID > 4) LRetErrInt(_NLL , -1, "æŒ‡å®šçš„å® ç‰©æ ä½æ²¡æœ‰å® ç‰©ï¼");
 
 	TM_PetIndex = CHAR_getCharPet( TM_Index, TM_PetID);
 
@@ -1453,7 +1453,7 @@ int NPC_Lua_NLG_DelPetByPos(lua_State *_NLL)
 	if(TM_Ret < 0)
 	{
 		char TM_MsgBuff[128];
-		snprintf(TM_MsgBuff, sizeof(TM_MsgBuff), "É¾³ı³èÎïÊ±²úÉú´íÎó ´íÎóºÅ: %d¡£", TM_Ret);
+		snprintf(TM_MsgBuff, sizeof(TM_MsgBuff), "åˆ é™¤å® ç‰©æ—¶äº§ç”Ÿé”™è¯¯ é”™è¯¯å·: %dã€‚", TM_Ret);
 		LRetErrInt(_NLL , -1, TM_MsgBuff);
 	}
 
@@ -1470,11 +1470,11 @@ int NPC_Lua_NLG_DelPetByIndex(lua_State *_NLL)
 	int TM_PetIndex = -1;
 	int TM_Ret = 0;
 	if( !CHAR_CHECKINDEX( TM_Index)) {
-		LRetErrInt(_NLL , -1, "ÈËÎï´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ£¡");
+		LRetErrInt(_NLL , -1, "äººç‰©ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ï¼");
 		return;
 	}
 	if( !CHAR_CHECKINDEX( TM_Pindex)) {
-		LRetErrInt(_NLL , -1, "³èÎï´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ£¡");
+		LRetErrInt(_NLL , -1, "å® ç‰©ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ï¼");
 		return;
 	}
 	int i = 0;
@@ -1493,7 +1493,7 @@ int NPC_Lua_NLG_DelPetByIndex(lua_State *_NLL)
 		if(TM_Ret < 0)
 		{
 			char TM_MsgBuff[128];
-			snprintf(TM_MsgBuff, sizeof(TM_MsgBuff), "É¾³ı³èÎïÊ±²úÉú´íÎó ´íÎóºÅ: %d¡£", TM_Ret);
+			snprintf(TM_MsgBuff, sizeof(TM_MsgBuff), "åˆ é™¤å® ç‰©æ—¶äº§ç”Ÿé”™è¯¯ é”™è¯¯å·: %dã€‚", TM_Ret);
 			LRetErrInt(_NLL , -1, TM_MsgBuff);
 		}
 
@@ -1509,19 +1509,19 @@ int NPC_Lua_NLG_GivePetByIndex(lua_State *_NLL)
 	int TM_Index = (int)lua_tointeger(_NLL, 1);
 	int TM_PetIndex = (int)lua_tointeger(_NLL, 2);
 	if( !CHAR_CHECKINDEX( TM_Index)) {
-		LRetErrInt(_NLL , -1, "ÈËÎï´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ£¡");
+		LRetErrInt(_NLL , -1, "äººç‰©ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ï¼");
 		return;
 	}
 	if( !CHAR_CHECKINDEX( TM_PetIndex)) {
-		LRetErrInt(_NLL , -1, "³èÎï´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ£¡");
+		LRetErrInt(_NLL , -1, "å® ç‰©ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ï¼");
 		return;
 	}
 	int havepetelement = CHAR_getCharPetElement( TM_Index);
 	if( havepetelement < 0 ) {
-		LRetErrInt(_NLL , -1, "Ä¿±ê³èÎïÀ¸Î»ÒÑÂú£¡");
+		LRetErrInt(_NLL , -1, "ç›®æ ‡å® ç‰©æ ä½å·²æ»¡ï¼");
 		return;
 	}
-	CHAR_setWorkInt( TM_PetIndex, CHAR_WORKPLAYERINDEX, TM_Index);//³èÎïÖ÷ÈË
+	CHAR_setWorkInt( TM_PetIndex, CHAR_WORKPLAYERINDEX, TM_Index);//å® ç‰©ä¸»äºº
 	CHAR_setCharPet( TM_Index, havepetelement, TM_PetIndex);
 	CHAR_setChar( TM_PetIndex, CHAR_OWNERCDKEY,
 		CHAR_getChar( TM_Index, CHAR_CDKEY));
@@ -1548,16 +1548,16 @@ int NPC_Lua_NLG_GiveItemByIndex(lua_State *_NLL)
 	int TM_Index = (int)lua_tointeger(_NLL, 1);
 	int TM_ItemIndex = (int)lua_tointeger(_NLL, 2);
 	if( !CHAR_CHECKINDEX( TM_Index)) {
-		LRetErrInt(_NLL , -1, "ÈËÎï´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ£¡");
+		LRetErrInt(_NLL , -1, "äººç‰©ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ï¼");
 		return;
 	}
 	if( !ITEM_CHECKINDEX( TM_ItemIndex)) {
-		LRetErrInt(_NLL , -1, "µÀ¾ß´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ£¡");
+		LRetErrInt(_NLL , -1, "é“å…·ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ï¼");
 		return;
 	}
 	int emptyitemindexinchara = CHAR_findEmptyItemBox( TM_Index);
 	if( emptyitemindexinchara < 0 ) {
-		LRetErrInt(_NLL , -1, "Ä¿±êµÀ¾ßÀ¸Î»ÒÑÂú£¡");
+		LRetErrInt(_NLL , -1, "ç›®æ ‡é“å…·æ ä½å·²æ»¡ï¼");
 		return;
 	}
 	CHAR_setItemIndex( TM_Index, emptyitemindexinchara, TM_ItemIndex );
@@ -1579,7 +1579,7 @@ int NPC_Lua_NLG_WarpToSpecificPoint(lua_State *_NLL)
 
 	if(!CHAR_CHECKINDEX(cindex))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 
 	LRetBool(_NLL,CHAR_warpToSpecificPoint(cindex,fl,x,y));
@@ -1591,14 +1591,14 @@ BOOL NPC_Lua_NLG_UpSkillupPoint(lua_State *_NLL)
 	CheckIndexNull(_NLL, 1);
 	int TM_Index = (int)lua_tointeger(_NLL, 1);
 	if( !CHAR_CHECKINDEX( TM_Index)) {
-		LRetErrInt(_NLL , -1, "ÈËÎï´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ£¡");
+		LRetErrInt(_NLL , -1, "äººç‰©ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ï¼");
 		return;
 	}
 	CHAR_Skillupsend(TM_Index);
 	LRetBool(_NLL, TRUE);
 }
 
-//ĞÂÔö
+//æ–°å¢
 int NPC_Lua_NLG_StayEncount(lua_State *_NLL)
 {
 	CheckEx(_NLL, 1);
@@ -1606,14 +1606,14 @@ int NPC_Lua_NLG_StayEncount(lua_State *_NLL)
 	int fd,charaindex = (int)lua_tointeger(_NLL, 1);
 	fd = CHAR_getWorkInt( charaindex, CHAR_WORKFD);
 	setStayEncount(fd);
-	CHAR_talkToCli(charaindex, -1, "Äã¸ĞÊÜµ½ÖÜ±ßÍ»È»³äÂúÁËÉ±Æø£¡", CHAR_COLORYELLOW);
+	CHAR_talkToCli(charaindex, -1, "ä½ æ„Ÿå—åˆ°å‘¨è¾¹çªç„¶å……æ»¡äº†æ€æ°”ï¼", CHAR_COLORYELLOW);
 #ifdef _USER_CHARLOOPS
 	{
 		Char 	*ch;
 		ch  = CHAR_getCharPointer( charaindex);
 		if( ch == NULL ) return;
 		strcpysafe( ch->charfunctable[CHAR_LOOPFUNCTEMP1].string,
-			sizeof( ch->charfunctable[CHAR_LOOPFUNCTEMP1]), "CHAR_BattleStayLoop");//Õ½¶·
+			sizeof( ch->charfunctable[CHAR_LOOPFUNCTEMP1]), "CHAR_BattleStayLoop");//æˆ˜æ–—
 		CHAR_setInt( charaindex, CHAR_LOOPINTERVAL, 2500);
 		CHAR_constructFunctable( charaindex);
 	}

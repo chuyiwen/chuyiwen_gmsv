@@ -39,10 +39,10 @@ int NPC_Lua_Spell_PETSKILL_GetData(lua_State *_NLL)
 			LRetMsg(_NLL, TM_RetPoint);
 		}else
 		{
-			LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+			LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 		}
 	}
-	LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+	LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
 
@@ -70,10 +70,10 @@ int NPC_Lua_Spell_PROFESSION_GetData(lua_State *_NLL)
 			LRetMsg(_NLL, TM_RetPoint);
 		}else
 		{
-			LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+			LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 		}
 	}
-	LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+	LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
 
@@ -102,10 +102,10 @@ int NPC_Lua_Spell_MAGIC_GetData(lua_State *_NLL)
 			LRetMsg(_NLL, TM_RetPoint);
 		}else
 		{
-			LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+			LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 		}
 	}
-	LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+	LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
 
@@ -132,10 +132,10 @@ int NPC_Lua_Spell_PETSKILL_SetData(lua_State *_NLL)
 			LRetBool(_NLL, TM_RetBOOL);
 		}else
 		{
-			LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+			LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 		}
 	}
-	LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+	LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
 
@@ -163,10 +163,10 @@ int NPC_Lua_Spell_PROFESSION_SetData(lua_State *_NLL)
 			LRetBool(_NLL, TM_RetBOOL);
 		}else
 		{
-			LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+			LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 		}
 	}
-	LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+	LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
 
@@ -193,10 +193,10 @@ int NPC_Lua_Spell_MAGIC_SetData(lua_State *_NLL)
 			LRetBool(_NLL, TM_RetBOOL);
 		}else
 		{
-			LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+			LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 		}
 	}
-	LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+	LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
 

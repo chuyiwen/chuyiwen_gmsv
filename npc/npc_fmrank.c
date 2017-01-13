@@ -97,11 +97,11 @@ void NPC_FmRankWindowTalked( int meindex, int talkerindex, int seqno,
 		break;
 	case NPC_FMRANK_ADDPOINT:
 		if(atoi(data)<1000 || atoi(data)>1000000){
-			CHAR_talkToCli( talkerindex, -1,"Äú×·¼ÓµÄµãÊıĞ¡ÓÚ1000»ı·Ö»ò´óÓÚ100W»ı·Ö£¡",CHAR_COLORRED);
+			CHAR_talkToCli( talkerindex, -1,"æ‚¨è¿½åŠ çš„ç‚¹æ•°å°äº1000ç§¯åˆ†æˆ–å¤§äº100Wç§¯åˆ†ï¼",CHAR_COLORRED);
 			return;
 		}
 		if(sasql_ampoint(CHAR_getChar(talkerindex,CHAR_CDKEY),0,0)<atoi(data)){
-			CHAR_talkToCli( talkerindex, -1,"ÄúµÄ¡¶¸öÈË»ı·Ö¡·ÉÙÓÚ¾º¼ÛµÄµãÊı£¡",CHAR_COLORRED);
+			CHAR_talkToCli( talkerindex, -1,"æ‚¨çš„ã€Šä¸ªäººç§¯åˆ†ã€‹å°‘äºç«ä»·çš„ç‚¹æ•°ï¼",CHAR_COLORRED);
 			return;
 		}
 		myfmindex = CHAR_getInt(talkerindex, CHAR_FMINDEX);
@@ -110,7 +110,7 @@ void NPC_FmRankWindowTalked( int meindex, int talkerindex, int seqno,
 			if(myfmpoint>0){
 				if(sasql_fmpoint_add(myfmindex,(myfmpoint+atoi(data)))==1){
 					sasql_ampoint(CHAR_getChar(talkerindex,CHAR_CDKEY),-atoi(data),1);
-					CHAR_talkToCli( talkerindex, -1,"ÄúÒÑ¸ø×Ô¼ºµÄ¼Ò×å¾º¼ÛµãÊı³É¹¦£¡",CHAR_COLORRED);
+					CHAR_talkToCli( talkerindex, -1,"æ‚¨å·²ç»™è‡ªå·±çš„å®¶æ—ç«ä»·ç‚¹æ•°æˆåŠŸï¼",CHAR_COLORRED);
 					return;
 				}
 			}
@@ -118,11 +118,11 @@ void NPC_FmRankWindowTalked( int meindex, int talkerindex, int seqno,
 		break;
 	case NPC_FMRANK_ADDFM:
 		if(atoi(data)<5000 || atoi(data)>1000000){
-			CHAR_talkToCli( talkerindex, -1,"ÄúÊ×´Î¾º¼ÛµãÊıĞ¡ÓÚ5000»ı·Ö»ò´óÓÚ100W»ı·Ö£¡",CHAR_COLORRED);
+			CHAR_talkToCli( talkerindex, -1,"æ‚¨é¦–æ¬¡ç«ä»·ç‚¹æ•°å°äº5000ç§¯åˆ†æˆ–å¤§äº100Wç§¯åˆ†ï¼",CHAR_COLORRED);
 			return;
 		}
 		if(sasql_ampoint(CHAR_getChar(talkerindex,CHAR_CDKEY),0,0)<atoi(data)){
-			CHAR_talkToCli( talkerindex, -1,"ÄúµÄ¡¶¸öÈË»ı·Ö¡·ÉÙÓÚ¾º¼ÛµÄµãÊı£¡",CHAR_COLORRED);
+			CHAR_talkToCli( talkerindex, -1,"æ‚¨çš„ã€Šä¸ªäººç§¯åˆ†ã€‹å°‘äºç«ä»·çš„ç‚¹æ•°ï¼",CHAR_COLORRED);
 			return;
 		}
 		myfmindex = CHAR_getInt(talkerindex, CHAR_FMINDEX);
@@ -132,7 +132,7 @@ void NPC_FmRankWindowTalked( int meindex, int talkerindex, int seqno,
 			if(myfmpoint<=0){
 				if(sasql_fmindex_add(myfmindex,fmname,atoi(data))==1){
 					sasql_ampoint(CHAR_getChar(talkerindex,CHAR_CDKEY),-atoi(data),1);
-					CHAR_talkToCli( talkerindex, -1,"ÄúÒÑ¸ø×Ô¼ºµÄ¼Ò×å¾º¼ÛµãÊı³É¹¦£¡",CHAR_COLORRED);
+					CHAR_talkToCli( talkerindex, -1,"æ‚¨å·²ç»™è‡ªå·±çš„å®¶æ—ç«ä»·ç‚¹æ•°æˆåŠŸï¼",CHAR_COLORRED);
 					return;
 				}
 			}
@@ -181,12 +181,12 @@ static void NPC_FmRank_selectWindow( int meindex, int toindex, int num,int selec
 
 	switch( num)	{
 	case WINDOW_START:
-		sprintf(token, "3\n\n              ¡ï¼Ò×å¾º¼ÛÅÅÃû¹ÜÀíÔ±¡ï\n\n"
-											"                 ¡¶¼ÓÈëÅÅÃûÏµÍ³¡·\n"
-											"                 ¡¶×·¼Ó¾º¼ÛµãÊı¡·\n"
-											"                 ¡¶²é¿´±¾×åÃû´Î¡·\n"
-											"                 ¡¶²é¿´Ç°¶şÊ®Ãû¡·\n"
-											"                 ¡¶ÅÅÃû¹¦ÄÜ½éÉÜ¡·\n");
+		sprintf(token, "3\n\n              â˜…å®¶æ—ç«ä»·æ’åç®¡ç†å‘˜â˜…\n\n"
+											"                 ã€ŠåŠ å…¥æ’åç³»ç»Ÿã€‹\n"
+											"                 ã€Šè¿½åŠ ç«ä»·ç‚¹æ•°ã€‹\n"
+											"                 ã€ŠæŸ¥çœ‹æœ¬æ—åæ¬¡ã€‹\n"
+											"                 ã€ŠæŸ¥çœ‹å‰äºŒååã€‹\n"
+											"                 ã€Šæ’ååŠŸèƒ½ä»‹ç»ã€‹\n");
 		CHAR_setWorkInt( toindex, CHAR_WORKSHOPRELEVANT, WINDOW_START);
 		windowtype = WINDOW_MESSAGETYPE_SELECT;
 		buttontype = WINDOW_BUTTONTYPE_CANCEL;
@@ -200,24 +200,24 @@ static void NPC_FmRank_selectWindow( int meindex, int toindex, int num,int selec
 				int myfmpoint = sasql_fmpoint_query(myfmindex);
 				windowtype = WINDOW_MESSAGETYPE_MESSAGEANDLINEINPUT;
 				if(myfmpoint>0){
-					sprintf(token, "              ¡ï¼Ò×å¾º¼ÛÅÅÃû¹ÜÀíÔ±¡ï\n\n"
-				             	 "ÄúµÄ¼Ò×åÒÑ¾­¼ÓÈëÅÅÃûÏµÍ³\n"
-				             	 "ÏÖÔÚµÄ¾º¼ÛµãÊıÊÇ£º%dµã£¡\n\n"
-				             	 "ÈçĞèÌáÉıÅÅÃû\n"
-				             	 "ÇëÔÚÏÂ·½ÌîĞ´Íê×·¼ÓµãÊıºóµã¡¾È·¶¨¡¿",myfmpoint);
+					sprintf(token, "              â˜…å®¶æ—ç«ä»·æ’åç®¡ç†å‘˜â˜…\n\n"
+				             	 "æ‚¨çš„å®¶æ—å·²ç»åŠ å…¥æ’åç³»ç»Ÿ\n"
+				             	 "ç°åœ¨çš„ç«ä»·ç‚¹æ•°æ˜¯ï¼š%dç‚¹ï¼\n\n"
+				             	 "å¦‚éœ€æå‡æ’å\n"
+				             	 "è¯·åœ¨ä¸‹æ–¹å¡«å†™å®Œè¿½åŠ ç‚¹æ•°åç‚¹ã€ç¡®å®šã€‘",myfmpoint);
 					buttontype = WINDOW_BUTTONTYPE_YESNO;
 					windowno = NPC_FMRANK_ADDPOINT;
 	      }else{
-	      	sprintf(token, "              ¡ï¼Ò×å¾º¼ÛÅÅÃû¹ÜÀíÔ±¡ï\n\n"
-				             	 "ÄúµÄ¼Ò×å»¹Î´¼ÓÈëÅÅÃûÏµÍ³£¡\n\n"
-				             	 "ÈçĞè¼ÓÈëÅÅÃûÏµÍ³\n"
-				             	 "ÇëÔÚÏÂ·½ÌîĞ´¾º¼ÛµãÊıºóµã¡¾È·¶¨¡¿");
+	      	sprintf(token, "              â˜…å®¶æ—ç«ä»·æ’åç®¡ç†å‘˜â˜…\n\n"
+				             	 "æ‚¨çš„å®¶æ—è¿˜æœªåŠ å…¥æ’åç³»ç»Ÿï¼\n\n"
+				             	 "å¦‚éœ€åŠ å…¥æ’åç³»ç»Ÿ\n"
+				             	 "è¯·åœ¨ä¸‹æ–¹å¡«å†™ç«ä»·ç‚¹æ•°åç‚¹ã€ç¡®å®šã€‘");
 					buttontype = WINDOW_BUTTONTYPE_YESNO;
 					windowno = NPC_FMRANK_ADDFM;
 	      }
 			}else{
-				sprintf(token, "              ¡ï¼Ò×å¾º¼ÛÅÅÃû¹ÜÀíÔ±¡ï\n\n"
-				               "Äú»¹Ã»ÓĞ¼ÓÈë»òÕß³ÉÁ¢¼Ò×å£¬ÇëÓĞ¼Ò×åºóÔÙ½øĞĞ´Ë²Ù×÷£¡");
+				sprintf(token, "              â˜…å®¶æ—ç«ä»·æ’åç®¡ç†å‘˜â˜…\n\n"
+				               "æ‚¨è¿˜æ²¡æœ‰åŠ å…¥æˆ–è€…æˆç«‹å®¶æ—ï¼Œè¯·æœ‰å®¶æ—åå†è¿›è¡Œæ­¤æ“ä½œï¼");
 				buttontype = WINDOW_BUTTONTYPE_CANCEL;
 			}
 		}else if(select==3){
@@ -226,24 +226,24 @@ static void NPC_FmRank_selectWindow( int meindex, int toindex, int num,int selec
 				int myfmpoint = sasql_fmpoint_query(myfmindex);
 				if(myfmpoint>0){
 					int myfmno = sasql_fmno_query(myfmindex);
-					sprintf(token, "              ¡ï¼Ò×å¾º¼ÛÅÅÃû¹ÜÀíÔ±¡ï\n\n"
-				             	 "ÄúµÄ¼Ò×åÒÑ¾­¼ÓÈëÅÅÃûÏµÍ³\n\n"
-				             	 "ÏÖÔÚµÄ¾º¼ÛµãÊıÊÇ£º%dµã\n\n"
-				             	 "ÅÅÃû£ºµÚ%dÎ»£¡",myfmpoint,myfmno);
+					sprintf(token, "              â˜…å®¶æ—ç«ä»·æ’åç®¡ç†å‘˜â˜…\n\n"
+				             	 "æ‚¨çš„å®¶æ—å·²ç»åŠ å…¥æ’åç³»ç»Ÿ\n\n"
+				             	 "ç°åœ¨çš„ç«ä»·ç‚¹æ•°æ˜¯ï¼š%dç‚¹\n\n"
+				             	 "æ’åï¼šç¬¬%dä½ï¼",myfmpoint,myfmno);
 					buttontype = WINDOW_BUTTONTYPE_CANCEL;
 				}else{
-					sprintf(token, "              ¡ï¼Ò×å¾º¼ÛÅÅÃû¹ÜÀíÔ±¡ï\n\n"
-				             	 "ÄúµÄ¼Ò×å»¹Î´¼ÓÈëÅÅÃûÏµÍ³£¡\n");
+					sprintf(token, "              â˜…å®¶æ—ç«ä»·æ’åç®¡ç†å‘˜â˜…\n\n"
+				             	 "æ‚¨çš„å®¶æ—è¿˜æœªåŠ å…¥æ’åç³»ç»Ÿï¼\n");
 					buttontype = WINDOW_BUTTONTYPE_CANCEL;
 				}
 			}else{
-				sprintf(token, "              ¡ï¼Ò×å¾º¼ÛÅÅÃû¹ÜÀíÔ±¡ï\n\n"
-				               "Äú»¹Ã»ÓĞ¼ÓÈë»òÕß³ÉÁ¢¼Ò×å£¬ÇëÓĞ¼Ò×åºóÔÙ½øĞĞ´Ë²Ù×÷£¡");
+				sprintf(token, "              â˜…å®¶æ—ç«ä»·æ’åç®¡ç†å‘˜â˜…\n\n"
+				               "æ‚¨è¿˜æ²¡æœ‰åŠ å…¥æˆ–è€…æˆç«‹å®¶æ—ï¼Œè¯·æœ‰å®¶æ—åå†è¿›è¡Œæ­¤æ“ä½œï¼");
 				buttontype = WINDOW_BUTTONTYPE_CANCEL;
 			}
 		}else if(select==4){
 			CHAR_setWorkInt(toindex,CHAR_WORKLISTPAGE,1);
-			sprintf(token, "               ¡ïÇ°20ÃûÅÅÃû¼Ò×åÁĞ±í¡ï\n");
+			sprintf(token, "               â˜…å‰20åæ’åå®¶æ—åˆ—è¡¨â˜…\n");
 			fmrankcnt = sasql_fm_query();
 			if(fmrankcnt>0){
 				int fmshowmax;
@@ -251,7 +251,7 @@ static void NPC_FmRank_selectWindow( int meindex, int toindex, int num,int selec
 				else fmshowmax = fmrankcnt;
 				int i;
 				for(i=0;i<fmshowmax;i++){
-					sprintf(buff,"%d.%s   ¾º¼ÛµãÊı£º%d\n",i+1,fmrankname[i],fmrankpoint[i]);
+					sprintf(buff,"%d.%s   ç«ä»·ç‚¹æ•°ï¼š%d\n",i+1,fmrankname[i],fmrankpoint[i]);
 					strcat(token,buff);
 				}
 			}
@@ -261,19 +261,19 @@ static void NPC_FmRank_selectWindow( int meindex, int toindex, int num,int selec
 				buttontype = WINDOW_BUTTONTYPE_CANCEL;
 			windowno = NPC_FMRANK_TOP20;
 		}else if(select==5){
-			sprintf(token, "\n1¡¢²ÉÓÃ¾º¼ÛÅÅÃûĞÎÊ½    ¡¾¾º¡¿\n"
-										 "2¡¢Ö»ÏÔÊ¾Ç°20Î»¼Ò×å    ¡¾¼Û¡¿\n"
-										 "3¡¢²åÈëÔÚ×ÔÈ»ÅÅÃûÇ°    ¡¾ÅÅ¡¿\n"
-										 "4¡¢×îÉÙ³ö¼ÛÎªÒ»°Ùµã    ¡¾Ãû¡¿\n"
-										 "5¡¢Ë¢ĞÂÊ±¼äÎª15·ÖÖÓ    ¡¾Ïµ¡¿\n"
-										 "6¡¢Ã¿ÔÂ×îºóÒ»ÌìÇå¿Õ    ¡¾Í³¡¿\n");
+			sprintf(token, "\n1ã€é‡‡ç”¨ç«ä»·æ’åå½¢å¼    ã€ç«ã€‘\n"
+										 "2ã€åªæ˜¾ç¤ºå‰20ä½å®¶æ—    ã€ä»·ã€‘\n"
+										 "3ã€æ’å…¥åœ¨è‡ªç„¶æ’åå‰    ã€æ’ã€‘\n"
+										 "4ã€æœ€å°‘å‡ºä»·ä¸ºä¸€ç™¾ç‚¹    ã€åã€‘\n"
+										 "5ã€åˆ·æ–°æ—¶é—´ä¸º15åˆ†é’Ÿ    ã€ç³»ã€‘\n"
+										 "6ã€æ¯æœˆæœ€åä¸€å¤©æ¸…ç©º    ã€ç»Ÿã€‘\n");
 			buttontype = WINDOW_BUTTONTYPE_CANCEL;
 		}
 		break;
 	case WINDOW_FMRANKTOP_NEXT:
 		if(CHAR_getWorkInt(toindex,CHAR_WORKLISTPAGE)<1) return;
 		windowtype = WINDOW_MESSAGETYPE_MESSAGE;
-		sprintf(token, "               ¡ïÇ°20ÃûÅÅÃû¼Ò×åÁĞ±í¡ï\n");
+		sprintf(token, "               â˜…å‰20åæ’åå®¶æ—åˆ—è¡¨â˜…\n");
 			if(fmrankcnt>0){
 				int fmshowmax;
 				if(fmrankcnt<=7) return;
@@ -295,7 +295,7 @@ static void NPC_FmRank_selectWindow( int meindex, int toindex, int num,int selec
 				}
 				int i;
 				for(i=7*CHAR_getWorkInt(toindex,CHAR_WORKLISTPAGE);i<fmshowmax;i++){
-					sprintf(buff,"%d.%s   ¾º¼ÛµãÊı£º%d\n",i+1,fmrankname[i],fmrankpoint[i]);
+					sprintf(buff,"%d.%s   ç«ä»·ç‚¹æ•°ï¼š%d\n",i+1,fmrankname[i],fmrankpoint[i]);
 					strcat(token,buff);
 				}
 				CHAR_setWorkInt(toindex,CHAR_WORKLISTPAGE,CHAR_getWorkInt(toindex,CHAR_WORKLISTPAGE)+1);
@@ -306,7 +306,7 @@ static void NPC_FmRank_selectWindow( int meindex, int toindex, int num,int selec
 	case WINDOW_FMRANKTOP_PREV:
 		if(CHAR_getWorkInt(toindex,CHAR_WORKLISTPAGE)>3) return;
 		windowtype = WINDOW_MESSAGETYPE_MESSAGE;
-		sprintf(token, "               ¡ïÇ°20ÃûÅÅÃû¼Ò×åÁĞ±í¡ï\n");
+		sprintf(token, "               â˜…å‰20åæ’åå®¶æ—åˆ—è¡¨â˜…\n");
 			if(fmrankcnt>0){
 				int fmshowmax;
 				if(CHAR_getWorkInt(toindex,CHAR_WORKLISTPAGE)==3){
@@ -320,7 +320,7 @@ static void NPC_FmRank_selectWindow( int meindex, int toindex, int num,int selec
 				}
 				int i;
 				for(i=fmshowmax-7;i<fmshowmax;i++){
-					sprintf(buff,"%d.%s   ¾º¼ÛµãÊı£º%d\n",i+1,fmrankname[i],fmrankpoint[i]);
+					sprintf(buff,"%d.%s   ç«ä»·ç‚¹æ•°ï¼š%d\n",i+1,fmrankname[i],fmrankpoint[i]);
 					strcat(token,buff);
 				}
 				CHAR_setWorkInt(toindex,CHAR_WORKLISTPAGE,CHAR_getWorkInt(toindex,CHAR_WORKLISTPAGE)-1);

@@ -74,7 +74,7 @@ void NPC_DoorLooked( int meindex , int lookedindex );
 BOOL NPC_DoorRefreshOverFlg( int meind );
 
 
-/* Ö°¼°NPC¾®ÈÕ³ó×Û½ñÄ¾ÔÂåÃ£ÛNPCÃŞÃó·òĞşÎì»ï±å¹´ÖĞ»¯·´ npc_stepswitch.cÃ«ĞÄÇ· */
+/* èŒåŠNPCäº•æ—¥ä¸‘ç»¼ä»Šæœ¨æœˆè¿•ï¼»NPCæ£‰çš¿å¤«ç„æˆŠä¼™åå‹¾ä¸­åŒ–å npc_stepswitch.cæ¯›å¿ƒæ¬  */
 int NPC_DoorSetPasswd( int meindex, char *pas );
 int NPC_DoorGetPasswd( int meindex, char *out , int len );
 void NPC_DoorFlip(int meindex , int doindex);
@@ -166,7 +166,7 @@ BOOL NPC_ActionDPCheck(int meindex,int talker,int DP,int flg);
 #endif
 BOOL NPC_ActionLevelCheck(int meindex,int talker,int level,int flg);
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 BOOL NPC_ActionClassCheck( int meindex,int talker,int p_class,int flg);
 
 BOOL NPC_ActionSkillCheck( int meindex,int talker,int skillId,int flg);
@@ -232,15 +232,15 @@ BOOL NPC_DelItem( int toindex, int ti, int num);
 void NPC_ActionDoPileClearItem( int toindex, int itemID);
 
 
-#ifdef _PROFESSION_SKILL			// WON ADD ÈËÎïÖ°Òµ¼¼ÄÜ
+#ifdef _PROFESSION_SKILL			// WON ADD äººç‰©èŒä¸šæŠ€èƒ½
 int PROFESSION_RESTORE_POINT( int charaindex );
 #endif
 
 
 #ifdef _NPC_ADDWARPMAN1
 BOOL NPC_ActionPartyCountCheck( int toindex, int nums, int flg);
-BOOL NPC_ActionManCountCheck( int toindex, int nums, int flg);//¼ì²éÄĞÉúÈËÊı
-BOOL NPC_ActionWomanCountCheck( int toindex, int nums, int flg);//¼ì²éÅ®ÉúÈËÊı
+BOOL NPC_ActionManCountCheck( int toindex, int nums, int flg);//æ£€æŸ¥ç”·ç”Ÿäººæ•°
+BOOL NPC_ActionWomanCountCheck( int toindex, int nums, int flg);//æ£€æŸ¥å¥³ç”Ÿäººæ•°
 #endif
 
 #endif

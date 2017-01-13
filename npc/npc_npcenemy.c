@@ -16,16 +16,16 @@
 #include "npc_eventaction.h"
 extern char hanzibuf[5000][8];
 enum {
-	CHAR_WORK_ENCOUNTTYPE	= CHAR_NPCWORKINT1,	/* ¾Ş¼şÊĞËü¼şĞş¼°¿á   */
-	CHAR_WORK_DIEACT		= CHAR_NPCWORKINT2,	/* ÉØÊÏ·ÖÁİÉıµ¤ÔÊÔÂ¾® */
-	CHAR_WORK_WARP_FLOOR	= CHAR_NPCWORKINT3,	/* ·¥¡õÃóÔÊÔÂ°×·òÊ§*/
-	CHAR_WORK_WARP_X		= CHAR_NPCWORKINT4,	/* ·¥¡õÃóÔÊÔÂX */
-	CHAR_WORK_WARP_Y		= CHAR_NPCWORKINT5,	/* ·¥¡õÃóÔÊÔÂY */
-	CHAR_WORK_ONEBATTLE 	= CHAR_NPCWORKINT6,	/* Óò¹´ØÆ¾®¾ô  ØÆØ¦ÖĞ */
+	CHAR_WORK_ENCOUNTTYPE	= CHAR_NPCWORKINT1,	/* å·¨ä»¶å¸‚å®ƒä»¶ç„åŠé…·   */
+	CHAR_WORK_DIEACT		= CHAR_NPCWORKINT2,	/* éŸ¶æ°åˆ†å‡›å‡ä¸¹å…æœˆäº• */
+	CHAR_WORK_WARP_FLOOR	= CHAR_NPCWORKINT3,	/* ä¼â–¡çš¿å…æœˆç™½å¤«å¤±*/
+	CHAR_WORK_WARP_X		= CHAR_NPCWORKINT4,	/* ä¼â–¡çš¿å…æœˆX */
+	CHAR_WORK_WARP_Y		= CHAR_NPCWORKINT5,	/* ä¼â–¡çš¿å…æœˆY */
+	CHAR_WORK_ONEBATTLE 	= CHAR_NPCWORKINT6,	/* åŸŸå‹¾ä»„äº•çˆµ  ä»„å…ä¸­ */
 	NPC_TIME_MODE			= CHAR_NPCWORKINT7, 
-	CHAR_WORK_BASEIMGBAK	= CHAR_NPCWORKINT8, /* ÊÖÎç¼°  ì«  Ä¯ */
-	CHAR_WORK_DIETIME		= CHAR_NPCWORKINT9, /* ÉØÊÏ·ÖÁİÃŞ */
-	CHAR_WORK_REVIVALTIME	= CHAR_NPCWORKINT10, /* Ï·Îåß¯ÔÂÁİÃŞ */
+	CHAR_WORK_BASEIMGBAK	= CHAR_NPCWORKINT8, /* æ‰‹åˆåŠ  é£“  å¯ */
+	CHAR_WORK_DIETIME		= CHAR_NPCWORKINT9, /* éŸ¶æ°åˆ†å‡›æ£‰ */
+	CHAR_WORK_REVIVALTIME	= CHAR_NPCWORKINT10, /* æˆäº”å¿’æœˆå‡›æ£‰ */
 	CHAR_WORK_BATTLETYPE	= CHAR_NPCWORKINT11,
 #ifdef	_WARNPC_CTRL
 	CHAR_WORK_BATTLEINGTIME = CHAR_NPCWORKINT12,
@@ -111,7 +111,7 @@ BOOL NPC_NPCEnemyInit( int meindex )
 	
 	if( NPC_Util_GetStrFromStrWithDelim( argstr, "steal", buf, sizeof( buf)) != NULL ) {
 		if( NPC_Util_GetStrFromStrWithDelim( argstr, "item", buf, sizeof( buf)) == NULL ) {
-			print( "NPCEnemy:ÓĞÖ¸¶¨steal¶øÃ»ÓĞÖ¸¶¨item£¬ºÜÆæ¹Ö\n");
+			print( "NPCEnemy:æœ‰æŒ‡å®šstealè€Œæ²¡æœ‰æŒ‡å®šitemï¼Œå¾ˆå¥‡æ€ª\n");
 			return FALSE;
 		}
 	}
@@ -240,7 +240,7 @@ void NPC_NPCEnemyTalked( int meindex , int talkerindex , char *szMes ,
 #ifdef _MM_NO_JIAOBEN
 				if(timep - randtime < getEditBaseTime()*randwrong){
 					char errbuf[256];
-					sprintf(errbuf,"Äú»¹ÓĞ%dÃë²Å¿ÉÒÔ¼ÌĞø´Ë²Ù×÷£¡",getEditBaseTime()*randwrong-(timep - randtime));
+					sprintf(errbuf,"æ‚¨è¿˜æœ‰%dç§’æ‰å¯ä»¥ç»§ç»­æ­¤æ“ä½œï¼",getEditBaseTime()*randwrong-(timep - randtime));
 					CHAR_talkToCli(talkerindex, -1, errbuf, CHAR_COLORRED);
 					return;
 				}
@@ -251,14 +251,14 @@ void NPC_NPCEnemyTalked( int meindex , int talkerindex , char *szMes ,
 //			CHAR_setWorkInt(talkerindex,CHAR_WORKRANDEDITBASETIME,timep);
 //		else{
 //			char errbuf[256];
-//			sprintf(errbuf,"Äú»¹ÓĞ%dÃë²Å¿ÉÒÔ¼ÌĞø´Ë²Ù×÷£¡",getEditBaseTime()-(timep-CHAR_getWorkInt(talkerindex,CHAR_WORKRANDEDITBASETIME)));
+//			sprintf(errbuf,"æ‚¨è¿˜æœ‰%dç§’æ‰å¯ä»¥ç»§ç»­æ­¤æ“ä½œï¼",getEditBaseTime()-(timep-CHAR_getWorkInt(talkerindex,CHAR_WORKRANDEDITBASETIME)));
 //			CHAR_talkToCli(talkerindex, -1, errbuf, CHAR_COLORRED);
 //			return;
 //		}
-		char jiabuf[][5]={"¼Ó","©ï","©í","©ì","©æ","Ê®","©ç"};
-		char jianbuf[][5]={"¼õ","Ò»","-","¡ª","-","¡ª","©¥"};
-		char chengbuf[][5]={"³Ë","*","x","X","£Ø","£ø","£ª"};
-		char numbuf[][5]={"£°","£±","£²","£³","£´","£µ","£¶","£·","£¸","£¹"};
+		char jiabuf[][5]={"åŠ ","â•‹","â•‰","â•ˆ","â•‚","å","â•ƒ"};
+		char jianbuf[][5]={"å‡","ä¸€","-","â€”","-","â€”","â”"};
+		char chengbuf[][5]={"ä¹˜","*","x","X","ï¼¸","ï½˜","ï¼Š"};
+		char numbuf[][5]={"ï¼","ï¼‘","ï¼’","ï¼“","ï¼”","ï¼•","ï¼–","ï¼—","ï¼˜","ï¼™"};
 		char arg[255];
 		int i,j,k,l,m;
 		char buf[256];
@@ -322,7 +322,7 @@ void NPC_NPCEnemyTalked( int meindex , int talkerindex , char *szMes ,
 					sprintf(randtmpbuf[2],"%s",hanzibuf[RAND(1,5000)-1]);
 					sprintf(randtmpbuf[3],"%s",hanzibuf[RAND(1,5000)-1]);
 					sprintf(randquestion,"%s",str_hanzi_ganrao(randtmpbuf[0],randtmpbuf[1],randtmpbuf[2],randtmpbuf[3],0,0,0,0,0,0));
-					strcat(randquestion,"£¨ÇëÕÒ³öÏàÍ¬´Ê×é£©");
+					strcat(randquestion,"ï¼ˆè¯·æ‰¾å‡ºç›¸åŒè¯ç»„ï¼‰");
 					int newrand1 = RAND(1,100)-1;
 					int newrand2 = RAND(1,100)-1;
 					int newrand3 = RAND(1,100)-1;
@@ -354,7 +354,7 @@ void NPC_NPCEnemyTalked( int meindex , int talkerindex , char *szMes ,
 				sprintf(randwronganswer2,"[%c%c%c%c%c]",tempbuf[0],tempbuf[1],tempbuf[4],tempbuf[2],tempbuf[3]);
 				sprintf(randwronganswer3,"[%c%c%c%c%c]",tempbuf[4],tempbuf[1],tempbuf[2],tempbuf[0],tempbuf[3]);
 				sprintf(randwronganswer4,"[%c%c%c%c%c]",tempbuf[1],tempbuf[0],tempbuf[2],tempbuf[3],tempbuf[4]);
-				sprintf(randquestion,"[%s]£¨ÇëÕÒ³öÏàÍ¬Ó¢ÎÄ£©",tempbuf);
+				sprintf(randquestion,"[%s]ï¼ˆè¯·æ‰¾å‡ºç›¸åŒè‹±æ–‡ï¼‰",tempbuf);
 				sprintf(randrightanswer,"[%s]",tempbuf);
 				char* randstr = NULL;
 				randstr = str_ganrao(randquestion);
@@ -386,33 +386,33 @@ void NPC_NPCEnemyTalked( int meindex , int talkerindex , char *szMes ,
 				for(n=1;n<=5;n++){
 					if(n==randnum1){
 						if(qianhounum<=50)
-							sprintf(tempret[n-1],"Ñ¡Ïî( %d %s )",rightnum,randrightanswer);
+							sprintf(tempret[n-1],"é€‰é¡¹( %d %s )",rightnum,randrightanswer);
 						else
-							sprintf(tempret[n-1],"Ñ¡Ïî( %s %d )",randrightanswer,rightnum);
+							sprintf(tempret[n-1],"é€‰é¡¹( %s %d )",randrightanswer,rightnum);
 					}else{
 						if(m==1){
 							if(qianhounum<=50)
-								sprintf(tempret[n-1],"Ñ¡Ïî( %d %s )",wrongnum1,randwronganswer1);
+								sprintf(tempret[n-1],"é€‰é¡¹( %d %s )",wrongnum1,randwronganswer1);
 							else
-								sprintf(tempret[n-1],"Ñ¡Ïî( %s %d )",randwronganswer1,wrongnum1);
+								sprintf(tempret[n-1],"é€‰é¡¹( %s %d )",randwronganswer1,wrongnum1);
 							m = 2;
 						}else if(m==2){
 							if(qianhounum<=50)
-								sprintf(tempret[n-1],"Ñ¡Ïî( %d %s )",wrongnum2,randwronganswer2);
+								sprintf(tempret[n-1],"é€‰é¡¹( %d %s )",wrongnum2,randwronganswer2);
 							else
-								sprintf(tempret[n-1],"Ñ¡Ïî( %s %d )",randwronganswer2,wrongnum2);
+								sprintf(tempret[n-1],"é€‰é¡¹( %s %d )",randwronganswer2,wrongnum2);
 							m = 3;
 						}else if(m==3){
 							if(qianhounum<=50)
-								sprintf(tempret[n-1],"Ñ¡Ïî( %d %s )",wrongnum3,randwronganswer3);
+								sprintf(tempret[n-1],"é€‰é¡¹( %d %s )",wrongnum3,randwronganswer3);
 							else
-								sprintf(tempret[n-1],"Ñ¡Ïî( %s %d )",randwronganswer3,wrongnum3);
+								sprintf(tempret[n-1],"é€‰é¡¹( %s %d )",randwronganswer3,wrongnum3);
 							m = 4;
 						}else if(m==4){
 							if(qianhounum<=50)
-								sprintf(tempret[n-1],"Ñ¡Ïî( %d %s )",wrongnum4,randwronganswer4);
+								sprintf(tempret[n-1],"é€‰é¡¹( %d %s )",wrongnum4,randwronganswer4);
 							else
-								sprintf(tempret[n-1],"Ñ¡Ïî( %s %d )",randwronganswer4,wrongnum4);
+								sprintf(tempret[n-1],"é€‰é¡¹( %s %d )",randwronganswer4,wrongnum4);
 							m = 5;
 						}
 					}
@@ -428,7 +428,7 @@ void NPC_NPCEnemyTalked( int meindex , int talkerindex , char *szMes ,
 				}
 			CHAR_setWorkChar(talkerindex, CHAR_WORKRANDMSG, buf);
 			int fd = getfdFromCharaIndex( talkerindex );
-			sprintf(buf,"%s\n%s\n%s\n%s\n%s\n%s\nÊäÈëÕıÈ·´ğ°¸À¨ºÅÄÚµÄ5Î»Êı×Ö»òÕßµãÑ¡´ğ°¸",randquestion,tempret[0],tempret[1],tempret[2],tempret[3],tempret[4]);
+			sprintf(buf,"%s\n%s\n%s\n%s\n%s\n%s\nè¾“å…¥æ­£ç¡®ç­”æ¡ˆæ‹¬å·å†…çš„5ä½æ•°å­—æˆ–è€…ç‚¹é€‰ç­”æ¡ˆ",randquestion,tempret[0],tempret[1],tempret[2],tempret[3],tempret[4]);
 			lssproto_WN_send( fd, windowtype, 
 				WINDOW_BUTTONTYPE_OK,
 				CHAR_WINDOWTYPE_NPCENEMY_RAND_MSG,
@@ -587,7 +587,7 @@ int NPC_NPCEnemy_Encount( int meindex, int charaindex, int mode)
 		if( NPC_Util_GetStrFromStrWithDelim( argstr, "partynum", buf, sizeof( buf))!= NULL ) {
 			if( CHAR_getWorkInt( charaindex, (atoi(buf)-1) + CHAR_WORKPARTYINDEX1) == -1 ) {
 				char partymsg[256];
-				sprintf(partymsg,"ÄúµÄ¶ÓÎéÈËÊıÉÙÓÚ%dÈË,ÎŞ·¨¼ÌĞø£¡",atoi(buf));
+				sprintf(partymsg,"æ‚¨çš„é˜Ÿä¼äººæ•°å°‘äº%däºº,æ— æ³•ç»§ç»­ï¼",atoi(buf));
 				CHAR_talkToCliAndParty( charaindex, meindex ,partymsg, CHAR_COLORYELLOW );
 				return FALSE; 
 			}
@@ -598,11 +598,11 @@ int NPC_NPCEnemy_Encount( int meindex, int charaindex, int mode)
 	}
 
 	if( flg ) {
-		/* ºÒ¼°Áİ·´  ÷»ÔÊÔÂ */
+		/* é˜‚åŠå‡›å  éª°å…æœˆ */
 		if( CHAR_getWorkInt( charaindex, CHAR_WORKPARTYMODE) != CHAR_PARTY_CLIENT) {
 			char	config[32];
 			snprintf( config, sizeof( config), "askbattlemsg1");
-			/* ¾ô  »¥ï§ÒıÔÂó¡±åß¤  ¶ªÓÀ±¾¡õ³â */
+			/* çˆµ  äº’é“µå¼•æœˆèŸ†åæ’™  ä¸¢æ°¸æœ¬â–¡æ–¥ */
 			
 			
 			if( NPC_Util_GetStrFromStrWithDelim( argstr, config,  buf, sizeof( buf))!= NULL )
@@ -611,7 +611,7 @@ int NPC_NPCEnemy_Encount( int meindex, int charaindex, int mode)
 				char	escapebuf[1024];
 				int fd = getfdFromCharaIndex( charaindex);
 				char	buf2[256];
-				/* askbattlemsg? »¥Ø¤Ä¾ÈÉ  ĞÑµæ±åÔÊÔÂ  "\n"Îì¡õÓñÃ«  Ä¾ÔÂ)*/
+				/* askbattlemsg? äº’ä¸æœ¨å£¬  é†’å«åå…æœˆ  "\n"æˆŠâ–¡ç‰æ¯›  æœ¨æœˆ)*/
 				for( i = 2; i < 7; i ++ ) {
 					snprintf( config, sizeof( config), "askbattlemsg%d", i);
 					if( NPC_Util_GetStrFromStrWithDelim( argstr, config, buf2, sizeof( buf2))!= NULL )
@@ -642,10 +642,10 @@ int NPC_NPCEnemy_Encount( int meindex, int charaindex, int mode)
 									CHAR_getWorkInt( meindex, CHAR_WORKOBJINDEX),
 									makeEscapeString( buf, escapebuf,sizeof(escapebuf)));
 				}
-				/* ³ğ³ğ·ÖØê    ±åØøÕı¡õ¼ş */
+				/* ä»‡ä»‡åˆ†ä»ƒ    åä¼‰æ­£â–¡ä»¶ */
 				return FALSE;
 			}else {
-				/* ¾ô  ±å  ÈÕÁùÔÂ */
+				/* çˆµ  å  æ—¥å…­æœˆ */
 				flg = NPC_NPCEnemy_BattleIn( meindex, charaindex);
 			}
 		}
@@ -675,10 +675,10 @@ int NPC_NPCEnemy_Dying( int battleindex, int meindex )
 	if( strstr( argstr, "NEWNPCENEMY") )    {
 	}else	{
 #endif
-	/* Ó¬    ¼°ÚïÌ« */
+	/* è‡    åŠé™²å¤ª */
 	if( NPC_Util_GetStrFromStrWithDelim( argstr, "endmsg", buf, sizeof( buf)) != NULL ) {
 		for( i = 0; i < 5; i ++ ) {
-			/* ¾ô  ±å¸¨µÑØÆ»¯ÖĞÔÂòå¹»±å¶ªÓÀ±¾¡õ³â */
+			/* çˆµ  åè¾…ç¬›ä»„åŒ–ä¸­æœˆèˆå¤Ÿåä¸¢æ°¸æœ¬â–¡æ–¥ */
 			int toindex = BattleArray[battleindex].Side[0].Entry[i].charaindex;
 			if( CHAR_CHECKINDEX( toindex) )	{
 				CHAR_talkToCli( toindex, meindex ,buf , CHAR_COLORYELLOW );
@@ -697,7 +697,7 @@ int NPC_NPCEnemy_Dying( int battleindex, int meindex )
 		}
 		
 	}
-#ifdef _ALLDOMAN // (²»¿É¿ª) Syu ADD ÅÅĞĞ°ñNPC
+#ifdef _ALLDOMAN // (ä¸å¯å¼€) Syu ADD æ’è¡Œæ¦œNPC
 	if( NPC_Util_GetStrFromStrWithDelim( argstr, "herobattlefield", buf, sizeof( buf)) != NULL ) {
 			int charaindex = BattleArray[battleindex].Side[0].Entry[0].charaindex;
 			CHAR_setWorkInt ( charaindex , CHAR_WORKHEROFLOOR , atoi ( buf ) ) ;
@@ -779,7 +779,7 @@ int NPC_NPCEnemy_Dying( int battleindex, int meindex )
 						continue;
 					}
 				}
-				CHAR_DischargeParty( toindex, 0); // ²ğ¶Ó
+				CHAR_DischargeParty( toindex, 0); // æ‹†é˜Ÿ
 				CHAR_warpToSpecificPoint( toindex,
 					CHAR_getWorkInt( meindex, CHAR_WORK_WARP_FLOOR),
 					CHAR_getWorkInt( meindex, CHAR_WORK_WARP_X),
@@ -826,7 +826,7 @@ void NPC_NPCEnemyLoop( int meindex )
 			int cnt;
 			int dcnt = 1;
 
-			/*--òØ»ş¼°·¥¡õÃó¼°´Í  --*/
+			/*--èœ‡ç®•åŠä¼â–¡çš¿åŠèµ  --*/
 			//cnt = CHAR_getWorkInt(meindex,CHAR_NPCWORKINT4);
 			while(getStringFromIndexWithDelim(token1,",", dcnt,buf2,sizeof(buf2) )
 	 			!=FALSE ){
@@ -967,7 +967,7 @@ BOOL NPC_NPCEnemy_BattleIn(  int meindex, int charaindex)
 						if(ip==toip){
 							ipcnt++;
 							if(ipcnt>sameip){
-								CHAR_talkToCli( charaindex, -1, "Í¬IP×é¶ÓÊıÒÑ´ïÉÏÏŞ£¬ÎŞ·¨¿ªÕ½¡£", CHAR_COLORYELLOW);
+								CHAR_talkToCli( charaindex, -1, "åŒIPç»„é˜Ÿæ•°å·²è¾¾ä¸Šé™ï¼Œæ— æ³•å¼€æˆ˜ã€‚", CHAR_COLORYELLOW);
 								return FALSE;
 							}
 						}
@@ -1030,7 +1030,7 @@ BOOL NPC_NPCEnemy_BattleIn(  int meindex, int charaindex)
 				CHAR_setWorkInt(toindex,CHAR_WORKBATTLEHELP,1);
 				lssproto_HL_send( tofd, TRUE);
 			}
-			/* ¶ªÓÀ±¾¡õ³âËªññ */
+			/* ä¸¢æ°¸æœ¬â–¡æ–¥éœœè€¨ */
 			CHAR_sendBattleEffect( toindex, ON);
 		}
 		}
@@ -1041,7 +1041,7 @@ BOOL NPC_NPCEnemy_BattleIn(  int meindex, int charaindex)
 		floory = CHAR_getInt(meindex,CHAR_Y);
     	int     playernum = CHAR_getPlayerMaxNum();
     	char token1[256];
-    	sprintf(token1,"ÓÂÊ¿ÃÇ£¬ÒÑÓĞÈËÔÚ%s¡¶%d,%d¡·ÕÒµ½Á¶ÓüÊ¹Õß£¬ËÙÀ´ÔöÔ®¡£",floorname,floorx,floory);
+    	sprintf(token1,"å‹‡å£«ä»¬ï¼Œå·²æœ‰äººåœ¨%sã€Š%d,%dã€‹æ‰¾åˆ°ç‚¼ç‹±ä½¿è€…ï¼Œé€Ÿæ¥å¢æ´ã€‚",floorname,floorx,floory);
     	for( i = 0 ; i < playernum ; i++) {
         if( CHAR_getCharUse(i) != FALSE ) {
 					CHAR_talkToCli( i, -1, token1, CHAR_COLORRED);
@@ -1096,7 +1096,7 @@ static int NPC_NPCEnemy_StealItem( char *argstr, int meindex, int charaindex)
 		CHAR_sendItemData( charaindex, delitemgroup, found);
 	}
 	else {
-		print( "NPCENEMY:Ææ¹Ö\n");
+		print( "NPCENEMY:å¥‡æ€ª\n");
 		return FALSE;
 	}
 	return TRUE;
@@ -1148,7 +1148,7 @@ static BOOL NPC_NPCEnemy_CheckFree( int  meindex, int toindex, BOOL *Party)
 	  if( NPC_Util_GetStrFromStrWithDelim( buf1, "endmsg", token, sizeof( token)) != NULL ) {
 		CHAR_talkToCli( toindex, meindex ,token , CHAR_COLORYELLOW );
 	  }
-#ifdef _ALLDOMAN // (²»¿É¿ª) Syu ADD ÅÅĞĞ°ñNPC
+#ifdef _ALLDOMAN // (ä¸å¯å¼€) Syu ADD æ’è¡Œæ¦œNPC
 	  if( NPC_Util_GetStrFromStrWithDelim( buf1, "herobattlefield", token, sizeof( token)) != NULL ) {
 		  CHAR_setWorkInt ( toindex , CHAR_WORKHEROFLOOR , atoi ( token ) ) ;
 		  if ( atoi ( token ) > CHAR_getInt ( toindex , CHAR_HEROFLOOR ) )
@@ -1235,7 +1235,7 @@ BOOL NPCEnemy_BSCheck(int meindex,int talker,char* buf)
 	int kosuu,temp=-1,flg=0;
 	char buff1[128],buff3[128];
 	if(strstr( buf, "-") != NULL)	{
-		//buff3Îª×¥³èÎïID
+		//buff3ä¸ºæŠ“å® ç‰©ID
 		getStringFromIndexWithDelim( buf, "-", 2, buff3, sizeof(buff3));
 		temp = atoi( buff3);
 		getStringFromIndexWithDelim( buf, "-", 1, buff1, sizeof(buff1));
@@ -1417,7 +1417,7 @@ BOOL NPCEnemy_CheckMyPet( int meindex, int talker, int petLv, int flg, int petid
 	}
 	if( petsel  == CHAR_MAXPETHAVE )	{
 		return FALSE;
-	}else	{	//ÕÒµ½Ìõ¼ş³è
+	}else	{	//æ‰¾åˆ°æ¡ä»¶å® 
 		switch( flg)	{
 		case 0:
 			if( CHAR_getInt( petindex, CHAR_LV) != petLv )

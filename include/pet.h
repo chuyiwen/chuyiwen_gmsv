@@ -2,13 +2,13 @@
 #define __PET_H__
 
 /*
- * Ê¸ÓÀĞşèú  ¼°É¬ÀÃÆ¥ÔÊ£Û
+ * çŸ¢æ°¸ç„æ¥®  åŠæ¶©çƒ‚åŒ¹å…ï¼»
  */
 #include "version.h"
 #include "common.h"
 
-#define PETFEEDTIME	60*60	// ³èÎïµ°Î¹ÑøÊ±¼ä(Ãë)
-//#define PETFEEDTIME	5	// ³èÎïµ°Î¹ÑøÊ±¼ä(Ãë)
+#define PETFEEDTIME	60*60	// å® ç‰©è›‹å–‚å…»æ—¶é—´(ç§’)
+//#define PETFEEDTIME	5	// å® ç‰©è›‹å–‚å…»æ—¶é—´(ç§’)
 
 int PET_DEBUG_initPetOne( int charaindex);
 int PET_dropPet( int charaindex, int havepetindex);
@@ -34,12 +34,12 @@ BOOL CHAR_DelPetForIndex( int charaindex, int petindex);
 #ifdef _PET_AMOI__E
 //typedef enum 
 //{
-//	PET_NOT_LIMIT = 0,//²»ÏŞÖÆ
-//	PET_NOT_DropTradeStreetVandor = 1,//²»¿É¶ªÆú²»¿É½»Ò×
-//	PET_NOT_Drop = 2,//²»¿É¶ªÆú
-//	PET_NOT_Trade = 3,//²»¿É½»Ò×
-//	PET_NOT_StreetVandor = 4,//²»¿ÉÓÃ´Ë¿ªµê
-//	PET_NOT_TradeAndStreetVandor = 5,//²»¿ÉÓÃ´Ë¿ªµê
+//	PET_NOT_LIMIT = 0,//ä¸é™åˆ¶
+//	PET_NOT_DropTradeStreetVandor = 1,//ä¸å¯ä¸¢å¼ƒä¸å¯äº¤æ˜“
+//	PET_NOT_Drop = 2,//ä¸å¯ä¸¢å¼ƒ
+//	PET_NOT_Trade = 3,//ä¸å¯äº¤æ˜“
+//	PET_NOT_StreetVandor = 4,//ä¸å¯ç”¨æ­¤å¼€åº—
+//	PET_NOT_TradeAndStreetVandor = 5,//ä¸å¯ç”¨æ­¤å¼€åº—
 //}PET_DUALTYPE;
 
 #define PET_NOT_LIMIT        0x00000000

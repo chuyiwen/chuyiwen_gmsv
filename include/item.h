@@ -27,25 +27,25 @@ typedef enum
 	ITEM_AMULET,
     /* ****** */
     ITEM_OTHER =16,
-    ITEM_BOOMERANG,		// ������
-    ITEM_BOUNDTHROW,	// Ͷ����ͷ
-    ITEM_BREAKTHROW,	// Ͷ��ʯ
+    ITEM_BOOMERANG,		// 回旋标
+    ITEM_BOUNDTHROW,	// 投掷斧头
+    ITEM_BREAKTHROW,	// 投掷石
     ITEM_DISH =20,
 #ifdef _ITEM_INSLAY
 	ITEM_METAL,
 	ITEM_JEWEL,
 #endif
 #ifdef _ITEM_CHECKWARES
-	ITEM_WARES,			//����
+	ITEM_WARES,			//货物
 #endif
 
 #ifdef _ITEM_EQUITSPACE
-	ITEM_WBELT,			//����
-	ITEM_WSHIELD,		//��
-	ITEM_WSHOES,		//Ь��
+	ITEM_WBELT,			//腰带
+	ITEM_WSHIELD,		//盾
+	ITEM_WSHOES,		//鞋子
 #endif
 #ifdef _EQUIT_NEWGLOVE 
-	ITEM_WGLOVE,		//����
+	ITEM_WGLOVE,		//手套
 #endif
 
 #ifdef _ALCHEMIST
@@ -97,12 +97,12 @@ typedef enum
 		ITEM_TARGET,
     ITEM_LEVEL,                     /*  LEVEL  */
 #ifdef _ITEM_MAXUSERNUM
-	ITEM_DAMAGEBREAK,				//��Ʒʹ�ô���
+	ITEM_DAMAGEBREAK,				//物品使用次数
 #endif
 
 #ifdef _ITEMSET4_TXT
-	ITEM_USEPILENUMS,				//��Ʒ�ѵ�����
-	ITEM_CANBEPILE,					//�Ƿ�ɶѵ�
+	ITEM_USEPILENUMS,				//物品堆叠次数
+	ITEM_CANBEPILE,					//是否可堆叠
 
 	ITEM_NEEDSTR,
 	ITEM_NEEDDEX,
@@ -124,29 +124,29 @@ typedef enum
 	ITEM_SUITCODE,
 #endif
 
-    ITEM_ATTACKNUM_MIN,             /*    �  ������  */
-    ITEM_ATTACKNUM_MAX,             /*    ��  ������  */
-    ITEM_MODIFYATTACK,              /*    ��    ����  */
-    ITEM_MODIFYDEFENCE,             /*    ��    ����  */
-    ITEM_MODIFYQUICK,               /*  QUICK  ����  */
+    ITEM_ATTACKNUM_MIN,             /*    斓  猾荚醒  */
+    ITEM_ATTACKNUM_MAX,             /*    嫖  猾荚醒  */
+    ITEM_MODIFYATTACK,              /*    猾    祭汹  */
+    ITEM_MODIFYDEFENCE,             /*    豢    祭汹  */
+    ITEM_MODIFYQUICK,               /*  QUICK  祭汹  */
 
-    ITEM_MODIFYHP,                  /*  HP  ����    */
-    ITEM_MODIFYMP,                  /*  MP  ����    */
-    ITEM_MODIFYLUCK,                /*  LUCK  ����    */
-    ITEM_MODIFYCHARM,               /*  CHARM  ����    */
-    ITEM_MODIFYAVOID,               /*  ��    Ĥ��    */
-	ITEM_MODIFYATTRIB,				/*  ����Ĥ�� */
-	ITEM_MODIFYATTRIBVALUE,			/*  ����Ĥ�Ұ� */
-	ITEM_MAGICID,					/*  ����  į */
-	ITEM_MAGICPROB,					/*  ����       */
-	ITEM_MAGICUSEMP,				/*  ��  MP */
+    ITEM_MODIFYHP,                  /*  HP  祭汹    */
+    ITEM_MODIFYMP,                  /*  MP  祭汹    */
+    ITEM_MODIFYLUCK,                /*  LUCK  祭汹    */
+    ITEM_MODIFYCHARM,               /*  CHARM  祭汹    */
+    ITEM_MODIFYAVOID,               /*  荚    膜恳    */
+	ITEM_MODIFYATTRIB,				/*  箪岭膜恳 */
+	ITEM_MODIFYATTRIBVALUE,			/*  箪岭膜恳袄 */
+	ITEM_MAGICID,					/*  热诸  寞 */
+	ITEM_MAGICPROB,					/*  热诸       */
+	ITEM_MAGICUSEMP,				/*  壅  MP */
 
 #ifdef _ITEMSET5_TXT
 	ITEM_MODIFYARRANGE,
 	ITEM_MODIFYSEQUENCE,
 
 	ITEM_ATTACHPILE,
-	ITEM_HITRIGHT,	//��������
+	ITEM_HITRIGHT,	//额外命中
 #endif
 #ifdef _ITEMSET6_TXT
 	ITEM_NEGLECTGUARD,
@@ -162,25 +162,25 @@ typedef enum
 	ITEM_PETFIX6,
 	ITEM_PETFIX7,
 #endif
-    /*  ��  ������Ĥ�Ұ���*/
-    ITEM_POISON,					/*   ������̫��ĸ������          */
-    ITEM_PARALYSIS,          		/* ��̫ľ��1  ����  ��ƥ��ئ�У� */
-    ITEM_SLEEP,              		/* ��Ի�۵�  ƥ��ئ��            */
-    ITEM_STONE,              		/* �ޣ۵�  ƥ��ئ��              */
-    ITEM_DRUNK,              		/* �쵤��      ��Ʊ����     */
-    ITEM_CONFUSION,          		/* ���٣�  ��    ë����     */
+    /*  旦  □正旦膜恳袄［*/
+    ITEM_POISON,					/*   汹仁凶太卞母丢□斥          */
+    ITEM_PARALYSIS,          		/* 仄太木｝1  及垫  互匹五卅中［ */
+    ITEM_SLEEP,              		/* 戽曰［垫  匹五卅中            */
+    ITEM_STONE,              		/* 檗［垫  匹五卅中              */
+    ITEM_DRUNK,              		/* 办丹［      互票互月     */
+    ITEM_CONFUSION,          		/* 渔刭［  猾    毛赀月     */
 
-	ITEM_CRITICAL,					/* ����  ū�л�  Ĥ�� */
+	ITEM_CRITICAL,					/* 弁伉  奴市伙  膜恳 */
 
-	ITEM_USEACTION,					/* �������ݼ�ʧ������� */
-    ITEM_DROPATLOGOUT,              /* ���ʧ���������ݱ�  �ʾ�������  */
-    ITEM_VANISHATDROP,              /*   �����ݱ������¾������� */
-    ITEM_ISOVERED,                  /*  ������Ⱦ�����ľ�¾���������*/
-	ITEM_CANPETMAIL,				/* ʸ����������ƥ˪ľ�¾� */
-	ITEM_CANMERGEFROM,				/* �������ئľ�¾� */
-	ITEM_CANMERGETO,				/* �����Ʊ�ئľ�¾� */
+	ITEM_USEACTION,					/* 银匀凶凛及失弁扑亦件 */
+    ITEM_DROPATLOGOUT,              /* 夫弘失它玄允月凛卞  允井升丹井  */
+    ITEM_VANISHATDROP,              /*   仄凶凛卞壅尹月井升丹井 */
+    ITEM_ISOVERED,                  /*  晓卞昙匀井日日木月井升丹井［*/
+	ITEM_CANPETMAIL,				/* 矢永玄丢□伙匹霜木月井 */
+	ITEM_CANMERGEFROM,				/* 宁岳葭卞卅木月井 */
+	ITEM_CANMERGETO,				/* 宁岳燮卞卅木月井 */
 
-    ITEM_INGVALUE0,                 /* ����(5����) */
+    ITEM_INGVALUE0,                 /* 岳坌(5蜊坌) */
     ITEM_INGVALUE1,
     ITEM_INGVALUE2,
     ITEM_INGVALUE3,
@@ -188,15 +188,15 @@ typedef enum
 #ifdef _PETITEM__AMOI_E
 	ITEM_TYPEOFITEM,	
 #endif     
-	ITEM_PUTTIME,					/*  ʧ��  ة��  ��ľ������ */
-    ITEM_LEAKLEVEL,                 /*    ������ľ������ľ�׾�  */
-	ITEM_MERGEFLG,					/*  ������ľ��ʧ��  ة�������� */
-	ITEM_CRUSHLEVEL,				/*  çľպ���� 0  2 �߷�çľ��ئ�� 2����ç */
+	ITEM_PUTTIME,					/*  失奶  丞互  井木凶凛棉 */
+    ITEM_LEAKLEVEL,                 /*    怍互升木分仃壬木凶井  */
+	ITEM_MERGEFLG,					/*  宁岳今木凶失奶  丞井升丹井 */
+	ITEM_CRUSHLEVEL,				/*  莽木蘸宁中 0  2 ㄟ反莽木化卅中 2反蝈莽 */
 
-    ITEM_VAR1,              	/*    ���۽�       */
-    ITEM_VAR2,              	/*    ���۽�       */
-    ITEM_VAR3,              	/*    ���۽�       */
-    ITEM_VAR4,              	/*    ���۽�       */
+    ITEM_VAR1,              	/*    迕综仅       */
+    ITEM_VAR2,              	/*    迕综仅       */
+    ITEM_VAR3,              	/*    迕综仅       */
+    ITEM_VAR4,              	/*    迕综仅       */
 	ITEM_TIME,
 #ifdef _ITEM_COLOER	
 		ITEM_COLOER,
@@ -207,73 +207,73 @@ typedef enum
 
 typedef enum
 {
-    ITEM_NAME,                      /*    �     񲼰  �     */
-    ITEM_SECRETNAME,                /*    �    �ʽ�ľ�µ�  ��  Ի    */
-    ITEM_EFFECTSTRING,              /*  ���  ٯ    */
-    ITEM_ARGUMENT,                  /*  ʧ��  ة��¦��  */
+    ITEM_NAME,                      /*    蟆     癫及  蟆     */
+    ITEM_SECRETNAME,                /*    蟆    凳今木月第  岭  曰    */
+    ITEM_EFFECTSTRING,              /*  躲绊  侬    */
+    ITEM_ARGUMENT,                  /*  失奶  丞及娄醒  */
 #ifdef _ITEM_INSLAY
 	ITEM_TYPECODE,
 	ITEM_INLAYCODE,
 #endif
-	ITEM_CDKEY,						/*  ʧ��  ة��  �ë  �ٱ�  �������м�           */
+	ITEM_CDKEY,						/*  失奶  丞及  蟆毛  赓卞  凳仄凶谛及           */
 #ifdef _ITEM_FORUSERNAMES
 	ITEM_FORUSERNAME,
 	ITEM_FORUSERCDKEY,
 #endif
 // CoolFish: 2001/10/11
 #ifdef _UNIQUE_P_I
-    ITEM_UNIQUECODE,		  /* ��Ʒ���� */
+    ITEM_UNIQUECODE,		  /* 物品编码 */
 #endif
 
-    ITEM_INGNAME0,                  /*  ���м�  �(5����) */
+    ITEM_INGNAME0,                  /*  岳坌及  蟆(5蜊坌) */
     ITEM_INGNAME1,
     ITEM_INGNAME2,
     ITEM_INGNAME3,
     ITEM_INGNAME4,
 
 
-    ITEM_INITFUNC,                  /* ¦��
+    ITEM_INITFUNC,                  /* 娄醒
                                      * ITEM_Item*
-                                     * ߯Ի�� BOOL
-                                     * ߯Ի������  �� CHAR_INITFUNC
-                                     * ��  Ԫ  */
+                                     * 忒曰袄 BOOL
+                                     * 忒曰袄及啦  反 CHAR_INITFUNC
+                                     * 午  元  */
     ITEM_FIRSTFUNCTION = ITEM_INITFUNC,
-    ITEM_PREOVERFUNC,               /* CHAR_PREOVERFUNC ë��� */
-    ITEM_POSTOVERFUNC,              /* CHAR_POSTOVERFUNC ë���*/
-    ITEM_WATCHFUNC,                 /* CHAR_WATCHFUNC ë��� */
-    ITEM_USEFUNC,                   /* ¦�ѷ���
-                                     * int charaindex ƽ�ҷ��̼������͵�
-                                     * int charitemindex ���м�
-                                     *              ʧ��  ة    ����    
-                                     *              ë�����׾�
+    ITEM_PREOVERFUNC,               /* CHAR_PREOVERFUNC 毛辅寰 */
+    ITEM_POSTOVERFUNC,              /* CHAR_POSTOVERFUNC 毛辅寰*/
+    ITEM_WATCHFUNC,                 /* CHAR_WATCHFUNC 毛辅寰 */
+    ITEM_USEFUNC,                   /* 娄醒反｝
+                                     * int charaindex 平乓仿奶件犯永弁旦
+                                     * int charitemindex 愤坌及
+                                     *              失奶  丞    及窒    
+                                     *              毛银匀凶井
                                      */
-    ITEM_ATTACHFUNC,                /* ¦�ѷ���
-                                     * int charaindex ƽ�ҷ��̼������͵�
-                                     * int itemindex  ʧ��  ة�̼������͵�
-                                     *      ƽ�ҷ�������  �Ȼ�����ʧ��  ة
-                                     *      ��ʧ��  ة  ƥ���̼������͵�
-                                     *      ƥ��ئ���Ǳ�������
+    ITEM_ATTACHFUNC,                /* 娄醒反｝
+                                     * int charaindex 平乓仿奶件犯永弁旦
+                                     * int itemindex  失奶  丞奶件犯永弁旦
+                                     *      平乓仿弁正及  匀化中月失奶  丞
+                                     *      及失奶  丞  匹及奶件犯永弁旦
+                                     *      匹反卅中仪卞镗啦［
                                      */
-    ITEM_DETACHFUNC,                /* ¦�ѷ���
-                                     * int charaindex ƽ�ҷ��̼������͵�
-                                     * int itemindex  ʧ��  ة�̼������͵�
-                                     *      ƽ�ҷ�������  �Ȼ�����ʧ��  ة
-                                     *      ��ʧ��  ة  ƥ���̼������͵�
-                                     *      ƥ��ئ���Ǳ�������
+    ITEM_DETACHFUNC,                /* 娄醒反｝
+                                     * int charaindex 平乓仿奶件犯永弁旦
+                                     * int itemindex  失奶  丞奶件犯永弁旦
+                                     *      平乓仿弁正及  匀化中月失奶  丞
+                                     *      及失奶  丞  匹及奶件犯永弁旦
+                                     *      匹反卅中仪卞镗啦［
                                      */
-    ITEM_DROPFUNC, 		            /*   ����������
-                                     * ¦�ѷ�
-                                     *  int charaindex   ������ƽ�ҷ�
-                                     *  int itemindex ʧ��  ة�̼������͵�
+    ITEM_DROPFUNC, 		            /*   午仄凶午五
+                                     * 娄醒反
+                                     *  int charaindex   午仄凶平乓仿
+                                     *  int itemindex 失奶  丞奶件犯永弁旦
                                      */
-    ITEM_PICKUPFUNC,              /* ʧ��  ةë��������
-                                     * ¦�ѷ�
-                                     *  int charaindex  ������ƽ�ҷ�index
-                                     *  int itemindex ʧ��  ة�̼������͵�
+    ITEM_PICKUPFUNC,              /* 失奶  丞毛胶匀凶凛
+                                     * 娄醒反
+                                     *  int charaindex  胶匀凶平乓仿index
+                                     *  int itemindex 失奶  丞奶件犯永弁旦
                                      */
 #ifdef _Item_ReLifeAct
 	ITEM_DIERELIFEFUNC,					/*ANDY_ADD
-										�������	
+										复活道具	
 									 */
 #endif
 #ifdef _PETITEM__AMOI_E
@@ -356,11 +356,11 @@ typedef struct tagITEM_exists
 }ITEM_exists;
 
 #ifdef _PETITEM__AMOI_E
-#define ITEM_NOT_LIMIT         0x00000000 //������
-#define ITEM_NOT_DROP          0x00000010 //������
-#define ITEM_NOT_STREETVANDOR  0x00000100 //���ɰڵ�
-#define ITEM_NOT_TRADE         0x00001000 //���ɽ���
-#define ITEM_NOT_MAIL          0x00010000 //�����ʼ�
+#define ITEM_NOT_LIMIT         0x00000000 //无限制
+#define ITEM_NOT_DROP          0x00000010 //不可扔
+#define ITEM_NOT_STREETVANDOR  0x00000100 //不可摆店
+#define ITEM_NOT_TRADE         0x00001000 //不可交易
+#define ITEM_NOT_MAIL          0x00010000 //不可邮寄
 #endif
 
 #define		ITEM_CHECKINDEX(index)		\
@@ -475,7 +475,7 @@ int ITEMTBL_getInt( int ItemID, ITEM_DATAINT datatype);
 char *ITEMTBL_getChar( int ItemID, ITEM_DATACHAR datatype);
 
 int ITEM_getItemDamageCrusheED( int itemindex);
-void ITEM_RsetEquit( int charaindex);//�Զ�ж��װ��λ�ô���֮��Ʒ
+void ITEM_RsetEquit( int charaindex);//自动卸除装备位置错误之物品
 void ITEM_reChangeItemToPile( int itemindex);
 void ITEM_reChangeItemName( int itemindex);
 

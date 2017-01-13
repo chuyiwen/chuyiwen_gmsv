@@ -33,10 +33,10 @@ int NPC_Lua_Game_FMPOINT_GetData(lua_State *_NLL)
 			LRetMsg(_NLL, GA_RetPoint);
 		}else
 		{
-			LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+			LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 		}
 	}
-	LRetErrNull(_NLL, "´«ÈëµÄ±êÖ¾ÊÇ´íÎóµÄ¡£");
+	LRetErrNull(_NLL, "ä¼ å…¥çš„æ ‡å¿—æ˜¯é”™è¯¯çš„ã€‚");
 }
 
 int NPC_Lua_Game_FMPOINT_ACSetFMPoint(lua_State *_NLL)
@@ -50,15 +50,15 @@ int NPC_Lua_Game_FMPOINT_ACSetFMPoint(lua_State *_NLL)
 	int y = (int)lua_tointeger(_NLL, 5);
 	if(!CHAR_CHECKINDEX(leaderindex))
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	if (fmpointindex < 0 || fmpointindex > 9) 
 	{
-		LRetErrInt(_NLL, -1, "´«ÈëµÄ×¯Ô°±àºÅÊÇÎŞĞ§µÄ¡£");
+		LRetErrInt(_NLL, -1, "ä¼ å…¥çš„åº„å›­ç¼–å·æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	int fd = getfdFromCharaIndex( leaderindex ); 
 	if( fd == -1 ){
-		LRetErrInt(_NLL, -2, "¸ÃÍæ¼Ò¿ÉÄÜÒÑ¾­ÏÂÏß£¡");
+		LRetErrInt(_NLL, -2, "è¯¥ç©å®¶å¯èƒ½å·²ç»ä¸‹çº¿ï¼");
 	}
 	char *tmpbuf = "";
   sprintf(tmpbuf, "%d|%d|%d|%d|%d|",leaderindex,fmpointindex,map,x,y);
@@ -75,19 +75,19 @@ int NPC_Lua_Game_FMPOINT_ACFixFMPoint(lua_State *_NLL)
 	int id = (int)lua_tointeger(_NLL, 3);
 	if(!CHAR_CHECKINDEX(winindex) || !CHAR_CHECKINDEX(loseindex))
 	{
-	  LRetErrNull(_NLL, "´«ÈëµÄË÷ÒıÊÇÎŞĞ§µÄ¡£");
+	  LRetErrNull(_NLL, "ä¼ å…¥çš„ç´¢å¼•æ˜¯æ— æ•ˆçš„ã€‚");
 	}
 	if (id < 0 || id > 9) 
 	{
-	  LRetErrNull(_NLL, "´«ÈëµÄ×¯Ô°±àºÅÊÇÎŞĞ§µÄ¡£");
+	  LRetErrNull(_NLL, "ä¼ å…¥çš„åº„å›­ç¼–å·æ˜¯æ— æ•ˆçš„ã€‚");
 	}
-if(CHAR_getInt( winindex, CHAR_FMLEADERFLAG ) != FMMEMBER_LEADER)//²»ÊÇ×å³¤
+if(CHAR_getInt( winindex, CHAR_FMLEADERFLAG ) != FMMEMBER_LEADER)//ä¸æ˜¯æ—é•¿
 	{
-	  LRetErrNull(_NLL, "´«ÈëµÄË÷Òı¶ÔÏó²¢²»ÊÇ×å³¤");
+	  LRetErrNull(_NLL, "ä¼ å…¥çš„ç´¢å¼•å¯¹è±¡å¹¶ä¸æ˜¯æ—é•¿");
 	}
-if(CHAR_getInt( loseindex, CHAR_FMLEADERFLAG ) != FMMEMBER_LEADER)//²»ÊÇ×å³¤
+if(CHAR_getInt( loseindex, CHAR_FMLEADERFLAG ) != FMMEMBER_LEADER)//ä¸æ˜¯æ—é•¿
   {
-		LRetErrNull(_NLL, "´«ÈëµÄË÷Òı¶ÔÏó²¢²»ÊÇ×å³¤");
+		LRetErrNull(_NLL, "ä¼ å…¥çš„ç´¢å¼•å¯¹è±¡å¹¶ä¸æ˜¯æ—é•¿");
   }
 	saacproto_ACFixFMPoint_send(acfd,	CHAR_getChar(winindex,CHAR_FMNAME),CHAR_getInt(winindex,CHAR_FMINDEX) + 1,CHAR_getInt(winindex,CHAR_FMINDEX),
 	CHAR_getChar(loseindex,CHAR_FMNAME),CHAR_getInt(loseindex,CHAR_FMINDEX) + 1,CHAR_getInt(loseindex,CHAR_FMINDEX),id);
@@ -101,7 +101,7 @@ int NPC_Lua_Game_FMPOINT_ACCleanFMPoint(lua_State *_NLL)
 	int id = (int)lua_tointeger(_NLL, 1);
 	if (id < 0 || id > 9) 
 	{
-	  LRetErrNull(_NLL, "´«ÈëµÄ×¯Ô°±àºÅÊÇÎŞĞ§µÄ¡£");
+	  LRetErrNull(_NLL, "ä¼ å…¥çš„åº„å›­ç¼–å·æ˜¯æ— æ•ˆçš„ã€‚");
 	}
  saacproto_ACDelFmPoint_send(acfd,id);
 //   saacproto_ACDelFmPoint_send(acfd,id);

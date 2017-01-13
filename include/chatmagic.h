@@ -68,8 +68,8 @@ void CHAR_CHAT_DEBUG_showMem(int charaindex, char *message);
 void CHAR_CHAT_DEBUG_playerspread( int charaindex, char *message);
 void CHAR_CHAT_DEBUG_reset( int charaindex, char* message );
 
-void CHAR_CHAT_DEBUG_laba(int charindex , char *message );  //×ÏÔÆ Ğ¡À®°È
-void CHAR_CHAT_DEBUG_dalaba(int charindex , char *message );  //×ÏÔÆ ´óÀ®°È
+void CHAR_CHAT_DEBUG_laba(int charindex , char *message );  //ç´«äº‘ å°å–‡å­
+void CHAR_CHAT_DEBUG_dalaba(int charindex , char *message );  //ç´«äº‘ å¤§å–‡å­
 
 #ifdef _MAKE_MAP
 void CHAR_CHAT_DelMap( int charaindex, char* message );
@@ -83,7 +83,7 @@ void CHAR_CHAT_Fukuwa( int charaindex, char* message );
 #ifdef _GMRELOAD
 void CHAR_CHAT_DEBUG_gmreload(int charaindex, char *message);
 #endif
-#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
+#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
 void CHAR_CHAT_DEBUG_addsk( int charaindex, char *message );
 void CHAR_CHAT_DEBUG_delsk( int charaindex, char *message );
 #endif
@@ -95,10 +95,10 @@ void CHAR_CHAT_DEBUG_setgamblenum( int charaindex, char *message );
 #ifdef _WAEI_KICK
 void CHAR_CHAT_DEBUG_gmkick( int charindex, char* message);
 #endif
-// WON ADD ĞŞÕı×å³¤ÎÊÌâ
+// WON ADD ä¿®æ­£æ—é•¿é—®é¢˜
 void CHAR_CHAT_DEBUG_fixfmleader(int charaindex, char *message);
 
-// WON ADD µ±»úÖ¸Áî
+// WON ADD å½“æœºæŒ‡ä»¤
 void CHAR_CHAT_DEBUG_crash(int charaindex, char *message);
 void CHAR_CHAT_DEBUG_SAVESHH( int fd, int charaindex,char* message,int color, int area );
 #ifdef _PETSKILL_SETDUCK
@@ -108,7 +108,7 @@ void CHAR_CHAT_DEBUG_SetDuck( int charaindex, char *message);
 void CHAR_CHAT_DEBUG_Toxication( int charaindex, char *message);
 #endif
 
-#ifdef _SEND_EFFECT	   	        // WON ADD ACËÍÏÂÑ©¡¢ÏÂÓêµÈÌØĞ§
+#ifdef _SEND_EFFECT	   	        // WON ADD ACé€ä¸‹é›ªã€ä¸‹é›¨ç­‰ç‰¹æ•ˆ
 void CHAR_CHAT_DEBUG_sendeffect(int charaindex, char *message);
 #endif
 #ifdef _TEST_DROPITEMS
@@ -116,7 +116,7 @@ void CHAR_CHAT_DEBUG_dropmypet( int charindex, char *message );
 void CHAR_CHAT_DEBUG_dropmyitem( int charindex , char *message );
 #endif
 
-#ifdef _CHAR_PROFESSION			// WON ADD ÈËÎïÖ°Òµ
+#ifdef _CHAR_PROFESSION			// WON ADD äººç‰©èŒä¸š
 void CHAR_CHAT_DEBUG_show_profession( int charaindex, char*message );
 void CHAR_CHAT_DEBUG_set_regist( int charaindex, char*message );
 #endif

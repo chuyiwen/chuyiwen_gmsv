@@ -116,7 +116,7 @@ const char *NPC_Lua_SetErrorStr(const char *ErrStr)
 	return (const char *)strcpy_s(M_OutErrMsg, sizeof(M_OutErrMsg), ErrStr);
 }
 
-//´´½¨NPC-·µ»ØNPCÎ¨Ò»Ë÷Òı
+//åˆ›å»ºNPC-è¿”å›NPCå”¯ä¸€ç´¢å¼•
 int NPC_Lua_Create(const char *_DoFile, const char *_InitFuncName, char *_seek, BOOL _IsFly)
 {
 	assert(_InitFuncName != NULL);
@@ -127,7 +127,7 @@ int NPC_Lua_Create(const char *_DoFile, const char *_InitFuncName, char *_seek, 
 	int TM_objindex;
 	int TM_seekint = 0;
 
-	//¸´ÖÆÖ¸¶¨Ä¬ÈÏÖµµ½TM_char
+	//å¤åˆ¶æŒ‡å®šé»˜è®¤å€¼åˆ°TM_char
 	if(_seek == NULL)
 	{
 		TM_seekint = CHAR_seekGraphicNumberFromString("\0");
@@ -138,10 +138,10 @@ int NPC_Lua_Create(const char *_DoFile, const char *_InitFuncName, char *_seek, 
 
 	if( CHAR_getDefaultChar( &TM_char, TM_seekint) == FALSE )
 	{
-		LRetErrInt(M_Script_Lua, -1, "ÉèÖÃÊı¾İÄ¬ÈÏÖµÊ§°Ü¡£³ÌĞòÄÚ²¿¿ÉÄÜ²úÉúÒç³ö¡£");
+		LRetErrInt(M_Script_Lua, -1, "è®¾ç½®æ•°æ®é»˜è®¤å€¼å¤±è´¥ã€‚ç¨‹åºå†…éƒ¨å¯èƒ½äº§ç”Ÿæº¢å‡ºã€‚");
 	}
 	
-  //¼ÓÔØÖ¸¶¨µÄLUA½Å±¾ÎÄ¼ş
+  //åŠ è½½æŒ‡å®šçš„LUAè„šæœ¬æ–‡ä»¶
 	if(_DoFile != NULL && _DoFile[0] != '\0')
 	{
 		if (NPC_Lua_DoFile(_DoFile) == 1){
@@ -151,19 +151,19 @@ int NPC_Lua_Create(const char *_DoFile, const char *_InitFuncName, char *_seek, 
 		}
 	}
 	
-	//¼ÓÔØÖ¸¶¨µÄLUA½Å±¾ÎÄ¼ş CAX
+	//åŠ è½½æŒ‡å®šçš„LUAè„šæœ¬æ–‡ä»¶ CAX
 //	NPC_Lua_DoFile(_DoFile);
-	//È¡µÃ½Å±¾ÖĞ¶¨ÒåµÄ³õÊ¼»¯º¯ÊıÖ¸Õë
+	//å–å¾—è„šæœ¬ä¸­å®šä¹‰çš„åˆå§‹åŒ–å‡½æ•°æŒ‡é’ˆ
 	lua_getglobal(M_Script_Lua, _InitFuncName);
 
 	if(lua_type(M_Script_Lua, -1) != LUA_TFUNCTION)
 	{
-		print("NPC_Lua_Create err: ÎŞ·¨»ñÈ¡³õÊ¼»¯º¯ÊıÖ¸Õë¡£\n");
+		print("NPC_Lua_Create err: æ— æ³•è·å–åˆå§‹åŒ–å‡½æ•°æŒ‡é’ˆã€‚\n");
 		lua_pop(M_Script_Lua, 1);
-		LRetErrInt(M_Script_Lua, -2, "ÎŞ·¨»ñÈ¡³õÊ¼»¯º¯ÊıÖ¸Õë¡£");
+		LRetErrInt(M_Script_Lua, -2, "æ— æ³•è·å–åˆå§‹åŒ–å‡½æ•°æŒ‡é’ˆã€‚");
 	}else
 	{
-		//±£´æº¯ÊıÖ¸Õë
+		//ä¿å­˜å‡½æ•°æŒ‡é’ˆ
 		lua_pop(M_Script_Lua, 1);
 		strcpy_s(TM_char.lua_charfunctable[CHAR_INITFUNC].string, sizeof(TM_char.lua_charfunctable[CHAR_INITFUNC].string), _InitFuncName);
 		strcpy_s(TM_char.charfunctable[CHAR_INITFUNC].string, sizeof(TM_char.charfunctable[CHAR_INITFUNC].string), FUNCNAME_INITCALLBACK);
@@ -179,44 +179,44 @@ int NPC_Lua_Create(const char *_DoFile, const char *_InitFuncName, char *_seek, 
 #endif
 	TM_char.data[CHAR_FMINDEX] = -1;
 	TM_char.string[CHAR_NPCARGUMENT].string[0] = '\0';
-	//ÉèÖÃÀàĞÍ
+	//è®¾ç½®ç±»å‹
 	TM_char.data[CHAR_WHICHTYPE] = CHAR_LUANPC;
-	//Õâ¸öÓÃÓÚÊ¶±ğNPCÓÉNPC_Lua_Createº¯Êı´´½¨µÄNPC±àºÅ£¬Ä¿Ç°Ã»Ê²Ã´ÓÃ
+	//è¿™ä¸ªç”¨äºè¯†åˆ«NPCç”±NPC_Lua_Createå‡½æ•°åˆ›å»ºçš„NPCç¼–å·ï¼Œç›®å‰æ²¡ä»€ä¹ˆç”¨
 	TM_char.data[CHAR_NPCCREATEINDEX] = M_Create_Num++;
 	
-	//ÊµÀı»¯TM_char £¨µ÷ÓÃÍêÖ®ºóNPCÊµÌåÊı¾İ²úÉú£©
+	//å®ä¾‹åŒ–TM_char ï¼ˆè°ƒç”¨å®Œä¹‹åNPCå®ä½“æ•°æ®äº§ç”Ÿï¼‰
 	TM_charaindex = CHAR_initCharOneArray( &TM_char );
 	if( TM_charaindex == -1 )
 	{
 		CHAR_endCharData( &TM_char );
-		LRetErrInt(M_Script_Lua, -3, "ÎŞ·¨ÊµÀı»¯NPCÊı¾İ¡£");
+		LRetErrInt(M_Script_Lua, -3, "æ— æ³•å®ä¾‹åŒ–NPCæ•°æ®ã€‚");
 	}
 
 	CHAR_setInt(TM_charaindex, CHAR_INDEXOFEQTITLE, -1);
 	CHAR_setWorkInt( TM_charaindex, CHAR_WORKBATTLEMODE, BATTLE_CHARMODE_NONE);
 
-	//µØÍ¼±êÖ¾£¿£¨Ä¿Ç°²»ÖªµÀ×÷ÓÃ£©
+	//åœ°å›¾æ ‡å¿—ï¼Ÿï¼ˆç›®å‰ä¸çŸ¥é“ä½œç”¨ï¼‰
 	if(_IsFly == TRUE)
 	{
 		CHAR_setFlg(TM_charaindex, CHAR_ISFLYING, 1);
 	}
 
-	TM_obj.type = OBJTYPE_CHARA;					//¶ÔÏóÀàĞÍ
-	TM_obj.index= TM_charaindex;					//¶ÔÏó¶ÔÓ¦µÄCharË÷Òı
-	TM_obj.x = CHAR_getInt(TM_charaindex, CHAR_X);		//¶ÔÏóËùÔÚµØÍ¼µÄX×ø±ê
-	TM_obj.y = CHAR_getInt(TM_charaindex, CHAR_Y);		//¶ÔÏóËùÔÚµØÍ¼µÄY×ø±ê
-	TM_obj.floor = CHAR_getInt(TM_charaindex, CHAR_FLOOR);//¶ÔÏóËùÔÚµØÍ¼
-	TM_objindex = initObjectOne( &TM_obj );				//²úÉúÒ»¸ö¶ÔÏóÊµÀı£¨µ÷ÓÃÍêÖ®ºóNPCÊµÌå²úÉú£©
+	TM_obj.type = OBJTYPE_CHARA;					//å¯¹è±¡ç±»å‹
+	TM_obj.index= TM_charaindex;					//å¯¹è±¡å¯¹åº”çš„Charç´¢å¼•
+	TM_obj.x = CHAR_getInt(TM_charaindex, CHAR_X);		//å¯¹è±¡æ‰€åœ¨åœ°å›¾çš„Xåæ ‡
+	TM_obj.y = CHAR_getInt(TM_charaindex, CHAR_Y);		//å¯¹è±¡æ‰€åœ¨åœ°å›¾çš„Yåæ ‡
+	TM_obj.floor = CHAR_getInt(TM_charaindex, CHAR_FLOOR);//å¯¹è±¡æ‰€åœ¨åœ°å›¾
+	TM_objindex = initObjectOne( &TM_obj );				//äº§ç”Ÿä¸€ä¸ªå¯¹è±¡å®ä¾‹ï¼ˆè°ƒç”¨å®Œä¹‹åNPCå®ä½“äº§ç”Ÿï¼‰
 	if( TM_objindex == -1 )
 	{
 		CHAR_endCharOneArray( TM_charaindex );
-		LRetErrInt(M_Script_Lua, -4, "ÎŞ·¨ÊµÀı»¯NPC¶ÔÏó¡£");
+		LRetErrInt(M_Script_Lua, -4, "æ— æ³•å®ä¾‹åŒ–NPCå¯¹è±¡ã€‚");
   }
 
 	CHAR_setWorkInt(TM_charaindex, CHAR_WORKOBJINDEX, TM_objindex);
 
 #ifdef _ADD_ACTION
-	//ÕâÀïÉèÖÃNPCµÄ¶¯×÷
+	//è¿™é‡Œè®¾ç½®NPCçš„åŠ¨ä½œ
 	CHAR_setWorkInt(TM_charaindex, CHAR_WORKACTION, CHAR_getInt( TM_charaindex, CHAR_ACTIONSTYLE ) );
 
 	CHAR_sendWatchEvent(TM_objindex, CHAR_getWorkInt( TM_charaindex, CHAR_WORKACTION), NULL, 0, TRUE);
@@ -227,7 +227,7 @@ int NPC_Lua_Create(const char *_DoFile, const char *_InitFuncName, char *_seek, 
 	LRetInt(M_Script_Lua, TM_charaindex);
 }
 
-//É¾³ıNPC ´«ÈëNPCÎ¨Ò»Ë÷Òı
+//åˆ é™¤NPC ä¼ å…¥NPCå”¯ä¸€ç´¢å¼•
 int NPC_Lua_Del(int _index)
 {
 	if (CHAR_getInt( _index, CHAR_WHICHTYPE )== CHAR_LUANPC)
@@ -263,19 +263,19 @@ int NPC_Lua_GetFuncPoint(lua_State *_NLL)
 
 	if(TM_FuncName == NULL)
 	{
-		LRetErrInt(_NLL , -1, "º¯ÊıÃû²»ÄÜÎª¿Õ");
+		LRetErrInt(_NLL , -1, "å‡½æ•°åä¸èƒ½ä¸ºç©º");
 	}
 
 	lua_getglobal(_NLL, TM_FuncName);
 	
 	if(lua_type(_NLL, -1) != LUA_TFUNCTION)
 	{
-		LRetErrInt(_NLL , -2, "ÎŞ·¨»ñÈ¡º¯ÊıÖ¸Õë¡£");
+		LRetErrInt(_NLL , -2, "æ— æ³•è·å–å‡½æ•°æŒ‡é’ˆã€‚");
 	}
 	LRetInt(_NLL, 1);
 }
 //////////////////////////////////////////////////////////////////////////////
-//À©Õ¹ÀàĞÍ½Ó¿Úº¯Êı
+//æ‰©å±•ç±»å‹æ¥å£å‡½æ•°
 //NTInt
 int NPC_Lua_NTInt_New(lua_State *_NLL)
 {
@@ -284,7 +284,7 @@ int NPC_Lua_NTInt_New(lua_State *_NLL)
 	int TM_Len = luaL_checkint(_NLL, 1);
 	if(TM_Len <= 0)
 	{
-		LRetErrInt(_NLL, -1, "´óĞ¡²»ÄÜÎª0¡£");
+		LRetErrInt(_NLL, -1, "å¤§å°ä¸èƒ½ä¸º0ã€‚");
 	}
 
 	size_t TM_Bytes = sizeof(size_t) + ( sizeof(int) * TM_Len );
@@ -292,7 +292,7 @@ int NPC_Lua_NTInt_New(lua_State *_NLL)
 	
 	if(TM_Point == NULL)
 	{
-		LRetErrInt(_NLL, -2, "ÊµÀı»¯Ê§°Ü£¬²»ÄÜÉêÇëÄÚ´æ¡£");
+		LRetErrInt(_NLL, -2, "å®ä¾‹åŒ–å¤±è´¥ï¼Œä¸èƒ½ç”³è¯·å†…å­˜ã€‚");
 	}
 
 	luaL_getmetatable(_NLL, "Array.NTInt");
@@ -311,14 +311,14 @@ int NPC_Lua_NTInt_Get(lua_State *_NLL)
 
 	if(TM_Point == NULL)
 	{
-		luaL_argerror(_NLL, 1, "²»ÊÇ Array.NTInt Êı¾İ¡£");
+		luaL_argerror(_NLL, 1, "ä¸æ˜¯ Array.NTInt æ•°æ®ã€‚");
 	}
 
 	int TM_Index = (int)lua_tointeger(_NLL, 2);
 	
 	if(TM_Index < 1 || TM_Index > TM_Point->Size)
 	{
-		luaL_argerror(_NLL, 1, "³¬³öÊı¾İ·¶Î§£¬²»ÔÊĞí²Ù×÷¡£");
+		luaL_argerror(_NLL, 1, "è¶…å‡ºæ•°æ®èŒƒå›´ï¼Œä¸å…è®¸æ“ä½œã€‚");
 	}
 
 	TM_Index--;
@@ -334,14 +334,14 @@ int NPC_Lua_NTInt_Set(lua_State *_NLL)
 	
 	if(TM_Point == NULL)
 	{
-		luaL_argerror(_NLL, 1, "²»ÊÇ Array.NTInt Êı¾İ¡£");
+		luaL_argerror(_NLL, 1, "ä¸æ˜¯ Array.NTInt æ•°æ®ã€‚");
 	}
 
 	int TM_Index = (int)lua_tointeger(_NLL, 2);
 	
 	if(TM_Index < 1 || TM_Index > TM_Point->Size)
 	{
-		luaL_argerror(_NLL, 1, "³¬³öÊı¾İ·¶Î§£¬²»ÔÊĞí²Ù×÷¡£");
+		luaL_argerror(_NLL, 1, "è¶…å‡ºæ•°æ®èŒƒå›´ï¼Œä¸å…è®¸æ“ä½œã€‚");
 	}
 	TM_Index--;
 
@@ -360,7 +360,7 @@ int NPC_Lua_NTInt_Len(lua_State *_NLL)
 
 	if(TM_Point == NULL)
 	{
-		luaL_argerror(_NLL, 1, "²»ÊÇ Array.NTInt Êı¾İ¡£");
+		luaL_argerror(_NLL, 1, "ä¸æ˜¯ Array.NTInt æ•°æ®ã€‚");
 	}
 
 	LRetInt(_NLL, TM_Point->Size);

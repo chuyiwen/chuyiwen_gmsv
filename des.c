@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////////
 /*
-    Provided by Íõ¿¡´¨, Northeastern University (www.neu.edu.cn)
+    Provided by çŽ‹ä¿Šå·, Northeastern University (www.neu.edu.cn)
     Email: blackdrn@sohu.com
 	This product is free for use.
 */
@@ -105,21 +105,21 @@ typedef bool    (*PSubKey)[16][48];
 
 //////////////////////////////////////////////////////////////////////////
 
-static void DES(char Out[8], char In[8], const PSubKey pSubKey, bool Type);//±ê×¼DES¼Ó/½âÃÜ
-static void SetKey(const char* Key, int len);// ÉèÖÃÃÜÔ¿
-static void SetSubKey(PSubKey pSubKey, const char Key[8]);// ÉèÖÃ×ÓÃÜÔ¿
-static void F_func(bool In[32], const bool Ki[48]);// f º¯Êý
-static void S_func(bool Out[32], const bool In[48]);// S ºÐ´úÌæ
-static void Transform(bool *Out, bool *In, const char *Table, int len);// ±ä»»
-static void Xor(bool *InA, const bool *InB, int len);// Òì»ò
-static void RotateL(bool *In, int len, int loop);// Ñ­»·×óÒÆ
-static void ByteToBit(bool *Out, const char *In, int bits);// ×Ö½Ú×é×ª»»³ÉÎ»×é
-static void BitToByte(char *Out, const bool *In, int bits);// Î»×é×ª»»³É×Ö½Ú×é
+static void DES(char Out[8], char In[8], const PSubKey pSubKey, bool Type);//æ ‡å‡†DESåŠ /è§£å¯†
+static void SetKey(const char* Key, int len);// è®¾ç½®å¯†é’¥
+static void SetSubKey(PSubKey pSubKey, const char Key[8]);// è®¾ç½®å­å¯†é’¥
+static void F_func(bool In[32], const bool Ki[48]);// f å‡½æ•°
+static void S_func(bool Out[32], const bool In[48]);// S ç›’ä»£æ›¿
+static void Transform(bool *Out, bool *In, const char *Table, int len);// å˜æ¢
+static void Xor(bool *InA, const bool *InB, int len);// å¼‚æˆ–
+static void RotateL(bool *In, int len, int loop);// å¾ªçŽ¯å·¦ç§»
+static void ByteToBit(bool *Out, const char *In, int bits);// å­—èŠ‚ç»„è½¬æ¢æˆä½ç»„
+static void BitToByte(char *Out, const bool *In, int bits);// ä½ç»„è½¬æ¢æˆå­—èŠ‚ç»„
 
 //////////////////////////////////////////////////////////////////////////
 
-static bool SubKey[2][16][48];// 16È¦×ÓÃÜÔ¿
-static bool Is3DES;// 3´ÎDES±êÖ¾
+static bool SubKey[2][16][48];// 16åœˆå­å¯†é’¥
+static bool Is3DES;// 3æ¬¡DESæ ‡å¿—
 static char Tmp[256], deskey[16];
 
 //////////////////////////////////////////////////////////////////////////
@@ -132,11 +132,11 @@ bool Des_Go(char *Out, char *In, long datalen, const char *Key, int keylen, bool
     if( !( Out && In && Key && (datalen=(datalen+7)&0xfffffff8) ) ) 
 		return false;
 	SetKey(Key, keylen);
-	if( !Is3DES ) {   // 1´ÎDES
+	if( !Is3DES ) {   // 1æ¬¡DES
 		long i,j;
 		for(i=0,j=datalen>>3; i<j; ++i,Out+=8,In+=8)
 			DES(Out, In, &SubKey[0], Type);
-	} else{   // 3´ÎDES ¼ÓÃÜ:¼Ó(key0)-½â(key1)-¼Ó(key0) ½âÃÜ::½â(key0)-¼Ó(key1)-½â(key0)
+	} else{   // 3æ¬¡DES åŠ å¯†:åŠ (key0)-è§£(key1)-åŠ (key0) è§£å¯†::è§£(key0)-åŠ (key1)-è§£(key0)
 		long i,j;
 		for(i=0,j=datalen>>3; i<j; ++i,Out+=8,In+=8) {
 			DES(Out, In,  &SubKey[0], Type);

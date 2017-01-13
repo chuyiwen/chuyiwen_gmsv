@@ -44,13 +44,13 @@ typedef struct {
 }NPC_POOLITEMSHOP_MSG;
 
 NPC_POOLITEMSHOP_MSG		poolshopmsg[] = {
-	{ "main_msg",		"»¶Ó­"},
-	{ "pool_main",		"Òª¼Ä·ÅÊ²÷áÄØ"},
-	{ "draw_main",		"ÒªÁìÑøÊ²÷áÄØ"},
-	{ "realy_msg",		"ÕæµÄÒªÄÇ¸öÂð"},
-	{ "stone_msg",		"Ç®²»¹»à¸!"},
-	{ "poolfull_msg",	"³¬¹ýµÄÎÞ·¨´¦Àíà¸"},
-	{ "itemfull_msg",	"ÏîÄ¿ÓÐºÜ¶à"}
+	{ "main_msg",		"æ¬¢è¿Ž"},
+	{ "pool_main",		"è¦å¯„æ”¾ä»€éº½å‘¢"},
+	{ "draw_main",		"è¦é¢†å…»ä»€éº½å‘¢"},
+	{ "realy_msg",		"çœŸçš„è¦é‚£ä¸ªå—"},
+	{ "stone_msg",		"é’±ä¸å¤Ÿå–”!"},
+	{ "poolfull_msg",	"è¶…è¿‡çš„æ— æ³•å¤„ç†å–”"},
+	{ "itemfull_msg",	"é¡¹ç›®æœ‰å¾ˆå¤š"}
 };
 
 static BOOL NPC_PoolItemShop_DrawItem( int meindex, int talkerindex, int num);
@@ -138,7 +138,7 @@ void NPC_PoolItemShopWindowTalked( int meindex, int talkerindex,
 		  case 3:
 			if( !CHAR_CheckDepotItem( talkerindex) ){
 				CHAR_GetDepotItem( meindex, talkerindex);
-				CHAR_talkToCli( talkerindex, -1, "È¡µÃµÀ¾ß£¬ÇëÉÔáá£¡", CHAR_COLORYELLOW);
+				CHAR_talkToCli( talkerindex, -1, "å–å¾—é“å…·ï¼Œè¯·ç¨å¾Œï¼", CHAR_COLORYELLOW);
 			}else{
 				NPC_PoolItemShop_DepotItem_Menu( meindex, talkerindex);
 			}
@@ -180,36 +180,36 @@ void NPC_PoolItemShopWindowTalked( int meindex, int talkerindex,
 	  case CHAR_WINDOWTYPE_DEPOTITEMSHOP_HANDLE:
 		  if( !CHAR_CheckDepotItem( talkerindex) ) return ;
 		  switch( atoi( data)) {
-		  case 1://·ÅÈë
+		  case 1://æ”¾å…¥
 #ifdef	_BIG_POOL_TYPE
 			if(getItemPoolType()==1){
-				CHAR_talkToCli( talkerindex, -1, "¹«¹²²Ö¿âÒÑ¹Ø±Õ£¬ÇëÊ¹ÓÃ¸öÈË²Ö¿â¡£", CHAR_COLORYELLOW);
+				CHAR_talkToCli( talkerindex, -1, "å…¬å…±ä»“åº“å·²å…³é—­ï¼Œè¯·ä½¿ç”¨ä¸ªäººä»“åº“ã€‚", CHAR_COLORYELLOW);
 				return;
 			}
 #endif
 				if( CHAR_findEmptyDepotItem( talkerindex) == -1 ){
-					CHAR_talkToCli( talkerindex, -1, "²Ö¿âÒÑÂú£¡", CHAR_COLORYELLOW);
+					CHAR_talkToCli( talkerindex, -1, "ä»“åº“å·²æ»¡ï¼", CHAR_COLORYELLOW);
 					return;
 				}
 				NPC_DepotItem_Item_printWindow( meindex, talkerindex);
 			  break;
 		  case 2:
 				if( CHAR_findEmptyItemBox( talkerindex) == -1 ) {
-					CHAR_talkToCli( talkerindex, -1, "ÉíÉÏµÀ¾ßÀ¸Î»ÒÑÂú£¡", CHAR_COLORYELLOW);
+					CHAR_talkToCli( talkerindex, -1, "èº«ä¸Šé“å…·æ ä½å·²æ»¡ï¼", CHAR_COLORYELLOW);
 					return;
 				}
 				NPC_DepotItem_Depot_printWindow( meindex, talkerindex);
 			  break;
 		  }
 		  break;
-	  case CHAR_WINDOWTYPE_DEPOTITEMSHOP_ADD://·ÅÈë
+	  case CHAR_WINDOWTYPE_DEPOTITEMSHOP_ADD://æ”¾å…¥
 			if( !CHAR_CheckDepotItem( talkerindex) ) return ;
 			if( atoi( data) == 0){
 				NPC_PoolItemShop_DepotItem_Menu( meindex, talkerindex);
 			}else {
 				if( NPC_DepotItem_InsertItem( meindex, talkerindex, atoi( data)-1) == FALSE ){
 					//NPC_PoolItemShop_DepotItem_Menu( meindex, talkerindex);
-					CHAR_talkToCli( talkerindex, -1, "´æ·ÅµÀ¾ßÊ§°Ü£¬ÇëÉÔááÔÙÊÔ£¡", CHAR_COLORYELLOW);
+					CHAR_talkToCli( talkerindex, -1, "å­˜æ”¾é“å…·å¤±è´¥ï¼Œè¯·ç¨å¾Œå†è¯•ï¼", CHAR_COLORYELLOW);
 					return;
 				}
 			}
@@ -221,7 +221,7 @@ void NPC_PoolItemShopWindowTalked( int meindex, int talkerindex,
 			}else {
 				if( NPC_DepotItem_gettItem( meindex, talkerindex, atoi( data)-1) == FALSE ){
 					NPC_PoolItemShop_DepotItem_Menu( meindex, talkerindex);
-					CHAR_talkToCli( talkerindex, -1, "È¡³öµÀ¾ßÊ§°Ü£¬ÇëÉÔááÔÙÊÔ£¡", CHAR_COLORYELLOW);
+					CHAR_talkToCli( talkerindex, -1, "å–å‡ºé“å…·å¤±è´¥ï¼Œè¯·ç¨å¾Œå†è¯•ï¼", CHAR_COLORYELLOW);
 				}
 			}
 		  break;
@@ -244,19 +244,19 @@ void NPC_PoolItemShop_printWindow_Start( int meindex, int talkerindex)
 #ifdef _NPC_DEPOTITEM
 		strcpy( message, 
 			"3\n\n"
-			"            »¶Ó­¹âÁÙ\n\n"
-			"          £¼¼Ä·ÅµÀ¾ß£¾\n"
-			"          £¼È¡»ØµÀ¾ß£¾\n"
-			"          £¼Ê¹ÓÃ²Ö¿â£¾\n\n"
-			"          £¼  Àë¿ª  £¾"
+			"            æ¬¢è¿Žå…‰ä¸´\n\n"
+			"          ï¼œå¯„æ”¾é“å…·ï¼ž\n"
+			"          ï¼œå–å›žé“å…·ï¼ž\n"
+			"          ï¼œä½¿ç”¨ä»“åº“ï¼ž\n\n"
+			"          ï¼œ  ç¦»å¼€  ï¼ž"
 		);
 #else
 		strcpy( message, 
 			"3\n\n"
-			"            »¶Ó­¹âÁÙ\n\n"
-			"          £¼¼Ä·ÅµÀ¾ß£¾\n"
-			"          £¼È¡»ØµÀ¾ß£¾\n\n\n"
-			"          £¼  Àë¿ª  £¾"
+			"            æ¬¢è¿Žå…‰ä¸´\n\n"
+			"          ï¼œå¯„æ”¾é“å…·ï¼ž\n"
+			"          ï¼œå–å›žé“å…·ï¼ž\n\n\n"
+			"          ï¼œ  ç¦»å¼€  ï¼ž"
 		);
 #endif
 
@@ -280,9 +280,9 @@ void NPC_PoolItemShop_DepotItem_Menu( int meindex, int talkerindex)
 
 		strcpy( message, 
 			"3\n\n"
-			"          Ê¹ÓÃµÀ¾ß²Ö¿â\n\n"
-			"          £¼´æ·ÅµÀ¾ß£¾\n"
-			"          £¼È¡»ØµÀ¾ß£¾\n"
+			"          ä½¿ç”¨é“å…·ä»“åº“\n\n"
+			"          ï¼œå­˜æ”¾é“å…·ï¼ž\n"
+			"          ï¼œå–å›žé“å…·ï¼ž\n"
 		);
 
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_SELECT, 
@@ -336,7 +336,7 @@ void NPC_DepotItem_MakeItemString( int meindex, int talkerindex, char *retstring
 				else sprintf(secbuf,"%d",sec);
 				char tmbuf[256];
 				strcpy(tmbuf,ITEM_getChar( itemindex, ITEM_EFFECTSTRING));
-				sprintf(tempbuf,"ÓÐÐ§ÆÚ:%d.%s.%s %s:%s:%s  %s",year,monbuf,datebuf,hourbuf,minbuf,secbuf,tmbuf);
+				sprintf(tempbuf,"æœ‰æ•ˆæœŸ:%d.%s.%s %s:%s:%s  %s",year,monbuf,datebuf,hourbuf,minbuf,secbuf,tmbuf);
 			}else{
 				strcpy(tempbuf,ITEM_getChar( itemindex, ITEM_EFFECTSTRING));
 			}
@@ -434,7 +434,7 @@ void NPC_DepotItem_MakeDepotString( int meindex, int talkerindex, char *retstrin
 				else sprintf(secbuf,"%d",sec);
 				char tmbuf[256];
 				strcpy(tmbuf,ITEM_getChar( itemindex, ITEM_EFFECTSTRING));
-				sprintf(tempbuf,"ÓÐÐ§ÆÚ:%d.%s.%s %s:%s:%s  %s",year,monbuf,datebuf,hourbuf,minbuf,secbuf,tmbuf);
+				sprintf(tempbuf,"æœ‰æ•ˆæœŸ:%d.%s.%s %s:%s:%s  %s",year,monbuf,datebuf,hourbuf,minbuf,secbuf,tmbuf);
 			}else{
 				strcpy(tempbuf,ITEM_getChar( itemindex, ITEM_EFFECTSTRING));
 			}
@@ -496,7 +496,7 @@ void NPC_DepotItem_Depot_printWindow( int meindex, int talkerindex)
 void NPC_DepotItem_CheckRepeat_Del( int charaindex, int ti, int itemindex)
 {
 	char token[256];
-	sprintf( token, "²Ö¿âµÀ¾ß%s£¬±àÂëÖØ¸´£¡(ÏµÍ³Çå³ý)",
+	sprintf( token, "ä»“åº“é“å…·%sï¼Œç¼–ç é‡å¤ï¼(ç³»ç»Ÿæ¸…é™¤)",
 					ITEM_getChar( itemindex, ITEM_NAME));
 	CHAR_talkToCli( charaindex, -1, token, CHAR_COLORYELLOW);
 	LogItem(
@@ -507,7 +507,7 @@ void NPC_DepotItem_CheckRepeat_Del( int charaindex, int ti, int itemindex)
 #else
 			ITEM_getInt( itemindex, ITEM_ID),
 #endif
-			"repeat(²Ö¿âµÀ¾ßÖØ¸´)",
+			"repeat(ä»“åº“é“å…·é‡å¤)",
 			0, 0, 0,
 			ITEM_getChar( itemindex, ITEM_UNIQUECODE),
 			ITEM_getChar( itemindex, ITEM_NAME),
@@ -551,11 +551,11 @@ BOOL NPC_DepotItem_InsertItem( int meindex, int talkerindex, int num)
 	if( (emptyindex=CHAR_findEmptyDepotItem( talkerindex) ) == -1 ) return FALSE;
 	itemindex = CHAR_getItemIndex( talkerindex, num);
 	if( !ITEM_CHECKINDEX( itemindex) )return FALSE;
-#if 1 // ¹²Í¬²Ö¿â²»¿É´æµÄÎïÆ·
-	if( ITEM_getInt( itemindex, ITEM_DROPATLOGOUT) || // µÇ³öááÏûÊ§
-			ITEM_getInt( itemindex, ITEM_VANISHATDROP) || // ¶ªÆúááÏûÊ§
-			!ITEM_getInt( itemindex, ITEM_CANPETMAIL)) { // ²»¿É³èÓÊ¼Ä
-		print("\n ¸Ä·â°ü!!·Ç·¨´æ·ÅµÀ¾ß:%s ", CHAR_getChar( talkerindex, CHAR_CDKEY) );
+#if 1 // å…±åŒä»“åº“ä¸å¯å­˜çš„ç‰©å“
+	if( ITEM_getInt( itemindex, ITEM_DROPATLOGOUT) || // ç™»å‡ºå¾Œæ¶ˆå¤±
+			ITEM_getInt( itemindex, ITEM_VANISHATDROP) || // ä¸¢å¼ƒå¾Œæ¶ˆå¤±
+			!ITEM_getInt( itemindex, ITEM_CANPETMAIL)) { // ä¸å¯å® é‚®å¯„
+		print("\n æ”¹å°åŒ…!!éžæ³•å­˜æ”¾é“å…·:%s ", CHAR_getChar( talkerindex, CHAR_CDKEY) );
 		return FALSE;
 	}
 #endif
@@ -576,7 +576,7 @@ BOOL NPC_DepotItem_InsertItem( int meindex, int talkerindex, int num)
 #else
 		ITEM_getInt( itemindex, ITEM_ID),
 #endif
-		"Depot(´æ·ÅµÀ¾ß)",
+		"Depot(å­˜æ”¾é“å…·)",
 		CHAR_getInt( talkerindex,CHAR_FLOOR),
 		CHAR_getInt( talkerindex,CHAR_X ),
  		CHAR_getInt( talkerindex,CHAR_Y ),
@@ -600,7 +600,7 @@ BOOL NPC_DepotItem_gettItem( int meindex, int talkerindex, int num)
 	if( !ITEM_CHECKINDEX( itemindex) )return FALSE;
 	CHAR_setDepotItemIndex( talkerindex, num, -1);
 	CHAR_setItemIndex( talkerindex, emptyindex, itemindex);
-#ifdef _JK_CF_DELPETITEM    //É¾³ýCFÖ¸¶¨ÎïÆ·
+#ifdef _JK_CF_DELPETITEM    //åˆ é™¤CFæŒ‡å®šç‰©å“
 	int ID1,ID2,j;
 	char* delbuf;
 	char delitembuf[10];
@@ -608,8 +608,8 @@ BOOL NPC_DepotItem_gettItem( int meindex, int talkerindex, int num)
 	ID1 = ITEM_getInt( itemindex, ITEM_ID);
 #ifdef	_YUANGUSA	
 		if(ID1>=23228 && ID1<=23307){
-			if(strstr(ITEM_getChar(itemindex,ITEM_EFFECTSTRING),"Ðè¸ü»»")==NULL){
-				ITEM_setChar(itemindex,ITEM_EFFECTSTRING,"[ÎÞÊôÐÔ£¬Ðè¸ü»»]Çëµ½Óæ´å´å³¤¼Ò(13.5)ÕÒ¸ü»»´óÊ¦");
+			if(strstr(ITEM_getChar(itemindex,ITEM_EFFECTSTRING),"éœ€æ›´æ¢")==NULL){
+				ITEM_setChar(itemindex,ITEM_EFFECTSTRING,"[æ— å±žæ€§ï¼Œéœ€æ›´æ¢]è¯·åˆ°æ¸”æ‘æ‘é•¿å®¶(13.5)æ‰¾æ›´æ¢å¤§å¸ˆ");
 			}
 		}
 		if(((ID1>=3000 && ID1<=11719) || (ID1>=14001 && ID1<=18530)) && ITEM_getInt( itemindex, ITEM_MAXDAMAGECRUSHE)<1){
@@ -625,14 +625,14 @@ BOOL NPC_DepotItem_gettItem( int meindex, int talkerindex, int num)
 		if(ID2 == -1)break;
 		if( ID1 == ID2){
 			CHAR_setItemIndex( talkerindex, emptyindex, -1);
-			LogItem(CHAR_getChar( talkerindex, CHAR_NAME ), //ÈËÎïÃû
-							CHAR_getChar( talkerindex, CHAR_CDKEY ), //ÕÊºÅ
-#ifdef _add_item_log_name  // WON ADD ÔÚitemµÄlogÖÐÔö¼ÓitemÃû³Æ
+			LogItem(CHAR_getChar( talkerindex, CHAR_NAME ), //äººç‰©å
+							CHAR_getChar( talkerindex, CHAR_CDKEY ), //å¸å·
+#ifdef _add_item_log_name  // WON ADD åœ¨itemçš„logä¸­å¢žåŠ itemåç§°
 							itemindex,
 #else
       				ITEM_getInt( itemindex, ITEM_ID ),
 #endif
-							"poolitemshop(CFÉèÖÃÇå³ýÎïÆ·)",
+							"poolitemshop(CFè®¾ç½®æ¸…é™¤ç‰©å“)",
 							CHAR_getInt( talkerindex,CHAR_FLOOR),
 							CHAR_getInt( talkerindex,CHAR_X ),
  	     				CHAR_getInt( talkerindex,CHAR_Y ),
@@ -640,7 +640,7 @@ BOOL NPC_DepotItem_gettItem( int meindex, int talkerindex, int num)
 							ITEM_getChar( itemindex, ITEM_NAME),
 							ITEM_getInt( itemindex, ITEM_ID)
 							);
-			CHAR_talkToCli( talkerindex, -1, "ÏµÍ³Çå³ýÄã²Ö¿âÀïµÄµÀ¾ß", CHAR_COLORWHITE );
+			CHAR_talkToCli( talkerindex, -1, "ç³»ç»Ÿæ¸…é™¤ä½ ä»“åº“é‡Œçš„é“å…·", CHAR_COLORWHITE );
 			return TRUE;
 		}
 	}
@@ -659,7 +659,7 @@ BOOL NPC_DepotItem_gettItem( int meindex, int talkerindex, int num)
 #else
 		ITEM_getInt( itemindex, ITEM_ID),
 #endif
-		"Depot(È¡³öµÀ¾ß)",
+		"Depot(å–å‡ºé“å…·)",
 		CHAR_getInt( talkerindex,CHAR_FLOOR),
 		CHAR_getInt( talkerindex,CHAR_X ),
  		CHAR_getInt( talkerindex,CHAR_Y ),
@@ -693,7 +693,7 @@ BOOL NPC_DepotItem_gettItem( int meindex, int talkerindex, int num)
 				timep = mktime(p);
 				if(itemtime<=timep){
 					char itemname[128];
-					sprintf(itemname,"ÄúµÄµÀ¾ß:%s£¬ÓÉÓÚÊ±Ð§ÒÑµ½£¬ÏµÍ³ÒÑÊÕ»Ø¡£",ITEM_getChar(itemindex,ITEM_NAME));
+					sprintf(itemname,"æ‚¨çš„é“å…·:%sï¼Œç”±äºŽæ—¶æ•ˆå·²åˆ°ï¼Œç³»ç»Ÿå·²æ”¶å›žã€‚",ITEM_getChar(itemindex,ITEM_NAME));
 					CHAR_talkToCli( talkerindex, -1, itemname, CHAR_COLORYELLOW );
 					CHAR_setItemIndex( talkerindex, emptyindex ,-1);
 					CHAR_sendItemDataOne( talkerindex, emptyindex);
@@ -715,7 +715,7 @@ static void NPC_PoolItemShop_printWindow_Full( int meindex, int talkerindex)
 		char	buf[2048];
 		
 		strcpy( message, 
-			"\n\n    ³¬¹ýµÄÎÞ·¨´¦Àíà¸"
+			"\n\n    è¶…è¿‡çš„æ— æ³•å¤„ç†å–”"
 				);
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE, 
 						WINDOW_BUTTONTYPE_OK,
@@ -736,7 +736,7 @@ static void NPC_PoolItemShop_printWindow_HaveItemFull( int meindex, int talkerin
 		char	buf[2048];
 		
 		strcpy( message, 
-			"\n\n    µÀ¾ß²»ÊÇÒÑ¾­ÂúÁËÂð"
+			"\n\n    é“å…·ä¸æ˜¯å·²ç»æ»¡äº†å—"
 				);
 		lssproto_WN_send( fd, WINDOW_MESSAGETYPE_MESSAGE, 
 						WINDOW_BUTTONTYPE_OK,
@@ -881,7 +881,7 @@ static void NPC_PoolItemShop_MakeItemString_Pool( int meindex, int talkerindex,
 				else sprintf(secbuf,"%d",sec);
 				char tmbuf[256];
 				strcpy(tmbuf,ITEM_getChar( itemindex, ITEM_EFFECTSTRING));
-				sprintf(tempbuf,"ÓÐÐ§ÆÚ:%d.%s.%s %s:%s:%s  %s",year,monbuf,datebuf,hourbuf,minbuf,secbuf,tmbuf);
+				sprintf(tempbuf,"æœ‰æ•ˆæœŸ:%d.%s.%s %s:%s:%s  %s",year,monbuf,datebuf,hourbuf,minbuf,secbuf,tmbuf);
 			}else{
 				strcpy(tempbuf,ITEM_getChar( itemindex, ITEM_EFFECTSTRING));
 			}
@@ -948,7 +948,7 @@ static void NPC_PoolItemShop_MakeItemString_Draw( int meindex, int talkerindex,
 				else sprintf(secbuf,"%d",sec);
 				char tmbuf[256];
 				strcpy(tmbuf,ITEM_getChar( itemindex, ITEM_EFFECTSTRING));
-				sprintf(tempbuf,"ÓÐÐ§ÆÚ:%d.%s.%s %s:%s:%s  %s",year,monbuf,datebuf,hourbuf,minbuf,secbuf,tmbuf);
+				sprintf(tempbuf,"æœ‰æ•ˆæœŸ:%d.%s.%s %s:%s:%s  %s",year,monbuf,datebuf,hourbuf,minbuf,secbuf,tmbuf);
 			}else{
 				strcpy(tempbuf,ITEM_getChar( itemindex, ITEM_EFFECTSTRING));
 			}
@@ -993,9 +993,9 @@ static BOOL NPC_PoolItemShop_PoolItem( int meindex, int talkerindex, int num)
 	itemindex = CHAR_getItemIndex( talkerindex, num);
 	if( getItemPoolBug() == 1 )
 		{
-			if( ITEM_getInt( itemindex, ITEM_DROPATLOGOUT) || // µÇ³öááÏûÊ§
-					ITEM_getInt( itemindex, ITEM_VANISHATDROP) || // ¶ªÆúááÏûÊ§
-					!ITEM_getInt( itemindex, ITEM_CANPETMAIL) ) { // ²»¿É³èÓÊ¼Ä
+			if( ITEM_getInt( itemindex, ITEM_DROPATLOGOUT) || // ç™»å‡ºå¾Œæ¶ˆå¤±
+					ITEM_getInt( itemindex, ITEM_VANISHATDROP) || // ä¸¢å¼ƒå¾Œæ¶ˆå¤±
+					!ITEM_getInt( itemindex, ITEM_CANPETMAIL) ) { // ä¸å¯å® é‚®å¯„
 					return FALSE;
 			}
 		}
@@ -1012,14 +1012,14 @@ static BOOL NPC_PoolItemShop_PoolItem( int meindex, int talkerindex, int num)
 
 	CHAR_send_P_StatusString( talkerindex, CHAR_P_STRING_GOLD);
 	LogItem(
-		CHAR_getChar( talkerindex, CHAR_NAME ), /* Æ½ÅÒ·Â   */
+		CHAR_getChar( talkerindex, CHAR_NAME ), /* å¹³ä¹“ä»¿   */
 		CHAR_getChar( talkerindex, CHAR_CDKEY ),
-#ifdef _add_item_log_name  // WON ADD ÔÚitemµÄlogÖÐÔö¼ÓitemÃû³Æ
+#ifdef _add_item_log_name  // WON ADD åœ¨itemçš„logä¸­å¢žåŠ itemåç§°
 		itemindex,
 #else
-		ITEM_getInt( itemindex, ITEM_ID),  /* Ê§ÄÌ  Ø©  Ä¯ */
+		ITEM_getInt( itemindex, ITEM_ID),  /* å¤±å¥¶  ä¸ž  å¯ž */
 #endif
-		"pool(¼Ä·ÅµÀ¾ß)",
+		"pool(å¯„æ”¾é“å…·)",
 		CHAR_getInt( talkerindex,CHAR_FLOOR),
 		CHAR_getInt( talkerindex,CHAR_X ),
  		CHAR_getInt( talkerindex,CHAR_Y ),
@@ -1030,7 +1030,7 @@ static BOOL NPC_PoolItemShop_PoolItem( int meindex, int talkerindex, int num)
 	);
 	//int fd = getfdFromCharaIndex( talkerindex);
 	CHAR_charSaveFromConnect(talkerindex, FALSE);
-	CHAR_talkToCli(talkerindex, -1, "ÏµÍ³ÎªÄã×Ô¶¯´æµµ£¡", CHAR_COLORRED);
+	CHAR_talkToCli(talkerindex, -1, "ç³»ç»Ÿä¸ºä½ è‡ªåŠ¨å­˜æ¡£ï¼", CHAR_COLORRED);
 	return TRUE;
 }
 
@@ -1069,12 +1069,12 @@ static BOOL NPC_PoolItemShop_DrawItem( int meindex, int talkerindex, int num)
 	LogItem(
 		CHAR_getChar( talkerindex, CHAR_NAME ),
 		CHAR_getChar( talkerindex, CHAR_CDKEY ),
-#ifdef _add_item_log_name  // WON ADD ÔÚitemµÄlogÖÐÔö¼ÓitemÃû³Æ
+#ifdef _add_item_log_name  // WON ADD åœ¨itemçš„logä¸­å¢žåŠ itemåç§°
 		itemindex,
 #else
 		ITEM_getInt( itemindex, ITEM_ID),
 #endif
-		"draw(ÁìÈ¡µÀ¾ß)",
+		"draw(é¢†å–é“å…·)",
 		CHAR_getInt( talkerindex,CHAR_FLOOR),
 		CHAR_getInt( talkerindex,CHAR_X ),
  		CHAR_getInt( talkerindex,CHAR_Y ),
@@ -1093,7 +1093,7 @@ static BOOL NPC_PoolItemShop_DrawItem( int meindex, int talkerindex, int num)
 				timep = mktime(p);
 				if(itemtime<=timep){
 					char itemname[128];
-					sprintf(itemname,"ÄúµÄµÀ¾ß:%s£¬ÓÉÓÚÊ±Ð§ÒÑµ½£¬ÏµÍ³ÒÑÊÕ»Ø¡£",ITEM_getChar(itemindex,ITEM_NAME));
+					sprintf(itemname,"æ‚¨çš„é“å…·:%sï¼Œç”±äºŽæ—¶æ•ˆå·²åˆ°ï¼Œç³»ç»Ÿå·²æ”¶å›žã€‚",ITEM_getChar(itemindex,ITEM_NAME));
 					CHAR_talkToCli( talkerindex, -1, itemname, CHAR_COLORYELLOW );
 					CHAR_setItemIndex( talkerindex, emptyindex ,-1);
 					CHAR_sendItemDataOne( talkerindex, emptyindex);
@@ -1101,6 +1101,6 @@ static BOOL NPC_PoolItemShop_DrawItem( int meindex, int talkerindex, int num)
 				}
 			}
 	CHAR_charSaveFromConnect(talkerindex, FALSE);
-	CHAR_talkToCli(talkerindex, -1, "ÏµÍ³ÎªÄã×Ô¶¯´æµµ£¡", CHAR_COLORRED);
+	CHAR_talkToCli(talkerindex, -1, "ç³»ç»Ÿä¸ºä½ è‡ªåŠ¨å­˜æ¡£ï¼", CHAR_COLORRED);
 	return TRUE;
 }

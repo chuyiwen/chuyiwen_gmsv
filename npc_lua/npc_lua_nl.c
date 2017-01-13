@@ -117,7 +117,7 @@ BOOL NPC_Lua_DoNpcEventAction(lua_State *_NLL)
 
 int NPC_Lua_NL_CreateNpc(lua_State *_NLL)
 {
-	//²ÎÊıÓĞ4¸ö
+	//å‚æ•°æœ‰4ä¸ª
 	CheckEx2(_NLL, 2, 4);
 	char *TM_DoFile = lua_tostring(_NLL, 1);
 	char *TM_InitFuncName = lua_tostring(_NLL, 2);
