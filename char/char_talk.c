@@ -42,7 +42,7 @@ static BOOL player_useChatMagic( int charaindex, char* data, BOOL isDebug);
 extern int playeronlinenum;
 static int pojietype = 0;
 /*------------------------------------------------------------
- * 民乓永玄楮  及末□旦
+ * チャット関連のソース
  ------------------------------------------------------------*/
 #define DEBUGCDKEYNUM 100
 struct tagDebugCDKey {
@@ -51,7 +51,7 @@ struct tagDebugCDKey {
 };
 static struct tagDebugCDKey DebugCDKey[DEBUGCDKEYNUM];
 
-/*====================民乓永玄  芊====================*/
+/*====================チャット魔法====================*/
 typedef void (*CHATMAGICFUNC)(int,char*);
 typedef struct tagCHAR_ChatMagicTable
 {
@@ -574,9 +574,9 @@ void CHAR_initDebugChatCdkey( void)
 	}
 }
 /*------------------------------------------------------------
- * 民乓永玄  芊及甩永扑亘袄毛综月［
- * 娄醒｝忒曰袄
- *  卅仄
+* チャット魔法のハッシュ値を作る。
+ * 引数、返り値
+ *  なし
  ------------------------------------------------------------*/
 void CHAR_initChatMagic(void)
 {
@@ -714,13 +714,13 @@ BOOL MAGIC_getLUAListFunction( char *luafuncname, int gmlevel, int charaindex, c
 #endif
 
 /*------------------------------------------------------------
- * 民乓永玄  芊
- * 娄醒
- *  charaindex      int     平乓仿奶件犯永弁旦
- *  message         char*   丢永本□斥
- *  isDebug         BOOL    犯田永弘民乓永玄  芊井升丹井
- * 忒曰袄
- *  卅仄
+ * チャット魔法
+ * 引数
+ *  charaindex      int     キャラインデックス
+ *  message         char*   メッセージ
+ *  isDebug         BOOL    デバッグチャット魔法かどうか
+ * 返り値
+ *  なし
  ------------------------------------------------------------*/
 static BOOL CHAR_useChatMagic( int charaindex, char* data, BOOL isDebug)
 {
@@ -802,11 +802,11 @@ static BOOL CHAR_useChatMagic( int charaindex, char* data, BOOL isDebug)
 }
 
 /*------------------------------------------------------------
- * 祥汹井日汔毛菲户月
- * 娄醒
- *  volume  int     祥汹
- * 忒曰袄
- *  穴永皿匹及穴旦
+ * 音量から幅を求める
+ * 引数
+ *  volume  int     音量
+ * 返り値
+ *  マップでのマス
  ------------------------------------------------------------*/
 static int CHAR_getRangeFromVolume( int volume )
 {
@@ -821,13 +821,13 @@ static int CHAR_getRangeFromVolume( int volume )
 	return chatvol[volume];
 }
 /*------------------------------------------------------------
- * 擘及示伉亘□丞毛茧月［条卅中支曰井凶［
- * 娄醒
- *  mesg        char*       仄扎屯月蜕邯
- * 忒曰袄
- *  -1 及午五反仇公仇公
- *  0  及午五反孔勾丹
- *  1 方曰云云五中午｝仃勾卞勾中化中月 ! 及醒
+ * 声のボリュームを探る。汚ないやりかた。
+ * 引数
+ *  mesg        char*       しゃべる言葉
+ * 返り値
+ *  -1 のときはこそこそ
+ *  0  のときはふつう
+ *  1 よりおおきいと、けつについている ! の数
  ------------------------------------------------------------*/
 static int CHAR_getVolume( char* mesg )
 {
@@ -850,16 +850,16 @@ static int CHAR_getVolume( char* mesg )
     else
       return 0;
 	}else{
-		/*  3动晓   */
+		/*   3以上   */
 		if( mesg[stringlen-1] == '.' ){
-			/*  仇公仇公及第  岭丐曰    */
+			/*  こそこその可能性あり    */
 			if( mesg[stringlen-2] == '.' && mesg[stringlen-3] == '.' ){
-				/*  仇公仇公    */
+				/* こそこそ     */
 				return -1;
 			}
 			return 0;
 		}else{
-			/*  仇仇井日 ! 毛醒尹月*/
+			/*  ここから ! を数える */
 			int exnum=0;
 			int i;
 			for( i=stringlen-1; i>=0 ; i-- ){
@@ -874,20 +874,20 @@ static int CHAR_getVolume( char* mesg )
 }
 
 /*------------------------------------------------------------
- * 丢永本□斥及    井日丢永本□斥及      坌毛潸曰请允
- * 娄醒
- *  message     char*           丢永本□斥
- *  kind        char*           p or s or i卅及丢永本□斥
- *  kindlen     int             kind 及赢今
- *  body        char**          丢永本□斥    及禾奶件正□及伞  桦赭
- * 忒曰袄
- *  卅仄
+ * メッセージの内容からメッセージの本体部分を取り出す
+ * 引数
+ *  message     char*           メッセージ本体
+ *  kind        char*           p or s or iなのメッセージ
+ *  kindlen     int             kind の長さ
+ *  body        char**          メッセージ本体のポインターの格納場所
+ * 返り値
+ *  なし
  ------------------------------------------------------------*/
 void CHAR_getMessageBody(char* message,char* kind,int kindlen,char** body)
 {
     int firstchar;
 
-	/* 1  侬  毛切之匀仁［1  侬匹丐月仇午反lssproto.html互忡据 */
+	/* 1文字目をちぇっく。1文字であることはlssproto.htmlが保証 */
 	// Nuke +1: For invalid message attack
 	*body = 0;
     firstchar = message[0];
@@ -984,7 +984,7 @@ static BOOL CHAR_Talk_check( int talkerindex, int talkedindex, int micflg )
 	MyBattleMode = CHAR_getWorkInt( talkerindex, CHAR_WORKBATTLEMODE);
 	ToBattleMode = CHAR_getWorkInt( talkedindex, CHAR_WORKBATTLEMODE);
 
-	/*   爵    及凛 */
+	/* 非戦闘中の時 */
 	if( MyBattleMode == BATTLE_CHARMODE_NONE ) {
 		if( ToBattleMode == BATTLE_CHARMODE_NONE ) {
 			return TRUE;
@@ -993,13 +993,13 @@ static BOOL CHAR_Talk_check( int talkerindex, int talkedindex, int micflg )
 			return FALSE;
 		}
 	}
-	/* 爵    及凛 */
+	/* 戦闘中の時 */
 	else {
-		/* 爵  仄化中卅中谛卞反霜日卅中［ */
+		/* 戦闘していない人には送らない */
 		if( ToBattleMode == BATTLE_CHARMODE_NONE) {
 			return FALSE;
 		}
-		/*   元爵  匹  元扔奶玉及谛卞仄井霜耨请  卅中 */
+		/* 同じ戦闘で同じサイドの人にしか送信出来ない */
 		if( CHAR_getWorkInt( talkerindex, CHAR_WORKBATTLEINDEX)
 			== CHAR_getWorkInt( talkedindex, CHAR_WORKBATTLEINDEX) &&
 			CHAR_getWorkInt( talkerindex, CHAR_WORKBATTLESIDE)

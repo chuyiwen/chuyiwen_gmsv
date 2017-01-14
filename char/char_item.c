@@ -639,7 +639,7 @@ void CHAR_moveEquipItem( int index, int fromindex, int toindex )
 #define		MOVEITEM_ITEMTOEQUIP	1 << 1
 #define		MOVEITEM_ITEMTOITEM		1 << 2
 
-	int     fromid;            /*  item    匹及奶件犯永弁旦    */
+	int     fromid;            /*  item配列でのインデックス    */
 
 
 	unsigned int     moved_any = 0;
@@ -839,12 +839,12 @@ void CHAR_ItemUse( int charaindex, int to_charaindex, int haveitemindex )
 	if( usefunc ){
 		{
 			LogItem(
-				CHAR_getChar( charaindex, CHAR_NAME ), /* 平乓仿抩 */
+				CHAR_getChar( charaindex, CHAR_NAME ), /* キャラ名 */
 				CHAR_getChar( charaindex, CHAR_CDKEY ),
 #ifdef _add_item_log_name  // WON ADD 在item的log中增加item名称
 				itemindex,
 #else
-				ITEM_getInt( itemindex, ITEM_ID ),       /* 失奶泛丞?寞 */
+				ITEM_getInt( itemindex, ITEM_ID ),       /* アイテム番号 */
 #endif
 				"Use(使用道具)",
 				CHAR_getInt( charaindex,CHAR_FLOOR),
@@ -944,12 +944,12 @@ BOOL CHAR_DropItemFXY( int charaindex, int itemcharaindex, int fl,
 			sprintf(tmpbuf,"丢弃 %s (道具消失时间%d秒)。",ITEM_getChar( itemindex, ITEM_NAME),getItemdeletetime());
 			CHAR_talkToCli( charaindex, -1, tmpbuf, CHAR_COLORYELLOW );
 			LogItem(
-				CHAR_getChar( charaindex, CHAR_NAME ), /* 平乓仿   */
+				CHAR_getChar( charaindex, CHAR_NAME ), /* キャラ名   */
 				CHAR_getChar( charaindex, CHAR_CDKEY ),
 #ifdef _add_item_log_name  // WON ADD 在item的log中增加item名称
 				itemindex,
 #else
-				ITEM_getInt( itemindex, ITEM_ID ),  /* 失奶  丞  寞 */
+				ITEM_getInt( itemindex, ITEM_ID ),  /* アイテム番号 */
 #endif
 				"Drop(丢出道具)",
 			   	CHAR_getInt( charaindex,CHAR_FLOOR),
@@ -1909,9 +1909,9 @@ void CHAR_PickUpItem( int charaindex, int dir )
 				snprintf( mesg,sizeof(mesg), "拾获 %s", p);
 				CHAR_talkToCli(charaindex,-1,mesg,CHAR_COLORWHITE);
 			}
-			// 矢永玄毛胶匀凶夫弘
+			// ペットを拾ったログ
 			LogPet(
-				CHAR_getChar( charaindex, CHAR_NAME ), /* 平乓仿   */
+				CHAR_getChar( charaindex, CHAR_NAME ), /* キャラ名   */
 				CHAR_getChar( charaindex, CHAR_CDKEY ),
 				CHAR_getChar( contents, CHAR_NAME),
 				CHAR_getInt( contents, CHAR_LV),
@@ -1926,7 +1926,7 @@ void CHAR_PickUpItem( int charaindex, int dir )
 		// Robin 0701 petFollow
 		case 3:
 
-			/*  引歹曰卞仇木毛壅六午中丹    */
+			/*  まわりにこれを消せという   */
 			CHAR_ObjectDelete(objindex);
 			CHAR_setWorkInt( contents, CHAR_WORKOBJINDEX, -1);
 			{
@@ -1940,9 +1940,9 @@ void CHAR_PickUpItem( int charaindex, int dir )
 				snprintf( mesg,sizeof(mesg), "拾回 %s", p);
 				CHAR_talkToCli(charaindex,-1,mesg,CHAR_COLORWHITE);
 			}
-			// 矢永玄毛胶匀凶夫弘
+			// ペットを拾ったログ
 			LogPet(
-				CHAR_getChar( charaindex, CHAR_NAME ), /* 平乓仿   */
+				CHAR_getChar( charaindex, CHAR_NAME ), /* キャラ名   */
 				CHAR_getChar( charaindex, CHAR_CDKEY ),
 				CHAR_getChar( contents, CHAR_NAME),
 				CHAR_getInt( contents, CHAR_LV),
@@ -1980,23 +1980,23 @@ void CHAR_PickUpItem( int charaindex, int dir )
 }
 
 /*------------------------------------------------------------
- * 云嗯毛甄  隙烂匹  公丹午允月［CHAR_DropMoney井日及心匹银丹仪［
- * 娄醒
- *  charaindex  int     平乓仿奶件犯永弁旦
- *  itemindex   int     失奶  丞奶件犯永弁旦(平乓仿犯□正及  匹及)
- *  fl          int     白夫失
+ * お金を座標指定で落そうとする。CHAR_DropMoneyからのみで使う事。
+ * 引数
+ *  charaindex  int     キャラインデックス
+ *  itemindex   int     アイテムインデックス(キャラデータの中での)
+ *  fl          int     フロア
  *  x           int     x
  *  y           int     y
- *  force       BOOL    仇及袄互恳分午    泫    允
- *  objindex    int*      中凶失奶  丞及 Object 匹及奶件犯弁永旦
- * 忒曰袄
- *  撩  (公氏卅卞云嗯毛  匀化中卅中)    -1
- *  撩  (哗溥读卞分户)  -2
- *  公木动陆及撩    -3
- *  撩  (公仇卞反公及汹及云嗯反聂允亢月)    -4
- *  允匹卞职及失奶  丞互  切化中月  -5
- *  汹互  匹  ［ -6
- *  岳      0
+ *  force       BOOL    この値が正だと無理矢理落す
+ *  objindex    int*    置いたアイテムの Object でのインデクッス
+ * 返り値
+ *  失敗(そんなにお金を持っていない)    -1
+ *  失敗(地形的にだめ)  -2
+ *  それ以外の失敗  -3
+ *  失敗(そこにはその量のお金は多すぎる)    -4
+ *  すでに他のアイテムが落ちている  -5
+ *  量が負で変。 -6
+ *  成功    0
  ------------------------------------------------------------*/
 static BOOL CHAR_DropMoneyFXY( int charaindex, int amount, int fl , int x,
 							   int y, BOOL force, int* objindex )
@@ -2031,10 +2031,10 @@ static BOOL CHAR_DropMoneyFXY( int charaindex, int amount, int fl , int x,
 #ifdef _DEL_DROP_GOLD
 			OBJECT_setTime( index, NowTime.tv_sec);
 #endif
-			if( amount >= 100 ){ /* 云嗯毛  中凶夫弘 */
-			        LogStone(-1,CHAR_getChar( charaindex, CHAR_NAME ), /* 平乓仿   */
-			                 CHAR_getChar( charaindex, CHAR_CDKEY ), /* 交□扒□ID */
-			                 amount,                                   /* 嗯喊 */
+			if( amount >= 100 ){ /* お金を置いたログ */
+			        LogStone(-1,CHAR_getChar( charaindex, CHAR_NAME ), /* キャラ名   */
+			                 CHAR_getChar( charaindex, CHAR_CDKEY ), /* ユーザーID */
+			                 amount,                                   /* 金額 */
 							 CHAR_getInt( charaindex, CHAR_GOLD ),
 			                 "Drop(放置金钱)",
 			                 CHAR_getInt( charaindex,CHAR_FLOOR),
@@ -2047,12 +2047,12 @@ static BOOL CHAR_DropMoneyFXY( int charaindex, int amount, int fl , int x,
 			if( force==TRUE )
 				continue;
 			else
-				/* 允匹卞失奶  丞互丐月及匹分户 */
+				/* すでにアイテムがあるのでだめ */
 				return -5;
 		}
 	}
 
-	/* 仇仇引匹谗琼允月午中丹仪反蕙筋瓒  允月 */
+	/*  ここまで到達するという事は新規登録する */
 	{
 		Object  one;
 		one.type = OBJTYPE_GOLD;
@@ -2065,22 +2065,22 @@ static BOOL CHAR_DropMoneyFXY( int charaindex, int amount, int fl , int x,
 
 		one.index = amount;
 		*objindex = initObjectOne( &one );
-		/*  左皮斥尼弁玄瓒  允月    */
+		/*  オブジェクト登録する    */
 		if( *objindex == -1 )
-			/*  瓒  撩      */
+			/*  登録失敗     */
 			return -3;
 
-		/*云嗯毛蛹日允*/
+		/*お金を減らす*/
 		CHAR_setInt(charaindex,CHAR_GOLD,
 					(unsigned int)CHAR_getInt(charaindex,CHAR_GOLD )
 					- amount );
 #ifdef _DEL_DROP_GOLD
 		OBJECT_setTime( *objindex, NowTime.tv_sec);
 #endif
-		if( amount >= 100 ){ /* 云嗯毛  中凶夫弘 */
-		      LogStone(-1,CHAR_getChar( charaindex, CHAR_NAME ), /* 平乓仿   */
-		               CHAR_getChar( charaindex, CHAR_CDKEY ), /* 交□扒□ID */
-		               amount,                                   /* 嗯喊 */
+		if( amount >= 100 ){ /*  お金を置いたログ */
+		      LogStone(-1,CHAR_getChar( charaindex, CHAR_NAME ), /* キャラ名   */
+		               CHAR_getChar( charaindex, CHAR_CDKEY ), /* ユーザーID */
+		               amount,                                   /* 金額 */
 					   CHAR_getInt( charaindex, CHAR_GOLD ),
 		               "Drop(放置金钱)",
 		               CHAR_getInt( charaindex,CHAR_FLOOR),
@@ -2093,13 +2093,13 @@ static BOOL CHAR_DropMoneyFXY( int charaindex, int amount, int fl , int x,
 }
 
 /*------------------------------------------------------------
- * 云嗯毛  允楮醒［  及蟆井日  允［
- * 娄醒
- *  charaindex      int     平乓仿奶件犯永弁旦
- *  amount          int     云嗯及汹
+ * お金を落す関数。目の前から落す。
+ * 引数
+ *  charaindex      int     キャラインデックス
+ *  amount          int     お金の量
  *
- * 忒曰袄
- *  卅仄
+ * 返り値
+ *  なし
  ------------------------------------------------------------*/
 void CHAR_DropMoney( int charaindex,  int amount )
 {
@@ -2313,7 +2313,7 @@ int CHAR_pickupFollowPet( int charaindex, int pickupindex )
 	if( (pickupindex == -1) || (pickupindex == CHAR_getWorkInt( charaindex, CHAR_WORKPETFOLLOW )   ) )
 		CHAR_setWorkInt( charaindex, CHAR_WORKPETFOLLOW, -1 );
 	
-	/* CDKEY 午平乓仿  互域谯仄卅中午五反胶尹卅中 */
+	/* CDKEY とキャラ名が一致しないときは拾えない */
 	if( strcmp( CHAR_getChar( petindex, CHAR_OWNERCDKEY), CHAR_getChar( charaindex, CHAR_CDKEY)) != 0 ||
 	    strcmp( CHAR_getChar( petindex, CHAR_OWNERCHARANAME), CHAR_getChar( charaindex, CHAR_NAME)) != 0 )
 	{
@@ -2366,9 +2366,9 @@ int CHAR_pickupFollowPet( int charaindex, int pickupindex )
 		snprintf( mesg,sizeof(mesg), "拾回 %s", p);
 		CHAR_talkToCli(charaindex,-1,mesg,CHAR_COLORYELLOW);
 	}
-	// 矢永玄毛胶匀凶夫弘
+	// ペットを拾ったログ
 	LogPet(
-		CHAR_getChar( charaindex, CHAR_NAME ), /* 平乓仿   */
+		CHAR_getChar( charaindex, CHAR_NAME ), /*  キャラ名   */
 		CHAR_getChar( charaindex, CHAR_CDKEY ),
 		CHAR_getChar( petindex, CHAR_NAME),
 		CHAR_getInt( petindex, CHAR_LV),

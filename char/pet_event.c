@@ -301,12 +301,12 @@ BOOL PetTalk_DelItem(int meindex,int talker,char *buf)
 						cnt++;
 						
 						LogItem(
-							CHAR_getChar( talker, CHAR_NAME ), /* 平乓仿   */
+							CHAR_getChar( talker, CHAR_NAME ), /* キャラ名   */
 							CHAR_getChar( talker, CHAR_CDKEY ),
 #ifdef _add_item_log_name  // WON ADD 在item的log中增加item名称
 							itemindex,
 #else
-							ITEM_getInt( itemindex, ITEM_ID),  /* 失奶  丞  寞 */
+							ITEM_getInt( itemindex, ITEM_ID),  /* アイテム番号 */
 #endif
 							"WarpManDelItem(NPC收道具後传至某点)",
 							CHAR_getInt( talker, CHAR_FLOOR),
@@ -326,19 +326,19 @@ BOOL PetTalk_DelItem(int meindex,int talker,char *buf)
 				}
 			}		
 		}else{
-			/*--蓟氏分  寞及失奶  丞毛蓟请---*/
+			/*--選んだ番号のアイテムを選出---*/
 			for( j = 0 ;  j < CHAR_MAXITEMHAVE ; j++){
 				itemindex = CHAR_getItemIndex( talker ,j);
 
 				if( ITEM_CHECKINDEX(itemindex) ){
 					if( atoi( buff3) == ITEM_getInt(itemindex,ITEM_ID)){
 						LogItem(
-							CHAR_getChar( talker, CHAR_NAME ), /* 平乓仿   */
+							CHAR_getChar( talker, CHAR_NAME ), /* キャラ名   */
 							CHAR_getChar( talker, CHAR_CDKEY ),
 #ifdef _add_item_log_name  // WON ADD 在item的log中增加item名称
 							itemindex,
 #else
-							ITEM_getInt( itemindex, ITEM_ID),  /* 失奶  丞  寞 */
+							ITEM_getInt( itemindex, ITEM_ID),  /* アイテム番号 */
 #endif
 							"WarpManDelItem(NPC收道具後传至某点)",
 							CHAR_getInt( talker,CHAR_FLOOR),

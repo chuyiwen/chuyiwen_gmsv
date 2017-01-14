@@ -47,73 +47,73 @@ typedef struct tagdefaultCharcterGet
 static defaultCharacterGet CHAR_defaultCharacterGet[]=
 {
   /*  CHAR_DEFAULTPLAYER  */
-//阂间裆ㄠ
+//子供男１
     {SPR_001em,&player,&lvplayer00,CHAR_IMAGETYPE_CHILDBOY},
     {SPR_002em,&player,&lvplayer00,CHAR_IMAGETYPE_CHILDBOY},
     {SPR_003em,&player,&lvplayer00,CHAR_IMAGETYPE_CHILDBOY},
     {SPR_004em,&player,&lvplayer00,CHAR_IMAGETYPE_CHILDBOY},
 
-//剂  ㄠ
+//少年１
     {SPR_011em,&player,&lvplayer00,CHAR_IMAGETYPE_BOY},
     {SPR_012em,&player,&lvplayer00,CHAR_IMAGETYPE_BOY},
     {SPR_013em,&player,&lvplayer00,CHAR_IMAGETYPE_BOY},
     {SPR_014em,&player,&lvplayer00,CHAR_IMAGETYPE_BOY},
 
-//剂  ㄡ
+//少年２
     {SPR_021em,&player,&lvplayer00,CHAR_IMAGETYPE_BOY},
     {SPR_022em,&player,&lvplayer00,CHAR_IMAGETYPE_BOY},
     {SPR_023em,&player,&lvplayer00,CHAR_IMAGETYPE_BOY},
     {SPR_024em,&player,&lvplayer00,CHAR_IMAGETYPE_BOY},
 
-//剂  ㄢ
+//少年３
     {SPR_031em,&player,&lvplayer00,CHAR_IMAGETYPE_BOY},
     {SPR_032em,&player,&lvplayer00,CHAR_IMAGETYPE_BOY},
     {SPR_033em,&player,&lvplayer00,CHAR_IMAGETYPE_BOY},
     {SPR_034em,&player,&lvplayer00,CHAR_IMAGETYPE_BOY},
 
-//敛  ㄠ
+//青年１
     {SPR_041em,&player,&lvplayer00,CHAR_IMAGETYPE_MAN},
     {SPR_042em,&player,&lvplayer00,CHAR_IMAGETYPE_MAN},
     {SPR_043em,&player,&lvplayer00,CHAR_IMAGETYPE_MAN},
     {SPR_044em,&player,&lvplayer00,CHAR_IMAGETYPE_MAN},
 
-//敛  ㄡ
+//青年２
     {SPR_051em,&player,&lvplayer00,CHAR_IMAGETYPE_MAN},
     {SPR_052em,&player,&lvplayer00,CHAR_IMAGETYPE_MAN},
     {SPR_053em,&player,&lvplayer00,CHAR_IMAGETYPE_MAN},
     {SPR_054em,&player,&lvplayer00,CHAR_IMAGETYPE_MAN},
 
-//阂间辉ㄠ
+//子供女１
     {SPR_061em,&player,&lvplayer00,CHAR_IMAGETYPE_CHILDGIRL},
     {SPR_062em,&player,&lvplayer00,CHAR_IMAGETYPE_CHILDGIRL},
     {SPR_063em,&player,&lvplayer00,CHAR_IMAGETYPE_CHILDGIRL},
     {SPR_064em,&player,&lvplayer00,CHAR_IMAGETYPE_CHILDGIRL},
 
-//剂辉ㄠ
+//少女１
     {SPR_071em,&player,&lvplayer00,CHAR_IMAGETYPE_GIRL},
     {SPR_072em,&player,&lvplayer00,CHAR_IMAGETYPE_GIRL},
     {SPR_073em,&player,&lvplayer00,CHAR_IMAGETYPE_GIRL},
     {SPR_074em,&player,&lvplayer00,CHAR_IMAGETYPE_GIRL},
 
-//剂辉ㄡ
+//少女２
     {SPR_081em,&player,&lvplayer00,CHAR_IMAGETYPE_GIRL},
     {SPR_082em,&player,&lvplayer00,CHAR_IMAGETYPE_GIRL},
     {SPR_083em,&player,&lvplayer00,CHAR_IMAGETYPE_GIRL},
     {SPR_084em,&player,&lvplayer00,CHAR_IMAGETYPE_GIRL},
 
-//剂辉ㄢ
+//少女３
     {SPR_091em,&player,&lvplayer00,CHAR_IMAGETYPE_GIRL},
     {SPR_092em,&player,&lvplayer00,CHAR_IMAGETYPE_GIRL},
     {SPR_093em,&player,&lvplayer00,CHAR_IMAGETYPE_GIRL},
     {SPR_094em,&player,&lvplayer00,CHAR_IMAGETYPE_GIRL},
 
-//辉岭ㄠ
+//女性１
     {SPR_101em,&player,&lvplayer00,CHAR_IMAGETYPE_WOMAN},
     {SPR_102em,&player,&lvplayer00,CHAR_IMAGETYPE_WOMAN},
     {SPR_103em,&player,&lvplayer00,CHAR_IMAGETYPE_WOMAN},
     {SPR_104em,&player,&lvplayer00,CHAR_IMAGETYPE_WOMAN},
 
-//辉岭ㄡ
+//女性２
     {SPR_111em,&player,&lvplayer00,CHAR_IMAGETYPE_WOMAN},
     {SPR_112em,&player,&lvplayer00,CHAR_IMAGETYPE_WOMAN},
     {SPR_113em,&player,&lvplayer00,CHAR_IMAGETYPE_WOMAN},
@@ -207,11 +207,11 @@ BOOL CHAR_checkPlayerImageNumber( int imagenumber)
 	else return TRUE;
 }
 /*------------------------------------------------------------
- * 涌  飓  寞及民尼永弁
+ * 顔画像番号のチェック
  *
- * 涌  飓  寞反动票及白巧□穴永玄匹瑁引匀化中月
- * number = 窒谛  井
- * CG_CHR_MAKE_FACE + (number*100) + (  缙  number * 25) + (     寞 * 5 ) + 轼  寞
+ * 顔画像番号は以下のフォーマットで決まっている
+ * number = 何人目か
+ * CG_CHR_MAKE_FACE + (number*100) + (（色）number * 25) + ( 目番号 * 5 ) + 口番号
  *
  ------------------------------------------------------------*/
 BOOL CHAR_checkFaceImageNumber( int imagenumber, int faceimagenumber)
@@ -224,9 +224,9 @@ BOOL CHAR_checkFaceImageNumber( int imagenumber, int faceimagenumber)
 	if( image != number + color ) return FALSE;
 	return TRUE;
 }
-// 平乓仿  飓  □皮伙［ㄠ  丐凶曰隶  ㄤ潘
+// キャラ画像テーブル。１体あたり装備５種類
 int CHAR_eqimagetbl[][5]={
-    // 允匹       ｛｛｛｛ 轺徇       键         菰
+    // すで     斧　　　　 棍棒       槍         弓
     { SPR_001em,SPR_001ax,SPR_001cl,SPR_001sp,SPR_001bw },
     { SPR_002em,SPR_002ax,SPR_002cl,SPR_002sp,SPR_002bw },
     { SPR_003em,SPR_003ax,SPR_003cl,SPR_003sp,SPR_003bw },
@@ -313,18 +313,18 @@ int CHAR_eqimagetbl[][5]={
 };
 
 /*------------------------------------------------------------
- * 隶    午  飓  寞井日蕙仄中  飓  寞毛  月［
- * 娄醒
- *  basebaseimagenumber     int             葭卞卅月  飓  寞
- *  category                ITEM_CATEGORY   失奶  丞及市  打伉
- * 忒曰袄
- *  蕙仄中  飓  寞［巨仿□及凛反｝-1
+ * 装備品と画像番号から新しい画像番号を得る。
+ * 引数
+ *  basebaseimagenumber     int             元になる画像番号
+ *  category                ITEM_CATEGORY   アイテムのカテゴリ
+ * 返り値
+ *  新しい画像番号。エラーの時は、-1
  ------------------------------------------------------------*/
 int CHAR_getNewImagenumberFromEquip( int basebaseimagenumber,
                                      ITEM_CATEGORY category )
 {
     int i;
-    /*  ITEM_CATEGORY 民尼永弁  */
+    /*   ITEM_CATEGORY チェック */
     if( category < 0 || category > arraysizeof(CHAR_eqimagetbl[0]) )
         return -1;
     for( i=0 ; i<arraysizeof(CHAR_eqimagetbl) ; i++ ){
@@ -338,10 +338,10 @@ int CHAR_getNewImagenumberFromEquip( int basebaseimagenumber,
 
 
 /*------------------------------------------------------------
- * hash 袄毛菲户月［
- * 娄醒
- * 忒曰袄
- *  卅仄
+ * hash 値を求める。
+ * 引数
+ * 返り値
+ *  なし
  ------------------------------------------------------------*/
 /*
 void CHAR_initSeekGraphicNumberFromString( void )
@@ -381,12 +381,12 @@ void CHAR_initSeekGraphicNumberFromString( void )
 }
 */
 /*------------------------------------------------------------
- *   侬  井日  飓  寞毛  月［
- * 娄醒
- *  string      char*         侬
- * 忒曰袄
- *  巨仿□ -1
- *  公木动陆分午弘仿白奴永弁  寞
+ * 文字列から画像番号を得る。
+ * 引数
+ *  string      char*       文字列
+ * 返り値
+ *  エラー -1
+ *  それ以外だとグラフィック番号
  ------------------------------------------------------------*/
 int CHAR_seekGraphicNumberFromString( char* string )
 {
@@ -394,7 +394,7 @@ int CHAR_seekGraphicNumberFromString( char* string )
     int     i;
     int     ret;
 
-    /* 公及引引及醒侬分匀凶日公及引引忒允［ */
+    /* そのままの数字だったらそのまま返す。 */
     if( strtolchecknum( string, &ret,10,INT ) )return ret;
 
     hashvalue = hashpjw( string );
@@ -409,8 +409,8 @@ int CHAR_seekGraphicNumberFromString( char* string )
 
 
 
-/*====================  衬桦赭====================*/
-/*  衬桦赭毛忡  允月    */
+/*====================無敵場所====================*/
+/* 無敵場所を保持する   */
 typedef struct tagCHAR_invinsibleArea
 {
     CHAR_AREAKIND   kind;
@@ -422,12 +422,12 @@ CHAR_invincibleArea*    CHAR_invarea;
 int                     CHAR_invareanum;
 
 /*------------------------------------------------------------
- *   衬桦赭及赓渝祭毛允月［
- * 娄醒
- *  filename        char*       涩烂白央奶伙
- * 忒曰袄
- *  岳      TRUE(1)
- *  撩      FALSE(0)
+ * 無敵場所の初期化をする。
+ * 引数
+ *  filename        char*       設定ファイル名
+ * 返り値
+ *  成功    TRUE(1)
+ *  失敗    FALSE(0)
  *------------------------------------------------------------*/
 BOOL CHAR_initInvinciblePlace( char* filename )
 {
@@ -444,7 +444,7 @@ BOOL CHAR_initInvinciblePlace( char* filename )
 
     CHAR_invareanum=0;
 
-    /*  引内  躲卅垫互窒垫丐月井升丹井譬屯月    */
+    /*  まず有効な行が何行あるかどうか調べる    */
     while( fgets( line, sizeof( line ), f ) ){
         linenum ++;
         if( line[0] == '#' )continue;        /* comment */
@@ -468,7 +468,7 @@ BOOL CHAR_initInvinciblePlace( char* filename )
         fclose( f );
         return FALSE;
     }
-    /* 赓渝祭 */
+    /* 初期化 */
 {
     int     i;
     for( i = 0; i < CHAR_invareanum; i ++ ) {
@@ -672,7 +672,7 @@ BOOL CHAR_initAppearPosition( char* filename )
             char    token[256];
             int     ret;
 
-            /*  夫午勾户及玄□弁件毛苇月    */
+            /*  ひとつめのトークンを見る    */
             ret = getStringFromIndexWithDelim( line," ",1,token,
                                                sizeof(token));
             if( ret==FALSE ){
@@ -794,15 +794,15 @@ BOOL CHAR_getInitElderPosition( Char* ch,int hometown)
 }
 
 /*------------------------------------------------------------
- * 巨伙母□及桦赭毛  月
- * 娄醒
- *  elderindex      int     巨伙母□奶件犯永弁旦
- *  fl              int*    白夫失毛熬仃潸月桦赭
- *  x               int*    x毛熬仃潸月桦赭
- *  y               int*    y毛熬仃潸月桦赭
- * 娄醒
- *  岳    TRUE(1)
- *  撩    FALSE(0)
+ * エルダーの場所を得る
+ * 引数
+ *  elderindex      int     エルダーインデックス
+ *  fl              int*    フロアを受け取る場所
+ *  x               int*    xを受け取る場所
+ *  y               int*    yを受け取る場所
+ * 引数
+ *  成功  TRUE(1)
+ *  失敗  FALSE(0)
  ------------------------------------------------------------*/
 BOOL CHAR_getElderPosition( int elderindex, int* fl, int* x, int* y )
 {
@@ -814,14 +814,14 @@ BOOL CHAR_getElderPosition( int elderindex, int* fl, int* x, int* y )
     return TRUE;
 }
 /*------------------------------------------------------------
- * 赢  NPC互愤坌及赓渝祭及午五卞｝赢    卞踏五仇戈及分［
- * 公及凶户及奶件正□白尼奶旦
- * 娄醒
- *  index   int 左□田□匹 撩  仄凶日FALSE 毛井尹允
- *  fl      int 匏  及树
+ * 長老NPCが自分の初期化のときに、長老表に書きこむのだ。
+ * そのためのインターフェイス
+ * 引数
+ *  index   int オーバーで 失敗したらFALSE をかえす
+ *  fl      int 位置の情報
  *  x       int
  *  y       int
- * NPC及伙□民件井日银歹木月及分［
+ * NPCのルーチンから使われるのだ。
  ------------------------------------------------------------*/
 BOOL CHAR_ElderSetPosition( int elderindex ,int fl,int x ,int y)
 {
@@ -1013,7 +1013,7 @@ static int EnemyExpTbl[]={
 
 
 
-// 酵烂读卅烦董袄煌遥
+// 暫定的な経験値計算
 int GetEnemyExp( int level ){
 /*
 	int exp = 0;
@@ -1390,7 +1390,7 @@ int CHAR_PetLevelUp( int petindex )
 #ifdef _TEACHER_SYSTEM
 	int iGetFame = 0;
 #endif	
-	// 娄醒民尼永弁
+	// 引数チェック
 	if( CHAR_CHECKINDEX( petindex ) == FALSE )	return -1;
 	if( CHAR_getInt( petindex, CHAR_WHICHTYPE ) != CHAR_TYPEPET  && 
 		  CHAR_getInt( petindex, CHAR_WHICHTYPE ) != CHAR_TYPEPLAYERNPC && 
@@ -1398,32 +1398,32 @@ int CHAR_PetLevelUp( int petindex )
 	
 	LevelUpPoint = CHAR_getInt( petindex, CHAR_ALLOCPOINT );
 	
-	// 矢永玄及仿件弁
+	// ペットのランク
 	petrank = CHAR_getInt( petindex, CHAR_PETRANK );
 	if( petrank < 0 || petrank > 5 ) petrank = 0;
 	
-	// 潸
+	//取得
 	vital = (float)(( LevelUpPoint >> 24 ) & 0xFF);
 	str = (float)(( LevelUpPoint >> 16 ) & 0xFF);
 	tgh = (float)(( LevelUpPoint >> 8 ) & 0xFF);
 	dex = (float)(( LevelUpPoint >> 0 ) & 0xFF);
 	
-	// ㄠㄟ荚ㄣ    扔奶戊夫毛蕊匀化备嫩  卞ㄠ箫允
+	// １０回４面体サイコロを振って各項目に１足す
 	for( i = 0; i < 10; i ++ ){
 		Param[RAND( 0, 3 )] += 1.0;
 	}
 	
-	// 仿件弁卞方月  区及仿件母丞
+	// ランクによる範囲のランダム
 	fRand = (float)RAND( RankRandTbl[petrank].min, RankRandTbl[petrank].max )
 		* 0.01;
 	
-	// 喃曰蕊曰禾奶件玄方曰煌遥
+	// 割り振りポイントより計算
 	vital = (float)vital * fRand + Param[0] * fRand;
 	str = (float)str   * fRand + Param[1] * fRand;
 	tgh = (float)tgh   * fRand + Param[2] * fRand;
 	dex = (float)dex   * fRand + Param[3] * fRand;
 	
-	// 煌遥
+	// 計算
 	CHAR_setInt( petindex, CHAR_VITAL,
 		CHAR_getInt( petindex, CHAR_VITAL ) + (int)vital );
 	CHAR_setInt( petindex, CHAR_STR,

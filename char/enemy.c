@@ -221,7 +221,7 @@ BOOL ENEMYTEMP_initEnemy( char* filename )
 
     ENEMYTEMP_enemynum=0;
 
-    /*  引内  躲卅垫互窒垫丐月井升丹井譬屯月    */
+    /*  まず有効な行が何行あるかどうか調べる    */
     while( fgets( line, sizeof( line ), f ) ){
         linenum ++;
         if( line[0] == '#' )continue;        /* comment */
@@ -245,7 +245,7 @@ BOOL ENEMYTEMP_initEnemy( char* filename )
         return FALSE;
     }
 
-	/* 赓渝祭 */
+	/* 初期化 */
     for( i = 0; i < ENEMYTEMP_enemynum; i ++ ) {
     	for( j = 0; j < E_T_DATAINTNUM; j ++ ) {
     		ENEMYTEMP_setInt( i,j,-1);
@@ -475,7 +475,7 @@ BOOL ENEMY_initEnemy( char* filename )
     return TRUE;
 }
 /*------------------------------------------------------------------------
- * ENEMY_enemy及涩烂白央奶伙  心  仄
+ * ENEMY_enemyの設定ファイル読み直し
  *-----------------------------------------------------------------------*/
 BOOL ENEMY_reinitEnemy( void )
 {
@@ -484,7 +484,7 @@ BOOL ENEMY_reinitEnemy( void )
 }
 
 /*------------------------------------------------------------------------
- ENEMY_Enemy及骄侬毛襞月
+ ENEMY_Enemyの添字を知る
  *-----------------------------------------------------------------------*/
 int ENEMY_getEnemyArrayFromIndex( int groupindex, int index)
 {
@@ -493,7 +493,7 @@ int ENEMY_getEnemyArrayFromIndex( int groupindex, int index)
 	return GROUP_group[groupindex].enemyarray[index];
 }
 /*------------------------------------------------------------------------
- * ENEMY_ID 井日ENEMY_Enemy及骄侬毛襞月
+ * ENEMY_ID からENEMY_Enemyの添字を知る
  *-----------------------------------------------------------------------*/
 int ENEMY_getEnemyArrayFromId( int EnemyId)
 {
@@ -540,7 +540,7 @@ int ENEMY_getEnemyTempNoFromId( int EnemyId)
 }
 
 /*------------------------------------------------------------------------
- * 弘伙□皿涩烂白央奶伙毛  戈
+ * グループ設定ファイルを読む
  *-----------------------------------------------------------------------*/
 BOOL GROUP_initGroup( char* filename )
 {
@@ -558,7 +558,7 @@ BOOL GROUP_initGroup( char* filename )
 
     GROUP_groupnum=0;
 
-    /*  引内  躲卅垫互窒垫丐月井升丹井譬屯月    */
+    /*  まず有効な行が何行あるかどうか調べる    */
     while( fgets( line, sizeof( line ), f ) ){
         linenum ++;
         if( line[0] == '#' )continue;        /* comment */
@@ -582,7 +582,7 @@ BOOL GROUP_initGroup( char* filename )
         fclose( f );
         return FALSE;
     }
-	/* 赓渝祭 */
+	/* 初期化 */
     for( i = 0; i < GROUP_groupnum; i ++ ) {
     	for( j = 0; j < GROUP_DATAINTNUM; j ++ ) {
     		GROUP_setInt( i,j,-1);
@@ -592,7 +592,7 @@ BOOL GROUP_initGroup( char* filename )
 		}
     }
 
-    /*  引凶  心  允    */
+    /*  また読み直す    */
     linenum = 0;
     while( fgets( line, sizeof( line ), f ) ){
         linenum ++;
@@ -600,10 +600,10 @@ BOOL GROUP_initGroup( char* filename )
         if( line[0] == '\n' )continue;       /* none    */
         chomp( line );
 
-        /*  垫毛帮溥允月    */
-        /*  引内 tab 毛 " " 卞  五晶尹月    */
+        /*  行を整形する    */
+        /*  まず tab を " " に置き換える    */
         replaceString( line, '\t' , ' ' );
-        /* 燮  及旦矢□旦毛潸月［*/
+        /*  先頭のスペースを取る */
 {
         char    buf[256];
         for( i = 0; i < strlen( line); i ++) {
@@ -621,7 +621,7 @@ BOOL GROUP_initGroup( char* filename )
         int     ret;
         int		loop;
 
-		/* 手仄手ㄡ蘸户及伙□皿卞  匀凶凛及凶户卞赓渝祭仄化云仁 */
+		/* もしも２度めのループに入った時のために初期化しておく */
     	for( j = 0; j < GROUP_DATAINTNUM; j ++ ) {
     		GROUP_setInt( group_readlen,j,-1);
     	}
@@ -629,7 +629,7 @@ BOOL GROUP_initGroup( char* filename )
 			GROUP_group[group_readlen].enemyarray[j] = -1;
 		}
 
-        /*  夫午勾户及玄□弁件毛苇月    */
+        /*  ひとつめのトークンを見る    */
         ret = getStringFromIndexWithDelim( line,",",1,token,
                                            sizeof(token));
         if( ret==FALSE ){
@@ -638,7 +638,7 @@ BOOL GROUP_initGroup( char* filename )
         }
         GROUP_setChar( group_readlen, GROUP_NAME, token);
 
-        /* 2勾  动嫦反醒袄犯□正 */
+        /* 2つ目以降は数値データ */
 #define	GROUP_STARTINTNUM		2
         for( i = GROUP_STARTINTNUM; i < GROUP_DATAINTNUM+GROUP_STARTINTNUM; i ++ ) {
             ret = getStringFromIndexWithDelim( line,",",i,token,
@@ -700,7 +700,7 @@ BOOL GROUP_initGroup( char* filename )
 	return TRUE;
 }
 /*------------------------------------------------------------------------
- * 弘伙□皿及涩烂白央奶伙  心  仄
+ * グループの設定ファイル読み直し
  *-----------------------------------------------------------------------*/
 BOOL GROUP_reinitGroup( void )
 {
@@ -708,7 +708,7 @@ BOOL GROUP_reinitGroup( void )
 	return( GROUP_initGroup( getGroupfile()));
 }
 /*------------------------------------------------------------------------
- * GROUP_ID 井日GROUP_Group及骄侬毛襞月
+ * GROUP_ID からGROUP_Groupの添字を知る
  *-----------------------------------------------------------------------*/
 int GROUP_getGroupArray( int groupid)
 {
@@ -721,7 +721,7 @@ int GROUP_getGroupArray( int groupid)
 	return -1;
 }
 /*------------------------------------------------------------------------
- * 潸  烦董袄毛综岳允月［
+ * 取得経験値を作成する。
  *-----------------------------------------------------------------------*/
 static int ENEMY_getExp( int array,int tarray, int level, int rank )
 {
@@ -747,7 +747,7 @@ static int ENEMY_getExp( int array,int tarray, int level, int rank )
     p  = ENEMY_enemy[array].intdata;
     tp = ENEMYTEMP_enemy[tarray].intdata;
 
-	// 仿件弁井日    毛潸  
+	// ランクから比率を取得
 	if( rank < 0 || rank > 5 ) rank = 0;
 	ranknum = ranktbl[rank].rank;
 
@@ -756,7 +756,7 @@ static int ENEMY_getExp( int array,int tarray, int level, int rank )
 			  + *( tp + E_T_STONE)    + *( tp + E_T_DRUNK)     + *(tp + E_T_CONFUSION)
 			) / 100.0
 			+ *( tp + E_T_RARE);
-	/* EXP＞湘  EXP≈－  仿件弁≈汐  ←伊矛伙×*/
+	/*  EXP＝基本EXP＋｛（ランク＋α）＊レベル｝ */
 	//return enemybaseexptbl[*(p+ENEMY_LV)] + (ranknum + alpha)*(*(tp+ENEMY_LV));
 	ret = enemybaseexptbl[level] + (ranknum + alpha)*(level+1);
 	return ( ret < 1 ) ? 1 : ret;
@@ -785,14 +785,15 @@ int ENEMY_getRank( int array, int tarray ){
 
     p  = ENEMY_enemy[array].intdata;
     tp = ENEMYTEMP_enemy[tarray].intdata;
-	/* 仿件弁毛煌遥允月 */
-	/* 仇及  及酷  反酷  踏毛辅哔及仪［ */
+	/* ランクを計算する */
+	/* この辺の仕様は仕様書を参考の事。 */
+
 	paramsum  = *( tp + E_T_BASEVITAL) +
 		   		*( tp + E_T_BASESTR) +
 		   		*( tp + E_T_BASETGH) +
 		   		*( tp + E_T_BASEDEX);
 
-	ranknum = 0;	// 犯白巧伙玄反ㄟ
+	ranknum = 0;	//  デフォルトは０
 	for( i = 0; i < arraysizeof( ranktbl); i ++ ) {
 		if(  paramsum >= ranktbl[i].num ) {
 			ranknum = i;
@@ -806,29 +807,29 @@ int ENEMY_getRank( int array, int tarray ){
 
 
 //*********************************************************
-// 仿件母丞卅  
+// ランダムな技 
 //*********************************************************
 static int EnemyGymSkill[] = {
-	PETSKILL_GUARDBREAK, 			// ㄢ“布□玉旰仄(3)
-	PETSKILL_CONTINUATIONATTACK1, 	// ㄠㄟ“  粮  猾(10)
-	PETSKILL_CONTINUATIONATTACK2, 	// ㄠㄠ“  粮  猾(11)
-	PETSKILL_CONTINUATIONATTACK3, 	// ㄠㄡ“  粮  猾(12)
-	PETSKILL_CHARGE1,				// ㄢㄟ“民乓□斥ㄠ(30)
-	PETSKILL_CHARGE2,				// ㄢㄠ“民乓□斥ㄡ(31)
-	PETSKILL_MIGHTY1,				// ㄣㄟ“域猾  诮(40)
-	PETSKILL_MIGHTY2,				// ㄣㄠ“域猾  诮(41)
-	PETSKILL_POWERBALANCE1,			// ㄤㄟ“    及讽ㄠ(50)
-	PETSKILL_POWERBALANCE2,			// ㄤㄠ“    及讽ㄡ(51)
-	PETSKILL_POWERBALANCE3,			// ㄤㄡ“    及讽ㄢ(52)
-	PETSKILL_POISON_ATTACK1,		// ㄥㄟ“    猾(60)
-	PETSKILL_POISON_ATTACK2,		// ㄥㄠ“    猾(61)
-	PETSKILL_STONE,					// ㄧㄟ“檗祭  猾(80)
-	PETSKILL_CONFUSION_ATTACK,		// ㄨㄟ“渔刭  猾(90)
-	PETSKILL_DRUNK_ATTACK,			// ㄠㄟㄟ“听办  猾(100)
-	PETSKILL_SLEEP_ATTACK,			// ㄠㄠㄟ“戽曰  猾(110)
-	PETSKILL_NOGUARD1,				// ㄠㄤㄟ“用□布□玉ㄠ(150)
-	PETSKILL_NOGUARD2,				// ㄠㄤㄠ“用□布□玉ㄡ(151)
-	PETSKILL_NOGUARD3,				// ㄠㄤㄡ“用□布□玉ㄢ(152)
+	PETSKILL_GUARDBREAK, 			// ３：ガード崩し(3)
+	PETSKILL_CONTINUATIONATTACK1, 	// １０：連続攻撃(10)
+	PETSKILL_CONTINUATIONATTACK2, 	// １１：連続攻撃(11)
+	PETSKILL_CONTINUATIONATTACK3, 	// １２：連続攻撃(12)
+	PETSKILL_CHARGE1,				// ３０：チャージ１(30)
+	PETSKILL_CHARGE2,				// ３１：チャージ２(31)
+	PETSKILL_MIGHTY1,				// ４０：一撃必殺(40)
+	PETSKILL_MIGHTY2,				// ４１：一撃必殺(41)
+	PETSKILL_POWERBALANCE1,			// ５０：背水の陣１(50)
+	PETSKILL_POWERBALANCE2,			// ５１：背水の陣２(51)
+	PETSKILL_POWERBALANCE3,			// ５２：背水の陣３(52)
+	PETSKILL_POISON_ATTACK1,		// ６０：毒攻撃(60)
+	PETSKILL_POISON_ATTACK2,		// ６１：毒攻撃(61)
+	PETSKILL_STONE,					// ８０：石化攻撃(80)
+	PETSKILL_CONFUSION_ATTACK,		// ９０：混乱攻撃(90)
+	PETSKILL_DRUNK_ATTACK,			// １００：泥酔攻撃(100)
+	PETSKILL_SLEEP_ATTACK,			// １１０：眠り攻撃(110)
+	PETSKILL_NOGUARD1,				// １５０：ノーガード１(150)
+	PETSKILL_NOGUARD2,				// １５１：ノーガード２(151)
+	PETSKILL_NOGUARD3,				// １５２：ノーガード３(152)
 #ifdef _PSKILL_FALLGROUND
 	PETSKILL_FALLGROUND,			//落马术
 #endif
@@ -908,29 +909,29 @@ static int gymbody[] = {
 
 
 /*------------------------------------------------------------------------
- * ENEMY｛卞仿件母丞卅    毛芨尹月
+ * ENEMY　にランダムな能力を与える
  *-----------------------------------------------------------------------*/
 int ENEMY_RandomChange( int enemyindex, int tempno )
 {
 	int work, work2, iRet = 0;
 
-	// 仿件母丞平乓仿井升丹井民尼永弁
+	// ランダムキャラかどうかチェック
 	if( ( 564 <= tempno && tempno <= 580 )
 	||  ( 739 <= tempno && tempno <= 750 )
 	||  ( 895 <= tempno && tempno <= 906 )
 	){
 		//********************************************
-		// 皿伊奶乩□及涌
+		// プレイヤーの顔
 		//********************************************
 		iRet = 1;
 	}else
-	// 仿件母丞平乓仿井升丹井民尼永弁
+	// ランダムキャラかどうかチェック
 	if( ( 655 <= tempno && tempno <= 720 )
 	||  ( 859 <= tempno && tempno <= 894 )
 	||  ( 907 <= tempno && tempno <= 940 )
 	){
 		//********************************************
-		// 矢永玄及涌
+		// ペットの顔
 		//********************************************
 		iRet = 2;
 	}else{
@@ -941,15 +942,15 @@ int ENEMY_RandomChange( int enemyindex, int tempno )
 	if( iRet == 1 ){
 		//********************************************
 		//
-		// 皿伊奶乩□及涌仄凶衬卅及匹｝箪岭手仿件母丞
+		// プレイヤーの顔した敵なので、属性もランダム
 		//
 		//********************************************
-		// 铣手仿件母丞
+		// 姿もランダム
 		CHAR_setInt( enemyindex, CHAR_BASEBASEIMAGENUMBER,
 			gymbody[RAND( 0, arraysizeof( gymbody ) - 1)] );
 		CHAR_setInt( enemyindex, CHAR_BASEIMAGENUMBER,
 			CHAR_getInt( enemyindex, CHAR_BASEBASEIMAGENUMBER ) );
-		// 箪岭反赝癫
+		// 属性は適当
 		work = ( RAND( 0, 20 ) - 10 ) * 10;
 		work2 = 100 - ABS( work );
 		CHAR_setInt( enemyindex, CHAR_EARTHAT, work );
@@ -960,28 +961,29 @@ int ENEMY_RandomChange( int enemyindex, int tempno )
 		CHAR_setInt( enemyindex, CHAR_WATERAT, work2 );
 		CHAR_setInt( enemyindex, CHAR_WINDAT,  -work2 );
 
-		// 仿件母丞卅  湛毛  凶六月
+		// ランダムな武器を持たせる
 		if( DoujyouRandomWeponSet( enemyindex ) ){
-			//   溃  湛及桦宁反骚橘  猾毛勾仃月
+			//  特殊武器の場合は通常攻撃をつける
 			CHAR_setPetSkill( enemyindex, 0, PETSKILL_NORMALATTACK );
 			CHAR_setPetSkill( enemyindex, 1, PETSKILL_NORMALATTACK );
 		}else{
-			//   溃  湛元扎卅中及匹  勾仃月
-			//   毛尥仃月
+			// 特殊武器じゃないので技つける
+			// 技を付ける
 			CHAR_setPetSkill( enemyindex, 0,
 				EnemyGymSkill[RAND( 0, arraysizeof( EnemyGymSkill ) - 1 )] );
-			//   毛尥仃月
+			// 技を付ける
 			CHAR_setPetSkill( enemyindex, 1,
 				EnemyGymSkill[RAND( 0, arraysizeof( EnemyGymSkill ) - 1 )] );
 		}
 
 	}else
 	if( iRet == 2 ){
-		//   溃  湛元扎卅中及匹  勾仃月
-		//   毛尥仃月
+		// 特殊武器じゃないので技つける
+		// 技を付ける
+
 		CHAR_setPetSkill( enemyindex, 0,
 			EnemyGymSkill[RAND( 0, arraysizeof( EnemyGymSkill ) - 1 )] );
-		//   毛尥仃月
+		// 技を付ける
 		CHAR_setPetSkill( enemyindex, 1,
 			EnemyGymSkill[RAND( 0, arraysizeof( EnemyGymSkill ) - 1 )] );
 	}
@@ -992,7 +994,7 @@ int ENEMY_RandomChange( int enemyindex, int tempno )
 
 
 /*------------------------------------------------------------------------
- * ENEMY_enemy井日平乓仿弁正□毛综岳允月［
+ * ENEMY_enemyからキャラクターを作成する。
  *-----------------------------------------------------------------------*/
 int ENEMY_createEnemy( int array, int baselevel )
 {
@@ -1011,50 +1013,50 @@ int ENEMY_createEnemy( int array, int baselevel )
     tarray = ENEMYTEMP_getEnemyTempArray( array);
 	if( !ENEMYTEMP_CHECKINDEX( tarray)) return -1;
 //    tp = ENEMYTEMP_enemy[tarray].intdata;
-	// 犯□正戊疋□
+	// データコピー
 	for( i = 0; i < E_T_DATAINTNUM; i ++ ){
 	    tp[i] = ENEMYTEMP_enemy[tarray].intdata[i];
 	}
 
-    //     赓渝祭
+    // 配列初期化
     memset( &CharNew, 0, sizeof( Char ) );
 
     if( !CHAR_getDefaultChar( &CharNew,31010 ) )return -1;
 
-    /*    飓  寞    */
+    /*   画像番号    */
     CharNew.data[CHAR_BASEBASEIMAGENUMBER]
         = CharNew.data[CHAR_BASEIMAGENUMBER] = *(tp+E_T_IMGNUMBER);
-    /*  衬匹丐月午涩烂允月   */
+    /*   敵であると設定する   */
     CharNew.data[CHAR_WHICHTYPE] = CHAR_TYPEENEMY;
-    /*     毛壅允 */
+    /*   ｄｐを消す */
     CharNew.data[CHAR_DUELPOINT] = 0;
 
-	/* 伊矛伙毛瑁烂允月［ */
+	/* レベルを決定する */
 	if( baselevel > 0 ){
-		level = baselevel;	// 伊矛伙裔烂
+		level = baselevel;	//  レベル固定
 	}else{
 		level = RAND( (*(p + ENEMY_LV_MIN)), (*(p+ ENEMY_LV_MAX)));
 	}
 #define		E_PAR( a)		(*(p + (a)))
 #define		ET_PAR( a)		(*(tp + (a)))
-/* 由仿丢□正隙醒井日  端及湘  由仿丢□正尺及煌遥挚 */
+/* パラメータ指数から実際の基本パラメータへの計算式 */
 #if 1
 #define		PARAM_CAL( l) 	( ( level -1)*ET_PAR( E_T_LVUPPOINT)+ ET_PAR(E_T_INITNUM)) * ET_PAR( (l))
 #else
 #define		PARAM_CAL( l) 	( (E_PAR(ENEMY_LV) -1)*ET_PAR( E_T_LVUPPOINT)+ ET_PAR(E_T_INITNUM)) * ET_PAR( (l))
 #endif
-	/* 燮内湘  喃曰蕊曰禾奶件玄卞＋ㄡ毛仿件母丞匹垫丹 */
+	/* 先ず基本割り振りポイントに±２をランダムで行う */
 	tp[E_T_BASEVITAL] += RAND( 0, 4 ) - 2;
 	tp[E_T_BASESTR] += RAND( 0, 4 ) - 2;
 	tp[E_T_BASETGH] += RAND( 0, 4 ) - 2;
 	tp[E_T_BASEDEX] += RAND( 0, 4 ) - 2;
-	/* 仇及凛鳔匹喃曰蕊曰禾奶件玄毛忡绣仄化云仁 */
+	/* この時点で割り振りポイントを保存しておく */
     CharNew.data[CHAR_ALLOCPOINT]
     = ( tp[E_T_BASEVITAL] << 24 )
     + ( tp[E_T_BASESTR] << 16 )
     + ( tp[E_T_BASETGH] << 8 )
     + ( tp[E_T_BASEDEX] << 0 );
-	/* 公及  ｝仿件母丞匹禾奶件玄毛ㄠ勿勾笛遥［仇木毛ㄠㄟ荚楞曰忒允［*/
+	/* その後、ランダムでポイントを１づつ加算。これを１０回繰り返す */
 	for( i = 0; i < 10; i ++ ){
 		int work = RAND( 0, 3 );
 		if( work == 0 )tp[E_T_BASEVITAL]++;
@@ -1063,7 +1065,7 @@ int ENEMY_createEnemy( int array, int baselevel )
 		if( work == 3 )tp[E_T_BASEDEX]++;
 	}
 
-    /* 由仿丢□正本永玄 */
+    /* パラメータセット */
     CharNew.data[CHAR_VITAL]    = PARAM_CAL(E_T_BASEVITAL);
     CharNew.data[CHAR_STR]      = PARAM_CAL(E_T_BASESTR);
     CharNew.data[CHAR_TOUGH]    = PARAM_CAL(E_T_BASETGH);
@@ -1139,13 +1141,13 @@ if (CHAR_getInt( newindex, CHAR_LV) == 1){//宝宝
 	{ int style, wepon = -1;
 		style = (*(p + ENEMY_STYLE));
 		switch( style ){
-		case 1:		wepon = 0;break;	//   
-		case 2:		wepon = 100;break;  // 轺徇
-		case 3:		wepon = 200;break;	// 键
-		case 4:		wepon = 400;break;	// 菰
-		case 5:		wepon = 500;break;	// 皮□丢仿件
-		case 6:		wepon = 700;break;  // 髑仆檗
-		case 7:		wepon = 600;break;	// 髑仆  
+		case 1:		wepon = 0;break;	// 斧
+		case 2:		wepon = 100;break;  // 棍棒
+		case 3:		wepon = 200;break;	// 槍
+		case 4:		wepon = 400;break;	// 弓
+		case 5:		wepon = 500;break;	// ブーメラン
+		case 6:		wepon = 700;break;  // 投げ石
+		case 7:		wepon = 600;break;	// 投げ斧
 		default:break;
 		}
 		if( wepon >= 0 ){
@@ -1246,35 +1248,35 @@ static RANDOMENEMY RandomEnemyTbl[] = {
 
 
 /*------------------------------------------------------------
- * 衬    涩烂及摹    寞互  溃卅袄卅日仿件母丞卞涩烂允月
+ * 敵本体設定の識別番号が特殊な値ならランダムに設定する
  ------------------------------------------------------------*/
 int ENEMY_RandomEnemyArray( int e_array, int *pNew )
 {
 	int i = 0, randwork, work;
 //	RANDOMENEMY *pRandomEnemy;
 	*pNew = -1;
-	// 仇及  区反仿件母丞
+	// この範囲はランダム
 	if(
 		( RANDOMENEMY_TOP <= e_array && e_array <= RANDOMENEMY_END )
 	||	( 964 <= e_array && e_array <= 969 )
 	){
-		// 升及母立□井譬屯月
+		// どのダミーか調べる
 		for( i = 0; i < arraysizeof( RandomEnemyTbl ); i ++ ){
 			if( RandomEnemyTbl[i].num == e_array ){
 				break;
 			}
 		}
-		//   区毛译尹化中凶日巨仿□匹  仃月
+		// 範囲を超えていたらエラーで抜ける
 		if( i >= arraysizeof( RandomEnemyTbl ) ) return 0;
 
-		// 仿件母丞涩烂
+		// ランダム設定
 		randwork = RAND( 0, RandomEnemyTbl[i].arraysize - 1 );
-		//     井日蕙仄中  寞毛潸  
+		// 配列から新しい番号を取得 
 		work = RandomEnemyTbl[i].pTbl[randwork];
 		*pNew = ENEMY_getEnemyArrayFromId( work );
 		return 1;
 	}else{
-		// 窒仪手卅中
+		// 何事もない
 		return 0;
 	}
 }
@@ -1525,7 +1527,7 @@ int ENEMY_createPetFromEnemyIndex( int charaindex, int array)
 		if( work == 2 )tp[E_T_BASETGH]++;
 		if( work == 3 )tp[E_T_BASEDEX]++;
 	}
-    /* 由仿丢□正本永玄 */
+    /* パラメータセット */
     CharNew.data[CHAR_VITAL]    = PARAM_CAL(E_T_BASEVITAL);
     CharNew.data[CHAR_STR]      = PARAM_CAL(E_T_BASESTR);
     CharNew.data[CHAR_TOUGH]    = PARAM_CAL(E_T_BASETGH);
@@ -1657,7 +1659,7 @@ int ENEMY_createPet( int array, int vital, int str, int tgh, int dex)
 		if( work == 2 )tp[E_T_BASETGH]++;
 		if( work == 3 )tp[E_T_BASEDEX]++;
 	}
-    /* 由仿丢□正本永玄 */
+    /* パラメータセット */
     CharNew.data[CHAR_VITAL]    = PARAM_CAL(E_T_BASEVITAL);
     CharNew.data[CHAR_STR]      = PARAM_CAL(E_T_BASESTR);
     CharNew.data[CHAR_TOUGH]    = PARAM_CAL(E_T_BASETGH);
@@ -1781,7 +1783,7 @@ int ENEMY_createPetFromEnemyBaseIndex( int charaindex, int array, int level )
 		if( work == 2 )tp[E_T_BASETGH]++;
 		if( work == 3 )tp[E_T_BASEDEX]++;
 	}
-    /* 由仿丢□正本永玄 */
+    /* パラメータセット */
     CharNew.data[CHAR_VITAL]    = PARAM_CAL(E_T_BASEVITAL);
     CharNew.data[CHAR_STR]      = PARAM_CAL(E_T_BASESTR);
     CharNew.data[CHAR_TOUGH]    = PARAM_CAL(E_T_BASETGH);

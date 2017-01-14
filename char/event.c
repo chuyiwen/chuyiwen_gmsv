@@ -18,11 +18,11 @@ static int EVENY_npcEncount( int charaindex,int echaraindex,int fl,int x, int y 
 typedef int     (*FUNC)( int charaindex,int echaraindex,int fl,int x, int y );
 static FUNC		functbl[] = {
 	NULL,
-	NULL,				/* 裔烂NPC */
-	EVENY_npcEncount,	/* 裔烂衬巨件市它件玄 */
+	NULL,				/* 固定NPC */
+	EVENY_npcEncount,	/* 固定敵エンカウント */
 	EVENT_onWarpNPC,	/* warp*/
-	NULL,				/* 裔烂NPC */
-	NULL,				/* 裔烂NPC */
+	NULL,				/* 固定NPC */
+	NULL,				/* 固定NPC */
 	EVENT_onWarpNPC,	/* warp*/
 	EVENT_onWarpNPC,	/* warp*/
 	EVENT_onWarpNPC,	/* warp*/

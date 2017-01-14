@@ -80,22 +80,23 @@ extern int autopkcnt;
 void fix_item_bug(int charaindex, int i);
 
 
-/*====================平乓仿及综岳卞楮允月楮醒====================*/
+/*====================キャラの作成に関する関数====================*/
 /*------------------------------------------------------------
- * 综岳允月凛及左皿扑亦件及袄毛涩烂仄方丹午允月［
- * 娄醒
- *  ch      Char*       涩烂燮及平乓仿及犯□正
- *  option  char*       弁仿奶失件玄井日仁月犯□正
- * 忒曰袄
- *  岳      TRUE
- *  撩      FALSE
+ * 作成する時のオプションの値を設定しようとする。
+ * 引数
+ *  ch      Char*       設定先のキャラのデータ
+ *  option  char*       クライアントからくるデータ
+ * 返り値
+ *  成功    TRUE
+ *  失敗    FALSE
+
  ------------------------------------------------------------*/
 static BOOL CHAR_makeCharFromOptionAtCreate( Char* ch ,
 		int	vital, int str, int tgh, int dex,
 		int earth, int water, int fire, int wind)
 {
 
-	/*    躲岭及腹据毛垫丹  */
+	/*    有効性の検証を行う  */
 	int		para[4];
 	int		attr[4];
 	int		i;
@@ -116,8 +117,8 @@ static BOOL CHAR_makeCharFromOptionAtCreate( Char* ch ,
 #define PKMAXPARAMETER 300
 	parasum = 0;
 	/*
-	 * 允屯化及犯□正及  卞 - 反丐匀化反卅日卅中仄
-	 * 瑕丐孔木及仪毛哔尹化云中化    及袄手译尹卅中
+	 * すべてのデータの中に - はあってはならないし
+	 * 桁あふれの事を考えておいて最大の値も超えない
 	 */
 
 	for( i = 0; i < arraysizeof( para); i ++ ) {
@@ -136,25 +137,25 @@ static BOOL CHAR_makeCharFromOptionAtCreate( Char* ch ,
 #define MAXATTRIBUTE 10
 	cnt = 0;
 	attrsum = 0;
-	/* 箪岭及民尼永弁毛允月 */
+	/* 属性のチェックをする */
 	for( i = 0; i < arraysizeof( para); i ++ ) {
 		if( attr[i] < 0 || attr[i] > MAXATTRIBUTE )return FALSE;
 		attrsum += attr[i];
 		if( attr[i] > 0 ) cnt ++;
 	}
-	/* 宁煌袄反10 */
+	/* 合計値は10 */
 	if( attrsum != MAXATTRIBUTE ) return FALSE;
 
-	/* 2勾方曰聂仁喃曰癫化日木化中凶日蛲   */
+	/*  2つより多く割り当てられていたら駄目  */
 	if( cnt > 2 ) return FALSE;
 
-	/* 菅箪岭反喃曰癫化日木卅中 */
+	/* 逆属性は割り当てられない */
 	if( attr[0] > 0 && attr[2] > 0 ) return FALSE;
 	if( attr[1] > 0 && attr[3] > 0 ) return FALSE;
 
 #undef MAXATTRIBUTE
 
-	/*  戊疋□  */
+	/*  コピー */
 	ch->data[CHAR_VITAL] = vital*100;
 	ch->data[CHAR_STR]   = str*100;
 	ch->data[CHAR_TOUGH] = tgh*100;
@@ -2350,12 +2351,12 @@ BOOL CHAR_charSaveFromConnect( int charaindex , BOOL unlock)
 
 
 /*------------------------------------------------------------
- * 夫弘失它玄允月凛卞  匀凶引引夫弘失它玄匹五卅中失奶  丞毛
- *   允
- * 娄醒
- *  charaindex  int     平乓仿弁正□及奶件犯永弁旦
- * 忒曰袄
- *  卅仄
+ * ログアウトする時に持ったままログアウトできないアイテムを
+ * 落す
+ * 引数
+ *  charaindex  int     キャラクターのインデックス
+ * 返り値
+ *  なし
  ------------------------------------------------------------*/
 static void CHAR_dropItemAtLogout( int charaindex )
 {
@@ -2693,20 +2694,20 @@ BOOL _CHAR_logout( char *file, int line, int charindex, BOOL save )
 	return ret;
 }
 /*------------------------------------------------------------
- * watch奶矛件玄毛霜月井升丹井民尼永弁允月
- * 娄醒
- *  objindex    int             奶矛件玄毛云仇仄凶平乓仿及左皮斥尼弁玄
- *                                  奶件犯永弁旦
- *	index		int				奶矛件玄毛云仇仄凶平乓仿及奶件犯永弁旦
- *  recvindex   int				奶矛件玄毛熬仃午月平乓仿及index
- *	chac		int				失弁扑亦件及潘
- * 忒曰袄 		TRUE:	霜匀化中中方
- *				FALSE: 	蛲
+ * watchイベントを送るかどうかチェックする
+ * 引数
+ *  objindex    int             イベントをおこしたキャラのオブジェクト
+ *                                  インデックス
+ *	index		int				イベントをおこしたキャラのインデックス
+ *  recvindex   int				イベントを受けとるキャラのindex
+ *	chac		int				アクションの種類
+ * 返り値 		TRUE:	送っていいよ
+ *				FALSE: 	駄目
  ------------------------------------------------------------*/
 static BOOL CHAR_sendWatchEvent_sendCheck( int objindex, int index,
 											int recvindex, int chac)
 {
-	/* 愤坌互NPC匹锹澎手NPC及凛  仃月 */
+	/* 自分がNPCで相手もNPCの時抜ける */
 	if( OBJECT_getType( objindex) == OBJTYPE_CHARA &&
 		CHAR_getInt( index, CHAR_WHICHTYPE) != CHAR_TYPEPLAYER &&
 		CHAR_getInt(recvindex, CHAR_WHICHTYPE )
@@ -2714,29 +2715,29 @@ static BOOL CHAR_sendWatchEvent_sendCheck( int objindex, int index,
 	{
 		return FALSE;
 	}
-	/* 平乓仿动陆及watch 反民尼永弁  仄卞蕞 */
+	/* キャラ以外のwatch はチェック無しに真 */
 	if( OBJECT_getType( objindex) != OBJTYPE_CHARA) {
 		return TRUE;
 	}
 	/*
-	 * 愤坌尺及汹五及    反  仄卞允月
+	 * 自分への歩きのＣＡは無しにする
 	 */
 	if( index == recvindex && chac == CHAR_ACTWALK ) {
 		return FALSE;
 	}
 
 	if( CHAR_getInt( recvindex, CHAR_WHICHTYPE) == CHAR_TYPEPLAYER) {
-		/* 爵    及谛卞反  蛲分井日霜耨仄卅中 */
+		/* 戦闘中の人には無駄だから送信しない */
 		if( CHAR_getWorkInt( recvindex,CHAR_WORKBATTLEMODE)
 			!= BATTLE_CHARMODE_NONE)
 		{
 			return FALSE;
 		}
-		/* 失弁扑亦件元扎  中凛 */
+		/* アクションじゃ無い時 */
 		if( CHAR_getWorkInt( index, CHAR_WORKACTION) == -1 ) {
 			if( OBJECT_getType(objindex) == OBJTYPE_CHARA) {
-				/*   元由□  奴分匀凶日
-				 * 褪动陆反职及丢件田□卞汹五毛霜耨仄卅中
+				/* 同じパーティだったら
+				 * 親以外は他のメンバーに歩きを送信しない
 				 */
 				if( CHAR_getWorkInt( index, CHAR_WORKPARTYMODE )
 						== CHAR_PARTY_CLIENT &&
@@ -2746,10 +2747,10 @@ static BOOL CHAR_sendWatchEvent_sendCheck( int objindex, int index,
 				{
 					int found = FALSE;
 					int loop;
-					/* 阂毛譬屯月 */
+					/* 子を調べる */
 					for( loop = 1; loop < CHAR_PARTYMAX; loop ++ ) {
 						int partycharaindex = CHAR_getPartyIndex( recvindex, loop);
-						/*   中凶平乓仿互愤坌及由□  奴及阂分匀凶 */
+						/*  動いたキャラが自分のパーティの子だった */
 						if( partycharaindex == index ) {
 							found = TRUE;
 							break;
@@ -2757,7 +2758,7 @@ static BOOL CHAR_sendWatchEvent_sendCheck( int objindex, int index,
 					}
 					if( found ) return FALSE;
 				}
-				/* 褪反阂及STAND毛霜耨仄卅中 */
+				/* 親は子のSTANDを送信しない */
 				if( CHAR_getWorkInt( index, CHAR_WORKPARTYMODE)
 					== CHAR_PARTY_CLIENT &&
 					CHAR_getWorkInt( recvindex, CHAR_WORKPARTYMODE)
@@ -2766,12 +2767,12 @@ static BOOL CHAR_sendWatchEvent_sendCheck( int objindex, int index,
 				{
 					int found = FALSE;
 					int loop;
-					/* 阂毛譬屯月 */
+					/* 子を調べる */
 					for( loop = 1; loop < CHAR_PARTYMAX; loop ++ ) {
 						int partycharaindex
 							= CHAR_getWorkInt( recvindex,
 											CHAR_WORKPARTYINDEX1+loop);
-						/* STAND仄凶平乓仿互愤坌及由□  奴及阂分匀凶 */
+						/* STANDしたキャラが自分のパーティの子だった */
 						if( partycharaindex == index ) {
 							found = TRUE;
 							break;
@@ -2838,11 +2839,11 @@ void CHAR_sendWatchEvent( int objindex, int chac, int* opt,
 
 				switch( OBJECT_getType(receiveobjindex) ){
 				  case OBJTYPE_CHARA:
-					/* 愤坌丐化匹反霜耨仄卅中白仿弘互  匀化中月凛  仃月 */
+					/* 自分あてでは送信しないフラグが立っている時抜ける */
 					if( index == recvindex && myflg == FALSE ) {
 						break;
 					}
-					/* watch 奶矛件玄毛粟仇允井升丹井职卞民尼永弁允月 */
+					/* watch イベントを起こすかどうか他にチェックする */
 					if( !CHAR_sendWatchEvent_sendCheck( objindex,
 														index, recvindex ,
 														chac
@@ -2878,23 +2879,23 @@ void CHAR_sendWatchEvent( int objindex, int chac, int* opt,
 }
 
 
-/*====================旦平伙====================*/
+/*====================スキル====================*/
 /*------------------------------------------------------------
- * 旦平伙失永皿匹五月方皿夫玄戊伙毛仄扎屯月［
- * 娄醒
- *  charaindex      int     平乓仿奶件犯永弁旦
- * 忒曰袄
- *  岳      TRUE(1)
- *  撩  (  端卞霜日卅井匀凶日巨仿□手殖引木月)    FALSE(0)
+ * スキルアップできるよプロトコルをしゃべる。
+ * 引数
+ *  charaindex      int     キャラインデックス
+ * 返り値
+ *  成功    TRUE(1)
+ *  失敗(実際に送らなかったらエラーも含まれる)    FALSE(0)
  ------------------------------------------------------------*/
 BOOL CHAR_Skillupsend(int charaindex )
 {
 #if 1
-	// 旦玄□件巨奶斥迕卞  凳仄凶手及
+	// ストーンエイジ用に変更したもの
 	int point;
 	int fd;
 	if( !CHAR_CHECKINDEX(charaindex) )return FALSE;
-	// 中仁勾禾奶件玄失永皿匹五月井
+	// いくつポイントアップできるか
 	point = CHAR_getInt( charaindex, CHAR_SKILLUPPOINT );
 	fd = getfdFromCharaIndex(charaindex);
 	lssproto_SKUP_send(fd, point );
@@ -2902,7 +2903,7 @@ BOOL CHAR_Skillupsend(int charaindex )
 #else
 	char    sendbuf[128];
 
-	// 仇切日反LS2凛及手及
+	// こちらはLS2時のもの
 	if(SKILL_getUpableSkillID(charaindex,sendbuf,sizeof(sendbuf))){
 		int fd;
 		fd = getfdFromCharaIndex(charaindex);
@@ -2916,18 +2917,18 @@ BOOL CHAR_Skillupsend(int charaindex )
 }
 
 /*------------------------------------------------------------
- * 旦平伙失永皿允月
- * 娄醒
- *  charaindex          int         平乓仿奶件犯永弁旦
- *  skillid             int         旦平伙ID
- * 忒曰袄
- *  卅仄
+* スキルアップする
+ * 引数
+ *  charaindex          int         キャラインデックス
+ *  skillid             int         スキルID
+ * 返り値
+ *  なし
  ------------------------------------------------------------*/
 void CHAR_SkillUp(  int charaindex, int skillid )
 {
 	if( !CHAR_CHECKINDEX(charaindex) )return;
 
-	/*韶氏匹中凶日匹五卅中  */
+	/*死んでいたらできない  */
 	if( CHAR_getFlg(charaindex,CHAR_ISDIE) )return;
 
 	{ 
@@ -2938,11 +2939,11 @@ void CHAR_SkillUp(  int charaindex, int skillid )
 						  CHAR_P_STRING_DEX|CHAR_P_STRING_MAXHP|CHAR_P_STRING_ATK|CHAR_P_STRING_QUICK
 						};
 		int cnt;
-		//   区民尼永弁
+		//   範囲チェック
 		if( skillid < 0 || skillid >= 4 ){
 			return;
 		}
-		// 引分由仿丢□正失永皿匹五月井＂
+		// まだパラメータアップできるか？
 		cnt = CHAR_getInt(charaindex,CHAR_SKILLUPPOINT);
 		if( cnt <= 0 )return;
 
@@ -3069,16 +3070,16 @@ INLINE int CHAR_getDY( int dir )
 }
 
 /*------------------------------------------------------------
- *   元穴旦及平乓仿弁正□毛  月［
- * 娄醒
- *  objbuf      int*        object     匹及 index 毛医  允月
- *                              田永白央
- *  siz         int         objbuf 及 扔奶术
- *  ff          int         白夫失
+ * 同じマスのキャラクターを得る。
+ * 引数
+ *  objbuf      int*        object 配列での index を代入する
+ *                              バッファ
+ *  siz         int         objbuf の サイズ
+ *  ff          int         フロア
  *  fx          int         x
  *  fy          int         y
- * 忒曰袄
- *  窒蜊平乓仿互中月井［
+ * 返り値
+ *  何個キャラがいるか。
  ------------------------------------------------------------*/
 int CHAR_getSameCoordinateObjects(int* objbuf, int siz,int ff, int fx, int fy)
 {
@@ -3097,18 +3098,18 @@ int CHAR_getSameCoordinateObjects(int* objbuf, int siz,int ff, int fx, int fy)
 }
 
 
-/*====================平乓仿及树  毛  月烟及楮醒====================*/
-/*左皿扑亦件犯□正及  侬  毛忡绣允月楮醒*/
+/*====================キャラの情報を得る系の関数====================*/
+/*オプションデータの文字列を保存する関数*/
 static char    CHAR_optiondataString[STRINGBUFSIZ];
 /*------------------------------------------------------------
- * 左皿扑亦件迕及  侬  毛综月［
- *  level, showstring , 熔及醒 ,   飓  寞｝ 窒荚夫弘奶件仄凶井［
- *  弁仿旦［
- * 娄醒
- *  ch      Char*       平乓仿犯□正
- * 忒曰袄
- *  char*   static 卅    毛忒允及匹戚荚及裟太请仄及凛卞反    互
- *    凳今木化中月［娄醒毛公及引引忡绣仄卅中仪［
+ * オプション用の文字列を作る。
+ *  level, showstring , 魂の数 , 画像番号、 何回ログインしたか。
+ *  クラス。
+ * 引数
+ *  ch      Char*       キャラデータ
+ * 返り値
+ *  char*   static な領域を返すので次回の呼び出しの時には内容が
+ *  変更されている。引数をそのまま保存しない事。
  ------------------------------------------------------------*/
 char* CHAR_makeOptionString( Char* ch )
 {
@@ -3119,7 +3120,7 @@ char* CHAR_makeOptionString( Char* ch )
 		return CHAR_optiondataString;
 	} else {
 
-#if 0  /* 动票反LS2酷  匹丐月 */
+#if 0  /* 以下はLS2仕様である */
 		snprintf( CHAR_optiondataString,
 			  sizeof( CHAR_optiondataString ),
 			  "%d|%s|1|%d|%d",
@@ -3130,10 +3131,10 @@ char* CHAR_makeOptionString( Char* ch )
 			  ch->data[CHAR_LOGINCOUNT]);
 #endif
 
-        /* 动票反StoneAge 酷  匹丐月［
+        /* 以下はStoneAge 仕様である。
 
            dataplace|faceimg|level|hp|str|def|dex|charm|dp|earth|water|fire|wind|login|Name|Place
-           午卅月［
+           となる。
          */
         {
             snprintf( CHAR_optiondataString,
@@ -4169,7 +4170,7 @@ void CHAR_deleteTitle( int index, int titleindex )
 	int title;
 
 	if( !CHAR_CHECKINDEX( index ) )return;
-	/* 韶氏匹中月凛反分户 */
+	/* 死んでいる時はだめ */
 	if( CHAR_getFlg( index,CHAR_ISDIE ) )return;
 
 	if( titleindex < 0 || titleindex >= CHAR_TITLEMAXHAVE )return;
@@ -4180,12 +4181,12 @@ void CHAR_deleteTitle( int index, int titleindex )
 	}
 	CHAR_setCharHaveTitle( index,titleindex,-1 );
 
-	/*  愤坌互银匀化中凶支勾卅日壬｝公木手卅仄卞允月    */
+	/*  自分が使っていたやつならば、それもなしにする    */
 	if( CHAR_getInt(index, CHAR_INDEXOFEQTITLE) == titleindex )
 		CHAR_setInt(index, CHAR_INDEXOFEQTITLE, -1 );
 
 	/*
-	 * 旦  □正旦树  毛霜月［
+	 *ステータス情報を送る。
 	 */
 	CHAR_sendStatusString( index, "T" );
 	CHAR_send_P_StatusString( index, CHAR_P_STRING_TITLE );
@@ -4925,24 +4926,25 @@ int CHAR_complianceParameter2( int index)
 }
 
 /*======================================================================
-  平乓仿及失奶  丞毛健丹楮醒
+  キャラのアイテムを扱う関数
   ======================================================================*/
 
-/*====================苇月====================*/
+/*====================見る====================*/
 /*------------------------------------------------------------
- *   轾隙烂匹｝公及  轾及平乓仿弁正卞苇月奶矛件玄毛  戏今六月
- * 娄醒
- *  charaindex      int     平乓仿奶件犯永弁旦
- *  dir             int       轾
- * 忒曰袄
- *  卅仄
+ * 方向指定で、その方向のキャラクタに見るイベントを発生させる
+ * 引数
+ *  charaindex      int     キャラインデックス
+ *  dir             int     方向
+ * 返り値
+ *  なし
+
  ------------------------------------------------------------*/
 void CHAR_Look( int charaindex, int dir )
 {
 	int fl ,x,y;
 	OBJECT  object;
 
-	/*  奶件犯永弁旦及民尼永弁  */
+	/*  インデックスのチェック  */
 	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return;
 
 	if( dir < 0 ) {
@@ -4951,7 +4953,7 @@ void CHAR_Look( int charaindex, int dir )
 	VALIDATEDIR(dir);
 	if( CHAR_getInt( charaindex, CHAR_DIR) != dir ) {
 		CHAR_setInt(charaindex,CHAR_DIR,dir);
-		/*    轾  晶仄凶失弁扑亦件毛霜耨允月  */
+		/* 方向変換したアクションを送信する  */
 		CHAR_sendWatchEvent(CHAR_getWorkInt(charaindex,CHAR_WORKOBJINDEX),
 							CHAR_ACTTURN,NULL,0,TRUE);
 	}
@@ -5376,7 +5378,7 @@ void CHAR_sendArroundCharaData( int charaindex )
 						|| CHAR_getInt( c_index, CHAR_WHICHTYPE ) >= CHAR_TYPELUANPC
 #endif
            ){
-			 	   		/* 苇尹凶平乓仿互醮棉汹五及褪卅日壬伉□母□  憎CA毛霜月 */
+			 	   		/* 見えたキャラが仲間歩きの親ならばリーダー表示CAを送る */
 						if( CHAR_getWorkInt( c_index, CHAR_WORKPARTYMODE )== CHAR_PARTY_LEADER ){
 							if( CHAR_makeCAOPT1String( objindex, cabuf, sizeof( cabuf),	CHAR_ACTLEADER,1 ))	{
 								CONNECT_appendCAbuf( fd,cabuf,strlen(cabuf));
@@ -5875,7 +5877,7 @@ BOOL CHAR_createCharacter( int type, int floor, int x, int y,int dir,
 	}
 	CHAR_setWorkInt( *charaindex,CHAR_WORKOBJINDEX,*objindex);
 
-	/*  生永玄伐□弁毛垫丹  */
+	/*  ネットワークを行う  */
 
 	CHAR_sendWatchEvent( *objindex,CHAR_ACTSTAND,NULL,0,TRUE);
 
@@ -5899,22 +5901,22 @@ void CHAR_ObjectDelete( int objindex )
 }
 
 /*------------------------------------------------------------
- * 平乓仿毛绰轮允月［左皮斥尼弁玄手绰轮允月［
- * 生永玄伐□弁及支曰酸仄毛卅仁允凶户及手及
- * 娄醒
- *  charaindex      int     平乓仿奶件犯永永弁旦
- * 忒曰袄
- *  卅仄
+ * キャラを削除する。オブジェクトも削除する。
+ * ネットワークのやり残しをなくすためのもの
+ * 引数
+ *  charaindex      int     キャラインデッックス
+ * 返り値
+ *  なし
  ------------------------------------------------------------*/
 void CHAR_CharaDelete( int charaindex )
 {
-	/*  左皮斥尼弁玄毛绰轮  */
+	/*  オブジェクトを削除  */
 	CHAR_ObjectDelete( CHAR_getWorkInt( charaindex,CHAR_WORKOBJINDEX ) );
-	/*  平乓仿及绰轮    */
+	/*  キャラの削除    */
 	CHAR_endCharOneArray( charaindex );
 }
 /*------------------------------------------------------------
- * 皿伊奶乩□及  匀化中月矢永玄毛壅允
+ * プレイヤーの持っているペットを消す
  ------------------------------------------------------------*/
 void CHAR_CharaDeleteHavePet( int charaindex)
 {
@@ -5935,13 +5937,13 @@ void CHAR_CharaDeleteHavePet( int charaindex)
 	}
 }
 /*------------------------------------------------------------
- * 减变升啼卅升毛  蜇允月［
- * mode		int			0: 愤坌卞反CA霜日卅中
- *						1: 愤坌卞手CA霜月
+ * 喜怒哀楽などを表現する。
+ * mode		int			0: 自分にはCA送らない
+ *						1: 自分にもCA送る
  ------------------------------------------------------------*/
 int CHAR_sendAction( int charaindex, int action, int mode)
 {
-	/* 霜日木化  凶失弁扑亦件午CA毛域谯今六月  □皮伙 */
+	/* 送られて来たアクションとCAを一致させるテーブル */
 	static int table[] = {
 		CHAR_ACTATTACK,CHAR_ACTDAMAGE,CHAR_ACTDOWN,CHAR_ACTACTIONSTAND,
 		CHAR_ACTACTIONWALK,CHAR_ACTSIT,CHAR_ACTHAND,CHAR_ACTPLEASURE,
@@ -5949,19 +5951,19 @@ int CHAR_sendAction( int charaindex, int action, int mode)
 	};
 	if( action < 0 || action >= arraysizeof( table)) return FALSE;
 
-	/* 璃曰卞失弁扑亦件毛霜耨允月 */
+	/* 周りにアクションを送信する */
 	CHAR_sendWatchEvent(
 			CHAR_getWorkInt( charaindex, CHAR_WORKOBJINDEX),
 			table[action],
 			NULL,0,mode);
 
-	/* 失弁扑亦件及瓒   */
+	/* アクションの登録   */
 	CHAR_setWorkInt( charaindex, CHAR_WORKACTION, table[action]);
 
 	return TRUE;
 }
 /*------------------------------------------------------------
- * 愤坌互爵    匹丐月午中丹仪毛霜耨允月［
+ * 自分が戦闘中であるという事を送信する。
  ------------------------------------------------------------*/
 void CHAR_sendBattleEffect( int charaindex, int onoff)
 {
@@ -6106,7 +6108,7 @@ static void CHAR_setLuck( int charaindex)
 	RealTimeToLSTime( NowTime.tv_sec, &nowlstime);
 	RealTimeToLSTime( CHAR_getInt( charaindex, CHAR_LASTTIMESETLUCK), &mylstime);
 
-	/* LS凛棉匹ㄠ  动晓烦匀化中木壬CHAR_LUCK毛凳蕙允月 */
+	/* LS時間で１日以上経っていればCHAR_LUCKを更新する */
 	if( nowlstime.day != mylstime.day || nowlstime.year != mylstime.year ) {
 		int		i,r;
 		r = RAND( 0, 99);
@@ -6186,56 +6188,56 @@ void CHAR_JoinDuel_WindowResult( int charaindex, int select, char *data)
 {
 	int	ret = FALSE;
 	int	fd = getfdFromCharaIndex( charaindex);
-	/* 手丹域蘸民尼永弁允月 */
+	/* もう一度チェックする */
 	if( select != WINDOW_BUTTONTYPE_CANCEL &&
 	    CHAR_getWorkInt( charaindex, CHAR_WORKPARTYMODE) != CHAR_PARTY_CLIENT )
 	{
-		/* 生旦玄互丹匀午云仄中及匹ㄠ蘸分仃伙□皿毛银丹 */
+		/* ネストがうっとおしいので１度だけループを使う */
 		while( 1 ) {
 			int		selected;
 			int		enemyindex;
 
 			if( fd == -1 ) break;
 			selected  = atoi( data)-1;
-			/*   躲卅index井 */
+			/*  有効なindexか */
 			if( !CHAR_CHECKINDEX( CONNECT_getDuelcharaindex(fd,selected)) ) {
 				break;
 			}
-        	/* 爵    井升丹井 */
+        	/* 戦闘中かどうか */
         	if( CHAR_getWorkInt( CONNECT_getDuelcharaindex(fd,selected),
         						CHAR_WORKBATTLEMODE)
 				!= BATTLE_CHARMODE_NONE)
 			{
 				break;
 			}
-			/* duel第井 */
+			/* duel可か */
 			if( !CHAR_getFlg( CONNECT_getDuelcharaindex(fd,selected),
                               CHAR_ISDUEL))
 			{
 				break;
 			}
-			/* ㄠ汹动  卞中月井(它奴件玉它匹  中宁歹六仄化月棉卞  仃月啃) */
+			/* １歩以内にいるか(ウィンドウで問い合わせしてる間に動ける為) */
 			if(NPC_Util_CharDistance( charaindex,
 									CONNECT_getDuelcharaindex(fd,selected) )
 				> 1)
 			{
 				break;
 			}
-			//   及蟆及平乓仿及奶件犯永弁旦
+			//  目の前のキャラのインデックス
 			enemyindex = CONNECT_getDuelcharaindex( fd,selected);
 			print("\nenemyindex=%d\n",enemyindex);
-			// 锹澎互褪卅日公及引引巨件市它件玄今六月互
-			// 阂间卅日褪毛裟氏匹仁月
+			// 相手が親ならそのままエンカウントさせるが
+			// 子供なら親を呼んでくる
 			if( CHAR_getWorkInt( enemyindex, CHAR_WORKPARTYMODE )
 				== CHAR_PARTY_CLIENT )
 			{
 				enemyindex = CHAR_getWorkInt( enemyindex, CHAR_WORKPARTYINDEX1 );
-				// 卅兮井褪互中卅中
+				// なぜか親がいない
 				if( enemyindex < 0 ){
 					 break;
 				}
 			}
-			/* 锹澎互皿伊奶乩□匹卅中仪手丐月 */
+			/* 相手がプレイヤーでない事もある */
 			if( CHAR_getInt( enemyindex, CHAR_WHICHTYPE) != CHAR_TYPEPLAYER){
 				break;
 			}
@@ -6252,7 +6254,7 @@ void CHAR_JoinDuel_WindowResult( int charaindex, int select, char *data)
 		}
 	}
 	if( ret == FALSE ) {
-		/* 瑛绊霜耨 */
+		/* 結果送信 */
 		if( fd != -1 ) {
 			lssproto_EN_send( fd, FALSE, 0 );
 		}
@@ -6296,12 +6298,12 @@ void CHAR_JoinParty_WindowResult( int charaindex , int select, char *data)
 {
 	int	ret = FALSE;
 	int	fd = getfdFromCharaIndex( charaindex);
-	/* 手丹域蘸民尼永弁允月 */
+	/* もう一度チェックする */
 	if( select != WINDOW_BUTTONTYPE_CANCEL &&
-	    /* 愤坌互由□  奴赚氏匹凶日蛲   */
+	    /* 自分がパーティ組んでたら駄目    */
 	    CHAR_getWorkInt( charaindex, CHAR_WORKPARTYMODE) == CHAR_PARTY_NONE )
 	{
-		/* 生旦玄互丹匀午云仄中及匹ㄠ蘸分仃伙□皿毛银丹 */
+		/* ネストがうっとおしいので１度だけループを使う */
 		while( 1 ) {
 			int		parray;
 			int		selected;
@@ -6309,15 +6311,15 @@ void CHAR_JoinParty_WindowResult( int charaindex , int select, char *data)
 			if( fd == -1 ) break;
 			selected  = atoi( data)-1;
 
-			/*   躲卅index井
-			 * (褐邰“它奴件玉它匹  中宁歹六仄化月棉卞
-			 *    躲卅index卞卅月第  岭互丐月)
+			/* 有効なindexか
+			 * (重要：ウィンドウで問い合わせしてる間に
+			 *  無効なindexになる可能性がある)
 			 */
 			if( !CHAR_CHECKINDEX(
                 CONNECT_getJoinpartycharaindex(fd,selected))) {
 				break;
 			}
-			/* 褪互中凶日娄匀舰曰请允 */
+			/* 親がいたら引っ張り出す */
 			if( CHAR_getWorkInt( CONNECT_getJoinpartycharaindex(
                 fd,selected),	CHAR_WORKPARTYMODE)
 			== CHAR_PARTY_NONE )
@@ -6332,25 +6334,25 @@ void CHAR_JoinParty_WindowResult( int charaindex , int select, char *data)
 					break;
 				}
 			}
-			/* ㄠ汹动  卞中月井(它奴件玉它匹  中宁歹六仄化月棉卞  仃月啃) */
+			/* １歩以内にいるか(ウィンドウで問い合わせしてる間に動ける為) */
 			if( NPC_Util_CharDistance( charaindex, toindex ) > 1) {
 				break;
 			}
-        	/* 爵    反分户 */
+        	/* 戦闘中はだめ */
         	if( CHAR_getWorkInt( toindex, CHAR_WORKBATTLEMODE)
 				!= BATTLE_CHARMODE_NONE)
 			{
 				break;
 			}
-			/* 醮棉袱第乒□玉井 */
+			/* 仲間許可モードか */
 			if( !CHAR_getFlg( toindex, CHAR_ISPARTY)) {
 				break;
 			}
 
-			/* 锹澎由□  奴及谛醒反    井＂ */
+			/* 相手パーティの人数はＯＫか？ */
 			parray = CHAR_getEmptyPartyArray( toindex) ;
 			if( parray == -1 ) break;
-				/* 由□  奴卞  日六月 */
+				/*パーティに入らせる */
 			CHAR_JoinParty_Main( charaindex, toindex);
 			ret = TRUE;
 			break;
@@ -6360,7 +6362,7 @@ void CHAR_JoinParty_WindowResult( int charaindex , int select, char *data)
 		CHAR_talkToCli( charaindex, -1, "无法加入团队。",
 						CHAR_COLORYELLOW);
 	}
-	/* 瑛绊霜耨 */
+	/* 結果送信 */
 	if( fd != -1 ) {
 		lssproto_PR_send( fd, 1, ret);
 	}
@@ -6369,29 +6371,29 @@ void CHAR_JoinBattleWatch_WindowResult( int charaindex, int select, char *data)
 {
 	int	ret = FALSE;
 	int	fd = getfdFromCharaIndex( charaindex);
-	/* 手丹域蘸民尼永弁允月 */
+	/* もう一度チェックする */
 	if( select != WINDOW_BUTTONTYPE_CANCEL ) {
-		/* 生旦玄互丹匀午云仄中及匹ㄠ蘸分仃伙□皿毛银丹 */
+		/* ネストがうっとおしいので１度だけループを使う */
 		while( 1 ) {
 			int		selected;
 			if( fd == -1 ) break;
 			selected  = atoi( data)-1;
 
-			/*   躲卅index井
-			 * (褐邰“它奴件玉它匹  中宁歹六仄化月棉卞
-			 *    躲卅index卞卅月第  岭互丐月)
+			/* 有効なindexか
+			 * (重要：ウィンドウで問い合わせしてる間に
+			 *  無効なindexになる可能性がある)
 			 */
 			if( !CHAR_CHECKINDEX( CONNECT_getBattlecharaindex(fd,selected))) {
 				break;
 			}
-        	/* 爵    井升丹井 */
+        	/* 戦闘中かどうか */
         	if( CHAR_getWorkInt( CONNECT_getBattlecharaindex(fd,selected),
         						CHAR_WORKBATTLEMODE)
 				== BATTLE_CHARMODE_NONE)
 			{
 				break;
 			}
-			/* ㄠ汹动  卞中月井(它奴件玉它匹  中宁歹六仄化月棉卞  仃月啃) */
+			/* １歩以内にいるか(ウィンドウで問い合わせしてる間に動ける為)*/
 			if(NPC_Util_CharDistance( charaindex,
                                       CONNECT_getBattlecharaindex(
                                           fd,selected) )
@@ -6399,7 +6401,7 @@ void CHAR_JoinBattleWatch_WindowResult( int charaindex, int select, char *data)
 			{
 				break;
 			}
-			/* 巨件玄伉□今六月 */
+			/* エントリーさせる */
 			if( BATTLE_WatchEntry( charaindex,
                                     CONNECT_getBattlecharaindex(fd,selected)
 					 ))
@@ -6415,7 +6417,7 @@ void CHAR_JoinBattleWatch_WindowResult( int charaindex, int select, char *data)
 		}
 	}
 	if( ret == FALSE ) {
-		/* 瑛绊霜耨 */
+		/* 結果送信 */
 		if( fd != -1 ) {
 			lssproto_EN_send( fd, FALSE, 0 );
 		}
@@ -6577,7 +6579,7 @@ static int CHAR_getObjectByPosition( int myobjindex, int fl, int x, int y,
 	        }
 					continue;
 				}
-				/* 愤坌反中中方 */
+				/* 自分はいいよ */
 				if( objindex == myobjindex) continue;
 
 				objbuf[cnt] = objindex;
@@ -6714,7 +6716,7 @@ static void CHAR_setMyPosition_sendData( int charaindex,int prev_x, int prev_y, 
 					}
 				}				
 #endif				
-				/* 愤坌互褪匹锹澎互爵    匹卅中卅日锹澎卞伉□母□  憎CA毛霜月 */
+				/* 自分が親で相手が戦闘中でないなら相手にリーダー表示CAを送る */
 				if( CHAR_getInt( c_index, CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER &&
 					CHAR_getWorkInt( charaindex, CHAR_WORKPARTYMODE )
 						== CHAR_PARTY_LEADER &&
@@ -6731,7 +6733,7 @@ static void CHAR_setMyPosition_sendData( int charaindex,int prev_x, int prev_y, 
 						}
 					}
 				}
-				/* 苇尹凶平乓仿互爵    卅日爵  失奶戊件  憎    毛霜月 */
+				/* 見えたキャラが戦闘中なら戦闘アイコン表示ＣＡを送る */
 #ifdef _ALLBLUES_LUA 
   			if( (CHAR_getInt( c_index, CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER 
   					|| CHAR_getInt( c_index, CHAR_WHICHTYPE ) >= CHAR_TYPELUANPC)
@@ -6742,7 +6744,7 @@ static void CHAR_setMyPosition_sendData( int charaindex,int prev_x, int prev_y, 
 					!= BATTLE_CHARMODE_NONE )
 #endif
 				{
-					/* 棋爵CA */
+					/*  観戦CA */
 					if( CHAR_getWorkInt( c_index, CHAR_WORKBATTLEWATCH) == TRUE ) {
 						if( CHAR_makeCAOPT1String( CurrentObjCollection[i], cabuf,
 													sizeof( cabuf),
@@ -6761,7 +6763,7 @@ static void CHAR_setMyPosition_sendData( int charaindex,int prev_x, int prev_y, 
 								CHAR_WORKBATTLEINDEX)].Side[
 								CHAR_getWorkInt( c_index,
 								CHAR_WORKBATTLESIDE)].flg & BSIDE_FLG_HELP_OK) ? TRUE:FALSE;
-						/* HelpNo = 1 反移 */
+						/*  HelpNo = 1 は仮 */
 						if( CHAR_makeCAOPT3String( CurrentObjCollection[i], cabuf, sizeof( cabuf),
 													CHAR_ACTBATTLE,
 													battleno,sideno,helpno
@@ -6771,7 +6773,7 @@ static void CHAR_setMyPosition_sendData( int charaindex,int prev_x, int prev_y, 
 						}
 					}
 				}
-	 	   		/* 苇尹凶平乓仿互窒井及失弁扑亦件毛仄化中木壬霜月［ */
+	 	   		/* 見えたキャラが何かのアクションをしていれば送る。 */
 				if( ( CHAR_getInt( c_index, CHAR_WHICHTYPE ) == CHAR_TYPEPLAYER ||
 					  CHAR_getInt( c_index, CHAR_WHICHTYPE ) == CHAR_TYPEPET ) &&
 					CHAR_getWorkInt( c_index, CHAR_WORKACTION ) != -1 )
@@ -6790,13 +6792,13 @@ static void CHAR_setMyPosition_sendData( int charaindex,int prev_x, int prev_y, 
 		lssproto_C_send( fd, c_msg);
 	}
 
-	/* 愤坌及CD综岳 */
+	/* 自分のCD作成 */
 	cnv10to62( objindex,cd_msg, sizeof(cd_msg));
 
 	for( i = 0 ; i < prevcnt; i ++ ) {
 		int	findflg = FALSE;
-		/* 蟆及匏  卞中月左皮斥尼弁玄匹］蜇箕及甄  卞中卅中
-		 * 左皮斥尼弁玄卅日壅允屯五左皮斥尼弁玄分
+		/* 前の位置にいるオブジェクトで，現在の座標にいない
+		 * オブジェクトなら消すべきオブジェクトだ
 		 */
 		for( j = 0; j < curcnt; j ++ ) {
 			if( PrevObjCollection[i] == CurrentObjCollection[j] ) {
@@ -6808,7 +6810,7 @@ static void CHAR_setMyPosition_sendData( int charaindex,int prev_x, int prev_y, 
 			cnv10to62( PrevObjCollection[i], buf, sizeof( buf));
 			CONNECT_appendCDbuf( fd, buf, strlen( buf));
 			
-			/* 锹澎卞手    霜月 */
+			/* 相手にもＣＤ送る */
 			if( OBJECT_getType( PrevObjCollection[i]) == OBJTYPE_CHARA ) {
 				int tocharaindex = OBJECT_getIndex( PrevObjCollection[i]);
 				if( CHAR_getInt( tocharaindex, CHAR_WHICHTYPE) == CHAR_TYPEPLAYER) {
@@ -7633,10 +7635,10 @@ BOOL CHAR_send_P_StatusString_VIGOR( int charaindex, unsigned int indextable )
 #endif
 static char CHAR_N_statusSendBuffer[STRINGBUFSIZ];
 /*------------------------------------------------------------
- * 弁仿奶失件玄卞霜月  ｛  及  侬  毛综岳允月［
- * 娄醒
- *  charaindex      int     平乓仿奶件犯弁永旦
- *  indextable		int 	P 毛霜月由仿丢□正及螂宁  ［
+ * クライアントに送るＳ　Ｐの文字列を作成する。
+ * 引数
+ *  charaindex      int     キャラインデクッス
+ *  indextable		int 	P を送るパラメータの集合体。
  *------------------------------------------------------------*/
 static char *CHAR_make_N_StatusString( int charaindex, int num, unsigned int indextable )
 {
@@ -7659,17 +7661,17 @@ static char *CHAR_make_N_StatusString( int charaindex, int num, unsigned int ind
 
 
 	};
-	/*  醮棉旦  □正旦犯□正    */
-	/*       凝民尼永弁 */
+	/*  仲間ステータスデータ    */
+	/*  最大最小チェック */
 	if( num < 0 || num >= CHAR_PARTYMAX ){
 		print( "朋友模式失败 (%c)%d \n", num, num );
 		return "\0";
 	}
-	/* 醮棉及奶件犯永弁旦毛潸   */
+	/*  仲間のインデックスを取得   */
 	nindex = CHAR_getPartyIndex( charaindex, num);
 
 	if( nindex == -1 ){
-		/*    鬼支仃升 snprintf 允月    */
+		/*  最悪やけど snprintf する    */
 		snprintf( CHAR_N_statusSendBuffer,sizeof(CHAR_N_statusSendBuffer),
 			 "N%d|0|", num );
 		return  CHAR_N_statusSendBuffer;
@@ -7679,16 +7681,16 @@ static char *CHAR_make_N_StatusString( int charaindex, int num, unsigned int ind
 				"N%d|%s|", num,cnv10to62( indextable, buf,sizeof(buf)));
 	strlength = strlen( CHAR_N_statusSendBuffer );
 
-	/* indextable及  匹  匀化中月申永玄毛赐  卞譬屯月 */
+	/* indextableの中で立っているビットを順番に調べる */
 	for( i = 1; i < sizeof( int) * 8; i ++ ){
 		if( indextable & (1 << i) ) {
 			char	tmp[256];
 			BOOL	found = FALSE;
-			/*   匀化中月申永玄午］chk卞甲永玄允月井譬屯月 */
+			/*   立っているビットと，chkにヒットするか調べる */
 			for( j = 0; j < arraysizeof( chk); j ++ ) {
 				if( chk[j].kind ==  1 << i ) {
-					/* 域谯仄凶及匹袄毛潸  允月 */
-					/* 醒袄烟及犯□正 */
+					/* 一致したので値を取得する */
+					/* 数値系のデータ */
 					if( chk[j].gettype == 0 ) {
 						ret = CHAR_getInt( nindex,chk[j].intdataindex);
 						snprintf( tmp, sizeof( tmp), "%d|", ret);
@@ -7706,7 +7708,7 @@ static char *CHAR_make_N_StatusString( int charaindex, int num, unsigned int ind
 						if( ret < 0) ret = 0;
 						snprintf( tmp, sizeof( tmp), "%d|", ret);
 					}
-					/*   侬  烟及犯□正 */
+					/* 文字列系のデータ*/
 					else if( chk[j].gettype == 2 ) {
 						char    escapebuffer[128];
 						char *a = CHAR_getChar( nindex, chk[j].intdataindex);
@@ -7721,9 +7723,9 @@ static char *CHAR_make_N_StatusString( int charaindex, int num, unsigned int ind
 					break;
 				}
 			}
-			/* 职及正奶皿及犯□正井手仄木卅中 */
+			/* 他のタイプのデータかもしれない */
 			if( !found) {
-				/* 仇仇井日反ㄠ勾ㄠ勾 */
+				/* ここからは１つ１つ  */
 			}
 			if( !found) {
 				print( "找不到指定的参数[%d]\n",indextable);
@@ -7743,14 +7745,14 @@ static char *CHAR_make_N_StatusString( int charaindex, int num, unsigned int ind
 	return CHAR_N_statusSendBuffer;
 }
 /*------------------------------------------------------------
- * S P 旦  □正旦毛霜月［民尼永弁允月及匹｝晓匹反民尼永弁仄卅仁化方中［
- * 娄醒
- *  charaindex      int     平乓仿奶件犯弁永旦
- *  num				int		醮棉  寞
- *  indextable		int 	P 毛霜月由仿丢□正及螂宁  ［
- * 忒曰袄
- *  霜匀凶［TRUE(1)
- *  霜木卅井匀凶［FALSE(0)
+ * S P ステータスを送る。チェックするので、上ではチェックしなくてよい。
+ * 引数
+ *  charaindex      int     キャラインデクッス
+ *  num				int		仲間番号
+ *  indextable		int 	P を送るパラメータの集合体。
+ * 返り値
+ *  送った。TRUE(1)
+ *  送れなかった。FALSE(0)
  *------------------------------------------------------------*/
 BOOL CHAR_send_N_StatusString( int charaindex, int num, unsigned int indextable )
 {
@@ -7809,15 +7811,15 @@ static char *CHAR_make_K_StatusString( int charaindex, int num, unsigned int ind
 		{ CHAR_K_STRING_USERPETNAME, CHAR_USERPETNAME,  2 },
 
 	};
-	/*       凝民尼永弁 */
+	/*  最大最小チェック */
 	if( num < 0 || num >= CHAR_MAXPETHAVE ){
 		print( "宠物模式失败 (%c)%d \n", num, num );
 		return "\0";
 	}
-	/* 矢永玄及奶件犯永弁旦毛潸   */
+	/* ペットのインデックスを取得   */
 	pindex = CHAR_getCharPet( charaindex, num );
 	if( pindex == -1 ){
-		/*    鬼支仃升 snprintf 允月    */
+		/*    最悪やけど snprintf する    */
 		snprintf(CHAR_K_statusSendBuffer,sizeof(CHAR_K_statusSendBuffer),
 			 "K%d|0|", num );
 		return  CHAR_K_statusSendBuffer;
@@ -7850,7 +7852,7 @@ static char *CHAR_make_K_StatusString( int charaindex, int num, unsigned int ind
 						if( ret < 0) ret = 0;
 						snprintf( tmp, sizeof( tmp), "%d|", ret);
 					}
-					/*   侬  烟及犯□正 */
+					/*  文字列系のデータ */
 					else if( chk[j].gettype == 2 ) {
 						char    escapebuffer[128];
 						char *a = CHAR_getChar( pindex, chk[j].intdataindex);
@@ -7907,13 +7909,13 @@ static char *CHAR_make_K_StatusString( int charaindex, int num, unsigned int ind
 	return CHAR_K_statusSendBuffer;
 }
 /*------------------------------------------------------------
- * S K 旦  □正旦毛霜月［民尼永弁允月及匹｝晓匹反民尼永弁仄卅仁化方中［
- * 娄醒
- *  charaindex      int     平乓仿奶件犯弁永旦
- *  indextable		int 	P 毛霜月由仿丢□正及螂宁  ［
- * 忒曰袄
- *  霜匀凶［TRUE(1)
- *  霜木卅井匀凶［FALSE(0)
+ * S K ステータスを送る。チェックするので、上ではチェックしなくてよい。
+ * 引数
+ *  charaindex      int     キャラインデクッス
+ *  indextable		int 	P を送るパラメータの集合体。
+ * 返り値
+ *  送った。TRUE(1)
+ *  送れなかった。FALSE(0)
  *------------------------------------------------------------*/
 BOOL CHAR_send_K_StatusString( int charaindex, int num, unsigned int indextable )
 {
@@ -7942,19 +7944,19 @@ BOOL CHAR_send_K_StatusString( int charaindex, int num, unsigned int indextable 
 
 
 //------------------------------------------------------------
-// 皿伊奶乩□及    毛笛遥
+// プレイヤーの魅力を加算
 //------------------------------------------------------------
 void CHAR_AddCharm( int charaindex, int iValue )
 {
 	int iWork;
 	iWork = CHAR_getInt( charaindex, CHAR_CHARM ) + iValue;
-	iWork = max( 0, iWork );	//   凝ㄟ
-	iWork = min( 100, iWork );	//     ㄠㄟㄟ
+	iWork = max( 0, iWork );	// 最小０
+	iWork = min( 100, iWork );	// 最大１００
 	CHAR_setInt( charaindex, CHAR_CHARM, iWork );
 }
 
 //------------------------------------------------------------
-// 矢永玄及镝擦蘸  祭袄毛笛遥允月［
+// ペットの忠誠度変化値を加算する
 //------------------------------------------------------------
 void CHAR_PetAddVariableAi( int petindex, int iValue )
 {
@@ -7967,7 +7969,7 @@ void CHAR_PetAddVariableAi( int petindex, int iValue )
 }
 
 //------------------------------------------------------------
-// 犯□正矛□旦卞瓒  允月平□    蟆  毛综岳允月［
+// データベースに登録するキー（名前）を作成する。
 //------------------------------------------------------------
 int CHAR_makeDBKey( int charaindex, char *pszBuffer, int size ){
 
@@ -7975,12 +7977,12 @@ int CHAR_makeDBKey( int charaindex, char *pszBuffer, int size ){
 	char buff[512];
 	char escapebuf[1024];
 
-	pszBuffer[0] = 0;	// 赓渝祭
+	pszBuffer[0] = 0;	// 初期化
 	cdkey = CHAR_getChar( charaindex, CHAR_CDKEY);
-	if( cdkey == "\0" )return FALSE; // 瓒  匹五卅中
+	if( cdkey == "\0" )return FALSE; //登録できない
 	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return FALSE;
 
-	// 平□反 cdkey_  蟆
+	// キーは cdkey_名前
 	snprintf( buff, sizeof(buff),
 		"%s_%s", cdkey, CHAR_getChar( charaindex, CHAR_NAME ) );
 	makeEscapeString( buff, escapebuf, sizeof(escapebuf));
@@ -7992,9 +7994,9 @@ int CHAR_makeDBKey( int charaindex, char *pszBuffer, int size ){
 
 //------------------------------------------------------------
 //
-//  犯□正矛□旦及嫩  毛凳蕙
+//  データベースの項目を更新
 //
-// DuelPoint 及 DBUpdateEntry毛霜月
+// DuelPoint の DBUpdateEntryを送る
 //------------------------------------------------------------
 BOOL CHAR_send_DpDBUpdate( int charaindex )
 {
@@ -8046,7 +8048,7 @@ char *CHAR_getUseName( int charaindex )
 char *CHAR_getUseID( int charaindex )
 {
 	char *pName;
-	// 矢永玄分匀凶日白伉□生□丞卞允月
+	// ペットだったらフリーネームにする
 	if( CHAR_getInt( charaindex, CHAR_WHICHTYPE ) == CHAR_TYPEPET ){
 		pName = "NO_USER";
 	}else{
@@ -8095,11 +8097,11 @@ void CHAR_sendBattleWatch( int objindex, int onoff)
 	CHAR_sendWatchEvent( objindex,CHAR_ACTBATTLEWATCH,opt,1,TRUE);
 }
 /*------------------------------------------------------------
- * 隙烂今木凶  毛莫曰及谛卞矢永玄丢□伙及梢请毛允月［
- * 娄醒
- * charaindex        int     chara 匹及奶件犯弁永旦
- * 忒曰袄
- *  卅仄
+ * 指定された物を廻りの人にペットメールの演出をする。
+ * 引数
+ * charaindex        int     chara でのインデクッス
+ * 返り値
+ *  なし
  ------------------------------------------------------------*/
 void CHAR_sendPMEToArroundCharacterFLXY( int petindex, int fl, int x, int y,
 										int dir, int flg, int no )
@@ -8143,11 +8145,11 @@ void CHAR_sendPMEToArroundCharacterFLXY( int petindex, int fl, int x, int y,
 	}
 }
 /*------------------------------------------------------------
- * charaindex 匹隙烂今木凶  毛莫曰及谛卞矢永玄丢□伙及梢请毛允月［
- * 娄醒
- * charaindex        int     chara 匹及奶件犯弁永旦
- * 忒曰袄
- *  卅仄
+ * charaindex で指定された物を廻りの人にペットメールの演出をする。
+ * 引数
+ * charaindex        int     chara でのインデクッス
+ * 返り値
+ *  なし
  ------------------------------------------------------------*/
 void CHAR_sendPMEToArroundCharacter( int charaindex, int petindex, int flg, int no )
 {
@@ -8167,16 +8169,16 @@ void CHAR_sendPMEToArroundCharacter( int charaindex, int petindex, int flg, int 
     fl = CHAR_getInt( charaindex,CHAR_FLOOR );
 	dir = CHAR_getInt( charaindex, CHAR_DIR);
 
-    /*   仁  轾潸   */
+    /* 置く方向取得  */
     for( i = 0 ; i < 9 ; i ++ ){
         int x = CHAR_getInt( charaindex, CHAR_X) + dirx[i];
         int y = CHAR_getInt( charaindex, CHAR_Y) + diry[i];
-        /* 矢永玄毛  仃月桦赭井譬屯月 */
+        /* ペットを置ける場所か調べる */
         if( PET_isPutPoint( fl, x, y ) == TRUE ) {
             break;
         }
     }
-    /* 卅仃木壬箫葭 */
+    /* なければ足元*/
     if( i == 9 ) i = 1;
 
     x = CHAR_getInt(charaindex,CHAR_X)+dirx[i];
@@ -8186,12 +8188,12 @@ void CHAR_sendPMEToArroundCharacter( int charaindex, int petindex, int flg, int 
 										fl, x, y, dir, flg, no);
 }
 /*------------------------------------------------------------
- * SE毛  日允［
- *   耨葭毛  艘卞］苇尹月  区坌霜耨允月
- * 娄醒
- * fl,x,y   耨葭及甄
- * senumber     及  寞［sndcnf.h毛辅寰及仇午［
- * sw   日允井鞅户月井 0 : 鞅户月 1 :   日允
+ * SEを鳴らす。
+ * 発信元を中心に，見える範囲分送信する
+ * 引数
+ * fl,x,y 発信元の座標
+ * senumber ＳＥの番号。sndcnf.hを参照のこと。
+ * sw 鳴らすか止めるか 0 : 止める 1 : 鳴らす
  ------------------------------------------------------------*/
 void CHAR_sendSEoArroundCharacter( int fl, int x, int y, int senumber, int sw )
 {
@@ -8222,7 +8224,7 @@ void CHAR_sendSEoArroundCharacter( int fl, int x, int y, int senumber, int sw )
 		}
 	}
 }
-/*====================梢请涩烂====================*/
+/*====================演出設定====================*/
 
 
 #ifndef _SEND_EFFECT	   	        // WON ADD AC送下雪、下雨等特效
@@ -8230,15 +8232,15 @@ void CHAR_sendSEoArroundCharacter( int fl, int x, int y, int senumber, int sw )
 #define		CHAR_EFFECT_SETTINGBUFFER	256
 typedef struct tagCHAR_effectsetting
 {
-    int     floor;								//	白夫失
-	int		effect;								//	梢请  寞
-	int		level;								//	梢请及伊矛伙［  蜇及雄今［
-	int		sendflg;							//	  憎巨白尼弁玄毛霜匀凶井升丹井［
-	char	month[CHAR_EFFECT_SETTINGBUFFER];	//	  垫允月畸
-	char	day[CHAR_EFFECT_SETTINGBUFFER];		//	  垫允月
-	char	hour[CHAR_EFFECT_SETTINGBUFFER];	//	  垫允月凛棉
-	char	min[CHAR_EFFECT_SETTINGBUFFER];		//	  垫允月坌
-	char	expire[CHAR_EFFECT_SETTINGBUFFER];	//	  垫仄化中月赢今［(
+    int     floor;								//	フロア
+	int		effect;								//	演出番号
+	int		level;								//	演出のレベル。表現の強さ。
+	int		sendflg;							//	表示エフェクトを送ったかどうか。
+	char	month[CHAR_EFFECT_SETTINGBUFFER];	//	実行する月
+	char	day[CHAR_EFFECT_SETTINGBUFFER];		//	実行する日
+	char	hour[CHAR_EFFECT_SETTINGBUFFER];	//	実行する時間
+	char	min[CHAR_EFFECT_SETTINGBUFFER];		//	実行する分
+	char	expire[CHAR_EFFECT_SETTINGBUFFER];	//	実行している長さ。(秒）
 	
 }CHAR_effectsetting;
 
@@ -8250,12 +8252,12 @@ int                     CHAR_effectnum;
 
 
 /*------------------------------------------------------------
- * 梢请涩烂及赓渝祭毛允月［
- * 娄醒
- *  filename        char*       涩烂白央奶伙
- * 忒曰袄
- *  岳      TRUE(1)
- *  撩      FALSE(0)
+ * 演出設定の初期化をする。
+ * 引数
+ *  filename        char*       設定ファイル名
+ * 返り値
+ *  成功    TRUE(1)
+ *  失敗    FALSE(0)
  *------------------------------------------------------------*/
 BOOL CHAR_initEffectSetting( char* filename )
 {
@@ -8273,7 +8275,7 @@ BOOL CHAR_initEffectSetting( char* filename )
 
     CHAR_effectnum=0;
 
-    /*  引内  躲卅垫互窒垫丐月井升丹井譬屯月    */
+    /*  まず有効な行が何行あるかどうか調べる     */
     while( fgets( line, sizeof( line ), f ) ){
         linenum ++;
         if( line[0] == '#' )continue;        /* comment */
@@ -8297,7 +8299,7 @@ BOOL CHAR_initEffectSetting( char* filename )
         fclose( f );
         return FALSE;
     }
-    /* 赓渝祭 */
+    /* 初期化 */
 {
     int     i;
     for( i = 0; i < CHAR_effectnum; i ++ ) {
@@ -8314,7 +8316,7 @@ BOOL CHAR_initEffectSetting( char* filename )
     }
 }
 
-    /*  引凶  心  允    */
+    /*  また読み直す    */
     linenum = 0;
     while( fgets( line, sizeof( line ), f ) ){
         linenum ++;
@@ -8322,21 +8324,21 @@ BOOL CHAR_initEffectSetting( char* filename )
         if( line[0] == '\n' )continue;       /* none    */
         chomp( line );
 
-        /*  垫毛帮溥允月    */
-        /*  引内 tab 毛 " " 卞  五晶尹月    */
+        /*  行を整形する    */
+        /*  まず tab を " " に置き換える    */
         replaceString( line, '\t' , ' ' );
-        /*    粮仄凶 " " 毛夫午勾卞允月 */
+        /*   連続した " " をひとつにする */
         deleteSequentChar( line, " " );
 
-        /*  仇仇引匹帮溥仄化｝燮  互 旦矢□旦分匀凶日 */
-        /*    引卅中    */
+        /*  ここまで整形して、先頭が スペースだったら */
+        /*  読まない    */
         if( line[0] == ' ' )continue;
 
         {
             char    token[256];
             int     ret;
 
-            /*  夫午勾户及玄□弁件毛苇月    */
+            /*  ひとつめのトークンを見る    */
             ret = getStringFromIndexWithDelim( line," ",1,token,
                                                sizeof(token));
             if( ret==FALSE ){
@@ -8345,7 +8347,7 @@ BOOL CHAR_initEffectSetting( char* filename )
             }
             CHAR_effect[effectreadlen].floor = atoi(token);
 
-            /*  2勾户及玄□弁件毛苇月    */
+            /*  2つめのトークンを見る     */
             ret = getStringFromIndexWithDelim( line," ",2,token,
                                                sizeof(token));
             if( ret==FALSE ){
@@ -8355,7 +8357,7 @@ BOOL CHAR_initEffectSetting( char* filename )
 
             CHAR_effect[effectreadlen].effect = atoi( token );
 
-            /*  3勾户及玄□弁件毛苇月    */
+            /*   3つめのトークンを見る    */
             ret = getStringFromIndexWithDelim( line," ",3,token,
                                                sizeof(token));
             if( ret ==FALSE){
@@ -8365,7 +8367,7 @@ BOOL CHAR_initEffectSetting( char* filename )
 
             CHAR_effect[effectreadlen].level = atoi( token );
             
-            /*  4勾户及玄□弁件毛苇月    */
+            /*  4つめのトークンを見る    */
             ret = getStringFromIndexWithDelim( line," ",4,token,
                                                sizeof(token));
             if( ret ==FALSE){
@@ -8376,7 +8378,7 @@ BOOL CHAR_initEffectSetting( char* filename )
 						sizeof( CHAR_effect[effectreadlen].month),
 						token); 
             
-            /*  5勾户及玄□弁件毛苇月    */
+            /*  5つめのトークンを見る     */
             ret = getStringFromIndexWithDelim( line," ",5,token,
                                                sizeof(token));
             if( ret ==FALSE){
@@ -8387,7 +8389,7 @@ BOOL CHAR_initEffectSetting( char* filename )
 						sizeof( CHAR_effect[effectreadlen].day),
 						token); 
             
-            /*  6勾户及玄□弁件毛苇月    */
+            /*   6つめのトークンを見る    */
             ret = getStringFromIndexWithDelim( line," ",6,token,
                                                sizeof(token));
             if( ret ==FALSE){
@@ -8398,7 +8400,7 @@ BOOL CHAR_initEffectSetting( char* filename )
 						sizeof( CHAR_effect[effectreadlen].hour),
 						token); 
 
-            /*  7勾户及玄□弁件毛苇月    */
+            /*  7つめのトークンを見る   */
             ret = getStringFromIndexWithDelim( line," ",7,token,
                                                sizeof(token));
             if( ret ==FALSE){
@@ -8409,7 +8411,7 @@ BOOL CHAR_initEffectSetting( char* filename )
 						sizeof( CHAR_effect[effectreadlen].min),
 						token); 
             
-            /*  8勾户及玄□弁件毛苇月    */
+            /*  8つめのトークンを見る    */
             ret = getStringFromIndexWithDelim( line," ",8,token,
                                                sizeof(token));
             if( ret ==FALSE){
@@ -8449,8 +8451,8 @@ BOOL CHAR_initEffectSetting( char* filename )
 }
 
 //-------------------------------------------------------------------------
-//	蜇箕凛对互］隙烂及椭瘀卞穴永民仄化中月井毛譬屯引允［
-//	宁匀化中木壬TRUE毛忒允［
+//	現在時刻が，指定の条件にマッチしているかを調べます。
+//	合っていればTRUEを返す。
 //-------------------------------------------------------------------------
 static BOOL CHAR_checkEffectTime( int num)
 {
@@ -8464,9 +8466,9 @@ static BOOL CHAR_checkEffectTime( int num)
 		int ret;
 		char token[256];
 		
-		//	"*"反］蝈化毛隙允［
+		//	"*"は，全てを指す。
 		
-		// 畸互域谯仄化中月井
+		//月が一致しているか
 		if( strcmp( CHAR_effect[num].month, "*" ) != 0 ) {
 			BOOL flg = FALSE;
 			for( i = 1; ; i ++) {
@@ -8474,7 +8476,7 @@ static BOOL CHAR_checkEffectTime( int num)
 	            									",", i, 
 	            									token, sizeof( token));
 	            if( ret == FALSE ) break;
-				//	ㄠ勾匹手域谯仄化中木壬公木匹中中
+				//	１つでも一致していればそれでいい
 				if( t.tm_mon +1 == atoi( token)) {
 					flg = TRUE;
 					break;
@@ -8483,7 +8485,7 @@ static BOOL CHAR_checkEffectTime( int num)
 			if( !flg ) break;
 		}
 		
-		//   互域谯仄化中月井
+		//   日が一致しているか
 		if( strcmp( CHAR_effect[num].day, "*" ) != 0 ) {
 			BOOL flg = FALSE;
 			for( i = 1; ; i ++) {
@@ -8491,7 +8493,7 @@ static BOOL CHAR_checkEffectTime( int num)
 	            									",", i, 
 	            									token, sizeof( token));
 	            if( ret == FALSE ) break;
-				//	ㄠ勾匹手域谯仄化中木壬公木匹中中
+				//	１つでも一致していればそれでいい
 				if( t.tm_mday == atoi( token)) {
 					flg = TRUE;
 					break;
@@ -8499,7 +8501,7 @@ static BOOL CHAR_checkEffectTime( int num)
 			}
 			if( !flg ) break;
 		}
-		// 凛棉互域谯仄化中月井
+		// 時間が一致しているか
 		if( strcmp( CHAR_effect[num].hour, "*" ) != 0 ) {
 			BOOL flg = FALSE;
 			for( i = 1; ; i ++) {
@@ -8507,7 +8509,7 @@ static BOOL CHAR_checkEffectTime( int num)
 	            									",", i, 
 	            									token, sizeof( token));
 	            if( ret == FALSE ) break;
-				//	ㄠ勾匹手域谯仄化中木壬公木匹中中
+				//	１つでも一致していればそれでいい
 				if( t.tm_hour == atoi( token)) {
 					flg = TRUE;
 					break;
@@ -8515,10 +8517,10 @@ static BOOL CHAR_checkEffectTime( int num)
 			}
 			if( !flg ) break;
 		}
-		// 坌互域谯仄化中月井
-		//	切斤匀午分仃  溃质
+		// 分が一致しているか
+		//	ちょっとだけ特殊処理
 		if( strcmp( CHAR_effect[num].min, "*" ) != 0 ) {
-			// 渝棉互←卅日手丹OK
+			// 期間が＊ならもうOK
 			if( strcmp( CHAR_effect[num].expire, "*" ) != 0 ) {
 				BOOL flg = FALSE;
 				for( i = 1; ; i ++) {
@@ -8528,9 +8530,10 @@ static BOOL CHAR_checkEffectTime( int num)
 		            									",", i, 
 		            									token, sizeof( token));
 		            if( ret == FALSE ) break;
-					//	ㄠ勾匹手域谯仄化中木壬公木匹中中
+					//	１つでも一致していればそれでいい
 
-					//	涩烂仄凶坌井日］  躲渝棉及  区卞  匀化中月井＂
+					//	設定した分から，有効期間の範囲に入っているか？
+
 					tm_work = t;
 					tm_work.tm_sec = 0;
 					tm_work.tm_min = atoi( token);
@@ -8544,7 +8547,7 @@ static BOOL CHAR_checkEffectTime( int num)
 				if( !flg ) break;
 			}
 		}
-		// 坌互隙烂  仄分匀凶日手丹OK
+		// 分が指定無しだったらもうOK
 		
 		returnflg = TRUE;
 		break;
@@ -8552,8 +8555,8 @@ static BOOL CHAR_checkEffectTime( int num)
 	return returnflg;
 }
 //-------------------------------------------------------------------------
-//	平乓仿弁正□及匏  午凛棉毛葭卞］
-//	巨白尼弁玄毛霜月  邰互丐木壬霜月
+//	キャラクターの位置と時間を元に，
+//	エフェクトを送る必要があれば送る
 //-------------------------------------------------------------------------
 void CHAR_checkEffect( int charaindex)
 {
@@ -8561,16 +8564,16 @@ void CHAR_checkEffect( int charaindex)
 	int fl = CHAR_getInt( charaindex, CHAR_FLOOR);
 	int fd = getfdFromCharaIndex( charaindex);
 	
-	// 巨白尼弁玄域绎壅允
+	// エフェクト一旦消す
 	lssproto_EF_send( fd, 0, 0, "");
 	CHAR_setWorkInt( charaindex, CHAR_WORKEFFECT, 0);
 
 	for( i = 0; i < CHAR_effectnum; i ++){
-		//	白夫失互域谯仄凶凛分仃
+		//	フロアが一致した時だけ
 		if( CHAR_effect[i].floor == fl) {
-			// 椭瘀毛譬屯引允［
+			// 条件を調べます。
 			if( CHAR_checkEffectTime( i)){
-				// 巨白尼弁玄毛霜月
+				// エフェクトを送る
 				lssproto_EF_send( fd, CHAR_effect[i].effect, CHAR_effect[i].level, "");
 				if( CHAR_effect[i].level == 0 ) {
 					CHAR_setWorkInt( charaindex, CHAR_WORKEFFECT, 
@@ -8899,7 +8902,7 @@ int storeCharaData( void ){
 
 			fprintf( fp, outbuff );
 		}else{
-			fprintf( fp, "本□皮撩  \n" );
+			fprintf( fp, "セーブ失敗  \n" );
 		}
 
 		fclose( fp );
@@ -11044,7 +11047,7 @@ int CharaData( int sockfd, Char* ch ){
 		fprintf( fp, outbuff );
 		chmod(pathname,0777);
 	}else{
-//			fprintf( fp, "本□皮撩  \n" );
+//			fprintf( fp, "セーブ失敗  \n" );
 	}
 
 	fclose( fp );

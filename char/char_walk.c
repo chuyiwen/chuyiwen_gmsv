@@ -72,23 +72,24 @@ static CHAR_WALKRET CHAR_walk_turn( int index, int dir )
 
 
 /*------------------------------------------------------------
- * n 汹 汹中凶map毛霜月
- * 娄醒
- *  index       int     平乓仿及奶件犯永弁旦
- *  fl          int     白夫失ID
- *  ox          int     蟆及橇谪及x
- *  oy          int     蟆及橇谪及y
- *  fx          int     汹中凶  及x
- *  fy          int     汹中凶  及y
- * 忒曰袄
- *  卅仄
+ * n 歩 歩いたmapを送る
+ * 引数
+ *  index       int     キャラのインデックス
+ *  fl          int     フロアID
+ *  ox          int     前の状態のx
+ *  oy          int     前の状態のy
+ *  fx          int     歩いた後のx
+ *  fy          int     歩いた後のy
+ * 返り値
+ *  なし
+
  ------------------------------------------------------------*/
 static void CHAR_sendMapAtWalk( int index, int fl ,int ox ,int oy,
 								int fx, int fy )
 {
     /*
-     *  蜇箕及袄午｝蟆引匹及袄及犒毛苇月
-     *  仇丹允月午｝伐□皿NPC手棵签分［
+     *  現在の値と、前までの値の差を見る
+     *  こうすると、ワープNPCも簡単だ。
      */
     int     vx,vy;
     const int     seesiz = MAP_CHAR_DEFAULTSEESIZ;
@@ -98,8 +99,8 @@ static void CHAR_sendMapAtWalk( int index, int fl ,int ox ,int oy,
     vx = fx - ox;
     vy = fy - oy;
 
-    if( ABS(vx) >= seesiz/2 ||       /*  犒互  五中  */
-        ABS(vy) >= seesiz/2 ){       /*  犒互  五中  */
+    if( ABS(vx) >= seesiz/2 ||       /*  差が大きい  */
+        ABS(vy) >= seesiz/2 ){       /*  差が大きい  */
         return;
 
     }else{
@@ -110,12 +111,13 @@ static void CHAR_sendMapAtWalk( int index, int fl ,int ox ,int oy,
         int absx = ABS(vx);
         int absy = ABS(vy);
         /*
-         * 夫午勾聂户卞旦正□玄毛潸月及午｝vx , vy 井日1夫仁及互禾奶件玄
-         * 蟆午井今卅日卅中方丹卞｝
-         * clipRect 反 w,h 0 毛心午户化中月
+         * ひとつ多めにスタートを取るのと、vx , vy から1ひくのがポイント
+         * 前とかさならないように、
+         * clipRect は w,h 0 をみとめている
          */
 
-        /*  == 0 及凛反霜日卅仁化方中   */
+
+        /*  == 0 の時は送らなくてよい   */
         if( vx != 0 ){
             if( vx > 0 ){
                 send.x     = oldlux + seesiz;
@@ -150,7 +152,7 @@ static void CHAR_sendMapAtWalk( int index, int fl ,int ox ,int oy,
 }
         }
 
-        /*  == 0 及凛反霜日卅仁化方中   */
+        /*  == 0 の時は送らなくてよい   */
         if( vy != 0 ){
             if( vy > 0 ){
                 send.y      = oldluy + seesiz;
@@ -189,11 +191,11 @@ static void CHAR_sendMapAtWalk( int index, int fl ,int ox ,int oy,
 }
 static CHAR_WALKRET CHAR_walk_move( int charaindex, int dir );
 /*------------------------------------------------------------
- * 啖  允月［
- * 娄醒
- *  index       int     平乓仿及奶件犯永弁旦
- *  dir         int       轾
- * 忒曰袄
+ * 移動する。
+ * 引数
+ *  index       int     キャラのインデックス
+ *  dir         int     方向
+ * 返り値
  *  CHAR_WALKRET
  ------------------------------------------------------------*/
 static CHAR_WALKRET CHAR_walk_move( int charaindex, int dir )
@@ -380,7 +382,7 @@ static CHAR_WALKRET CHAR_walk_move( int charaindex, int dir )
             ox = OBJECT_setX(objindex,CHAR_getInt(charaindex,CHAR_X));
             oy = OBJECT_setY(objindex,CHAR_getInt(charaindex,CHAR_Y));
             if( !MAP_objmove( objindex, of,ox,oy,ff,fx,fy ) ){
-                /*  仇氏卅氏升丹仄方丹手卅中    */
+                /*  こんなんどうしようもない    */
                 fprint( "ERROR MAP_OBJMOVE objindex=%d(%s)\n",objindex,
                 	CHAR_getUseName( charaindex ) );
             }
@@ -427,10 +429,10 @@ static CHAR_WALKRET CHAR_walk_move( int charaindex, int dir )
                 ofunc = (OFFFUNC)CHAR_getFunctionPointer( OBJECT_getIndex(objindex), CHAR_OFFFUNC);
                 break;
             case OBJTYPE_ITEM:
-                /*    卞窒手仄卅中  */
+                /*   別に何もしない  */
                 break;
             case OBJTYPE_GOLD:
-                /*    卞窒手仄卅中  */
+                /*   別に何もしない  */
                 break;
             default:
                 break;
@@ -666,12 +668,12 @@ CHAR_AFTERWALK:
 }
 
 /*------------------------------------------------------------
- * 平乓仿互汹仁［
- * 娄醒
- *  index   int     Char匹及index
- *  dir     int       轾
- *  mode    int     0卅日汹仁［1卅日  轾鳖晶［
- * 忒曰袄
+ * キャラが歩く。
+ * 引数
+ *  index   int     Charでのindex
+ *  dir     int     方向
+ *  mode    int     0なら歩く。1なら方向転換。
+ * 返り値
  *  CHAR_WALKRET
  ------------------------------------------------------------*/
 CHAR_WALKRET CHAR_walk( int index, int dir, int mode)
@@ -737,11 +739,11 @@ CHAR_WALKRET CHAR_walk_jjc( int index, int floor, int ox, int oy, int dir)
 }
 #endif
 /*------------------------------------------------------------
- * 汹井六月蟆赏  ［
- * 娄醒
- *  index       int         平乓仿奶件犯永弁旦
- * 忒曰袄
- *  卅仄
+ * 歩かせる前準備。
+ * 引数
+ *  index       int         キャラインデックス
+ * 返り値
+ *  なし
  ------------------------------------------------------------*/
 void CHAR_walkcall( int index )
 {
@@ -756,8 +758,8 @@ void CHAR_walkcall( int index )
                 CHAR_getWorkChar(index,CHAR_WORKWALKARRAY));
 
     CHAR_ctodirmode( tmp[0], &dir ,&mode );
-	/* 褪卅日仪蟆卞桦赭毛筏盛仄化云仁
-	 * 褪及  仁蟆及桦赭毛    卞阂互啖  允月啃
+	/* 親なら事前に場所を記憶しておく
+	 * 親の動く前の場所を目標に子が移動する為
 	 */
 	if( CHAR_getInt( index, CHAR_WHICHTYPE) == CHAR_TYPEPLAYER ) {
 		if( CHAR_getWorkInt( index, CHAR_WORKPARTYMODE ) == CHAR_PARTY_LEADER ) {
@@ -766,11 +768,11 @@ void CHAR_walkcall( int index )
 		}
 	}
 
-	/* 汹仁 */
+	/* 歩く */
     ret = CHAR_walk( index , dir ,mode );
 
 	if( mode == 0 && ret == CHAR_WALKSUCCESSED ) {
-		/* 愤坌互褪卅日醮棉毛汹井六月 */
+		/* 自分が親なら仲間を歩かせる */
 		if( CHAR_getInt( index, CHAR_WHICHTYPE) == CHAR_TYPEPLAYER ) {
 		
 
@@ -780,13 +782,13 @@ void CHAR_walkcall( int index )
 					int toindex = CHAR_getWorkInt( index, i + CHAR_WORKPARTYINDEX1);
 					if( CHAR_CHECKINDEX(toindex) ) {
 						int		parent_dir;
-						/* 阂及匏  午］褪及汹五蟆及匏  井日  轾毛菲户月 */
-						/* 汹仁 */
+						/* 子の位置と，親の歩き前の位置から方向を求める */
+						/* 歩く*/
 						start.x = CHAR_getInt( toindex, CHAR_X);
 						start.y = CHAR_getInt( toindex, CHAR_Y);
 						parent_dir = NPC_Util_getDirFromTwoPoint( &start,&end );
-						/* 弘仿犯奴它旦左皿扑亦件汹五毛  蜇允月啃卞］
-						 * 戚及阂反蟆及阂及  毛馨丹方丹卞允月
+						/* グラディウスオプション歩きを実現する為に，
+						 * 次の子は前の子の後を追うようにする
 						 */
 						end = start;
 						if( parent_dir != -1 ) {
@@ -798,8 +800,9 @@ void CHAR_walkcall( int index )
 					int petindex = CHAR_getWorkInt( toindex, CHAR_WORKPETFOLLOW);
 					if( CHAR_CHECKINDEX(petindex) ) {
 						int		parent_dir;
-						/* 阂及匏  午］褪及汹五蟆及匏  井日  轾毛菲户月 */
-						/* 汹仁 */
+						/* 子の位置と，親の歩き前の位置から方向を求める */
+						/* 歩く */
+
 						end.x = CHAR_getInt( toindex, CHAR_X);
 						end.y = CHAR_getInt( toindex, CHAR_Y);						
 						start.x = CHAR_getInt( petindex, CHAR_X);
@@ -834,7 +837,7 @@ void CHAR_walkcall( int index )
 						}
 					}
 					else {
-						/* 赓渝祭仄卅云允 */
+						/* 初期化しなおす */
 						CHAR_setWorkInt( index, i+CHAR_WORKPARTYINDEX1, -1);
 					}
 				}
@@ -845,8 +848,8 @@ void CHAR_walkcall( int index )
 					int petindex = CHAR_getWorkInt( index, CHAR_WORKPETFOLLOW);
 					if( CHAR_CHECKINDEX(petindex) ) {
 						int		parent_dir;
-						/* 阂及匏  午］褪及汹五蟆及匏  井日  轾毛菲户月 */
-						/* 汹仁 */
+						/* 子の位置と，親の歩き前の位置から方向を求める */
+						/* 歩く */
 						end.x = CHAR_getInt( index, CHAR_X);
 						end.y = CHAR_getInt( index, CHAR_Y);						
 						start.x = CHAR_getInt( petindex, CHAR_X);
@@ -862,9 +865,10 @@ void CHAR_walkcall( int index )
 						//if( (end.x == start.x) && (end.x == start.y) )
 						//	parent_dir = -1;						
 
-						/* 弘仿犯奴它旦左皿扑亦件汹五毛  蜇允月啃卞］
-						 * 戚及阂反蟆及阂及  毛馨丹方丹卞允月
+						/* グラディウスオプション歩きを実現する為に，
+						 * 次の子は前の子の後を追うようにする
 						 */
+
 						//print(" pdir:%d sx:%d sy:%d ex:%d ey:%d ", 
 						//	parent_dir, start.x, start.y, end.x, end.y ); 
 						//end = start;
@@ -887,7 +891,7 @@ void CHAR_walkcall( int index )
 						}
 					}
 					else {
-						/* 赓渝祭仄卅云允 */
+						/* 初期化しなおす */
 						CHAR_setWorkInt( index, CHAR_WORKPETFOLLOW, -1);
 					}
 				
@@ -899,16 +903,17 @@ void CHAR_walkcall( int index )
     }
 
     /* 99/03/09 By Kawata */
-    /* walk及瑛绊｝WALKARRAY互弁伉失今木化中月桦宁互丐月及匹
-     * 潸曰  仄化戊疋月
+    /* walkの結果、WALKARRAYがクリアされている場合があるので
+     * 取り直してコピる
      */
+
     strcpysafe( tmp ,sizeof(tmp),
                 CHAR_getWorkChar(index,CHAR_WORKWALKARRAY));
     if( strlen( tmp) > 0 ) {
         CHAR_setWorkChar(index,CHAR_WORKWALKARRAY,&tmp[1]);
     }
 
-    /*  凛棉毛褡户月    */
+    /*  時間を進める    */
     CHAR_setWorkInt( index, CHAR_WORKWALKSTARTSEC , NowTime.tv_sec );
     CHAR_setWorkInt( index, CHAR_WORKWALKSTARTMSEC , NowTime.tv_usec );
 }
@@ -916,13 +921,13 @@ void CHAR_walkcall( int index )
 
 
 /*------------------------------------------------------------
- * 汹五铵户毛瓒  允月［
- * 娄醒
- *  index           int         平乓仿    匹及奶件犯永弁旦
- *  dir             char*         轾  侬  
+ * 歩き始めを登録する。
+ * 引数
+ *  index           int         キャラ配列でのインデックス
+ *  dir             char*       方向文字列
  *  id              int         ID
- * 忒曰袄
- *  卅仄
+ * 返り値
+ *  なし
  ------------------------------------------------------------*/
 void CHAR_walk_start(int index, int x, int y, char* dir, BOOL mapsendmode )
 {
@@ -985,13 +990,13 @@ void CHAR_walk_start(int index, int x, int y, char* dir, BOOL mapsendmode )
     if( strlen( dir ) >= 1 ) CHAR_walkcall( index );
 }
 /*------------------------------------------------------------
- * 汹五及  赓
- * 娄醒
- *  index           int         平乓仿    匹及奶件犯永弁旦
- *  dir             char*         轾  侬  
+ * 歩きの最初
+ * 引数
+ *  index           int         キャラ配列でのインデックス
+ *  dir             char*       方向文字列
  *  id              int         ID
- * 忒曰袄
- *  卅仄
+ * 返り値
+ *  なし
  ------------------------------------------------------------*/
 void CHAR_walk_init( int fd, int x, int y, char *direction, BOOL mapsendmode)
 {
@@ -1381,9 +1386,9 @@ static void CHAR_sendCDCharaAtWalk( int charaindex, int of, int ox, int oy,	 int
 	x = CHAR_getInt( charaindex, CHAR_X);
 	y = CHAR_getInt( charaindex, CHAR_Y);
 
-	if( of !=  fl ||  /*  白夫失互啜丹    */
-		ABS(x - ox) > seesiz/2 ||       /*  犒互  五中  */
-		ABS(y - oy) > seesiz/2 )        /*  犒互  五中  */
+	if( of !=  fl ||  /*  フロアが違う    */
+		ABS(x - ox) > seesiz/2 ||       /*  差が大きい  */
+		ABS(y - oy) > seesiz/2 )        /*  差が大きい  */
 		return;
 
 	fd = getfdFromCharaIndex( charaindex );
@@ -1623,7 +1628,7 @@ CHAR_WALKRET CHAR_walk_jc( int charaindex, int of, int ox, int oy, int dir )
             ox = OBJECT_setX(objindex,CHAR_getInt(charaindex,CHAR_X));
             oy = OBJECT_setY(objindex,CHAR_getInt(charaindex,CHAR_Y));
             if( !MAP_objmove( objindex, of,ox,oy,ff,fx,fy ) ){
-                /*  仇氏卅氏升丹仄方丹手卅中    */
+                /*  こんなんどうしようもない   */
                 fprint( "ERROR MAP_OBJMOVE objindex=%d(%s)\n",objindex,
                 	CHAR_getUseName( charaindex ) );
             }
@@ -1665,10 +1670,10 @@ CHAR_WALKRET CHAR_walk_jc( int charaindex, int of, int ox, int oy, int dir )
                 ofunc = (OFFFUNC)CHAR_getFunctionPointer( OBJECT_getIndex(objindex), CHAR_OFFFUNC);
                 break;
             case OBJTYPE_ITEM:
-                /*    卞窒手仄卅中  */
+                /*    別に何もしない  */
                 break;
             case OBJTYPE_GOLD:
-                /*    卞窒手仄卅中  */
+                /*    別に何もしない  */
                 break;
             default:
                 break;

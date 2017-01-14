@@ -54,7 +54,7 @@ void CHAR_allpostwalk( int index )
 BOOL CHAR_makeCADefaultString( int objindex,char* buf,int buflen, int act )
 {
 	char	objindexbuf[64];
-    /*  民尼永弁    */
+    /*  チェック    */
     if( CHECKOBJECT(objindex) == FALSE )    return FALSE;
     if( OBJECT_getType(objindex) != OBJTYPE_CHARA ) return FALSE;
     snprintf( buf,buflen,"%s|%d|%d|%d|%d",
@@ -260,8 +260,8 @@ void CHAR_sendWallDamage( int charaindex,int x, int y, int damage )
 
 static struct ParamShow
 {
-    int     paramindex;     /*  由仿丢□正及奶件犯永弁旦    */
-    char*   offmessage;     /*    匀凶凛及丢永本□斥  侬      */
+    int     paramindex;     /*  パラメータのインデックス    */
+    char*   offmessage;     /*   直った時のメッセージ文字列     */
 }pShow[]={
     {CHAR_PARALYSIS,    CHAR_RECOVERPARALYSISSTRING},
     {CHAR_SLEEP,      CHAR_RECOVERSILENCESTRING},

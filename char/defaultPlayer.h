@@ -11,7 +11,7 @@ static Char    player=
         0,      /*  CHAR_FLOOR  */
         0,      /*  CHAR_X */
         0,      /*  CHAR_Y  */
-        5,      /*  CHAR_DIR 12箕を0に箕纷件りに */
+        5,      /*  CHAR_DIR 12時を0に時計周りに */
         1,      /*  CHAR_LV  */
         0,      /*  CHAR_GOLD    */
         1,      /*  CHAR_HP  */
@@ -26,10 +26,11 @@ static Char    player=
 
     	0,		/*  CHAR_CHARM	*/
     	0,		/*  CHAR_LUCK	*/
-		0,		/* 孟掳拉 */
-		0,		/* 垮掳拉 */
-		0,		/* 残掳拉 */
-		0,		/* 慎掳拉 */
+		0,		/* 地属性 */
+		0,		/* 水属性 */
+		0,		/* 火属性 */
+		0,		/* 風属性 */
+
 
 		0,		/* CHAR_SLOT*/
 		0,		/* CHAR_CRITIAL */

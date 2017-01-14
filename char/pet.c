@@ -17,12 +17,12 @@
 
 
 /*
- * 矢永玄质  卞楮允月末□旦
+ * ペット処理に関するソース
  */
 /*------------------------------------------------------------------------
- * 矢永玄毛ㄠ勾喃曰癫化月［犯田永弘迕［
- * CHAR厌瞻  卞及心综岳今木月［
- *   曰袄“综岳今木凶平乓仿index 撩  “-1
+ * ペットを１つ割り当てる。デバッグ用。
+ * CHAR構造体にのみ作成される。
+ * 戻り値：作成されたキャラindex 失敗：-1
  *-----------------------------------------------------------------------*/
 char hanzibuf[5000][8] = {"阿","啊","哀","唉","挨","矮","爱","碍","安","岸","按","案","暗","昂","袄","傲","奥","八","巴","扒","吧","疤","拔","把","坝","爸","罢","霸","白","百","柏","摆","败","拜","班","般","斑","搬","板","版","办",
 "半","伴","扮","拌","瓣","帮","绑","榜","膀","傍","棒","包","胞","雹","宝","饱","保","堡","报","抱","暴","爆","杯","悲","碑","北","贝","备","背","倍","被","辈","奔","本","笨","蹦","逼","鼻","比","彼","笔",
@@ -152,31 +152,31 @@ int PET_DEBUG_initPetOne( int charaindex)
     Char    ch;
     int     havepetindex;
     int     index;
-    /* 矢永玄毛  化月井譬屯月 */
+    /* ペットを持てるか調べる */
     havepetindex = CHAR_getCharPetElement( charaindex) ;
 
     memset( &ch, 0, sizeof( ch));
     if( !CHAR_getDefaultChar( &ch,31010 ) )return -1;
 
-    /*    飓  寞    */
+    /*  画像番号  */
     ch.data[CHAR_BASEBASEIMAGENUMBER]
         = ch.data[CHAR_BASEIMAGENUMBER] = 30008;
     ch.data[CHAR_WHICHTYPE] = CHAR_TYPEPET;
-    /*    猾   */
+    /*  攻撃力  */
     ch.workint[CHAR_WORKATTACKPOWER] = 100;
-    /*  潮     */
+    /*  守備力  */
     ch.workint[CHAR_WORKDEFENCEPOWER] = 50;
     /*  HP */
     ch.data[CHAR_HP] = 100;
-    /*    蟆 */
+    /*  名前 */
     strcpysafe( ch.string[CHAR_NAME].string, 32, "宠物１" );
 
-    /* CHAR卞喃曰癫化月 */
+    /* CHARに割り当てる */
     index = PET_initCharOneArray( &ch);
 
     if( index < 0 ) return -1;
 
-    /* 仍潜谛本永玄 */
+    /* ご主人セット */
     CHAR_setWorkInt( index, CHAR_WORKPLAYERINDEX, charaindex);
     CHAR_setWorkInt( index,CHAR_WORKOBJINDEX,-1);
     CHAR_setCharPet( charaindex, havepetindex, index);
@@ -309,16 +309,16 @@ static int _PET_dropPet( int charaindex, int havepetindex, int tofl, int tox, in
 
 
 /*------------------------------------------------------------
- *     泫  矢永玄毛  仁
- * 娄醒
- *  itemindex       int         失奶  丞奶件犯永弁旦
- *  floor           int         白夫失ID
- *  x               int         x甄  
- *  y               int         y甄  
- *  net             BOOL        生永玄伐□弁及仇午毛允月井升丹井
- * 忒曰袄
- *  岳      objindex
- *  撩      -1
+ * 無理矢理ペットを置く
+ * 引数
+ *  itemindex       int         アイテムインデックス
+ *  floor           int         フロアID
+ *  x               int         x座標
+ *  y               int         y座標
+ *  net             BOOL        ネットワークのことをするかどうか
+ * 返り値
+ *  成功    objindex
+ *  失敗    -1
  ------------------------------------------------------------*/
 int PET_dropPetAbsolute( int petindex, int floor, int x, int y,BOOL net)
 {
@@ -333,10 +333,10 @@ int PET_dropPetAbsolute( int petindex, int floor, int x, int y,BOOL net)
     object.y = y;
     object.floor = floor;
 
-    /*  左皮斥尼弁玄瓒  允月    */
+    /* オブジェクト登録する   */
     objindex = initObjectOne( &object );
 
-    /* 生永玄伐□弁白仿弘互凶匀化中月午五反允月  by ringo*/
+    /* ネットワークフラグがたっているときはする  by ringo*/
     if( net )
         CHAR_sendWatchEvent( objindex,CHAR_ACTSTAND,NULL,0,TRUE);
 
@@ -785,7 +785,7 @@ int PET_dropPetFLXY( int charaindex, int havepetindex, int fl, int x, int y)
 }
 
 /*------------------------------------------------------------
- * 矢永玄迕及奶矛件玄楮醒毛本永玄仄化支月
+ * ペット用のイベント関数をセットしてやる
  ------------------------------------------------------------*/
 int PET_initCharOneArray( Char *ch)
 {
@@ -927,10 +927,10 @@ int PET_createPetFromCharaIndex( int charaindex, int enemyindex)
 BOOL PET_SelectBattleEntryPet( int charaindex, int petarray)
 {
 	int		pindex;
-	/* 爵    反轮仁   仿弘匹仇木卞娄匀井井月第  岭丐曰  */
+	/* 戦闘中は除く （ラグでこれに引っかかる可能性あり） */
 	if( CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE)
 		!= BATTLE_CHARMODE_NONE) return FALSE;
-	/* -1及桦宁反］-1卞仄化本永玄仄化蔽歹曰［*/
+	/* -1の場合は，-1にしてセットして終わり */
 	if( petarray == -1 ) {
 		CHAR_setInt( charaindex, CHAR_DEFAULTPET, -1 );
 		return TRUE;

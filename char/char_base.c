@@ -942,7 +942,7 @@ static char* CHAR_setintdata[CHAR_DATAINTNUM]={
   "fl",               /*  CHAR_FLOOR  */
   "x",                /*  CHAR_X */
   "y",                /*  CHAR_Y  */
-  "dir",              /*  CHAR_DIR 12凛毛0卞凛煌璃曰卞 */
+  "dir",              /*  CHAR_DIR 12時を0に時計周りに */
 	"lv",               /*  CHAR_LV  */
   "gld",              /*  CHAR_GOLD    */
 
@@ -957,10 +957,10 @@ static char* CHAR_setintdata[CHAR_DATAINTNUM]={
 
 	"chr",				/*  CHAR_CHARM	*/
 	"luc",				/*  CHAR_LUCK	*/
-	"aea",				/*  哗箪岭 */
-	"awa",				/*    箪岭 */
-	"afi",				/*  绍箪岭 */
-	"awi",				/*  氘箪岭 */
+	"aea",				/*  地属性 */
+	"awa",				/*  水属性 */
+	"afi",				/*  火属性 */
+	"awi",				/*  風属性 */
 
 	"slt",				/*  CHAR_SLOT */
 	"cr",				/*  CHAR_CRITIAL */
@@ -1623,7 +1623,7 @@ INLINE BOOL _CHAR_setFlg( char *file, int line, int index , CHAR_DATACHAR elemen
     elementnum = element / (sizeof( char )*8);
     bitnum = element % (sizeof( char )*8);
 
-    /*  樯及袄毛转      */
+    /*  昔の値を退避      */
     buf = CHAR_chara[index].flg[elementnum]
         & CHAR_flgbitmaskpattern[bitnum];
 

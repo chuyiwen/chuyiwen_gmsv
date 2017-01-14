@@ -22,12 +22,12 @@
 extern struct FM_PKFLOOR fmpkflnum[FAMILY_FMPKFLOOR];
 
 /*------------------------------------------------------------
- * 由□  奴楮  及末□旦
+ * パーティ関連のソース
  ------------------------------------------------------------*/
 
 /*------------------------------------------------------------
- * 坞中化中月由□  奴  毛茧允
- * 卅仃木壬-1毛忒允［
+ * 空いているパーティ欄を探す
+ * なければ-1を返す。
  ------------------------------------------------------------*/
 int CHAR_getEmptyPartyArray( int charaindex)
 {
@@ -73,10 +73,10 @@ int CHAR_getPartyNum( int charaindex)
 	return i;
 }
 /*------------------------------------------------------------
- *   端卞由□  奴卞  月质  
+ * 実際にパーティに入る処理
  *
- *  charaindex		int		愤坌
- *  targetindex		int		  月锹澎及谛
+ *  charaindex		int		自分
+ *  targetindex		int		入る相手の人
  ------------------------------------------------------------*/
 BOOL CHAR_JoinParty_Main( int charaindex, int targetindex)
 {
@@ -87,7 +87,7 @@ BOOL CHAR_JoinParty_Main( int charaindex, int targetindex)
 	int		toindex;
 	int		parray;
 
-	/* 褪互中凶日娄匀舰曰请允 */
+	/* 親がいたら引っ張り出す */
 	if( CHAR_getWorkInt( targetindex, CHAR_WORKPARTYMODE) == CHAR_PARTY_NONE ) {
 		toindex = targetindex;
 	}
@@ -104,7 +104,7 @@ BOOL CHAR_JoinParty_Main( int charaindex, int targetindex)
 		return FALSE;
 	}
 #endif
-	/* 锹澎由□  奴及谛醒反    井＂ */
+	/* 相手パーティの人数はＯＫか？ */
 	parray = CHAR_getEmptyPartyArray( toindex) ;
 	if( parray == -1 ) {
 		print( "%s : %d err\n", __FILE__,__LINE__);
@@ -205,11 +205,11 @@ BOOL CHAR_JoinParty_Main( int charaindex, int targetindex)
 		}
 	}
 #endif
-	/* 窒手  仄  褪及凛反褪卞卅匀凶CA毛霜耨允月 */
+	/* 何も無し→親の時は親になったCAを送信する */
 	if( CHAR_getWorkInt( toindex, CHAR_WORKPARTYMODE) == CHAR_PARTY_NONE ) {
 		CHAR_sendLeader( CHAR_getWorkInt( toindex, CHAR_WORKOBJINDEX), 1);
-		/* 锹澎及橇谪及踏五晶尹 */
-		/* 褪卞卅月 */
+		/* 相手の状態の書き換え */
+		/* 親になる */
 		CHAR_setWorkInt( toindex, CHAR_WORKPARTYMODE, 1);
 		CHAR_setWorkInt( toindex, CHAR_WORKPARTYINDEX1, toindex);
 		firstflg = TRUE;
@@ -253,7 +253,7 @@ BOOL CHAR_JoinParty_Main( int charaindex, int targetindex)
 	}
 }
 /*------------------------------------------------------------
- * 由□  奴卞  欠丹午允月［
+ * パーティに入ろうとする。
  ------------------------------------------------------------*/
 BOOL CHAR_JoinParty( int charaindex )
 {
@@ -272,25 +272,25 @@ BOOL CHAR_JoinParty( int charaindex )
 		return FALSE;
 	}
 
-        /* 愤坌互由□  奴赚氏匹凶日蛲   */
+        /* 自分がパーティ組んでたら駄目   */
 	if( CHAR_getWorkInt( charaindex, CHAR_WORKPARTYMODE) != CHAR_PARTY_NONE ) {
 		lssproto_PR_send( fd, 1, FALSE);
 		return FALSE;
 	}
 
-	/*   及蟆及甄  毛  月 */
+	/* 目の前の座標を得る */
 	CHAR_getCoordinationDir( CHAR_getInt( charaindex, CHAR_DIR ) ,
 							 CHAR_getInt( charaindex , CHAR_X ),
 							 CHAR_getInt( charaindex , CHAR_Y ) ,
 							 1 , &x , &y );
 
-	/* 赓渝祭允月 */
+	/* 初期化する */
 	for( i = 0; i < CONNECT_WINDOWBUFSIZE; i ++ ) {
         CONNECT_setJoinpartycharaindex(fd,i,-1);
     }
 	cnt = 0;
 
-	/*愤坌及  及蟆及平乓仿毛潸  允月 */
+	/*自分の目の前のキャラを取得する */
 
 	for( object = MAP_getTopObj( CHAR_getInt( charaindex, CHAR_FLOOR),x,y) ;
 		 object ;
@@ -301,7 +301,7 @@ BOOL CHAR_JoinParty( int charaindex )
 		int objindex = GET_OBJINDEX(object);
 		int targetindex = -1;
 
-		/* 平乓仿弁正□元扎卅中 */
+		/* キャラクターじゃない */
 		if( OBJECT_getType( objindex) != OBJTYPE_CHARA) continue;
 		toindex = OBJECT_getIndex( objindex);
 	
@@ -317,10 +317,10 @@ BOOL CHAR_JoinParty( int charaindex )
                 }
                 // shan end
 	
-		/* 皿伊奶乩□及凛 */
+		/* プレイヤーの時 */
 		if( CHAR_getInt( toindex, CHAR_WHICHTYPE) == CHAR_TYPEPLAYER || CHAR_getInt(toindex, CHAR_WHICHTYPE) == CHAR_TYPEPLAYERNPC){
 			found = TRUE;
-			/* 锹澎互阂分匀凶日褪毛娄匀舰曰请允 */
+			/* 相手が子だったら親を引っ張り出す */
 			if( CHAR_getWorkInt( toindex, CHAR_WORKPARTYMODE) == CHAR_PARTY_CLIENT ) {
 				targetindex = CHAR_getWorkInt( toindex, CHAR_WORKPARTYINDEX1);
 				if( !CHAR_CHECKINDEX( targetindex) ) {
@@ -335,16 +335,16 @@ BOOL CHAR_JoinParty( int charaindex )
 				targetindex = toindex;
 			}
 
-			/*   褪午  ㄠ汹动  卞中月井 */
+			/*  （親と）１歩以内にいるか */
 			if( NPC_Util_CharDistance( charaindex, targetindex ) > 1) {
 				continue;
 			}
 
-			/* 爵    反匹卅中仪［*/
+			/* 戦闘中はでない事 */
 			if( CHAR_getWorkInt( targetindex, CHAR_WORKBATTLEMODE) != BATTLE_CHARMODE_NONE ){
 				continue;
 			}
-			/* 醮棉袱第乒□玉井 */
+			/* 仲間許可モードか  */
 			if( !CHAR_getFlg( targetindex, CHAR_ISPARTY) ) continue;
 
 #ifdef _ANGEL_SUMMON
@@ -354,13 +354,13 @@ BOOL CHAR_JoinParty( int charaindex )
 			}
 #endif
 		}
-		/* 穴件乒旦田旦互中月凛反］谛棉方曰穸燮允月［ */
+		/* マンモスバスがいる時は，人間より優先する。 */
 		else if( CHAR_getInt( toindex, CHAR_WHICHTYPE) == CHAR_TYPEBUS ) {
 			targetindex = toindex;
 			cnt = 0;
 			if( !NPC_BusCheckJoinParty( toindex, charaindex, TRUE)) {
-				/* 椭瘀毛  凶今卅井匀凶［醮棉  月及反蔽歹月［谛棉及质  手仄卅中［
-				 * 支支仇仄中及匹［
+				/* 条件を満たさなかった。仲間入るのは終わる。人間の処理もしない。
+				 * ややこしいので。
 				 */
 				break;
 			}
@@ -386,21 +386,21 @@ BOOL CHAR_JoinParty( int charaindex )
 		          }
 		        }
 		}
-		/* 皿伊奶乩□坭反穴件乒旦田旦动陆反  骰允月 */
+		/* プレイヤー又はマンモスバス以外は無視する */
 		else {
 			continue;
 		}
 
-		/* 锹澎由□  奴及谛醒反    井＂ */
+		/* 相手パーティの人数はＯＫか？ */
 		parray = CHAR_getEmptyPartyArray( targetindex) ;
 		if( parray == -1 ) continue;
 
-		/* 仇仇引匹仁木壬     */
+		/* ここまでくればＯＫ  */
         CONNECT_setJoinpartycharaindex( fd,cnt,toindex);
 		cnt++;
 		if( cnt == CONNECT_WINDOWBUFSIZE ) break;
 		
-		/* 穴件乒旦田旦  苇仄分中］伙□皿毛  仃月［ */
+		/* マンモスバス発見しだい，ループを抜ける。 */
 		if( CHAR_getInt( targetindex, CHAR_WHICHTYPE) == CHAR_TYPEBUS ) break;
 
 	}
@@ -682,7 +682,7 @@ BOOL CHAR_DischargePartyNoMsg( int charaindex)
 
 
 /*------------------------------------------------------------
- * 愤坌互伉□母□井升丹井毛霜耨允月［
+ * 自分がリーダーかどうかを送信する。
  ------------------------------------------------------------*/
 void CHAR_sendLeader( int objindex, int leader)
 {
@@ -691,19 +691,19 @@ void CHAR_sendLeader( int objindex, int leader)
 	CHAR_sendWatchEvent( objindex,CHAR_ACTLEADER,opt,1,TRUE);
 }
 /*------------------------------------------------------------
- * 醮棉毛赐    CHAR_WORKPARTYINDEX)隙烂匹平乓仿index毛娄匀舰月［
- * 愤坌互褪匹手阂匹手    ［
+ * 仲間を順番（CHAR_WORKPARTYINDEX)指定でキャラindexを引っ張る。
+ * 自分が親でも子でもＯＫ。
  ------------------------------------------------------------*/
 int CHAR_getPartyIndex( int index, int num)
 {
 	int	nindex = -1;
 
-	/* 醮棉及奶件犯永弁旦毛潸   */
-	/* 褪及桦宁 */
+	/* 仲間のインデックスを取得 */
+	/* 親の場合 */
 	if( CHAR_getWorkInt( index, CHAR_WORKPARTYMODE) == CHAR_PARTY_LEADER ) {
 		nindex = CHAR_getWorkInt( index, CHAR_WORKPARTYINDEX1 + num );
 	}
-	/* 阂及桦宁 */
+	/* 子の場合 */
 	else {
 		int oyaindex = CHAR_getWorkInt( index, CHAR_WORKPARTYINDEX1);
 		if( CHAR_CHECKINDEX( oyaindex)) {
@@ -713,14 +713,14 @@ int CHAR_getPartyIndex( int index, int num)
 	return nindex;
 }
 /*------------------------------------------------------------
- * 丢永本□斥毛霜耨允月［
- * 醮棉互中木壬公及醮棉卞手丢永本□斥毛霜耨允月［
+ * メッセージを送信する。
+ * 仲間がいればその仲間にもメッセージを送信する。
  ------------------------------------------------------------*/
 void CHAR_talkToCliAndParty( int talkedcharaindex,int talkcharaindex,
 					 char* message, CHAR_COLOR color )
 {
 	int		i;
-	/* 引内愤坌 */
+	/* まず自分 */
 	CHAR_talkToCli( talkedcharaindex, talkcharaindex, message, color);
 
 	for( i = 0; i < CHAR_PARTYMAX; i ++ ) {

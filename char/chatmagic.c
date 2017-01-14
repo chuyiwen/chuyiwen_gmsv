@@ -1946,7 +1946,7 @@ void CHAR_CHAT_DEBUG_eventclean( int charaindex, char* message )
 		shift = shiftbit % 32;
 		
 		if( array>=event_num ){
-			sprintf( token, "错误！！你所设的任务旗标编号已超过  围(0~%d)。",32*event_num-1);
+			sprintf( token, "错误！！你所设的任务旗标编号已超过范围(0~%d)。",32*event_num-1);
 			CHAR_talkToCli( charaindex, -1, token, CHAR_COLORWHITE);
 			return;
 		}
@@ -2356,7 +2356,7 @@ void CHAR_CHAT_DEBUG_setmerge_main( int charaindex, char* message, int mode )
 	}
 	ITEM_setInt( itemindex, ITEM_MERGEFLG, mode);
 	
-	CHAR_talkToCli( charaindex, -1, "宁岳白仿弘及丑综毛仄引仄凶［", CHAR_COLORWHITE);
+	CHAR_talkToCli( charaindex, -1, "合成フラグの操作をしました。", CHAR_COLORWHITE);
 	
 	CHAR_sendItemDataOne( charaindex, haveitemindex);
 }
