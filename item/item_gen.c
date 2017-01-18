@@ -1,5 +1,5 @@
 /***********************************************
- * 失奶  丞宁岳″
+ * アイテム合成！
  **********************************************/
 #include "version.h"
 #include <stdio.h>
@@ -35,7 +35,7 @@
 
 static int ITEM_getTableNum( int num);
 
-/* 豳笺及袄及MAX袄 */
+/* 素材の値のMAX値 */
 #define		ITEM_ATOMIND_MAX	1000
 // shan add
 #define         ITEM_ATOMIND_FM_MAX     4000
@@ -48,14 +48,14 @@ static int ITEM_getTableNum( int num);
 /***********************************************
  * (ITEM_GEN_RAND_MIN/1000) * ITEN_GEN_SEARCH_MIN 
  *  - (ITEM_GEN_RAND_MAX/1000) * ITEN_GEN_SEARCH_MAX
- * 仇木分仃及汔及豳笺及  区毛潸曰丹月仪卞卅月［
+ * これだけの幅の素材の範囲を取りうる事になる。
  **********************************************/
 
-/* 豳笺及袄    及仿件母丞汔及  剂午      ㄠㄟㄟㄟ坌     */
+/*  素材の値変動のランダム幅の最少と最大（１０００分率）    */
 #define		ITEM_GEN_RAND_MIN		700
 #define		ITEM_GEN_RAND_MAX		1200
 
-/* 失奶  丞毛腹绸允月豳笺及袄及汔及  剂午    及    (double) */
+/* アイテムを検索する素材の値の幅の最少と最大の倍率(double) */
 #define		ITEN_GEN_SEARCH_MIN		(0.7)
 #define		ITEN_GEN_SEARCH_MAX		(1.10)
 
@@ -83,10 +83,10 @@ static struct tagItemRandRangeTable {
 #define		ITEM_GEN_RATE	0.7
 
 static struct _tagItemRandRangeTableForItem {
-	int	num;			/* 豳笺及备仿件弁及湘  袄 */
-	int	minnum;			/* 仿件弁  潸曰丹月袄及Min */
-	int	maxnum;			/* 仿件弁  潸曰丹月袄及MAX  num +戚及仿件弁及犒*ITEM_GEN_RATE) */
-	double rate;		/*      maxnum / num*/
+	int	num;			/* 素材の各ランクの基本値 */
+	int	minnum;			/* ランク中取りうる値のMin */
+	int	maxnum;			/* ランク中取りうる値のMAX（num +次のランクの差*ITEM_GEN_RATE) */
+	double rate;		/* 倍率 maxnum / num*/
 }ItemRandTableForItem[] = {
 	{   10, 0,0,0 },
 	{   30, 0,0,0 },
@@ -295,8 +295,8 @@ int ITEM_initItemAtom( char *fn )
 		/* chop */
 		line[strlen(line)-1]=0;
 
-		/* 尔羹卞烟让及  蟆互    贿匹反中匀化中化｝
-		 公木分仃互  邰 */
+		/* 左端に系統の名前が日本語ではいっていて、
+		 それだけが必要 */
 		getStringFromIndexWithDelim( line, "," , 1 , tk, sizeof( tk ));
 		snprintf( item_atoms[count].name,
 				  sizeof( item_atoms[count].name ),
@@ -327,15 +327,16 @@ int ITEM_initItemAtom( char *fn )
 
 /*
   
-  刭醒及伊□玄
+  乱数のレート
 
-  base 互 100 匹 min 互 0.7 匹 max 互 1.3 分匀凶日｝
-  70 ~ 130 卞剽域卞坌  允月［午曰丐尹内剽域［
-  剽域元扎卅仁仄凶曰允月井手仄木卅中及匹｝
-  失奶  丞毁迕伙□民件午仄化仇仇卞烂聒允月 by ringo 1999Oct1 
-  1000坌及min_rate,max_rate匹健丹［
-  double 支float 反］支支仇仄中及匹银歹卅中［
+  base が 100 で min が 0.7 で max が 1.3 だったら、
+  70 ~ 130 に均一に分布する。とりあえず均一。
+  均一じゃなくしたりするかもしれないので、
+  アイテム専用ルーチンとしてここに定義する by ringo 1999Oct1 
+  1000分のmin_rate,max_rateで扱う。
+  double やfloat は，ややこしいので使わない。
  */
+
 static int
 ITEM_randRange( int base, int min_rate , int max_rate )
 {
@@ -368,11 +369,12 @@ static int cmprutine( double *p1, double *p2)
 	return 0;
 }
 /*
- * 嫖中及卞丐歹六月
- * 忒曰袄反    互中仁勾卞卅匀凶井［
- * 宁歹六月蟆卞］末□玄仄化岈屯化］
- * table卞梯匀凶    坌］箫仄化中仁［
+ * 高いのにあわせる
+ * 返り値は配列がいくつになったか。
+ * 合わせる前に，ソートして並べて，
+ * tableに沿った倍率分，足していく。
  */
+
 
 static void ITEM_simplify_atoms( struct item_ingindtable *inds, int num,
 								int *retinds, int *retvals, int petindex, int alchemist)
@@ -490,16 +492,17 @@ PET_ADD_INGRED( nm,vl1,vl2,vl3)
 */
 
 /*
-  矢永玄及ID井日｝刭醒及膜恳涩烂毛潸曰分允［
+  ペットのIDから、乱数の修正設定を取りだす。
 
-  int *fixuse : 袄瑛绊娄醒［    及    醒毛午曰｝烂聒醒毛中木化井尹允
+  int *fixuse : 値結果引数。配列の最大数をとり、定義数をいれてかえす
 
-  int *fixatom : 升及豳笺卞覆允月膜恳卅及井
-  int *baseup : 湘  袄卞凶中允月笛遥
-  int *minadd : 井仃遥及  凝卞凶中允月笛遥
-  int *maxadd : 井仃遥及    卞凶中允月笛遥
+  int *fixatom : どの素材に対する修正なのか
+  int *baseup : 基本値にたいする加算
+  int *minadd : かけ算の最小にたいする加算
+  int *maxadd : かけ算の最大にたいする加算
   
  */
+
 
 static void
 ITEM_merge_getPetFix( int petid, int *fixuse, int *fixatom,
@@ -560,7 +563,7 @@ ITEM_merge_getPetFix( int petid, int *fixuse, int *fixatom,
 }
 
 /* 
- * 公及    互］宁岳葭失奶  丞卞丐匀凶日FALSE毛忒允
+ * そのＩＤが，合成元アイテムにあったらFALSEを返す
  */
 
 static BOOL ITEM_merge_checkitem( ITEM_Item *items, int itemsnum, int id)
@@ -738,7 +741,7 @@ int ITEM_mergeItem( int charaindex, ITEM_Item *items, int num , int money, int p
 	struct item_ingindtable ingindtable[MAX_ITEM_ATOMS_SIZE];
 	int sortedingindtable[MAX_ITEM_ATOMS_SIZE];
 	int sortedingtable[MAX_ITEM_ATOMS_SIZE];
-	/* 矢永玄卞方月膜恳迕 */
+	/* ペットによる修正用 */
 	int pet_fixatom[MAX_ITEM_ATOMS_SIZE];
 	int  pet_baseup[MAX_ITEM_ATOMS_SIZE];
 	int pet_minadd[MAX_ITEM_ATOMS_SIZE];
@@ -1028,8 +1031,9 @@ int ITEM_mergeItem( int charaindex, ITEM_Item *items, int num , int money, int p
 
 int ITEM_canDigest( ITEM_Item *itm )
 {
-	/* 1蜊  及笺  及  蟆互涩烂今木化中凶日1｝
-	   公丹匹卅中卅日0 */
+	/* 1個目の材料の名前が設定されていたら1、
+	   そうでないなら0 */
+
 	if( itm->string[ITEM_INGNAME0].string[0] ) return 1; else return 0;
 }
 
@@ -1159,12 +1163,12 @@ int ITEM_mergeItem_merge( int charaindex, int petid, char *data, int petindex, i
 				CHAR_setItemIndex( charaindex, haveitemindexs[i], -1);
 				CHAR_sendItemDataOne( charaindex, haveitemindexs[i]);
 				LogItem(
-					CHAR_getChar( charaindex, CHAR_NAME ), /* 平乓仿   */
+					CHAR_getChar( charaindex, CHAR_NAME ), /* キャラ名   */
 					CHAR_getChar( charaindex, CHAR_CDKEY ),
 #ifdef _add_item_log_name  // WON ADD 在item的log中增加item名称
 					itemindexs[i],
 #else
-					ITEM_getInt( itemindexs[i], ITEM_ID),  /* 失奶  丞  寞 */
+					ITEM_getInt( itemindexs[i], ITEM_ID),  /* アイテム番号 */
 #endif
 					"mergedel(合成所删除的道具)",
 					CHAR_getInt( charaindex,CHAR_FLOOR),

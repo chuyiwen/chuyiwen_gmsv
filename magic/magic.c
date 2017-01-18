@@ -248,38 +248,38 @@ int MAGIC_OtherRecovery( int charaindex, int toindex, int marray, int mp )
 #endif
 		MAGIC_Recovery_Battle( charaindex, toindex, marray, mp );
 	}else{
-		if( CHAR_CHECKINDEX( toindex ) == FALSE )return FALSE; //｛撩
+		if( CHAR_CHECKINDEX( toindex ) == FALSE )return FALSE; //失敗
 		MAGIC_OtherRecovery_Field( charaindex, toindex, marray);
 	}
 	return TRUE;
 }
 
-// 白奴□伙玉及箪岭毛  祭今六月  芊
+// フィールドの属性を変化させる魔法
 int	MAGIC_FieldAttChange( int charaindex, int toindex, int marray, int mp )
 {
 	int battlemode;
 
-	// INDEX民尼永弁
-	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return FALSE; //｛撩
+	// INDEXチェック
+	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return FALSE; //失敗
 
 	battlemode = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE );
 
-	// 爵  钒铵凛反  骰允月
+	// 戦闘開始時は無視する
 	if( battlemode == BATTLE_CHARMODE_INIT ){
 		return FALSE;
 	}
 
-	//     壅  民尼永弁
-	if( CHAR_getInt( charaindex, CHAR_MP ) < mp )return FALSE; //   井匀凶日母丢
-	// 仇及  芊反  骚卞    壅  仄化  中［穴奶瓜旦卞卅月仇午反  中
+	// ＭＰ消費チェック
+	if( CHAR_getInt( charaindex, CHAR_MP ) < mp )return FALSE; // 無かったらダメ
+	// この魔法は普通にＭＰ消費して良い。マイナスになることは無い
 	CHAR_setInt( charaindex, CHAR_MP,
 		CHAR_getInt( charaindex, CHAR_MP ) - mp );
 
-	// 爵    分匀凶日
+	// 戦闘中だったら
 	if( IsBATTLING( charaindex ) == TRUE ){
 		return MAGIC_FieldAttChange_Battle( charaindex, toindex, marray, mp );
 	}else{
-	// 爵    匹卅井匀凶日
+	// 戦闘中でなかったら
 		return FALSE;
 	}
 }
@@ -334,17 +334,17 @@ int	MAGIC_MagicStatusChange( int charaindex, int toindex, int marray, int mp )
 #endif
 
 #ifdef _MAGIC_DEEPPOISON//新增ver2,主要设定毒状态5回未解时人物会阵亡
-// 旦  □正旦唱橘毛芨尹月  芊
+// ステータス異常を与える魔法
 int	MAGIC_StatusChange2( int charaindex, int toindex, int marray, int mp )
 {
 	int battlemode;
 
-	// INDEX民尼永弁
+	// INDEXチェック
 	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return FALSE; //｛撩
 
 	battlemode = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE );
 
-	// 爵  钒铵凛反  骰允月
+	//  戦闘開始時は無視する
 	if( battlemode == BATTLE_CHARMODE_INIT ){
 		return FALSE;
 	}
@@ -363,32 +363,32 @@ int	MAGIC_StatusChange2( int charaindex, int toindex, int marray, int mp )
 	}
 }
 #endif
-// 旦  □正旦唱橘荚汊今六月  芊
+// ステータス異常回復させる魔法
 int	MAGIC_StatusRecovery( int charaindex, int toindex, int marray, int mp )
 {
 	int battlemode;
 
-	// INDEX民尼永弁
+	// INDEXチェック
 	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return FALSE; //｛撩
 
 	battlemode = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE );
 
-	// 爵  钒铵凛反  骰允月
+	// 戦闘開始時は無視する
 	if( battlemode == BATTLE_CHARMODE_INIT ){
 		return FALSE;
 	}
 
-	//     壅  民尼永弁
-	if( CHAR_getInt( charaindex, CHAR_MP ) < mp )return FALSE; //   井匀凶日母丢
-	// 仇及  芊反  骚卞    壅  仄化  中［穴奶瓜旦卞卅月仇午反  中
+	// ＭＰ消費チェック
+	if( CHAR_getInt( charaindex, CHAR_MP ) < mp )return FALSE; // 無かったらダメ
+	// この魔法は普通にＭＰ消費して良い。マイナスになることは無い
 	CHAR_setInt( charaindex, CHAR_MP,
 		CHAR_getInt( charaindex, CHAR_MP ) - mp );
 
-	// 爵    分匀凶日
+	// 戦闘中だったら
 	if( IsBATTLING( charaindex ) == TRUE ){
 		return MAGIC_StatusRecovery_Battle( charaindex, toindex, marray, mp );
 	}else{
-	// 爵    匹卅井匀凶日
+	//  戦闘中でなかったら
 		return FALSE;
 	}
 }
@@ -429,94 +429,94 @@ int	MAGIC_MagicDef( int charaindex, int toindex, int marray, int mp )
 }
 
 
-// 竣濮井日汊唾今六月  芊
+// 気絶から復活させる魔法
 int	MAGIC_Ressurect( int charaindex, int toindex, int marray, int mp )
 {
 	int battlemode;
 
-	// INDEX民尼永弁
+	// INDEXチェック
 	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return FALSE; //｛撩
 
 	battlemode = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE );
 
-	// 爵  钒铵凛反  骰允月
+	// 戦闘開始時は無視する
 	if( battlemode == BATTLE_CHARMODE_INIT ){
 		return FALSE;
 	}
 
-	//     壅  民尼永弁
-	if( CHAR_getInt( charaindex, CHAR_MP ) < mp )return FALSE; //   井匀凶日母丢
-	// 仇及  芊反  骚卞    壅  仄化  中［穴奶瓜旦卞卅月仇午反  中
+	// ＭＰ消費チェック
+	if( CHAR_getInt( charaindex, CHAR_MP ) < mp )return FALSE; // 無かったらダメ
+	// この魔法は普通にＭＰ消費して良い。マイナスになることは無い
 	CHAR_setInt( charaindex, CHAR_MP,
 		CHAR_getInt( charaindex, CHAR_MP ) - mp );
 
-	// 爵    分匀凶日
+	// 戦闘中だったら
 	if( IsBATTLING( charaindex ) == TRUE ){
 		return MAGIC_Ressurect_Battle( charaindex, toindex, marray, mp );
 	}else{
-	// 爵    匹卅井匀凶日
+	// 戦闘中でなかったら
 		return FALSE;
 	}
 }
 
-// 箪岭毛  鳖今六月  芊
+// 属性を反転させる魔法
 int	MAGIC_AttReverse( int charaindex, int toindex, int marray, int mp )
 {
 	int battlemode;
 
-	// INDEX民尼永弁
+	// INDEXチェック
 	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return FALSE; //｛撩
 
 	battlemode = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE );
 
-	// 爵  钒铵凛反  骰允月
+	// 戦闘開始時は無視する
 	if( battlemode == BATTLE_CHARMODE_INIT ){
 		return FALSE;
 	}
 
-	//     壅  民尼永弁
-	if( CHAR_getInt( charaindex, CHAR_MP ) < mp )return FALSE; //   井匀凶日母丢
-	// 仇及  芊反  骚卞    壅  仄化  中［穴奶瓜旦卞卅月仇午反  中
+	// ＭＰ消費チェック
+	if( CHAR_getInt( charaindex, CHAR_MP ) < mp )return FALSE; //   無かったらダメ
+	//  この魔法は普通にＭＰ消費して良い。マイナスになることは無い
 	CHAR_setInt( charaindex, CHAR_MP,
 		CHAR_getInt( charaindex, CHAR_MP ) - mp );
 
-	// 爵    分匀凶日
+	// 戦闘中だったら
 	if( IsBATTLING( charaindex ) == TRUE ){
 		return MAGIC_AttReverse_Battle( charaindex, toindex, marray, mp );
 	}else{
-	// 爵    匹卅井匀凶日
+	// 戦闘中でなかったら
 		return FALSE;
 	}
 }
 
 
 
-// 竣濮井日汊唾≈  芊  豢
+// 気絶から復活＋魔法防御
 int	MAGIC_ResAndDef( int charaindex, int toindex, int marray, int mp )
 {
 	int battlemode;
 
-	// INDEX民尼永弁
+	// INDEXチェック
 	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return FALSE; //｛撩
 
 	battlemode = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE );
 
-	// 爵  钒铵凛反  骰允月
+	// 戦闘開始時は無視する
 	if( battlemode == BATTLE_CHARMODE_INIT ){
 		return FALSE;
 	}
 
-	//     壅  民尼永弁
-	if( CHAR_getInt( charaindex, CHAR_MP ) < mp )return FALSE; //   井匀凶日母丢
-	// 仇及  芊反  骚卞    壅  仄化  中［穴奶瓜旦卞卅月仇午反  中
+	// ＭＰ消費チェック
+	if( CHAR_getInt( charaindex, CHAR_MP ) < mp )return FALSE; // 無かったらダメ
+	// この魔法は普通にＭＰ消費して良い。マイナスになることは無い
 	CHAR_setInt( charaindex, CHAR_MP,
 		CHAR_getInt( charaindex, CHAR_MP ) - mp );
 
-	// 爵    分匀凶日
+	//  戦闘中だったら
 	if( IsBATTLING( charaindex ) == TRUE ){
 		return MAGIC_ResAndDef_Battle( charaindex, toindex, marray, mp );
 	}else{
-	// 爵    匹卅井匀凶日
+	// 戦闘中でなかったら
 		return FALSE;
 	}
 }
@@ -562,11 +562,11 @@ int MAGIC_Metamo( int charaindex, int toindex, int marray, int mp )
 	if( CHAR_CHECKINDEX( charaindex ) == FALSE ) return FALSE;
 	
 	battlemode = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE );
-	// 爵  钒铵凛反  骰允月
+	// 戦闘開始時は無視する
 	if( battlemode == BATTLE_CHARMODE_INIT ){
 		return FALSE;
 	}
-	// 爵    分匀凶日
+	//  戦闘中だったら
 	if( IsBATTLING( charaindex ) == TRUE ){
 		//MAGIC_Recovery_Battle( charaindex, toindex, marray, mp );
 		//return FALSE;
@@ -714,7 +714,7 @@ int	MAGIC_Barrier( int charaindex, int toindex, int marray, int mp )
 
 	battlemode = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE );
 
-	// 爵  钒铵凛反  骰允月//??
+	// 戦闘開始時は無視する//??
 	if( battlemode == BATTLE_CHARMODE_INIT ){
 		return FALSE;
 	}
@@ -737,7 +737,7 @@ int	MAGIC_Barrier( int charaindex, int toindex, int marray, int mp )
 		pszP += sizeof( szTurn );
 		sscanf( pszP, "%d", &turn );
 	}
-	// 岳    涩烂//命中率
+	// 成功率設定//命中率
 	if( ( pszP = strstr( pszP, szSuccess ) ) != NULL){
 		pszP += sizeof( szSuccess );
 		sscanf( pszP, "%d", &Success );
@@ -788,7 +788,7 @@ int	MAGIC_Nocast( int charaindex, int toindex, int marray, int mp )
 
 	battlemode = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE );
 
-	// 爵  钒铵凛反  骰允月//??
+	// 戦闘開始時は無視する//??
 	if( battlemode == BATTLE_CHARMODE_INIT ){
 		return FALSE;
 	}
@@ -811,7 +811,7 @@ int	MAGIC_Nocast( int charaindex, int toindex, int marray, int mp )
 		pszP += sizeof( szTurn );
 		sscanf( pszP, "%d", &turn );
 	}
-	// 岳    涩烂//命中率
+	// 成功率設定//命中率
 	if( ( pszP = strstr( pszP, szSuccess ) ) != NULL){
 		pszP += sizeof( szSuccess );
 		sscanf( pszP, "%d", &Success );
@@ -857,7 +857,7 @@ int	MAGIC_Weaken( int charaindex, int toindex, int marray, int mp )
 
 	battlemode = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE );
 
-	// 爵  钒铵凛反  骰允月//??
+	// 戦闘開始時は無視する//??
 	if( battlemode == BATTLE_CHARMODE_INIT ){
 		return FALSE;
 	}

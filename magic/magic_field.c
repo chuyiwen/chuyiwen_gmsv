@@ -9,13 +9,13 @@
 #include "magic_field.h"
 
 /*
- * 哗晓匹及  芊及质  
+ * 地上での魔法の処理
  */
 /*----------------------------------------------------------------------
- * 愤坌及心荚汊
- * 娄醒
- * charaindex		int		愤坌及index
- * magicindex		int		  芊及index
+ * 自分のみ回復
+ * 引数
+ * charaindex		int		自分のindex
+ * magicindex		int		魔法のindex
  *---------------------------------------------------------------------*/
 int MAGIC_Recovery_Field( int charaindex, int magicindex)
 {
@@ -73,11 +73,11 @@ int MAGIC_Recovery_Field( int charaindex, int magicindex)
 
 }
 /*----------------------------------------------------------------------
- * 职谛毛荚汊
- * 娄醒
- * charaindex		int		愤坌及index
- * toindex			int		荚汊允月谛及index
- * magicindex		int		  芊及index
+ * 他人を回復
+ * 引数
+ * charaindex		int		自分のindex
+ * toindex			int		回復する人のindex
+ * magicindex		int		魔法のindex
  *---------------------------------------------------------------------*/
 int MAGIC_OtherRecovery_Field( int charaindex, int toindex, int magicindex)
 {

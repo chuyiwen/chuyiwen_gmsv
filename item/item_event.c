@@ -1345,7 +1345,7 @@ void ITEM_useOtherEditBase( int charaindex, int toindex, int haveitemindex)
 void ITEM_useStatusChange( int charaindex, int toindex, int haveitemindex)
 {
 	int battlemode;
-	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return ; //｛撩
+	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return ; //失敗
 	battlemode = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE );
 	if( battlemode == BATTLE_CHARMODE_INIT ){
 	}else
@@ -1359,7 +1359,7 @@ void ITEM_useStatusChange( int charaindex, int toindex, int haveitemindex)
 void ITEM_useStatusRecovery( int charaindex, int toindex, int haveitemindex)
 {
 	int battlemode;
-	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return ; //｛撩
+	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return ; //失敗
 	battlemode = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE );
 	if( battlemode == BATTLE_CHARMODE_INIT ){
 	}else
@@ -1437,7 +1437,7 @@ void ITEM_useMic( int charaindex, int toindex, int haveitemindex)
 void ITEM_useCaptureUp( int charaindex, int toindex, int haveitemindex)
 {
 	int battlemode;
-	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return ; //｛撩
+	if( CHAR_CHECKINDEX( charaindex ) == FALSE )return ; //失敗
 
 	battlemode = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE );
 	if( battlemode == BATTLE_CHARMODE_INIT ){
@@ -1780,8 +1780,8 @@ void ITEM_useRenameItem_WindowResult( int charaindex, int seqno, int select, cha
 }
 
 //-------------------------------------------------------------------------
-//	今中仇欠毛  蜇允月楮醒［
-//	  午仄凶凛卞］仿件母丞卞ㄠ  ㄥ毛蓟太］  蟆午  飓  寞毛  凳允月［
+//	さいころを実現する関数。
+//	落とした時に，ランダムに１～６を選び，名前と画像番号を変更する。
 //-------------------------------------------------------------------------
 void ITEM_dropDice( int charaindex, int itemindex)
 {
@@ -1789,40 +1789,41 @@ void ITEM_dropDice( int charaindex, int itemindex)
 	int  diceimagenumber[] = { 24298,24299,24300,24301,24302,24303};
 	int r = RAND( 0,5);
 	
-	//   飓  寞毛谨
+	//   画像番号を待避
 	ITEM_setInt( itemindex, ITEM_VAR1, ITEM_getInt( itemindex, ITEM_BASEIMAGENUMBER));
-	//   飓  寞凳蕙
+	//   画像番号更新
 	ITEM_setInt( itemindex, ITEM_BASEIMAGENUMBER, diceimagenumber[r]);
-	//   蟆凳蕙
+	//   名前更新
 	ITEM_setChar( itemindex, ITEM_SECRETNAME, dicename[r]);
 	
-	// 犯□正及弁仿奶失件玄尺及霜耨反晓匏楮醒匹垫丹及匹］仇仇匹反支日卅中［
+	// データのクライアントへの送信は上位関数で行うので，ここではやらない。
 }
 //-------------------------------------------------------------------------
-//	今中仇欠毛  蜇允月楮醒［
-//  胶匀凶凛卞］  蟆午  飓  寞毛葭卞  允［
+//	さいころを実現する関数。
+//  拾った時に，名前と画像番号を元に戻す。
 //-------------------------------------------------------------------------
 void ITEM_pickupDice( int charaindex, int itemindex)
 {
-	//   飓  寞毛葭卞  允［
+	//    画像番号を元に戻す。
 	ITEM_setInt( itemindex,  ITEM_BASEIMAGENUMBER, ITEM_getInt( itemindex, ITEM_VAR1));
-	//   蟆手葭卞  允
+	//   名前も元に戻す
 	ITEM_setChar( itemindex, ITEM_SECRETNAME, ITEM_getChar( itemindex, ITEM_NAME));
 }
 enum {
-	ITEM_LOTTERY_1ST,		// 1羁
+	ITEM_LOTTERY_1ST,		//  1等
 	ITEM_LOTTERY_2ND,
 	ITEM_LOTTERY_3RD,
 	ITEM_LOTTERY_4TH,
-	ITEM_LOTTERY_5TH,		// 5羁
-	ITEM_LOTTERY_6TH,		// 6羁
-	ITEM_LOTTERY_NONE,		// 陆木
+	ITEM_LOTTERY_5TH,		// 5等
+	ITEM_LOTTERY_6TH,		//  6等
+	ITEM_LOTTERY_NONE,		// 外れ
 	ITEM_LOTTERY_NUM,
 };
 //-------------------------------------------------------------------------
-//	旦疋□玉仁元互综日木月凛及楮醒［
-//  仇仇匹窒羁操卞卅月井毛瑁户月［
-//  割  反动票及骚曰［
+//	スピードくじが作られる時の関数。
+//  ここで何等賞になるかを決める。
+//  確率は以下の通り。
+
 
 #define PRE_6		(10000)
 #define PRE_5		(1300 + PRE_6)
@@ -1855,15 +1856,15 @@ BOOL ITEM_initLottery(ITEM_Item* itm)
 {
 	int r = RAND( 0, 49999);
 	int hit = ITEM_LOTTERY_NONE;		// 
-	char result[7];		// 请
+	char result[7];		// 出目
 	int countnum[6];
 	int count;
 	int i;
 	int len;
-	// 域荚综匀化月及匹［疯粟  仄凶凛午井卞综曰卅云今木卅中方丹卞［
+	// 一回作ってるので。再起動した時とかに作りなおされないように。
 	if( itm->data[ITEM_VAR3] == 1 ) return TRUE;
 
-	// 铲蓟允月［
+	// 抽選する。
 	if( r < PRE_6 ) hit = ITEM_LOTTERY_6TH;
 	else if( r < PRE_5 ) hit = ITEM_LOTTERY_5TH;
 	else if( r < PRE_4 ) hit = ITEM_LOTTERY_4TH;
@@ -1872,10 +1873,10 @@ BOOL ITEM_initLottery(ITEM_Item* itm)
 	else if( r < PRE_1 ) hit = ITEM_LOTTERY_1ST;
 	else hit = ITEM_LOTTERY_NONE;
 	
-	// 请  毛瑁烂允月［
+	// 出目を決定する。
 	count = 0;
 	if( hit != ITEM_LOTTERY_NONE ) {
-		// 癫曰毛本永玄
+		// 当りをセット
 		result[0] = result[1] = result[2] = hit+1;
 		count = 3;
 		countnum[hit] = 3;
@@ -1883,8 +1884,8 @@ BOOL ITEM_initLottery(ITEM_Item* itm)
 	while( count < 6 ) {
 		int r = RAND( ITEM_LOTTERY_1ST, ITEM_LOTTERY_6TH);
 		if( countnum[r] >= 2 ) continue;
-		// 2/3仁日中及割  匹］职及陆木钓  毛伉□民今六化支月［
-		// 升五升五［
+		// 2/3くらいの確率で，他の外れ絵柄をリーチさせてやる。
+		// どきどき。
 		if(      ( hit != ITEM_LOTTERY_NONE && count == 3 )
 		     ||  ( hit == ITEM_LOTTERY_NONE && count == 0 ) )
 		{
@@ -1899,13 +1900,14 @@ BOOL ITEM_initLottery(ITEM_Item* itm)
 		result[count] = r+1;
 		count++;
 	}
-	// 请  毛扑乓永白伙允月［
-	// 癫曰及凛反2/3及割  匹］癫曰醒侬毛域    欠卞裔烂允月［
-	// 玉平玉平躲绊毛谎丹啃［
+	// 出目をシャッフルする。
+	// 当りの時は2/3の確率で，当り数字を一番後ろに固定する。
+	// ドキドキ効果を狙う為。
+
 	len = sizeof( result)-2;
 	if( hit != ITEM_LOTTERY_NONE ) {
 		if( RAND( 0,2) ) {
-			// 癫曰醒侬毛域    欠卞［
+			// 当り数字を一番後ろに。
 			char s = result[0];
 			result[0] = result[5];
 			result[5] = s;
@@ -1920,10 +1922,10 @@ BOOL ITEM_initLottery(ITEM_Item* itm)
 		result[x] = result[y];
 		result[y] = s;
 	}
-	//   及凶户］  侬  健中卞仄化云仁［
+	// 念のため，文字列扱いにしておく。
 	result[sizeof(result)-1] = '\0';
 	itm->data[ITEM_VAR1] = hit;
-	// 户仁匀凶市它件玄
+	// めくったカウント
 	itm->data[ITEM_VAR2] = 0;
 	itm->data[ITEM_VAR3] = 1;
 	memcpy( itm->string[ITEM_ARGUMENT].string, result, sizeof( result));
@@ -1931,8 +1933,8 @@ BOOL ITEM_initLottery(ITEM_Item* itm)
 	return TRUE;
 }
 //-------------------------------------------------------------------------
-//	旦疋□玉仁元毛银匀凶凛及楮醒［
-//  ㄥ荚银丹午］窒羁操井及失奶  丞卞  祭允月［
+//	スピードくじを使った時の関数。
+//  ６回使うと，何等賞かのアイテムに変化する。
 //-------------------------------------------------------------------------
 void ITEM_useLottery( int charaindex, int toindex, int haveitemindex)
 {
@@ -1941,7 +1943,7 @@ void ITEM_useLottery( int charaindex, int toindex, int haveitemindex)
 	int count = ITEM_getInt( itemindex, ITEM_VAR2);
 	int hit = ITEM_getInt( itemindex, ITEM_VAR1);
 	char buff[1024];
-	char num[6][3] = { {"迭"},{"迫"},{"迤"},{"迨"},{"郊"}, {"郎"}};
+	char num[6][3] = { {"①"},{"②"},{"③"},{"④"},{"⑤"}, {"⑥"}};
 	char numbuff[128];
 	char *n;
 	int result;
@@ -1950,7 +1952,7 @@ void ITEM_useLottery( int charaindex, int toindex, int haveitemindex)
 	if( count == 0 ) {
 		ITEM_setChar( itemindex, ITEM_EFFECTSTRING, "");
 	}
-	// ㄥ荚  及银迕反］陆木仄井丐曰  卅中及匹］仇仇匹失奶  丞毛壅允
+	// ６回目の使用は，外れしかあり得ないので，ここでアイテムを消す
 	else if( count == 6 ) {
         CHAR_setItemIndex( charaindex , haveitemindex, -1 );
 		CHAR_sendItemDataOne( charaindex, haveitemindex);
@@ -1960,7 +1962,7 @@ void ITEM_useLottery( int charaindex, int toindex, int haveitemindex)
 	n = ITEM_getChar( itemindex, ITEM_ARGUMENT);
 	// for debug
 	result = (int)n[count]-1;
-	// 伉□民井譬屯月
+	// リーチか調べる
 	flg = FALSE;
 	for( i = 0; i < count+1 && flg == FALSE; i ++ ) {
 		for( j = i+1; j < count+1 && flg == FALSE; j ++ ) {
@@ -1972,25 +1974,26 @@ void ITEM_useLottery( int charaindex, int toindex, int haveitemindex)
 		}
 	}
 	memcpy( numbuff, ITEM_getChar( itemindex, ITEM_EFFECTSTRING), (count)*2);
-	// 躲绊  侬  卞］请  毛请允［
+	// 効果文字列に，出目を出す。
 	snprintf( buff, sizeof( buff), "%s%s", numbuff, num[result]);
 	count ++;
 	ITEM_setInt( itemindex, ITEM_VAR2, count);
-	// ㄥ荚  匹癫曰卅日癫曰失奶  丞卞  凳］陆木卅日陆木午  憎］
-	// 戚荚母皮伙弁伉永弁匹壅允［
+	// ６回目で当りなら当りアイテムに変更，外れなら外れと表示，
+	// 次回ダブルクリックで消す。
+
 	if( count >= 6 ) {
-		// 癫曰
+		// 当り
 		if( hit != ITEM_LOTTERY_NONE ) {
       		int newitemindex;
       		char strbuff[1024];
             char msgbuff[1024];
-            // 壅仄化
+            // 消して
             CHAR_setItemIndex( charaindex , haveitemindex, -1 );
             ITEM_endExistItemsOne( itemindex );
-			// 2729 - 2734 反  仁元及1  6羁
+			// 2729 - 2734 は宝くじの1～6等
 			newitemindex = ITEM_makeItemAndRegist( 2729 + hit);
             CHAR_setItemIndex( charaindex , haveitemindex, newitemindex );
-			// 请  手戊疋□
+			// 出目もコピー
 			snprintf( strbuff, sizeof( strbuff), "%s                %s", buff, 
 						ITEM_getChar( newitemindex, ITEM_EFFECTSTRING));
 			ITEM_setChar( newitemindex, ITEM_EFFECTSTRING, strbuff);
@@ -2000,27 +2003,27 @@ void ITEM_useLottery( int charaindex, int toindex, int haveitemindex)
                             msgbuff,
                             CHAR_COLORYELLOW );
 		}
-		// 陆木
+		// 外れ
 		else {
 //            CHAR_setItemIndex( charaindex , haveitemindex, -1 );
-			// 请  手戊疋□
+			// 出目もコピー
       		char strbuff[1024];
 			snprintf( strbuff, sizeof( strbuff), "%s                       没中,下次再来", buff);
 			ITEM_setChar( itemindex, ITEM_EFFECTSTRING, strbuff);
 			CHAR_sendItemDataOne( charaindex, haveitemindex);
 //            ITEM_endExistItemsOne( itemindex );
 //            CHAR_talkToCli( charaindex, -1,
-//                            "反内木″",
+//                            "はずれ″",
 //                            CHAR_COLORWHITE );
 		}
 	}
-	// 公丹元扎  中凛反］犯□正毛霜曰卅云允分仃［
+	// そうじゃ無い時は，データを送りなおすだけ。
 	else {
 		char strbuff[1024];
 		if( flg) {
-			// 旦矢□旦煌遥
-			// 失奶  丞及      及戊丢件玄反］ㄠ垫ㄡㄧ  侬匹］
-			// 旦矢□旦毛银匀化荼垫仄化中月［
+			// スペース計算
+			// アイテムの説明欄のコメントは，１行２８文字で，
+			// スペースを使って改行している。
 			int spc = 16 + ( 6-count)*2;
 			char space[17];
 			space[spc] = '\0';
@@ -3312,11 +3315,11 @@ void ITEM_metamo( int charaindex, int toindex, int haveitemindex )
 #endif
 
 	battlemode = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE );
-	// 爵  钒铵凛反  骰允月
+	//  戦闘開始時は無視する
 	if( battlemode == BATTLE_CHARMODE_INIT ){
 		return;
 	}
-	// 爵    分匀凶日
+	// 戦闘中だったら
 	if( IsBATTLING( charaindex ) == TRUE ){
 		toindex = BATTLE_No2Index(CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEINDEX ), toindex );
 
@@ -3478,10 +3481,10 @@ print("\nvincent-->charaindex:%d,toindex:%d",charaindex,toindex);
 	}
 	else CHAR_talkToCli(charaindex,-1,"什麽也没发生。",CHAR_COLORWHITE);
 
-    /* 平乓仿弁正□及赭    伉旦玄井日壅蛔 */
+    /* キャラクターの所持品リストから消去  */
     CHAR_setItemIndex(charaindex, haveitemindex ,-1);
 	CHAR_sendItemDataOne( charaindex, haveitemindex);/* 失奶  丞凳蕙 */
-	/* 壅允 */
+	/* 消す */
 	ITEM_endExistItemsOne( itemindex );
 }
 #endif
@@ -5448,7 +5451,7 @@ void ITEM_MetamoTime( int charaindex, int toindex, int haveitemindex )
 #endif
 
 	battlemode = CHAR_getWorkInt( charaindex, CHAR_WORKBATTLEMODE );
-	// 爵  钒铵凛反  骰允月
+	// 戦闘開始時は無視する
 	if( battlemode == BATTLE_CHARMODE_INIT ){
 		return;
 	}

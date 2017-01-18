@@ -8,18 +8,18 @@
 #include "anim_tbl.h"
 
 /*#define MAPEDITORTROUBLE*/
-#define SPR_kmydamY CG_HIT_MARK_10 // anim_tbl.h 卞瓒  今木月引匹  及巨白尼弁玄
+#define SPR_kmydamY CG_HIT_MARK_10 // anim_tbl.h に登録されるまで毒のエフェクト
 
 /*------------------------------------------------------------
- * 汹仃月井升丹井  蝇允月［平乓仿互  氏匹中月井升丹井娄醒互丐月［
- * 娄醒
+ * 歩けるかどうか判断する。キャラが飛んでいるかどうか引数がある。
+ * 引数
  *  ff          int     floor
- *  fx          int     x甄  
- *  fy          int     y甄  
- *  isfly       int       氏匹中月井升丹井
- * 忒曰袄
- *  汹仃月      TRUE(1)
- *  汹仃卅中    FALSE(0)
+ *  fx          int     x座標
+ *  fy          int     y座標
+ *  isfly       int     飛んでいるかどうか
+ * 返り値
+ *  歩ける      TRUE(1)
+ *  歩けない    FALSE(0)
  ------------------------------------------------------------*/
 BOOL MAP_walkAbleFromPoint( int ff, int fx, int fy, BOOL isfly )
 {
@@ -62,19 +62,19 @@ BOOL MAP_walkAbleFromPoint( int ff, int fx, int fy, BOOL isfly )
 
 
 /*------------------------------------------------------------
- * 汹仃月井升丹井  蝇允月［
- * 娄醒
- *  index       int     Char    匹及 Index
+ * 歩けるかどうか判断する。
+ * 引数
+ *  index       int     Char配列での Index
  *  ff          int     floor id
- *  fx          int     x甄  
- *  fy          int     y甄  
- * 忒曰袄
- *  汹中化方中      TRUE(1)
- *  汹中化反母丢    FALSE(0)
+ *  fx          int     x座標
+ *  fy          int     y座標
+ * 返り値
+ *  歩いてよい      TRUE(1)
+ *  歩いてはダメ    FALSE(0)
  ------------------------------------------------------------*/
 BOOL MAP_walkAble( int index,int ff, int fx, int fy)
 {
-    /*      平乓仿卅日OK    */
+    /*   透明キャラならOK    */
     if( CHAR_getFlg( index, CHAR_ISTRANSPARENT ) )      return TRUE;
 
     // Arminius 7.9 Airplane ok
@@ -90,20 +90,20 @@ BOOL MAP_walkAble( int index,int ff, int fx, int fy)
 }
 
 /*------------------------------------------------------------
- * 甄  毛隙烂仄化｝公仇及左皮斥尼弁玄卞嫖今互丐月井升丹井
- * 娄醒
- *  fl              int     白夫失
- *  x               int     x 甄  
- *  y               int     y 甄  
- * 忒曰袄
- *  嫖今互丐月  TRUE
- *  嫖今互卅中  FALSE
+ * 座標を指定して、そこのオブジェクトに高さがあるかどうか
+ * 引数
+ *  fl              int     フロア
+ *  x               int     x 座標
+ *  y               int     y 座標
+ * 返り値
+ *  高さがある  TRUE
+ *  高さがない  FALSE
  ------------------------------------------------------------*/
 BOOL MAP_haveHeight( int fl, int x, int y )
 {
     int     map[2];
 
-    /*  穴永皿犯□正毛  化仁月  */
+    /*   マップデータを得てくる  */
     if( !MAP_getTileAndObjData( fl,x,y, &map[0], &map[1] ) )
         return FALSE;
 
@@ -111,11 +111,7 @@ BOOL MAP_haveHeight( int fl, int x, int y )
 }
 
 /*------------------------------------------------------------
- * Map 奶矛件玄及 pre post毛质  允月
- * 娄醒
- *  index       int     昙欠丹午仄化中月平乓仿及奶件犯永弁旦
- *  mode        BOOL    TRUE及凛反｝in  FALSE及凛反 out 卞覆杀
- * 忒曰袄卅仄
+ *
  ------------------------------------------------------------*/
 static void MAP_dealprepostevent( int index, BOOL mode )
 {
@@ -155,10 +151,11 @@ static void MAP_dealprepostevent( int index, BOOL mode )
  * 公及正奶伙卞昙月蟆卞裟壬木月［仇仇匹公仇井日转仁午｝xxx烟及
  * 仪毛  蜇允月［
  * 娄醒
- *  index       int     昙欠丹午仄化中月平乓仿及奶件犯永弁旦
- *  flooor      int     白夫失ID
- *  fx          int     x甄  
- *  fy          int     y甄  
+ *  index       int      Char配列での Index
+ *  flooor      int      floor id
+ *  fx          int     x座標
+ *  fy          int     y座標
+
  * 忒曰袄
  *  卅仄
  ----------------------------------------*/
@@ -170,7 +167,7 @@ void MAP_preovered( int index )
 /*----------------------------------------
  * 公及正奶伙卞昙匀凶  卞裟壬木月［
  * 娄醒
- *  index       int     昙欠丹午仄化中月平乓仿及奶件犯永弁旦
+ *  index       int     Char配列での Index
  * 忒曰袄
  *  卅仄
  ----------------------------------------*/

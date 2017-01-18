@@ -24,12 +24,12 @@ int		 ATTMAGIC_magicnum;
 
 typedef struct tagMagic_MagicFunctionTable
 {
-	char			*functionname;		/*	热诸涩烂白央奶伙卞踏仁楮醒及  蟆 */
-	MAGIC_CALLFUNC	func;				/*    端卞裟太请今木月楮醒 */
+	char			*functionname;		/*	呪術設定ファイルに書く関数の名前 */
+	MAGIC_CALLFUNC	func;				/*  実際に呼び出される関数 */
 	int				hash;				/*  hash */
 }MAGIC_MagicFunctionTable;
 
-/* 热诸毛  支仄凶日仇仇卞瓒  允月仪 */
+/* 呪術を増やしたらここに登録する事 */
 static MAGIC_MagicFunctionTable MAGIC_functbl[] = {
 	{ "MAGIC_Recovery", 		MAGIC_Recovery,			0},
 	{ "MAGIC_OtherRecovery",	MAGIC_OtherRecovery,	0},
@@ -73,7 +73,7 @@ static MAGIC_MagicFunctionTable MAGIC_functbl[] = {
 /*----------------------------------------------------------------------*/
 
 
-/* 湘  民尼永弁］失弁本旦楮溢 */
+/* 基本チェック，アクセス関係 */
 /*----------------------------------------------------------------------*/
 INLINE BOOL MAGIC_CHECKINDEX( int index )
 {
@@ -124,7 +124,7 @@ INLINE BOOL MAGIC_setChar( int index ,MAGIC_DATACHAR element, char* new )
     return TRUE;
 }
 /*----------------------------------------------------------------------
- *   芊及醒毛襞月［
+ *   魔法の数を知る。
  *---------------------------------------------------------------------*/
 int MAGIC_getMagicNum( void)
 {
@@ -132,7 +132,7 @@ int MAGIC_getMagicNum( void)
 }
 
 /*----------------------------------------------------------------------
- *   芊及涩烂白央奶伙毛  戈
+ *  魔法の設定ファイルを読む
  *---------------------------------------------------------------------*/
 BOOL MAGIC_initMagic( char *filename)
 {
@@ -153,7 +153,7 @@ BOOL MAGIC_initMagic( char *filename)
 
     MAGIC_magicnum=0;
 
-    /*  引内  躲卅垫互窒垫丐月井升丹井譬屯月    */
+    /* まず有効な行が何行あるかどうか調べる      */
     while( fgets( line, sizeof( line ), f ) ){
         linenum ++;
         if( line[0] == '#' )continue;        /* comment */
@@ -190,7 +190,7 @@ BOOL MAGIC_initMagic( char *filename)
         return FALSE;
     }
 
-	/* 赓渝祭 */
+	/* 初期化*/
     for( i = 0; i < MAGIC_magicnum; i ++ ) {
     	for( j = 0; j < MAGIC_DATAINTNUM; j ++ ) {
     		MAGIC_setInt( i,j,-1);
@@ -200,7 +200,7 @@ BOOL MAGIC_initMagic( char *filename)
     	}
     }
 
-    /*  引凶  心  允    */
+    /*   また読み直す    */
     linenum = 0;
     while( fgets( line, sizeof( line ), f ) ){
         linenum ++;
@@ -208,10 +208,11 @@ BOOL MAGIC_initMagic( char *filename)
         if( line[0] == '\n' )continue;       /* none    */
         chomp( line );
 
-        /*  垫毛帮溥允月    */
-        /*  引内 tab 毛 " " 卞  五晶尹月    */
+        /*  行を整形する    */
+        /*  まず tab を " " に置き換える    */
         replaceString( line, '\t' , ' ' );
-        /* 燮  及旦矢□旦毛潸月［*/
+        /* 先頭のスペースを取る。*/
+
 {
         char    buf[256];
         for( i = 0; i < strlen( line); i ++) {
@@ -237,7 +238,7 @@ BOOL MAGIC_initMagic( char *filename)
 
 		for( i = 0; i < MAGIC_DATACHARNUM; i ++ ) {
 
-	        /*    侬  迕玄□弁件毛苇月    */
+	        /*   文字列用トークンを見る    */
 	        ret = getStringFromIndexWithDelim( line,",",
 	        									i + 1,
 	        									token,sizeof(token));
@@ -247,7 +248,7 @@ BOOL MAGIC_initMagic( char *filename)
 	        }
 	        MAGIC_setChar( magic_readlen, i, token);
 		}
-        /* 4勾  动嫦反醒袄犯□正 */
+        /*  4つ目以降は数値データ */
 #define	MAGIC_STARTINTNUM		5
         for( i = MAGIC_STARTINTNUM; i < MAGIC_DATAINTNUM+MAGIC_STARTINTNUM; i ++ ) {
             ret = getStringFromIndexWithDelim( line,",",i,token,
@@ -288,7 +289,7 @@ BOOL MAGIC_initMagic( char *filename)
         	 continue;
         	 
 #endif
-		/* 切斤匀午尕称鼎分仃升仇丹允月［ */
+		/* ちょっと不細工だけどこうする */
 		if( MAGIC_getInt( magic_readlen, MAGIC_TARGET_DEADFLG) == 1 ) {
 			MAGIC_setInt( magic_readlen, MAGIC_TARGET,
 						MAGIC_getInt( magic_readlen, MAGIC_TARGET)+100);
@@ -304,14 +305,14 @@ BOOL MAGIC_initMagic( char *filename)
 
     print( "有效魔法数是 %d...", MAGIC_magicnum );
 
-	/* hash 及瓒   */
+	/*  hash の登録   */
 	for( i = 0; i < arraysizeof( MAGIC_functbl); i ++ ) {
 		MAGIC_functbl[i].hash = hashpjw( MAGIC_functbl[i].functionname);
 	}
     return TRUE;
 }
 /*------------------------------------------------------------------------
- * Magic及涩烂白央奶伙  心  仄
+ *  Magicの設定ファイル読み直し
  *-----------------------------------------------------------------------*/
 BOOL MAGIC_reinitMagic( void )
 {
@@ -392,10 +393,10 @@ BOOL ATTMAGIC_reinitMagic( void )
 #endif
 
 /*------------------------------------------------------------------------
- * MAGIC_ID井日骄侬毛襞月楮醒
- * 忒曰袄
- * 岳  : 骄侬
- * 撩  : -1
+ * MAGIC_IDから添字を知る関数
+ * 返り値
+ * 成功: 添字
+ * 失敗: -1
  *-----------------------------------------------------------------------*/
 int MAGIC_getMagicArray( int magicid)
 {
@@ -413,11 +414,11 @@ int MAGIC_getMagicArray( int magicid)
 	return -1;
 }
 /*------------------------------------------------------------
- * 热诸及楮醒  井日禾奶件正□毛忒允
- * 娄醒
- *  name        char*       热诸及  蟆
- * 忒曰袄
- *  楮醒尺及禾奶件正［卅中桦宁卞反NULL
+ * 呪術の関数名からポインターを返す
+ * 引数
+ *  name        char*       呪術の名前
+ * 返り値
+ *  関数へのポインタ。ない場合にはNULL
  ------------------------------------------------------------*/
 MAGIC_CALLFUNC MAGIC_getMagicFuncPointer(char* name)
 {
@@ -441,8 +442,9 @@ MAGIC_CALLFUNC MAGIC_getMagicFuncPointer(char* name)
 
 // Nuke start (08/23)
 /*
-  酱   Nuke 今氏及民尼永弁［
-    芊及躲绊  区毛民尼永弁允月［
+   台湾 Nuke さんのチェック。
+  魔法の効果範囲をチェックする。
+
 
   Check the validity of the target of a magic.
   Return value:

@@ -504,9 +504,9 @@ void PETMAIL_Loopfunc( int index)
 
 static int PETMAIL_getIdleTime( int index)
 {
-#define		PETMAIL_DIVRANGE		25		//	坌喃允月汹
-#define		PETMAIL_IDLELEVELRANGE	10		//	坌喃允月  区
-#define		PETMAIL_IDLEUNITTIME	3		//	棉厥
+#define		PETMAIL_DIVRANGE		25		//	分割する量
+#define		PETMAIL_IDLELEVELRANGE	10		//	分割する範囲
+#define		PETMAIL_IDLEUNITTIME	3		//	間隔
 	int		d;
 #ifdef	_PETMAIL_TIME
 	int		dex;
